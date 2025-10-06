@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>Surprise</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    body { font-family: system-ui, Arial, sans-serif; direction: ltr; padding: 20px; background: #f6f8fa; color: #111; }
+    .card { max-width:640px; margin:40px auto; background:#fff; border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,0.08); padding:24px; }
+    h2{ margin-top:0; }
+    button{ padding:10px 16px; font-size:15px; border-radius:6px; border:1px solid #0b6cff; background:#0b6cff; color:#fff; cursor:pointer; }
+    input[type="text"]{ padding:8px 10px; font-size:15px; border:1px solid #ccc; border-radius:6px; width:60%; margin-right:8px; }
+    pre{ background:#f3f4f6; padding:12px; border-radius:6px; white-space:pre-wrap; color:#111; }
+    .muted{ color:#555; font-size:13px; margin-top:8px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Small surprise 🎁</h2>
+    <p class="muted">Enter a greeting (or leave the default) and press the button. The browser will ask for location permission.</p>
+
+    <div style="margin:12px 0;">
+      <input id="greet" type="text" value="Hello S" aria-label="Greeting"/>
+      <button id="btn">Show Surprise</button>
+    </div>
+
+    <pre id="out">Waiting for action...</pre>
+    <p class="muted">Note: Location will be shared only if the user allows it. This page does not collect or send data anywhere.</p>
+  </div>
+
+  <script>
+    document.getElementById('btn').onclick = () => {
+      const out = document.getElementById('out');
+      const greeting = document.getElementById('greet').value || 'Hello S';
+      out.textContent = 'Requesting location permission...';
+
+      if (!navigator.geolocation) {
+        out.textContent = `${greeting}\n\nGeolocation is not supported by this browser.`;
+        return;
+      }
+
+      navigator.geolocation.getCurrentPosition(
+        pos => {
+          const { latitude, longitude, accuracy } = pos.coords;
+          out.textContent = `${greeting}\n\nYour location (with your permission):\nLatitude: ${latitude}\nLongitude: ${longitude}\nAccuracy: ${accuracy} meters\n\n(You granted permission; no data is sent elsewhere.)`;
+        },
+        err => {
+          out.textContent = `${greeting}\n\nUser denied permission or an error occurred: ${err.message}`;
+        },
+        { enableHighAccuracy: false, timeout: 10000 }
+      );
+    };
+  </script>
+</body>
+</html>
