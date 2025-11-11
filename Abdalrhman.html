@@ -1,102 +1,106 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Abdalrhman's Website</title>
+  <title>Abdalrhman's Website</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f9fafc;
+      text-align: center;
+      color: #222;
+    }
+
+    img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      margin-top: 20px;
+    }
+
+    h1 {
+      margin: 10px 0 5px 0;
+      font-size: 28px;
+      color: #0a0a0a;
+    }
+
+    h2 {
+      margin: 3px 0;
+      font-weight: normal;
+      color: #333;
+    }
+
+    a {
+      color: #0078ff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    hr {
+      width: 60%;
+      margin: 25px auto;
+      border: none;
+      border-top: 2px solid #ddd;
+    }
+
+    h3 {
+      color: #111;
+    }
+
+    form {
+      background: #fff;
+      display: inline-block;
+      padding: 20px 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"] {
+      width: 250px;
+      padding: 5px;
+      margin-top: 3px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    input[type="checkbox"] {
+      margin-top: 10px;
+    }
+
+    input[type="submit"] {
+      margin-top: 15px;
+      background-color: #0078ff;
+      color: white;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #005fd1;
+    }
+  </style>
 </head>
+
 <body>
-<img src="photo.jpeg" alt="My Photo" style="width:150px;height:150px">
-<h1>Abdalrhman Salah Ibrahim</h1>
-<h2>Student at <a href="https://must.edu.eg">MUST</a> IT</h2>
-<h2>Penetration Testing Student | Bug Bounty Enthusiast | CTF Player</h2>
-<!--
-    <h3>Schedule</h3>
-    <ul>
-      <li>Sat</li>
-      <li>Sun</li>
-      <li>Mon</li>
-    </ul>
+  <img src="photo.jpeg" alt="My Photo">
+  <h1>Abdalrhman Salah Ibrahim</h1>
+  <h2>Student at <a href="https://must.edu.eg">MUST</a> IT</h2>
+  <h2>Penetration Testing Student | Bug Bounty Enthusiast | CTF Player</h2>
 
-    <h3>Subjects</h3>
-    <ol>
-      <li>Sat</li>
-      <li>Sun</li>
-      <li>Mon</li>
-    </ol>
+  <hr>
 
-    <h3>Details</h3>
-    <dl>
-      <dt>CS.101</dt>
-      <dd>- Sat</dd>
-
-      <dt>CS.102</dt>
-      <dd>- Thu</dd>
-
-      <dt>Phy</dt>
-      <dd>- Wed</dd>
-    </dl>
-
-    <hr>
-
-    <table border="1">
-      <tr>
-        <th>Skill</th>
-        <th colspan="2">Rate</th>
-      </tr>
-
-      <tr>
-        <td>Coding</td>
-        <td rowspan="2">⭐⭐⭐</td>
-        <td rowspan="2">50%</td>
-      </tr>
-
-      <tr>
-        <td>Problem Solving</td>
-      </tr>
-
-      <tr>
-        <td>Cyber Security</td>
-        <td>⭐⭐⭐⭐</td>
-        <td>60%</td>
-      </tr>
-
-      <tr>
-        <td>Football</td>
-        <td>⭐⭐⭐⭐⭐</td>
-        <td>70%</td>
-      </tr>
-
-    </table>
-
-    <hr>
--->
   <h3>Contact Me:</h3>
-      
-      <form action = "https://formsubmit.co/body362222@email.com" method="POST">
-      <label>Your Name:</label>
-      <input type="text"> <br>
-
-      <label>Your Email:</label>
-      <input type="email"> <br>
-
-      <label>Tell me what you want:</label>
-      <input type="text"> <br>
-
-      <label>I'm not a robot:</label>
-      <input type="checkbox"> <br><br>
-
-      <input type="submit">
-
-    </form>
-
-  </body>
-</html>
-
-
-
-
-
-
-
-
-
-
+  <form
