@@ -61,6 +61,30 @@
 <hr>
 <h3>Certifications</h3>
 <ol>
+ <h3>Cisco Progress</h3>
+<p id="loading">⬜⬜⬜⬜⬜</p>
+
+<script>
+const loadingEl = document.getElementById('loading');
+const max = 5;
+let progress = 0;
+let forward = true;
+
+setInterval(() => {
+  let emojis = '';
+  for (let i = 0; i < max; i++) {
+    if (i < progress) emojis += '🟩';
+    else emojis += '⬜';
+  }
+  loadingEl.textContent = emojis;
+
+  if (forward) progress++;
+  else progress--;
+
+  if (progress === max) forward = false;
+  if (progress === 0) forward = true;
+}, 300); // كل 0.3 ثانية يتحرك
+</script>
   <li>
     <strong>Computer Network Fundamentals</strong><br>
     <em>MaharaTech - ITI</em><br>
@@ -103,11 +127,6 @@
 </form>
 </body>
 </html>
-
-
-
-
-
 
 
 
