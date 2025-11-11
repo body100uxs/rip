@@ -4,60 +4,42 @@
 <title>Abdalrhman's Website</title>
 <style>
   body {
-    background-color: #f2f5f9; /* خلفية فاتحة مريحة */
+    background-color: #f2f5f9; /* خلفية فاتحة */
     font-family: Arial, sans-serif;
-    text-align: center;
     color: #222;
   }
 
-  img {
-    display: block;
-    margin: 20px auto;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    border: 3px solid #0078ff; /* لون أزرق خفيف */
-  }
-
   h1 {
-    color: #0078ff; /* اسمك باللون الأزرق */
-    margin-bottom: 5px;
+    color: #0078ff; /* اللون الأزرق لاسمك */
   }
 
   h2 {
-    color: #444;
-    margin: 5px 0;
+    color: #333; /* رمادي داكن للعناوين */
+  }
+
+  h2 a {
+    color: #d35400; /* رابط الجامعة باللون البرتقالي */
+    text-decoration: none;
+  }
+
+  h2 a:hover {
+    text-decoration: underline;
   }
 
   h3 {
-    color: #0078ff;
-    margin-top: 25px;
+    color: #0078ff; /* اللون الأزرق لعناوين الفورم */
   }
 
   label {
-    display: block;
-    margin-top: 10px;
-    color: #333;
-  }
-
-  input[type="text"], input[type="email"] {
-    padding: 5px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-
-  input[type="checkbox"] {
-    margin-top: 10px;
+    color: #555; /* نص labels بالرمادي */
   }
 
   input[type="submit"] {
     background-color: #0078ff;
     color: white;
-    padding: 8px 15px;
     border: none;
-    border-radius: 6px;
-    margin-top: 10px;
+    padding: 8px 15px;
+    border-radius: 5px;
     cursor: pointer;
   }
 
@@ -68,27 +50,29 @@
 </head>
 
 <body>
-  <img src="photo.jpeg" alt="My Photo">
+<img src="photo.jpeg" alt="My Photo" style="width:150px;height:150px">
 
-  <h1>Abdalrhman Salah Ibrahim</h1>
-  <h2>Student at <a href="https://must.edu.eg">MUST</a> IT</h2>
-  <h2>Penetration Testing Student | Bug Bounty Enthusiast | CTF Player</h2>
+<h1>Abdalrhman Salah Ibrahim</h1>
+<h2>Student at <a href="https://must.edu.eg">MUST</a> IT</h2>
+<h2>Penetration Testing Student | Bug Bounty Enthusiast | CTF Player</h2>
 
-  <h3>Contact Me:</h3>
-  <form action="https://formsubmit.co/body362222@email.com" method="POST">
-    <label>Your Name:</label>
-    <input type="text"> <br>
+<hr>
 
-    <label>Your Email:</label>
-    <input type="email"> <br>
+<h3>Contact Me:</h3>
+<form action="https://formsubmit.co/body362222@email.com" method="POST">
+  <label>Your Name:</label>
+  <input type="text"> <br>
 
-    <label>Tell me what you want:</label>
-    <input type="text"> <br>
+  <label>Your Email:</label>
+  <input type="email"> <br>
 
-    <label>I'm not a robot:</label>
-    <input type="checkbox"> <br><br>
+  <label>Tell me what you want:</label>
+  <input type="text"> <br>
 
-    <input type="submit">
-  </form>
+  <label>I'm not a robot:</label>
+  <input type="checkbox"> <br><br>
+
+  <input type="submit">
+</form>
 </body>
 </html>
