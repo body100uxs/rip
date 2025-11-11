@@ -1,106 +1,94 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Abdalrhman's Website</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f9fafc;
-      text-align: center;
-      color: #222;
-    }
+<title>Abdalrhman's Website</title>
+<style>
+  body {
+    background-color: #f2f5f9; /* خلفية فاتحة مريحة */
+    font-family: Arial, sans-serif;
+    text-align: center;
+    color: #222;
+  }
 
-    img {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      margin-top: 20px;
-    }
+  img {
+    display: block;
+    margin: 20px auto;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid #0078ff; /* لون أزرق خفيف */
+  }
 
-    h1 {
-      margin: 10px 0 5px 0;
-      font-size: 28px;
-      color: #0a0a0a;
-    }
+  h1 {
+    color: #0078ff; /* اسمك باللون الأزرق */
+    margin-bottom: 5px;
+  }
 
-    h2 {
-      margin: 3px 0;
-      font-weight: normal;
-      color: #333;
-    }
+  h2 {
+    color: #444;
+    margin: 5px 0;
+  }
 
-    a {
-      color: #0078ff;
-      text-decoration: none;
-    }
+  h3 {
+    color: #0078ff;
+    margin-top: 25px;
+  }
 
-    a:hover {
-      text-decoration: underline;
-    }
+  label {
+    display: block;
+    margin-top: 10px;
+    color: #333;
+  }
 
-    hr {
-      width: 60%;
-      margin: 25px auto;
-      border: none;
-      border-top: 2px solid #ddd;
-    }
+  input[type="text"], input[type="email"] {
+    padding: 5px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
 
-    h3 {
-      color: #111;
-    }
+  input[type="checkbox"] {
+    margin-top: 10px;
+  }
 
-    form {
-      background: #fff;
-      display: inline-block;
-      padding: 20px 30px;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
+  input[type="submit"] {
+    background-color: #0078ff;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 6px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
 
-    label {
-      display: block;
-      margin-top: 10px;
-      font-weight: bold;
-    }
-
-    input[type="text"],
-    input[type="email"] {
-      width: 250px;
-      padding: 5px;
-      margin-top: 3px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-
-    input[type="checkbox"] {
-      margin-top: 10px;
-    }
-
-    input[type="submit"] {
-      margin-top: 15px;
-      background-color: #0078ff;
-      color: white;
-      border: none;
-      padding: 8px 20px;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-
-    input[type="submit"]:hover {
-      background-color: #005fd1;
-    }
-  </style>
+  input[type="submit"]:hover {
+    background-color: #005fcc;
+  }
+</style>
 </head>
 
 <body>
   <img src="photo.jpeg" alt="My Photo">
+
   <h1>Abdalrhman Salah Ibrahim</h1>
   <h2>Student at <a href="https://must.edu.eg">MUST</a> IT</h2>
   <h2>Penetration Testing Student | Bug Bounty Enthusiast | CTF Player</h2>
 
-  <hr>
-
   <h3>Contact Me:</h3>
-  <form
+  <form action="https://formsubmit.co/body362222@email.com" method="POST">
+    <label>Your Name:</label>
+    <input type="text"> <br>
+
+    <label>Your Email:</label>
+    <input type="email"> <br>
+
+    <label>Tell me what you want:</label>
+    <input type="text"> <br>
+
+    <label>I'm not a robot:</label>
+    <input type="checkbox"> <br><br>
+
+    <input type="submit">
+  </form>
+</body>
+</html>
