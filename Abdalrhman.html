@@ -56,14 +56,35 @@
 <h2>Penetration Testing Student | Bug Bounty Enthusiast | CTF Player</h2>
 <h2><a href="https://linkedin.com/in/abdalrhman-salah-ibrahim-51725a396
 ">Linkedin</a></h2>
-
-
 <hr>
 <h3>Certifications</h3>
 <ol>
- <h3>Cisco Progress</h3>
-<p id="loading">⬜⬜⬜⬜⬜</p>
+  <li>
+    <strong>Cisco Progress</strong><br>
+    <em>Progress: <span id="loading" style="font-size:0.9em;">⬜⬜⬜⬜⬜</span></em>
+  </li>
 
+  <li>
+    <strong>Computer Network Fundamentals</strong><br>
+    <em>MaharaTech - ITI</em>
+  </li>
+  <li>
+    <strong>Wireless Network Pen Tester</strong><br>
+    <em>MaharaTech - ITI</em>
+  </li>
+  <li>
+    <strong>Ethical Hacking</strong><br>
+    <em>MaharaTech - ITI</em>
+  </li>
+  <li>
+    <strong>CHC v2</strong><br>
+    <em>techcampus</em>
+  </li>
+  <li>
+    <strong>دور الطب الشرعى فى الكشف عن الجريمة</strong><br>
+    <em>Misr University for Science and Technology</em>
+  </li>
+</ol>
 <script>
 const loadingEl = document.getElementById('loading');
 const max = 5;
@@ -73,8 +94,7 @@ let forward = true;
 setInterval(() => {
   let emojis = '';
   for (let i = 0; i < max; i++) {
-    if (i < progress) emojis += '🟩';
-    else emojis += '⬜';
+    emojis += (i < progress) ? '🟩' : '⬜';
   }
   loadingEl.textContent = emojis;
 
@@ -83,30 +103,8 @@ setInterval(() => {
 
   if (progress === max) forward = false;
   if (progress === 0) forward = true;
-}, 300); // كل 0.3 ثانية يتحرك
+}, 300);
 </script>
-  <li>
-    <strong>Computer Network Fundamentals</strong><br>
-    <em>MaharaTech - ITI</em><br>
-  </li>
-  <li>
-    <strong>Wireless Network Pen Tester</strong><br>
-    <em>MaharaTech - ITI</em>
-  </li>
-  <li>
-    <strong>Ethical Hacking</strong><br>
-    <em>MaharaTech - ITI </em>
-  </li>
-   <li>
-    <strong>CHC v2</strong><br>
-    <em>techcampus </em>
-  </li>
-    <li>
-    <strong>دور الطب الشرعى فى الكشف عن الجريمة</strong><br>
-    <em>Misr University for Science and Technology</em><br>
-  </li>
-</ol>
-<hr>
 <hr>
 <h3>Contact Me:</h3>
 <form action="https://getform.io/f/byvelwza" method="POST">
@@ -127,6 +125,7 @@ setInterval(() => {
 </form>
 </body>
 </html>
+
 
 
 
