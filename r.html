@@ -3,466 +3,383 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abdalrhman | Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
+    <title>Abdalrhman | Cyber Security Portfolio</title>
+    <link rel="icon" type="image/x-icon" href="icon.png">
     <style>
-        /* إعدادات عامة */
+        /* --- CSS Variables & Reset --- */
+        :root {
+            --bg-color: #0b0c10;
+            --secondary-bg: #1f2833;
+            --text-color: #c5c6c7;
+            --accent-color: #66fcf1; /* Cyber Cyan */
+            --dark-accent: #45a29e;
+            --terminal-font: 'Courier New', Courier, monospace;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        /* الثوابت اللونية (CSS Variables) */
-        :root {
-            --bg-color: #0f1016;
-            --main-color: #e94560; /* اللون الأحمر/الوردي المميز */
-            --text-color: #ffffff;
-            --dark-section: #1a1a2e; /* لون أغمق للأقسام الداخلية */
         }
 
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
-            scroll-behavior: smooth;
+            font-family: var(--terminal-font);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* تنسيق الروابط */
-        a {
-            text-decoration: none;
-            color: var(--text-color);
+        a { text-decoration: none; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* --- Container --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
         }
 
-        /* التنسيق العام للأقسام */
-        section {
-            padding: 80px 8%;
-            border-top: 1px solid #222;
-        }
-
-        h2.section-title {
-            text-align: center;
-            margin-bottom: 40px;
-            font-size: 35px;
-            color: var(--main-color);
-        }
-        
-        /* الناف بار - القائمة العلوية */
-        nav {
+        /* --- Hero Section --- */
+        header {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
-            padding: 20px 8%;
-            background-color: var(--bg-color);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--main-color);
-        }
-
-        .nav-links ul {
-            display: flex;
-            list-style: none;
-        }
-
-        .nav-links ul li {
-            margin: 0 20px;
-        }
-
-        .nav-links ul li a:hover {
-            color: var(--main-color);
-        }
-
-        .contact-btn {
-            background-color: transparent;
-            border: 2px solid var(--main-color);
-            padding: 10px 25px;
-            color: var(--text-color);
-            transition: 0.3s;
-            /* جعله مستطيلاً */
-            border-radius: 0; 
-        }
-
-        .contact-btn:hover {
-            background-color: var(--main-color);
-        }
-
-        /* قسم الهيرو (الواجهة الرئيسية) */
-        .hero {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 90vh; 
-        }
-
-        .hero-text {
-            flex-basis: 50%;
-        }
-
-        .hero-text h3 {
-            font-size: 20px;
-            color: #ccc;
-        }
-
-        .hero-text h1 {
-            font-size: 55px;
-            margin: 15px 0;
-            line-height: 1.2;
-        }
-
-        .hero-text h1 span {
-            color: var(--main-color);
-        }
-
-        .typing-text {
-            font-size: 24px;
-            font-weight: 600;
-            color: var(--main-color);
-        }
-
-        .hero-buttons {
-            margin-top: 30px;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            font-weight: 600;
-            margin-right: 15px;
-            transition: 0.3s;
-            /* جعله مستطيلاً */
-            border-radius: 0;
-        }
-
-        .btn-primary {
-            background-color: var(--main-color);
-            color: var(--text-color);
-        }
-        
-        .btn-primary:hover {
-            background-color: #c0394d;
-        }
-
-        .btn-secondary {
-            border: 2px solid var(--text-color);
-            color: var(--text-color);
-        }
-
-        .btn-secondary:hover {
-            background-color: var(--text-color);
-            color: var(--bg-color);
-        }
-
-        .social-icons {
-            margin-top: 30px;
-        }
-
-        .social-icons a {
-            display: inline-flex;
             justify-content: center;
-            align-items: center;
-            width: 40px;
-            height: 40px;
-            border: 1px solid var(--text-color);
-            margin-right: 15px;
-            transition: 0.3s;
-            /* جعله مربعاً */
-            border-radius: 0;
-        }
-
-        .social-icons a:hover {
-            background-color: var(--main-color);
-            border-color: var(--main-color);
-            transform: translateY(-5px);
-        }
-
-        /* تنسيق الصورة */
-        .hero-img {
-            flex-basis: 45%;
-            text-align: right;
+            text-align: center;
+            padding: 80px 20px;
+            border-bottom: 2px solid var(--dark-accent);
             position: relative;
         }
 
-        .hero-img img {
-            width: 100%;
-            max-width: 500px;
-            filter: drop-shadow(0 0 20px rgba(233, 69, 96, 0.3));
-            /* جعلها حادة الزوايا */
-            border-radius: 0;
+        /* Matrix-like background overlay */
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, rgba(102, 252, 241, 0.1) 0%, rgba(11, 12, 16, 0) 70%);
+            z-index: -1;
         }
 
-        /* قسم الشهادات (About) - الجديد */
-        .cert-container {
-            display: flex;
+        .profile-img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 4px solid var(--accent-color);
+            box-shadow: 0 0 20px rgba(102, 252, 241, 0.4);
+            object-fit: cover;
+            margin-bottom: 20px;
+            /* استبدل photo.jpeg بصورتك الحقيقية */
+            background-image: url('photo.jpeg'), url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Glitch Effect Setup */
+        h1::before, h1::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: var(--bg-color);
+        }
+
+        h1::before {
+            left: 2px;
+            text-shadow: -1px 0 red;
+            clip: rect(24px, 550px, 90px, 0);
+            animation: glitch-anim-2 3s infinite linear alternate-reverse;
+        }
+        
+        h1::after {
+            left: -2px;
+            text-shadow: -1px 0 blue;
+            clip: rect(85px, 550px, 140px, 0);
+            animation: glitch-anim 2.5s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim {
+            0% { clip: rect(10px, 9999px, 31px, 0); }
+            20% { clip: rect(65px, 9999px, 80px, 0); }
+            40% { clip: rect(10px, 9999px, 30px, 0); }
+            60% { clip: rect(80px, 9999px, 95px, 0); }
+            80% { clip: rect(35px, 9999px, 60px, 0); }
+            100% { clip: rect(55px, 9999px, 70px, 0); }
+        }
+        @keyframes glitch-anim-2 {
+            0% { clip: rect(65px, 9999px, 100px, 0); }
+            20% { clip: rect(15px, 9999px, 45px, 0); }
+            40% { clip: rect(90px, 9999px, 105px, 0); }
+            60% { clip: rect(20px, 9999px, 65px, 0); }
+            80% { clip: rect(5px, 9999px, 30px, 0); }
+            100% { clip: rect(70px, 9999px, 95px, 0); }
+        }
+
+        .role {
+            color: var(--accent-color);
+            margin-top: 10px;
+            font-size: 1.1rem;
+            border-right: 2px solid var(--accent-color);
+            white-space: nowrap;
+            overflow: hidden;
+            width: 0;
+            animation: typing 3.5s steps(40, end) forwards, blink-caret .75s step-end infinite;
+        }
+
+        .social-link {
+            margin-top: 20px;
+            padding: 10px 25px;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            font-weight: bold;
+            display: inline-block;
+        }
+        
+        .social-link:hover {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            box-shadow: 0 0 15px var(--accent-color);
+        }
+
+        /* --- Section Titles --- */
+        .section-title {
+            color: #fff;
+            border-left: 5px solid var(--accent-color);
+            padding-left: 15px;
+            margin: 40px 0 20px;
+            font-size: 1.8rem;
+        }
+
+        /* --- Certifications Grid --- */
+        .certs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
-            overflow-x: auto; /* للتمرير الأفقي إذا زادت البطاقات */
-            padding-bottom: 20px;
         }
 
         .cert-card {
-            min-width: 300px; /* لضمان ظهور 3 بطاقات على الأقل */
-            background: var(--dark-section);
-            padding: 25px;
-            border: 2px solid #2e2e4a;
-            transition: transform 0.3s, border-color 0.3s;
-            /* جعله مستطيلاً */
-            border-radius: 0;
+            background-color: var(--secondary-bg);
+            padding: 20px;
+            border-radius: 5px;
+            border: 1px solid #333;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
         }
-        
+
         .cert-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--main-color);
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
         }
 
-        .cert-card strong {
-            display: block;
-            font-size: 18px;
-            color: var(--main-color);
-            margin-bottom: 5px;
-        }
-        
-        .cert-card small {
-            color: #aaa;
+        .cert-card h3 {
+            color: #fff;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
         }
 
-        /* تنسيق الفورم */
-        form {
-            max-width: 600px;
-            margin: 0 auto;
-            background: var(--dark-section);
-            padding: 30px;
-            /* جعله مستطيلاً */
-            border-radius: 0;
+        .cert-card p {
+            color: var(--dark-accent);
+            font-size: 0.9rem;
         }
 
-        form label {
-            display: block;
-            margin-bottom: 5px;
-            color: #ccc;
-        }
-
-        form input[type="text"], 
-        form input[type="email"] {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: none;
-            /* جعله مستطيلاً */
-            border-radius: 0;
-            background: var(--bg-color);
+        .status-bar {
+            margin-top: 10px;
+            font-size: 0.8rem;
             color: var(--text-color);
         }
-
-        form input[type="submit"] {
-            background-color: var(--main-color);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            /* جعله مستطيلاً */
-            border-radius: 0;
-            cursor: pointer;
-            width: 100%;
-            font-size: 16px;
-        }
-
-        /* Cursor blinking effect */
-        .cursor {
-            display: inline-block;
-            margin-left: 3px;
-            animation: blink 0.7s infinite;
-        }
         
-        @keyframes blink {
-            0% { opacity: 1; }
-            50% { opacity: 0; }
-            100% { opacity: 1; }
+        /* Loading Animation */
+        .loading-dots::after {
+            content: ' .';
+            animation: dots 1.5s steps(5, end) infinite;
+        }
+        @keyframes dots {
+            0%, 20% { content: ' .'; }
+            40% { content: ' ..'; }
+            60% { content: ' ...'; }
+            80%, 100% { content: ' ....'; }
         }
 
-        /* للتجاوب مع الموبايل */
+        /* --- Contact Form --- */
+        .contact-section {
+            background-color: var(--secondary-bg);
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 50px;
+            border: 1px solid #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--accent-color);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--bg-color);
+            border: 1px solid #444;
+            color: #fff;
+            font-family: var(--terminal-font);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .btn-submit {
+            background-color: transparent;
+            color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+            padding: 10px 30px;
+            font-family: var(--terminal-font);
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.8rem;
+            color: #555;
+            border-top: 1px solid #333;
+        }
+
+        /* Typing Animation Keyframes */
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--accent-color); }
+        }
+
+        /* Responsive Adjustments */
         @media (max-width: 768px) {
-            .hero {
-                flex-direction: column-reverse;
-                height: auto;
-                text-align: center;
-                padding-top: 100px;
-            }
-            .hero-text, .hero-img {
-                flex-basis: 100%;
-            }
-            .hero-img img {
-                margin-bottom: 30px;
-                max-width: 300px;
-            }
-            nav {
-                flex-direction: column;
-            }
-            .nav-links ul {
-                margin-top: 20px;
-            }
-            .cert-container {
-                flex-direction: column;
-                overflow-x: hidden;
-            }
+            h1 { font-size: 1.8rem; }
+            .role { font-size: 0.8rem; white-space: normal; border: none; animation: none; width: auto; }
+            .profile-img { width: 120px; height: 120px; }
         }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo">Abdalrhman.</div>
-        <div class="nav-links">
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-        <a href="#contact" class="contact-btn">Contact Me</a>
-    </nav>
-
-    <section class="hero" id="home">
-        <div class="hero-text">
-            <h3>Hello, My Name is</h3>
-            <h1>Abdalrhman <br> <span>Salah Ibrahim</span></h1>
-            <div class="typing-text">I'm a <span id="typewriter"></span><span class="cursor">|</span></div>
-            
-            <div class="hero-buttons">
-                <a href="#about" class="btn btn-primary">More About Me</a>
-                <a href="#" class="btn btn-secondary">View Resume</a>
-            </div>
-
-            <div class="social-icons">
-                <a href="https://linkedin.com/in/abdalrhman-salah-ibrahim-51725a396"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#"><i class="fab fa-github"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-            </div>
-        </div>
-
-        <div class="hero-img">
-            <img src="https://images.unsplash.com/photo-1535581652167-3d6b98c36cd9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Profile Image">
-        </div>
-    </section>
-
-    <section id="about">
-        <h2 class="section-title">Certifications & Experience</h2>
-        <div class="cert-container">
-            <div class="cert-card">
-                <strong>Penetration Testing Professional</strong>
-                <small>MaharaTech - ITI</small>
-            </div>
-            <div class="cert-card">
-                <strong>Ethical Hacking</strong>
-                <small>MaharaTech - ITI</small>
-            </div>
-            <div class="cert-card">
-                <strong>CHC v2</strong>
-                <small>Techcampus</small>
-            </div>
-            <div class="cert-card">
-                <strong>Computer Network Fundamentals</strong>
-                <small>MaharaTech - ITI</small>
-            </div>
-            <div class="cert-card">
-                <strong>Forensic Medicine Role in Crime Detection</strong>
-                <small>Misr University for Science and Technology</small>
-            </div>
-             <div class="cert-card">
-                <strong>Cisco Cybersecurity</strong>
-                <small>In Progress: <span id="loading"></span></small>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact">
-        <h2 class="section-title">Contact Me</h2>
-        <form action="https://getform.io/f/byvelwza" method="POST">
-            <label>Your Name:</label>
-            <input type="text" name="name" required>
-
-            <label>Your Email:</label>
-            <input type="email" name="email" required>    
-
-            <label>Message:</label>
-            <input type="text" name="message" required>
-
-            <label style="display: flex; align-items: center; gap: 10px;">
-                <input type="checkbox" name="not_robot" style="width: auto; margin: 0;"> I'm Not a Robot
-            </label>
-
-            <input type="submit" value="Send Message">
-        </form>
-    </section>
-
-    <script>
-        // سكربت الكتابة المتحركة (Typing Effect)
-        const textElement = document.getElementById('typewriter');
-        const texts = ["Penetration Testing Student", "Bug Bounty Enthusiast", "CTF Player"];
-        let count = 0;
-        let index = 0;
-        let currentText = "";
-        let letter = "";
+    <header>
+        <div class="profile-img"></div> 
+        <h1 data-text="Abdalrhman Salah Ibrahim">Abdalrhman Salah Ibrahim</h1>
+        <div class="role">> Penetration Testing Student | Bug Bounty | CTF Player_</div>
         
-        (function type() {
-            if (count === texts.length) {
-                count = 0;
-            }
-            currentText = texts[count];
-            letter = currentText.slice(0, ++index);
+        <br>
+        <a href="https://linkedin.com/in/abdalrhman-salah-ibrahim-51725a396" target="_blank" class="social-link">
+            [ CONNECT ON LINKEDIN ]
+        </a>
+    </header>
+
+    <div class="container">
+        
+        <h2 class="section-title">./Certifications_Log</h2>
+        <div class="certs-grid">
             
-            textElement.textContent = letter;
-            
-            if (letter.length === currentText.length) {
-                // انتظر ثانيتين قبل المسح والبدء في الكلمة التالية
-                setTimeout(erase, 2000); 
-            } else {
-                // سرعة الكتابة
-                setTimeout(type, 100); 
-            }
-        }());
+            <div class="cert-card">
+                <h3>Penetration Testing Professional</h3>
+                <p>MaharaTech - ITI</p>
+                <div class="status-bar">[STATUS: COMPLETED]</div>
+            </div>
 
-        function erase() {
-            currentText = texts[count];
-            letter = currentText.slice(0, --index);
-            textElement.textContent = letter;
+            <div class="cert-card">
+                <h3>Ethical Hacking</h3>
+                <p>MaharaTech - ITI</p>
+                <div class="status-bar">[STATUS: COMPLETED]</div>
+            </div>
 
-            if (letter.length === 0) {
-                count++;
-                index = 0;
-                // ابدأ الكتابة بعد الانتهاء من المسح
-                setTimeout(type, 500);
-            } else {
-                // سرعة المسح
-                setTimeout(erase, 50);
-            }
-        }
+            <div class="cert-card">
+                <h3>CHC v2</h3>
+                <p>Techcampus</p>
+                <div class="status-bar">[STATUS: COMPLETED]</div>
+            </div>
 
+            <div class="cert-card">
+                <h3>Computer Network Fundamentals</h3>
+                <p>MaharaTech - ITI</p>
+                <div class="status-bar">[STATUS: COMPLETED]</div>
+            </div>
 
-        // سكربت شريط التحميل الخاص بك
-        const loadingEl = document.getElementById('loading');
-        const max = 5;
-        let progress = 0;
-        let forward = true;
+            <div class="cert-card">
+                <h3>Forensic Medicine in Crime Detection</h3>
+                <p>Misr University for Science and Technology</p>
+                <div class="status-bar">[STATUS: COMPLETED]</div>
+            </div>
 
-        setInterval(() => {
-            let emojis = '';
-            for (let i = 0; i < max; i++) {
-                emojis += (i < progress) ? '🟩' : '⬜';
-            }
-            loadingEl.textContent = emojis;
+            <div class="cert-card" style="border-color: yellow;">
+                <h3 style="color: yellow;">Cisco Cybersecurity</h3>
+                <p>In Progress</p>
+                <div class="status-bar">
+                    <span style="color: #0f0;">██████</span><span style="color: #333;">████</span> 60%
+                    <span class="loading-dots">Processing</span>
+                </div>
+            </div>
 
-            if (forward) progress++;
-            else progress--;
+        </div>
 
-            if (progress === max) forward = false;
-            if (progress === 0) forward = true;
-        }, 300);
-    </script>
+        <h2 class="section-title">./Initialize_Contact</h2>
+        <div class="contact-section">
+            <form action="https://getform.io/f/byvelwza" method="POST">
+                
+                <div class="form-group">
+                    <label>>> Enter Identity (Name):</label>
+                    <input type="text" name="name" class="form-control" placeholder="User..." required>
+                </div>
+
+                <div class="form-group">
+                    <label>>> Enter Frequency (Email):</label>
+                    <input type="email" name="email" class="form-control" placeholder="email@example.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label>>> Enter Payload (Message):</label>
+                    <input type="text" name="message" class="form-control" placeholder="Type your message..." required>
+                </div>
+
+                <div class="form-group" style="display: flex; align-items: center; gap: 10px;">
+                    <input type="checkbox" name="not_robot" id="robot" required>
+                    <label for="robot" style="margin:0; cursor:pointer;">I am not a bot [reCAPTCHA bypass]</label>
+                </div>
+
+                <br>
+                <button type="submit" class="btn-submit">EXECUTE_SEND();</button>
+
+            </form>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>System.exit(0) | © 2024 Abdalrhman Salah Ibrahim</p>
+    </footer>
+
 </body>
 </html>
