@@ -121,11 +121,21 @@
         .cert-card h4 { margin-bottom: 5px; font-size: 1.1rem; color: var(--text); }
         .cert-card span { font-size: 0.9rem; color: var(--muted); }
 
-        /* --- BLOG --- */
-        .tweet-feed { width: 100%; max-width: 100%; margin: 0; }
+        /* --- BLOG (EDITED: FULL WIDTH) --- */
+        .tweet-feed { 
+            width: 100%; /* عرض كامل */
+            max-width: 100%; /* إزالة الحد الأقصى */
+            margin: 0; 
+        }
         .tweet-card { 
-            background: #fff; border: 1px solid var(--border); padding: 30px; 
-            display: flex; gap: 25px; margin-bottom: 30px; text-align: left; width: 100%; 
+            background: #fff; 
+            border: 1px solid var(--border); 
+            padding: 30px; 
+            display: flex; 
+            gap: 25px; 
+            margin-bottom: 30px; 
+            text-align: left; 
+            width: 100%; /* الكارت ياخد العرض كله */
         }
         .tweet-avatar { width: 60px; height: 60px; object-fit: cover; border: 1px solid #000; flex-shrink: 0; }
         .tweet-content { flex: 1; }
@@ -141,8 +151,6 @@
         }
         .contact-info h3 { font-size: 3rem; line-height: 1.1; margin-bottom: 20px; color: var(--text); }
         .contact-info p { font-size: 1.1rem; color: var(--muted); margin-bottom: 40px; }
-        
-        /* تم حذف كلاسات تفاصيل الاتصال القديمة */
         
         .contact-form-clean .form-group { margin-bottom: 30px; }
         .contact-form-clean label { display: block; margin-bottom: 10px; font-size: 0.9rem; font-weight: 700; color: var(--text); text-transform: uppercase; letter-spacing: 1px; }
@@ -250,7 +258,7 @@
                 <div class="contact-info">
                     <h3>LET'S TALK</h3>
                     <p>Have a project in mind? Send me a message and let's talk.</p>
-                    </div>
+                </div>
                 <div class="contact-form-clean">
                     <form action="https://formsubmit.co/your-email@example.com" method="POST">
                         <div class="form-group"><label>Name</label><input type="text" name="name" class="form-control" required></div>
