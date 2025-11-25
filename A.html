@@ -59,6 +59,7 @@
         .section.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
+        /* --- HOME (TERMINAL) --- */
         #home { padding: 60px 0; }
         
         .terminal-container {
@@ -66,13 +67,43 @@
             display: flex; flex-direction: column; font-family: 'Consolas', 'Courier New', monospace;
             box-shadow: 0 20px 50px rgba(0,0,0,0.15); margin-bottom: 10px;
         }
-        .terminal-header { background: #1a1a1a; padding: 10px 15px; border-bottom: 1px solid #333; display: flex; align-items: center; color: #aaa; font-size: 0.9rem; }
-        .terminal-body { flex: 1; padding: 20px; overflow-y: auto; color: var(--term-text); font-size: 1.1rem; }
-        .output-line { margin-bottom: 5px; white-space: pre-wrap; }
-        .cmd-line { display: flex; color: #fff; margin-top: 10px; }
-        .prompt { margin-right: 10px; color: var(--accent); font-weight: bold; }
-        #cmd-input { background: transparent; border: none; color: #fff; flex: 1; font-family: 'Consolas', 'Courier New', monospace; font-size: 1.1rem; outline: none; }
+
+        .terminal-header {
+            background: #1a1a1a;
+            padding: 10px 15px;
+            border-bottom: 1px solid #333;
+            display: flex;
+            align-items: center;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .terminal-body {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            color: #fff;
+            font-size: 1.1rem;
+        }
+
+        /* تنسيق الرسائل الثابتة */
+        .static-msg { color: #fff; white-space: pre-wrap; line-height: 1.4; margin-bottom: 5px; }
+        .yellow-msg { color: #ffc107; margin-bottom: 15px; font-weight: bold; }
         
+        /* منطقة الأوامر السابقة */
+        #history-content { margin-bottom: 5px; }
+
+        /* سطر الكتابة الحالي */
+        .cmd-line { display: flex; color: #fff; align-items: center; }
+        .prompt { margin-right: 10px; white-space: nowrap; }
+        
+        #cmd-input {
+            background: transparent; border: none; color: #fff; flex: 1;
+            font-family: 'Consolas', 'Courier New', monospace; font-size: 1.1rem; outline: none;
+        }
+
+        .disclaimer { font-size: 0.85rem; color: #adb5bd; margin-top: 15px; font-style: italic; }
+
         /* --- ABOUT --- */
         .about-container { display: flex; flex-direction: column; }
         .about-header-section { display: flex; gap: 40px; align-items: center; margin-bottom: 80px; }
@@ -112,12 +143,6 @@
         .contact-form-clean label { display: block; margin-bottom: 10px; font-size: 0.9rem; font-weight: 700; color: var(--text); text-transform: uppercase; letter-spacing: 1px; }
         .contact-form-clean .form-control { width: 100%; padding: 15px 0; background: transparent; border: none; border-bottom: 2px solid var(--border); font-size: 1.2rem; outline: none; color: var(--text); transition: 0.3s; }
         .contact-form-clean .form-control:focus { border-color: var(--accent); }
-        
-        /* Robot Checkbox */
-        .robot-check { display: flex; align-items: center; gap: 12px; margin-bottom: 30px; }
-        .robot-check input { width: 20px; height: 20px; accent-color: var(--accent); cursor: pointer; }
-        .robot-check label { margin: 0; cursor: pointer; text-transform: none; font-weight: 600; }
-
         .btn { display: inline-block; padding: 15px 40px; background: var(--text); color: #fff; text-decoration: none; border: none; cursor: pointer; font-size: 1rem; transition: 0.2s; font-weight: 700; letter-spacing: 1px; }
         .btn:hover { background: var(--accent); }
 
@@ -139,7 +164,7 @@
         <div class="container nav-content">
             <div class="logo">Abdalrhman.</div>
             <div class="nav-links">
-                <button onclick="show('home')" class="active">Terminal</button>
+                <button onclick="show('home')" class="active">Home</button>
                 <button onclick="show('about')">About</button>
                 <button onclick="show('blog')">Blog</button>
                 <button onclick="show('contact')">Contact</button>
@@ -149,20 +174,19 @@
 
     <div id="home" class="section active">
         <div class="container">
-            
             <div class="terminal-container" onclick="document.getElementById('cmd-input').focus()">
                 <div class="terminal-header">root@kali:~ (zsh)</div>
-                <div class="terminal-body" id="terminal-output">
-                    <div class="output-line" style="color:#fff">┏━(Message from Kali developers)</div>
-                    <div class="output-line" style="color:#fff">┃ This is a minimal installation of Kali Linux, you likely</div>
-                    <div class="output-line" style="color:#fff">┃ want to install supplementary tools. Learn how:</div>
-                    <div class="output-line" style="color:#fff">┃ ⇒ https://www.kali.org/docs/troubleshooting/common-minimum-setup/</div>
-                    <div class="output-line" style="color:#fff">┗━(Run: “sudo apt install -y kali-linux-default”)</div>
-                    <div style="height: 15px;"></div>
-                    <div class="output-line" style="color:#ffc107;">If you are the target, a message will appear.</div>
+                <div class="terminal-body" id="terminal-body">
+                    <div class="static-msg">┃ This is a minimal installation of Kali Linux, you likely
+┃ want to install supplementary tools. Learn how:
+┃ ⇒ https://www.kali.org/docs/troubleshooting/common-minimum-setup/</div>
                     
+                    <div class="yellow-msg">If you are the target, a message will appear.</div>
+                    
+                    <div id="history-content"></div>
+
                     <div class="cmd-line">
-                        <span class="prompt">┌──(root㉿kali)-[~]<br>└─#</span>
+                        <span class="prompt"><span style="color:#0d6efd; font-weight:bold;">┌──(root💀kali)-[~]</span><br><span style="color:#fff; font-weight:bold;">└─#</span></span>
                         <input type="text" id="cmd-input" autocomplete="off" autofocus>
                     </div>
                 </div>
@@ -174,54 +198,31 @@
 
         <div id="about" class="section">
             <div class="about-container">
-                
                 <div class="about-header-section">
                     <div class="about-photo-wrapper">
                         <img src="photo.jpeg" alt="Profile" class="about-photo">
                     </div>
-
                     <div class="about-info">
                         <h1 class="profile-name">Abdalrhman Salah Ibrahim</h1>
                         <div class="profile-title">Penetration Testing Student | Bug Bounty Enthusiast | CTF Player</div>
                         <a href="https://www.linkedin.com/in/bodyurr/" target="_blank" class="profile-link">Linkedin</a>
                     </div>
                 </div>
-
                 <div class="about-bottom">
                     <h3 class="certs-heading">CERTIFICATIONS</h3>
-                    
                     <div class="certs-grid">
                         <div class="cert-card">
                             <ol start="1">
-                                <li>
-                                    Penetration Testing Professional
-                                    <span>MaharaTech - ITI</span>
-                                </li>
-                                <li>
-                                    Ethical Hacking
-                                    <span>MaharaTech - ITI</span>
-                                </li>
-                                <li>
-                                    CHC v2
-                                    <span>Techcampus</span>
-                                </li>
+                                <li>Penetration Testing Professional<span>MaharaTech - ITI</span></li>
+                                <li>Ethical Hacking<span>MaharaTech - ITI</span></li>
+                                <li>CHC v2<span>Techcampus</span></li>
                             </ol>
                         </div>
-                        
                         <div class="cert-card">
                             <ol start="4">
-                                <li>
-                                    Computer Network Fundamentals
-                                    <span>MaharaTech - ITI</span>
-                                </li>
-                                <li>
-                                    Forensic Medicine
-                                    <span>Misr University</span>
-                                </li>
-                                <li>
-                                    <span class="cisco-status">Cisco Cybersecurity</span>
-                                    <span>In Progress: <span id="cisco-loader">🟩⬜⬜⬜⬜</span></span>
-                                </li>
+                                <li>Computer Network Fundamentals<span>MaharaTech - ITI</span></li>
+                                <li>Forensic Medicine<span>Misr University</span></li>
+                                <li><span class="cisco-status">Cisco Cybersecurity</span><span>In Progress: <span id="cisco-loader">🟩⬜⬜⬜⬜</span></span></li>
                             </ol>
                         </div>
                     </div>
@@ -244,12 +245,6 @@
                         <div class="form-group"><label>Name</label><input type="text" name="name" class="form-control" required></div>
                         <div class="form-group"><label>Email</label><input type="email" name="email" class="form-control" required></div>
                         <div class="form-group"><label>Message</label><textarea name="message" rows="2" class="form-control" required></textarea></div>
-                        
-                        <div class="robot-check">
-                            <input type="checkbox" id="notRobot" name="not_robot" required>
-                            <label for="notRobot">I'm not a robot</label>
-                        </div>
-
                         <button type="submit" class="btn">SEND MESSAGE</button>
                     </form>
                 </div>
@@ -287,41 +282,51 @@
         });
 
         const input = document.getElementById('cmd-input');
-        const output = document.getElementById('terminal-output');
+        const historyDiv = document.getElementById('history-content');
+        const terminalBody = document.getElementById('terminal-body');
 
+        // Updated Keydown Logic to fix Enter issue
         input.addEventListener('keydown', function(e) {
             if(e.key === 'Enter') {
+                e.preventDefault(); // Prevent form submit
+                
                 const val = this.value.trim();
                 const valLower = val.toLowerCase();
                 
+                // 1. Create the command block (User's input)
                 const cmdBlock = document.createElement('div');
-                cmdBlock.innerHTML = `<div style="margin-top:10px; margin-bottom:5px;"><span style="color:#0d6efd; font-weight:bold;">┌──(root㉿kali)-[~]<br>└─#</span> <span style="color:#fff">${this.value}</span></div>`;
-                output.insertBefore(cmdBlock, input.parentElement.parentElement);
+                cmdBlock.style.marginBottom = '5px';
+                cmdBlock.innerHTML = `
+                    <div><span style="color:#0d6efd; font-weight:bold;">┌──(root💀kali)-[~]</span></div>
+                    <div><span style="color:#fff; font-weight:bold; margin-right:10px;">└─#</span><span style="color:#fff">${this.value}</span></div>
+                `;
+                historyDiv.appendChild(cmdBlock);
 
+                // 2. Process Logic
                 if(valLower === 'clear') {
-                    const lines = output.querySelectorAll('.output-line, div[style*="margin-top"]');
-                    lines.forEach(line => line.remove());
+                    historyDiv.innerHTML = '';
                 } 
                 else if(valLower === 'sara mahmoud' || valLower === 'sara mahmoud sami' || valLower === 'sara sami') {
                     const response = document.createElement('div');
-                    response.className = 'output-line';
+                    response.style.marginBottom = "20px";
                     response.style.color = '#0d6efd'; 
                     response.style.fontWeight = 'bold';
                     response.style.fontSize = '1.2rem';
-                    response.innerHTML = `Why all this?<div style="color: #ccc; font-size: 0.9rem; font-weight: normal; margin-top: 5px;">- I cannot read your reply here, but you can send it to me in Contact.</div>`;
-                    output.insertBefore(response, input.parentElement.parentElement);
+                    response.innerHTML = `Why all this?`;
+                    historyDiv.appendChild(response);
                 }
                 else if (val !== "") {
                     const response = document.createElement('div');
-                    response.className = 'output-line';
+                    response.style.marginBottom = "20px";
                     response.style.color = '#ff5f56';
                     response.style.fontWeight = 'bold';
                     response.textContent = "I don't want you.";
-                    output.insertBefore(response, input.parentElement.parentElement);
+                    historyDiv.appendChild(response);
                 }
 
+                // 3. Clear and Scroll
                 this.value = '';
-                output.scrollTop = output.scrollHeight;
+                terminalBody.scrollTop = terminalBody.scrollHeight;
             }
         });
         
