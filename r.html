@@ -16,30 +16,55 @@
             font-family: 'Poppins', sans-serif;
         }
 
+        /* الثوابت اللونية (CSS Variables) */
+        :root {
+            --bg-color: #0f1016;
+            --main-color: #e94560; /* اللون الأحمر/الوردي المميز */
+            --text-color: #ffffff;
+            --dark-section: #1a1a2e; /* لون أغمق للأقسام الداخلية */
+        }
+
         body {
-            background-color: #0f1016; /* لون الخلفية الداكن */
-            color: #ffffff;
-            overflow-x: hidden;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            scroll-behavior: smooth;
         }
 
         /* تنسيق الروابط */
         a {
             text-decoration: none;
-            color: #fff;
+            color: var(--text-color);
         }
 
+        /* التنسيق العام للأقسام */
+        section {
+            padding: 80px 8%;
+            border-top: 1px solid #222;
+        }
+
+        h2.section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 35px;
+            color: var(--main-color);
+        }
+        
         /* الناف بار - القائمة العلوية */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 20px 8%;
+            background-color: var(--bg-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         .logo {
             font-size: 24px;
             font-weight: bold;
-            color: #e94560; /* لون مميز مثل الفيديو */
+            color: var(--main-color);
         }
 
         .nav-links ul {
@@ -52,20 +77,21 @@
         }
 
         .nav-links ul li a:hover {
-            color: #e94560;
+            color: var(--main-color);
         }
 
         .contact-btn {
             background-color: transparent;
-            border: 2px solid #e94560;
+            border: 2px solid var(--main-color);
             padding: 10px 25px;
-            border-radius: 50px;
-            color: #fff;
+            color: var(--text-color);
             transition: 0.3s;
+            /* جعله مستطيلاً */
+            border-radius: 0; 
         }
 
         .contact-btn:hover {
-            background-color: #e94560;
+            background-color: var(--main-color);
         }
 
         /* قسم الهيرو (الواجهة الرئيسية) */
@@ -73,8 +99,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 50px 8%;
-            height: 90vh; /* ارتفاع الشاشة */
+            height: 90vh; 
         }
 
         .hero-text {
@@ -93,13 +118,13 @@
         }
 
         .hero-text h1 span {
-            color: #e94560;
+            color: var(--main-color);
         }
 
         .typing-text {
             font-size: 24px;
             font-weight: 600;
-            color: #e94560;
+            color: var(--main-color);
         }
 
         .hero-buttons {
@@ -109,15 +134,16 @@
         .btn {
             display: inline-block;
             padding: 12px 30px;
-            border-radius: 5px;
             font-weight: 600;
             margin-right: 15px;
             transition: 0.3s;
+            /* جعله مستطيلاً */
+            border-radius: 0;
         }
 
         .btn-primary {
-            background-color: #e94560;
-            color: #fff;
+            background-color: var(--main-color);
+            color: var(--text-color);
         }
         
         .btn-primary:hover {
@@ -125,13 +151,13 @@
         }
 
         .btn-secondary {
-            border: 2px solid #fff;
-            color: #fff;
+            border: 2px solid var(--text-color);
+            color: var(--text-color);
         }
 
         .btn-secondary:hover {
-            background-color: #fff;
-            color: #000;
+            background-color: var(--text-color);
+            color: var(--bg-color);
         }
 
         .social-icons {
@@ -144,15 +170,16 @@
             align-items: center;
             width: 40px;
             height: 40px;
-            border: 1px solid #fff;
-            border-radius: 50%;
+            border: 1px solid var(--text-color);
             margin-right: 15px;
             transition: 0.3s;
+            /* جعله مربعاً */
+            border-radius: 0;
         }
 
         .social-icons a:hover {
-            background-color: #e94560;
-            border-color: #e94560;
+            background-color: var(--main-color);
+            border-color: var(--main-color);
             transform: translateY(-5px);
         }
 
@@ -166,38 +193,53 @@
         .hero-img img {
             width: 100%;
             max-width: 500px;
-            /* تأثير بسيط للصورة */
             filter: drop-shadow(0 0 20px rgba(233, 69, 96, 0.3));
+            /* جعلها حادة الزوايا */
+            border-radius: 0;
         }
 
-        /* تنسيق الأقسام الإضافية (الشهادات والفورم) لتناسب التصميم الجديد */
-        section {
-            padding: 50px 8%;
-            border-top: 1px solid #222;
+        /* قسم الشهادات (About) - الجديد */
+        .cert-container {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto; /* للتمرير الأفقي إذا زادت البطاقات */
+            padding-bottom: 20px;
         }
 
-        h2.section-title {
-            text-align: center;
-            margin-bottom: 40px;
-            font-size: 35px;
+        .cert-card {
+            min-width: 300px; /* لضمان ظهور 3 بطاقات على الأقل */
+            background: var(--dark-section);
+            padding: 25px;
+            border: 2px solid #2e2e4a;
+            transition: transform 0.3s, border-color 0.3s;
+            /* جعله مستطيلاً */
+            border-radius: 0;
+        }
+        
+        .cert-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--main-color);
         }
 
-        .certs-list li {
-            background: #1a1a2e;
-            margin-bottom: 10px;
-            padding: 15px;
-            border-radius: 8px;
-            list-style: none;
-            border-left: 4px solid #e94560;
+        .cert-card strong {
+            display: block;
+            font-size: 18px;
+            color: var(--main-color);
+            margin-bottom: 5px;
+        }
+        
+        .cert-card small {
+            color: #aaa;
         }
 
         /* تنسيق الفورم */
         form {
             max-width: 600px;
             margin: 0 auto;
-            background: #16213e;
+            background: var(--dark-section);
             padding: 30px;
-            border-radius: 10px;
+            /* جعله مستطيلاً */
+            border-radius: 0;
         }
 
         form label {
@@ -212,20 +254,35 @@
             padding: 10px;
             margin-bottom: 15px;
             border: none;
-            border-radius: 5px;
-            background: #0f1016;
-            color: #fff;
+            /* جعله مستطيلاً */
+            border-radius: 0;
+            background: var(--bg-color);
+            color: var(--text-color);
         }
 
         form input[type="submit"] {
-            background-color: #e94560;
+            background-color: var(--main-color);
             color: white;
             border: none;
             padding: 10px 20px;
-            border-radius: 5px;
+            /* جعله مستطيلاً */
+            border-radius: 0;
             cursor: pointer;
             width: 100%;
             font-size: 16px;
+        }
+
+        /* Cursor blinking effect */
+        .cursor {
+            display: inline-block;
+            margin-left: 3px;
+            animation: blink 0.7s infinite;
+        }
+        
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
         }
 
         /* للتجاوب مع الموبايل */
@@ -249,6 +306,10 @@
             .nav-links ul {
                 margin-top: 20px;
             }
+            .cert-container {
+                flex-direction: column;
+                overflow-x: hidden;
+            }
         }
     </style>
 </head>
@@ -258,15 +319,15 @@
         <div class="logo">Abdalrhman.</div>
         <div class="nav-links">
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#certs">Certifications</a></li>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
         <a href="#contact" class="contact-btn">Contact Me</a>
     </nav>
 
-    <header class="hero">
+    <section class="hero" id="home">
         <div class="hero-text">
             <h3>Hello, My Name is</h3>
             <h1>Abdalrhman <br> <span>Salah Ibrahim</span></h1>
@@ -287,30 +348,36 @@
         <div class="hero-img">
             <img src="https://images.unsplash.com/photo-1535581652167-3d6b98c36cd9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Profile Image">
         </div>
-    </header>
+    </section>
 
-    <section id="certs">
-        <h2 class="section-title">My Certifications</h2>
-        <ol class="certs-list">
-            <li>
-                <strong>Penetration Testing Professional </strong> - MaharaTech (ITI)
-            </li>
-            <li>
-                <strong>Ethical Hacking</strong> - MaharaTech (ITI)
-            </li>
-            <li>
-                <strong>CHC v2</strong> - Techcampus
-            </li>
-            <li>
-                <strong>Computer Network Fundamentals</strong> - MaharaTech (ITI)
-            </li>
-            <li>
-                <strong>Forensic Medicine Role in Crime Detection</strong> - Misr University
-            </li>
-            <li>
-                <strong>Cisco Cybersecurity</strong> - In Progress: <span id="loading"></span>
-            </li>
-        </ol>
+    <section id="about">
+        <h2 class="section-title">Certifications & Experience</h2>
+        <div class="cert-container">
+            <div class="cert-card">
+                <strong>Penetration Testing Professional</strong>
+                <small>MaharaTech - ITI</small>
+            </div>
+            <div class="cert-card">
+                <strong>Ethical Hacking</strong>
+                <small>MaharaTech - ITI</small>
+            </div>
+            <div class="cert-card">
+                <strong>CHC v2</strong>
+                <small>Techcampus</small>
+            </div>
+            <div class="cert-card">
+                <strong>Computer Network Fundamentals</strong>
+                <small>MaharaTech - ITI</small>
+            </div>
+            <div class="cert-card">
+                <strong>Forensic Medicine Role in Crime Detection</strong>
+                <small>Misr University for Science and Technology</small>
+            </div>
+             <div class="cert-card">
+                <strong>Cisco Cybersecurity</strong>
+                <small>In Progress: <span id="loading"></span></small>
+            </div>
+        </div>
     </section>
 
     <section id="contact">
@@ -352,13 +419,30 @@
             textElement.textContent = letter;
             
             if (letter.length === currentText.length) {
-                count++;
-                index = 0;
-                setTimeout(type, 2000); // انتظر ثانيتين قبل الكلمة التالية
+                // انتظر ثانيتين قبل المسح والبدء في الكلمة التالية
+                setTimeout(erase, 2000); 
             } else {
-                setTimeout(type, 100); // سرعة الكتابة
+                // سرعة الكتابة
+                setTimeout(type, 100); 
             }
         }());
+
+        function erase() {
+            currentText = texts[count];
+            letter = currentText.slice(0, --index);
+            textElement.textContent = letter;
+
+            if (letter.length === 0) {
+                count++;
+                index = 0;
+                // ابدأ الكتابة بعد الانتهاء من المسح
+                setTimeout(type, 500);
+            } else {
+                // سرعة المسح
+                setTimeout(erase, 50);
+            }
+        }
+
 
         // سكربت شريط التحميل الخاص بك
         const loadingEl = document.getElementById('loading');
