@@ -3,427 +3,252 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A </title>
-    <link rel="icon" type="image/x-icon" href="icon.png">
+    <title>ABDALRHMAN </title>
     <style>
-        /* --- CORE VARIABLES (SHARP RETRO ONLY) --- */
+   
         :root {
-            --bg-color: #000;
-            --text-main: #0f0;
-            --text-dim: #005500;
-            --accent: #0f0;
-            --alert: #f00;
-            --font-stack: 'Courier New', Courier, monospace;
-            --scan-strength: 0.1;
+            --bg: #000000;
+            --term-green: #33ff00;
+            --term-dim: #1a8000;
+            --alert: #ff0000;
+            --scan-line: rgba(51, 255, 0, 0.05);
+            --font: 'Courier New', Courier, monospace;
         }
 
-        /* THEMES (Colors & Animations ONLY - Structure is always Retro) */
-        [data-theme="green-hack"] { --bg-color: #020202; --text-main: #0f0; --accent: #0f0; --alert: #f00; }
-        [data-theme="blue-shock"] { --bg-color: #000510; --text-main: #00f7ff; --accent: #00f7ff; --alert: #ff0055; }
-        [data-theme="red-alert"] { --bg-color: #100000; --text-main: #ff3333; --accent: #ff0000; --alert: #ffff00; }
-        [data-theme="amber-retro"] { --bg-color: #100a00; --text-main: #ffb000; --accent: #ffcc00; --alert: #ff0000; }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: crosshair; }
-
+        * { box-sizing: border-box; cursor: text; }
+        
         body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: var(--font-stack);
+            margin: 0; padding: 0;
+            background-color: var(--bg);
+            color: var(--term-green);
+            font-family: var(--font);
             overflow-x: hidden;
+            border: 5px solid var(--term-dim);
             min-height: 100vh;
-            border: 2px solid var(--accent); /* إطار للصفحة كلها */
-            margin: 5px;
         }
 
-        /* CRT SCANLINES EFFECT */
-        body::before {
-            content: " ";
-            display: block;
-            position: fixed;
-            top: 0; left: 0; bottom: 0; right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-            z-index: 9999;
-            background-size: 100% 2px, 3px 100%;
-            pointer-events: none;
+    
+        body::after {
+            content: ""; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: repeating-linear-gradient(0deg, var(--scan-line), var(--scan-line) 1px, transparent 1px, transparent 2px);
+            pointer-events: none; z-index: 9999;
         }
 
-        /* NAV BAR (SHARP EDGES) */
+   
         nav {
-            border-bottom: 2px solid var(--accent);
-            padding: 15px;
+            border-bottom: 2px solid var(--term-green);
+            padding: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(0,0,0,0.9);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .logo { font-size: 1.5rem; font-weight: bold; text-transform: uppercase; letter-spacing: 3px; animation: flicker 2s infinite; }
-
-        .nav-btn {
-            background: transparent;
-            border: 1px solid var(--text-dim);
-            color: var(--text-dim);
-            padding: 10px 20px;
-            font-family: inherit;
-            font-size: 1rem;
-            margin-left: 10px;
-            text-transform: uppercase;
-            transition: 0.1s;
-        }
-
-        .nav-btn:hover, .nav-btn.active {
-            background: var(--accent);
-            color: #000;
-            border-color: var(--accent);
-            box-shadow: 0 0 15px var(--accent);
-            font-weight: bold;
-        }
-
-        /* CONTAINER */
-        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
-        .section { display: none; }
-        .section.active { display: block; animation: glitch-anim 0.3s cubic-bezier(.25, .46, .45, .94) both; }
-
-        /* HEADER LAYOUT */
-        .header-split { display: flex; align-items: center; gap: 50px; flex-wrap: wrap; margin-top: 50px; }
-        
-        /* PHOTO (FREE FLOATING & GLITCHY) */
-        .photo-wrapper {
-            position: relative;
-            width: 300px;
-            height: 400px;
-        }
-        .profile-img {
-            width: 100%; height: 100%;
-            object-fit: cover;
-            filter: grayscale(100%) contrast(1.2);
-            /* No Border - Free Floating */
-            mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
-            -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
-        }
-        /* Glitch Effect Layers */
-        .photo-wrapper::before, .photo-wrapper::after {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: url('photo.jpeg'); background-size: cover; opacity: 0.5; mix-blend-mode: hard-light;
-        }
-        .photo-wrapper:hover::before { animation: glitch-anim-1 2s infinite linear alternate-reverse; }
-        .photo-wrapper:hover::after { animation: glitch-anim-2 2s infinite linear alternate-reverse; }
-
-        .header-info { flex: 1; }
-        h1 { font-size: 3.5rem; margin-bottom: 10px; text-transform: uppercase; line-height: 1; }
-        h2 { color: var(--accent); font-size: 1.2rem; margin-bottom: 30px; background: var(--text-dim); color: #000; display: inline-block; padding: 5px; }
-
-        /* TERMINAL STYLE */
-        .terminal-box {
-            border: 2px solid var(--accent);
-            background: rgba(0,0,0,0.8);
-            padding: 20px;
-            height: 400px;
-            overflow-y: auto;
-            position: relative;
-        }
-        .terminal-box::after {
-            content: "SYSTEM_MONITOR_V.9.0"; position: absolute; bottom: 5px; right: 10px; font-size: 0.7rem; opacity: 0.5;
-        }
-
-        /* CARDS (SHARP & BOXY) */
-        .grid-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; margin-top: 30px; }
-        .card {
-            border: 1px solid var(--text-dim);
-            padding: 20px;
             background: #050505;
-            transition: 0.1s;
+            position: sticky; top: 0; z-index: 100;
         }
-        .card:hover {
-            border-color: var(--accent);
-            box-shadow: 5px 5px 0px var(--accent); /* ضل حاد جدا */
-            transform: translate(-2px, -2px);
-        }
-        .card h3 { border-bottom: 1px solid var(--text-dim); padding-bottom: 10px; margin-bottom: 10px; color: var(--accent); }
 
-        /* FORMS (SHARP INPUTS) */
-        input, textarea {
-            width: 100%; background: #000; border: 1px solid var(--text-dim); color: var(--text-main);
-            padding: 15px; font-family: inherit; margin-bottom: 15px; outline: none;
+        .logo { 
+            font-size: 1.5rem; font-weight: 900; letter-spacing: 2px; 
+            text-shadow: 2px 2px var(--term-dim);
+            animation: twitch 3s infinite;
         }
-        input:focus, textarea:focus { border-color: var(--accent); background: #0a0a0a; }
+
+        .nav-link {
+            color: var(--term-dim); text-decoration: none; margin-left: 20px; 
+            text-transform: uppercase; font-weight: bold; padding: 5px 10px;
+            border: 1px solid transparent; transition: 0.1s;
+        }
+        .nav-link:hover { 
+            color: #000; background: var(--term-green); 
+            box-shadow: 0 0 15px var(--term-green);
+        }
+
+    
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+
+
+        .profile-section {
+            display: flex; gap: 40px; align-items: flex-start; flex-wrap: wrap;
+            margin-bottom: 80px; border-bottom: 1px dashed var(--term-dim); padding-bottom: 40px;
+        }
+
+        .glitch-wrapper {
+            width: 250px; height: 250px; position: relative; flex-shrink: 0;
+        }
         
-        .btn-submit {
-            width: 100%; background: var(--text-dim); color: #000; border: none; padding: 15px;
-            font-weight: bold; text-transform: uppercase; cursor: pointer; font-family: inherit; font-size: 1.1rem;
-        }
-        .btn-submit:hover { background: var(--accent); box-shadow: 0 0 20px var(--accent); }
+        .profile-img {
+            width: 100%; height: 100%; object-fit: cover;
+            filter: grayscale(100%) contrast(1.5) brightness(0.8);
+            border: 2px solid var(--term-green);
 
-        /* BLOG & NOTIFICATION STYLES */
-        .admin-panel { border: 2px dashed var(--alert); padding: 20px; margin-bottom: 30px; }
-        .admin-title { color: var(--alert); font-weight: bold; margin-bottom: 15px; text-transform: uppercase; }
+        }
+
+ 
+        .glitch-wrapper::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--term-green); mix-blend-mode: overlay; opacity: 0;
+            animation: flash 0.2s infinite; pointer-events: none;
+        }
+
+        .bio-content { flex: 1; }
+        h1 { font-size: 3rem; margin: 0 0 10px 0; text-transform: uppercase; line-height: 0.9; }
+        .role { background: var(--term-green); color: #000; padding: 2px 10px; display: inline-block; font-weight: bold; margin-bottom: 20px; }
         
-        .subscriber-list { font-size: 0.8rem; margin-top: 10px; border-top: 1px solid var(--text-dim); padding-top: 10px; }
-        .sub-item { display: flex; justify-content: space-between; padding: 5px 0; color: #888; }
-        .sub-item.active { color: var(--accent); font-weight: bold; }
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
+        .stat-box { border: 1px solid var(--term-dim); padding: 10px; font-size: 0.9rem; }
+        .stat-box strong { color: #fff; display: block; }
 
-        .notification-btn {
-            border: 1px solid var(--alert); color: var(--alert); background: transparent; padding: 10px; width: 100%; cursor: pointer; margin-bottom: 10px;
+
+        .logs-container { border: 2px solid var(--term-green); padding: 20px; margin-bottom: 50px; position: relative; }
+        .logs-header { 
+            position: absolute; top: -15px; left: 20px; background: var(--bg); 
+            padding: 0 10px; color: var(--term-green); font-weight: bold; border: 1px solid var(--term-green);
         }
-        .notification-btn:hover { background: var(--alert); color: #000; }
 
-        .tweet-card { border: 1px solid var(--accent); padding: 15px; margin-bottom: 15px; position: relative; }
-        .tweet-time { font-size: 0.7rem; position: absolute; top: 5px; right: 5px; opacity: 0.7; }
-        .tweet-user { font-weight: bold; background: var(--accent); color: #000; padding: 0 5px; display: inline-block; }
+        .log-entry {
+            border-bottom: 1px solid var(--term-dim); padding: 20px 0; position: relative;
+        }
+        .log-entry:last-child { border-bottom: none; }
+        .log-meta { font-size: 0.8rem; color: var(--term-dim); margin-bottom: 5px; }
+        .log-content { font-size: 1.1rem; white-space: pre-line; line-height: 1.5; }
+        .log-id { color: var(--alert); font-weight: bold; margin-right: 10px; }
+
+ 
+        .intel-box {
+            background: #050505; border: 1px solid var(--alert); padding: 15px; 
+            color: var(--alert); font-size: 0.8rem; margin-bottom: 30px;
+            text-align: center; animation: pulse-red 2s infinite;
+        }
 
         /* ANIMATIONS */
-        @keyframes flicker {
-            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; text-shadow: 0 0 5px var(--accent); }
-            20%, 24%, 55% { opacity: 0.5; text-shadow: none; }
+        @keyframes twitch {
+            0% { transform: translate(0,0); }
+            2% { transform: translate(2px,0); }
+            4% { transform: translate(-2px,0); }
+            6% { transform: translate(0,0); }
+            100% { transform: translate(0,0); }
         }
-        @keyframes glitch-anim {
-            0% { clip-path: inset(80% 0 0 0); transform: translate(-5px, 5px); }
-            20% { clip-path: inset(10% 0 60% 0); transform: translate(5px, -5px); }
-            40% { clip-path: inset(40% 0 40% 0); transform: translate(-5px, 5px); }
-            60% { clip-path: inset(80% 0 5% 0); transform: translate(5px, -5px); }
-            100% { clip-path: inset(0 0 0 0); transform: translate(0); }
-        }
-        @keyframes glitch-anim-1 {
-            0% { clip: rect(20px, 9999px, 10px, 0); } 100% { clip: rect(80px, 9999px, 100px, 0); }
-        }
-        @keyframes glitch-anim-2 {
-            0% { clip: rect(50px, 9999px, 80px, 0); left: 2px; } 100% { clip: rect(10px, 9999px, 40px, 0); left: -2px; }
-        }
+        @keyframes flash { 0% { opacity: 0; } 5% { opacity: 0.3; transform: translateX(2px); } 10% { opacity: 0; } }
+        @keyframes pulse-red { 0% { box-shadow: 0 0 5px #500; } 50% { box-shadow: 0 0 20px #f00; } 100% { box-shadow: 0 0 5px #500; } }
 
-        /* Mobile Fixes */
-        @media(max-width:768px) {
-            .header-split { flex-direction: column; text-align: center; }
-            .photo-wrapper { margin: 0 auto; }
-            nav { flex-direction: column; gap: 10px; }
+        /* FORM */
+        input, textarea {
+            width: 100%; background: #000; border: 1px solid var(--term-green); color: #fff;
+            padding: 15px; font-family: inherit; margin-bottom: 15px; outline: none;
+        }
+        input:focus, textarea:focus { background: #0a1a00; box-shadow: 0 0 10px var(--term-green); }
+        button {
+            width: 100%; background: var(--term-green); color: #000; border: none; padding: 15px;
+            font-weight: bold; text-transform: uppercase; cursor: pointer; font-family: inherit;
+            font-size: 1.1rem; letter-spacing: 2px;
+        }
+        button:hover { background: #fff; }
+
+        @media(max-width:768px){
+            .profile-section { flex-direction: column; }
+            .glitch-wrapper { margin: 0 auto; }
         }
     </style>
 </head>
-<body data-theme="green-hack">
+<body>
 
     <nav>
-        <div class="logo">ABDALRHMAN_SYS_ROOT</div>
+        <div class="logo">ABDALRHMAN_SYS</div>
         <div>
-            <button class="nav-btn active" onclick="showSection('home')">HOME_BASE</button>
-            <button class="nav-btn" onclick="showSection('about')">DATA_FILE</button>
-            <button class="nav-btn" onclick="showSection('blog')">NET_LOGS</button>
-            <button class="nav-btn" onclick="showSection('themes')">UI_CONFIG</button>
+            <a href="#logs" class="nav-link">LOGS</a>
+            <a href="#contact" class="nav-link">CONTACT</a>
         </div>
     </nav>
 
     <div class="container">
 
-        <div id="home" class="section active">
-            <div class="header-split">
-                <div class="header-info">
-                    <h1 id="typing-name"></h1>
-                    <h2>PENETRATION TESTING STUDENT | RED TEAM</h2>
-                    <p style="margin-bottom: 20px; border-left: 2px solid var(--accent); padding-left: 15px;">
-                        > SYSTEM STATUS: ONLINE <br>
-                        > TARGET ACQUIRED: KNOWLEDGE <br>
-                        > MISSION: SECURE THE INFRASTRUCTURE
-                    </p>
-                    <button class="btn-submit" style="width: auto; padding: 10px 40px;" onclick="showSection('blog')">ACCESS LOGS</button>
-                </div>
-                <div class="photo-wrapper">
-                    <img src="photo.jpeg" alt="Abdalrhman" class="profile-img">
-                </div>
+        <div class="profile-section">
+            <div class="glitch-wrapper">
+                <img src="photo.jpeg" alt="TARGET" class="profile-img">
             </div>
-            
-            <div style="margin-top: 50px;">
-                <h3>// LIVE_TERMINAL_FEED</h3>
-                <div class="terminal-box" id="terminal-content">
-                    <div style="color: var(--text-dim)">Kali GNU/Linux Rolling [Version 2024.1]</div>
-                    <div>type 'help' for command list...</div>
-                    <br>
-                    <div id="terminal-history"></div>
-                    <div style="display:flex;">
-                        <span style="color:var(--accent); margin-right:10px;">hello@kali:~$</span>
-                        <input type="text" id="cmd-input" style="border:none; padding:0; height:auto; margin:0;" autofocus autocomplete="off">
-                    </div>
+            <div class="bio-content">
+                <h1>Abdalrhman Salah</h1>
+                <div class="role">> PENETRATION TESTING STUDENT | RED TEAM</div>
+                <p>
+                    SPECIALIZED IN WEB APPLICATION SECURITY AND NETWORK INFRASTRUCTURE ASSESSMENTS. 
+                    CURRENTLY EXECUTING OFFENSIVE OPERATIONS AND CTF CHALLENGES.
+                </p>
+                <div class="stats-grid">
+                    <div class="stat-box"><strong>CERTIFICATIONS:</strong> eJPT / CEH (Student)</div>
+                    <div class="stat-box"><strong>CURRENT TARGET:</strong> Cisco CyberOps</div>
+                    <div class="stat-box"><strong>STATUS:</strong> ONLINE</div>
+                    <div class="stat-box"><strong>LOCATION:</strong> ENCRYPTED</div>
                 </div>
             </div>
         </div>
 
-        <div id="about" class="section">
-            <h1>// CLASSIFIED_DATA</h1>
-            <div class="grid-container">
-                <div class="card">
-                    <h3>PROFESSIONAL BIO</h3>
-                    <p>My name is Abdalrhman Salah Ibrahim. Cyber security enthusiast focused on offensive operations and vulnerability assessment.</p>
-                </div>
-                <div class="card">
-                    <h3>CERTIFICATIONS</h3>
-                    <ul style="list-style: none; padding-left: 0;">
-                        <li>[+] Penetration Testing Pro (ITI)</li>
-                        <li>[+] Ethical Hacking (ITI)</li>
-                        <li>[+] CHC v2 (Techcampus)</li>
-                        <li>[+] Forensic Medicine (MUST)</li>
-                        <li style="color:var(--alert)">[!] Cisco CyberOps (LOADING...)</li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h3>SKILLSET_MATRIX</h3>
-                    <p>> Web App Pentesting (OWASP)</p>
-                    <p>> Network Enumeration (Nmap/Wireshark)</p>
-                    <p>> Privilege Escalation (Linux/Win)</p>
-                </div>
-            </div>
+        <div class="intel-box" id="intel-display">
+            [SYSTEM ALERT]: SCANNING VISITOR NETWORK...
         </div>
 
-        <div id="blog" class="section">
-            
-            <div class="admin-panel">
-                <div class="admin-title">[!] ADMIN_CONTROL_PANEL [SIMULATION]</div>
-                <button class="notification-btn" onclick="requestNotify()">>> ENABLE PUSH NOTIFICATIONS FOR FOLLOWERS</button>
-                <p style="font-size: 0.8rem;">SERVER STATUS: LOCALHOST ONLY (NO REAL DB)</p>
-                
-                <div class="subscriber-list">
-                    <div>>> SUBSCRIBER TRACKING (LAST DETECTED IPs):</div>
-                    <div class="sub-item active" id="user-ip-display">> DETECTING YOUR IP...</div>
-                    <div class="sub-item">> 192.168.1.55 (Bot)</div>
-                    <div class="sub-item">> 10.0.0.12 (Anonymous)</div>
-                </div>
-            </div>
-
-            <div style="border: 1px solid var(--accent); padding: 20px; margin-bottom: 30px;">
-                <textarea id="blog-input" placeholder="ENTER SYSTEM LOG..." style="height: 100px;"></textarea>
-                <button class="btn-submit" onclick="postLog()">UPLOAD TO SERVER</button>
-            </div>
-
-            <div id="blog-feed">
-                </div>
+        <div id="logs" class="logs-container">
+            <div class="logs-header">>> SYSTEM_LOGS (PUBLIC FEED)</div>
+            <div id="feed-output"></div>
         </div>
 
-        <div id="themes" class="section">
-            <h1>// UI_CONFIGURATION</h1>
-            <div class="grid-container">
-                <div class="card" onclick="setTheme('green-hack')" style="cursor:pointer;"><h3>MATRIX_GREEN</h3>Standard Hacker Interface</div>
-                <div class="card" onclick="setTheme('blue-shock')" style="cursor:pointer;"><h3>ELECTRIC_BLUE</h3>High Voltage Interface</div>
-                <div class="card" onclick="setTheme('red-alert')" style="cursor:pointer;"><h3>RED_ALERT</h3>System Critical Interface</div>
-                <div class="card" onclick="setTheme('amber-retro')" style="cursor:pointer;"><h3>AMBER_RETRO</h3>Old School CRT Monitor</div>
-            </div>
+        <div id="contact">
+            <div style="margin-bottom: 10px; color: var(--term-green); font-weight: bold;">>> ESTABLISH ENCRYPTED CONNECTION:</div>
+            <form action="https://formsubmit.co/your-email@example.com" method="POST">
+                <input type="text" name="name" placeholder="IDENTITY (NAME)" required>
+                <input type="email" name="email" placeholder="RETURN ADDRESS (EMAIL)" required>
+                <textarea name="message" rows="5" placeholder="ENTER PAYLOAD (MESSAGE)" required></textarea>
+                <input type="hidden" name="_captcha" value="false">
+                <button type="submit">EXECUTE TRANSMISSION</button>
+            </form>
         </div>
 
     </div>
 
     <script>
-        // --- TYPING EFFECT ---
-        const nameText = "ABDALRHMAN SALAH";
-        const nameEl = document.getElementById('typing-name');
-        let i = 0;
-        function typeWriter() {
-            if (i < nameText.length) {
-                nameEl.innerHTML += nameText.charAt(i);
-                i++;
-                setTimeout(typeWriter, 100);
+     
+        const db_posts = [
+            {
+                id: "LOG_003",
+                date: "2024-11-26 14:30",
+                content: "Started studying advanced SQL Injection today. Found a nice bypass technique using hex encoding. Will share details soon."
+            },
+            {
+                id: "LOG_002",
+                date: "2024-11-25 09:15",
+                content: "Successfully cleared the 'Hard' machine on HackTheBox. Privilege escalation was tricky but managed to exploit a kernel vulnerability."
+            },
+            {
+                id: "LOG_001",
+                date: "2024-11-24 20:00",
+                content: "System Initialized. Welcome to my personal feed. Here I will document my journey in Cybersecurity."
             }
-        }
-        window.onload = typeWriter;
+        ];
 
-        // --- NAVIGATION ---
-        function showSection(id) {
-            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
-            event.target.classList.add('active');
-        }
+  
+        const feedContainer = document.getElementById('feed-output');
+        
+        db_posts.forEach(post => {
+            const entry = document.createElement('div');
+            entry.className = 'log-entry';
+            entry.innerHTML = `
+                <div class="log-meta">
+                    <span class="log-id">[${post.id}]</span>
+                    <span>${post.date}</span>
+                </div>
+                <div class="log-content">${post.content}</div>
+            `;
+            feedContainer.appendChild(entry);
+        });
 
-        // --- THEMES ---
-        function setTheme(theme) {
-            document.body.setAttribute('data-theme', theme);
-        }
-
-        // --- BLOG & SIMULATED BACKEND ---
-        function requestNotify() {
-            if (!("Notification" in window)) {
-                alert("This browser does not support desktop notification");
-            } else {
-                Notification.requestPermission().then(function (permission) {
-                    if (permission === "granted") {
-                        new Notification("SYSTEM ALERT", { body: "You are now subscribed to Abdalrhman's Logs." });
-                    }
-                });
-            }
-        }
-
-        // Get User IP (Simulation)
+  
         fetch('https://api.ipify.org?format=json')
             .then(response => response.json())
             .then(data => {
-                document.getElementById('user-ip-display').innerHTML = `> ${data.ip} (YOU - CURRENT SESSION)`;
+                document.getElementById('intel-display').innerHTML = 
+                    `[WARNING]: VISITOR DETECTED FROM IP [ ${data.ip} ] <br> CONNECTION IS MONITORED.`;
             })
             .catch(err => {
-                document.getElementById('user-ip-display').innerHTML = `> CONNECTION SECURE (IP HIDDEN)`;
+                document.getElementById('intel-display').innerHTML = 
+                    `[ERROR]: UNABLE TO TRACE VISITOR ORIGIN. PROXY DETECTED?`;
             });
-
-        // Blog Post Logic
-        let logs = JSON.parse(localStorage.getItem('abdalrhman_logs')) || [];
-        
-        function renderLogs() {
-            const feed = document.getElementById('blog-feed');
-            feed.innerHTML = '';
-            logs.forEach((log, index) => {
-                feed.innerHTML += `
-                    <div class="tweet-card">
-                        <span class="tweet-user">ROOT_USER</span>
-                        <span class="tweet-time">${log.date}</span>
-                        <p style="margin-top:10px;">${log.content}</p>
-                        <button onclick="deleteLog(${index})" style="background:none; border:none; color:var(--alert); font-size:0.8rem; cursor:pointer; margin-top:10px;">[DELETE]</button>
-                    </div>
-                `;
-            });
-        }
-
-        function postLog() {
-            const content = document.getElementById('blog-input').value;
-            if(!content) return;
-            
-            const now = new Date();
-            logs.unshift({
-                content: content,
-                date: now.toLocaleDateString() + ' ' + now.toLocaleTimeString()
-            });
-            
-            localStorage.setItem('abdalrhman_logs', JSON.stringify(logs));
-            document.getElementById('blog-input').value = '';
-            renderLogs();
-        }
-
-        function deleteLog(index) {
-            logs.splice(index, 1);
-            localStorage.setItem('abdalrhman_logs', JSON.stringify(logs));
-            renderLogs();
-        }
-
-        renderLogs();
-
-        // --- TERMINAL LOGIC ---
-        const input = document.getElementById('cmd-input');
-        const history = document.getElementById('terminal-history');
-        const commands = {
-            'help': 'Commands: whoami, status, scan, clear',
-            'whoami': 'Abdalrhman | Red Teamer',
-            'status': 'System Optimal. No breaches detected.',
-            'scan': 'Scanning network... [||||||||||] 100% Complete. 0 Vulnerabilities.'
-        };
-
-        input.addEventListener('keydown', function(e) {
-            if(e.key === 'Enter') {
-                const val = this.value.toLowerCase();
-                history.innerHTML += `<div><span style="color:var(--accent)">hello@kali:~$</span> ${this.value}</div>`;
-                
-                if(val === 'clear') history.innerHTML = '';
-                else if(commands[val]) history.innerHTML += `<div style="color:#fff; margin-bottom:10px;">${commands[val]}</div>`;
-                else history.innerHTML += `<div style="color:var(--alert); margin-bottom:10px;">bash: command not found</div>`;
-                
-                this.value = '';
-                document.querySelector('.terminal-box').scrollTop = document.querySelector('.terminal-box').scrollHeight;
-            }
-        });
-        document.querySelector('.terminal-box').addEventListener('click', () => input.focus());
 
     </script>
 </body>
