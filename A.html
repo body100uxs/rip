@@ -3,614 +3,370 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abdalrhman | Security Portfolio</title>
+    <title>Abdalrhman | Secure Workspace</title>
     <link rel="icon" type="image/x-icon" href="icon.png">
     <style>
         :root {
-            --bg-color: #050505;
-            --card-bg: #111;
-            --text-color: #ddd;
-            --accent-color: #00ff00;
-            --font-main: 'Segoe UI', sans-serif;
-            --font-code: 'Courier New', monospace;
-            --border-width: 1px;
-            --overlay-opacity: 0.6;
-        }
-
-        [data-theme="kali"] {
-            --bg-color: #050505;
-            --card-bg: #111;
-            --text-color: #ddd;
-            --accent-color: #00ff00; 
-        }
-
-        [data-theme="red-ops"] {
-            --bg-color: #0a0000;
-            --card-bg: #1a0505;
-            --text-color: #e0e0e0;
-            --accent-color: #ff0033;
-        }
-
-        [data-theme="blue-intel"] {
             --bg-color: #000510;
-            --card-bg: #000f20;
-            --text-color: #d0e0ff;
-            --accent-color: #00ccff;
+            --card-bg: #001025;
+            --text-color: #a0c0ff;
+            --accent-color: #00f7ff;
+            --font-main: 'Courier New', Courier, monospace;
         }
 
-        [data-theme="slate"] {
-            --bg-color: #1e1e1e;
-            --card-bg: #2d2d2d;
-            --text-color: #f0f0f0;
-            --accent-color: #ffcc00;
-        }
-
-        [data-theme="monochrome"] {
-            --bg-color: #ffffff;
-            --card-bg: #f4f4f4;
-            --text-color: #000000;
-            --accent-color: #000000;
-            --border-width: 2px;
-            --overlay-opacity: 0.2;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: crosshair; }
 
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
             font-family: var(--font-main);
-            line-height: 1.7;
+            line-height: 1.6;
             overflow-x: hidden;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            background-image: linear-gradient(rgba(0, 247, 255, 0.05) 1px, transparent 1px);
+            background-size: 100% 3px;
         }
 
-        .theme-switcher {
+        /* Power-On Effect */
+        body::before {
+            content: "";
             position: fixed;
-            top: 0; left: 0; width: 100%;
-            background: #000;
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            border-bottom: 1px solid #333;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #fff;
+            animation: power-on 0.5s ease-out forwards;
+            z-index: 99999;
+            pointer-events: none;
         }
+        @keyframes power-on { 0% { opacity: 1; } 100% { opacity: 0; } }
 
-        .theme-btn {
-            padding: 10px 20px;
-            background: #222;
-            color: #fff;
-            border: none;
-            border-right: 1px solid #444;
-            cursor: pointer;
-            font-family: var(--font-code);
-            font-size: 0.8rem;
-        }
-        .theme-btn:hover { background: var(--accent-color); color: #000; }
-
+        /* Navigation */
         nav {
-            margin-top: 40px;
             background: var(--card-bg);
-            border-bottom: var(--border-width) solid var(--accent-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding: 15px 0;
             position: sticky;
-            top: 40px;
+            top: 0;
             z-index: 1000;
+            box-shadow: 0 0 15px var(--accent-color);
         }
 
         .nav-container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             padding: 0 20px;
-            height: 60px;
-        }
-
-        .logo {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: var(--accent-color);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-family: var(--font-code);
-        }
-
-        .nav-links button {
-            background: none;
-            border: none;
-            color: var(--text-color);
-            margin-left: 25px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-family: var(--font-main);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 18px 0;
-            position: relative;
-        }
-
-        .nav-links button:hover, .nav-links button.active {
-            color: var(--accent-color);
-        }
-        
-        .nav-links button.active::after {
-            content: '';
-            position: absolute;
-            bottom: 0; left: 0; width: 100%;
-            height: 3px;
-            background: var(--accent-color);
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 20px 60px 20px;
-            flex: 1;
-            width: 100%;
-        }
-
-        .page-section { display: none; animation: fadeIn 0.6s ease; }
-        .page-section.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        .hero-banner {
-            position: relative;
-            width: 100%;
-            height: 500px; 
-            margin-bottom: 50px;
-            border-bottom: var(--border-width) solid var(--accent-color);
-            background-color: #000;
-        }
-
-        .hero-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: var(--overlay-opacity); 
-            filter: grayscale(80%);
-            transition: 0.5s;
-        }
-        
-        .hero-banner:hover .hero-img {
-            filter: grayscale(0%);
-            opacity: 0.8;
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            width: 90%;
-            z-index: 2;
-        }
-
-        .hero-name {
-            font-size: 4rem;
-            font-weight: 900;
-            color: #fff;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            text-shadow: 2px 2px 0px var(--accent-color);
-            margin-bottom: 10px;
-            line-height: 1;
-        }
-
-        .hero-title {
-            font-family: var(--font-code);
-            color: var(--accent-color);
-            font-size: 1.2rem;
-            background: rgba(0,0,0,0.7);
-            display: inline-block;
-            padding: 5px 15px;
-            border: 1px solid var(--accent-color);
-        }
-
-        .content-block {
-            margin-bottom: 60px;
-        }
-
-        .section-header {
-            font-size: 1.8rem;
-            color: var(--accent-color);
-            border-left: 5px solid var(--accent-color);
-            padding-left: 20px;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            background: linear-gradient(90deg, rgba(255,255,255,0.05), transparent);
-            padding-top: 10px;
-            padding-bottom: 10px;
-        }
-
-        .terminal-container {
-            border: 1px solid #333;
-            background: #000;
-            padding: 5px;
-            margin-bottom: 50px;
-        }
-
-        .terminal-header {
-            background: #222;
-            padding: 8px 15px;
-            color: #777;
-            font-family: var(--font-code);
-            font-size: 0.8rem;
             display: flex;
             justify-content: space-between;
-        }
-
-        .terminal-content {
-            background: #000;
-            color: var(--accent-color);
-            font-family: var(--font-code);
-            padding: 20px;
-            height: 300px;
-            overflow-y: auto;
-            font-size: 0.95rem;
-        }
-
-        .input-line { display: flex; }
-        .prompt { margin-right: 10px; color: var(--accent-color); }
-        input[type="text"] {
-            background: transparent;
-            border: none;
-            color: #fff;
-            flex: 1;
-            font-family: var(--font-code);
-            font-size: 0.95rem;
-            outline: none;
-        }
-
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .info-card {
-            background: var(--card-bg);
-            border: var(--border-width) solid #333;
-            padding: 25px;
-            transition: 0.3s;
-        }
-        
-        .info-card:hover {
-            border-color: var(--accent-color);
-            transform: translateY(-5px);
-        }
-
-        .info-card h3 { color: #fff; margin-bottom: 10px; font-size: 1.2rem; }
-        .info-card p { font-size: 0.95rem; color: #aaa; }
-
-        .article-body {
-            font-size: 1.1rem;
-            color: var(--text-color);
-        }
-
-        .article-body p { margin-bottom: 20px; }
-
-        .highlight-cert {
-            color: var(--accent-color);
-            font-weight: bold;
-            border-bottom: 1px dashed var(--accent-color);
-            cursor: default;
-        }
-
-        .certs-visual {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 15px;
-            margin-top: 30px;
-        }
-
-        .cert-row {
-            display: flex;
             align-items: center;
-            background: var(--card-bg);
+        }
+
+        .logo { font-size: 1.5rem; font-weight: bold; color: var(--accent-color); text-shadow: 0 0 10px var(--accent-color); }
+
+        .nav-btn {
+            background: none; border: 1px solid transparent; color: var(--text-color);
+            font-family: var(--font-main); padding: 8px 15px; margin-left: 10px;
+            text-transform: uppercase; transition: 0.2s;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            color: var(--accent-color); border-color: var(--accent-color);
+            background: rgba(0, 247, 255, 0.1); box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        /* Layout */
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; flex: 1; width: 100%; }
+        .page-section { display: none; }
+        .page-section.active { display: block; }
+
+        /* --- Home & General Styles --- */
+        .home-layout { display: flex; align-items: center; justify-content: space-between; gap: 50px; flex-wrap: wrap; margin-top: 40px; }
+        .home-text { flex: 1; min-width: 300px; }
+        
+        .typing-effect {
+            font-size: 2.8rem; color: #fff; margin-bottom: 20px;
+            text-shadow: 0 0 10px var(--accent-color);
+            border-right: 4px solid var(--accent-color);
+            width: 100%; overflow: hidden; white-space: nowrap;
+            animation: typing 3s steps(30, end), blink-cursor 0.75s step-end infinite;
+        }
+        @keyframes typing { from { width: 0 } to { width: 100% } }
+        @keyframes blink-cursor { from, to { border-color: transparent } 50% { border-color: var(--accent-color) } }
+
+        h2 { font-size: 1.1rem; color: var(--accent-color); margin-bottom: 30px; opacity: 0.8; }
+
+        .btn-main {
+            display: inline-block; padding: 15px 30px; border: 2px solid var(--accent-color);
+            background: rgba(0, 247, 255, 0.1); color: var(--accent-color); font-weight: bold;
+            text-transform: uppercase; transition: 0.3s;
+        }
+        .btn-main:hover { background: var(--accent-color); color: #000; box-shadow: 0 0 30px var(--accent-color); }
+
+        /* --- Workspace (To-Do & Diary) Styles --- */
+        .privacy-warning {
+            border: 1px solid var(--accent-color);
+            background: rgba(255, 0, 0, 0.1);
+            color: #ffaaaa;
             padding: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 0.9rem;
+            box-shadow: 0 0 10px rgba(255,0,0,0.3);
+        }
+
+        .workspace-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .tool-box {
+            background: #000;
+            border: 2px solid var(--accent-color);
+            padding: 20px;
+            box-shadow: 0 0 15px var(--accent-color) inset;
+            min-height: 400px;
+        }
+
+        .tool-title {
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        /* To-Do Styles */
+        .todo-input-group { display: flex; gap: 10px; margin-bottom: 20px; }
+        .todo-input {
+            flex: 1; background: transparent; border: 1px solid var(--accent-color);
+            color: #fff; padding: 10px; font-family: inherit;
+        }
+        .todo-add-btn {
+            background: var(--accent-color); color: #000; border: none;
+            padding: 10px 20px; font-weight: bold; cursor: pointer;
+        }
+        .todo-list { list-style: none; }
+        .todo-item {
+            background: rgba(0, 247, 255, 0.05);
+            margin-bottom: 10px; padding: 10px;
+            display: flex; justify-content: space-between; align-items: center;
             border-left: 3px solid var(--accent-color);
         }
+        .todo-delete { color: #ff5555; cursor: pointer; font-weight: bold; margin-left: 10px; }
 
-        .cert-row strong { color: #fff; min-width: 250px; display: inline-block; }
-        .cert-row span { color: #888; margin-left: auto; font-size: 0.9rem; }
+        /* Diary Styles */
+        .diary-area {
+            width: 100%; height: 300px; background: transparent;
+            border: 1px solid #333; color: var(--accent-color);
+            padding: 15px; font-family: inherit; resize: none;
+            outline: none;
+        }
+        .diary-area:focus { border-color: var(--accent-color); }
+        .save-diary-btn {
+            width: 100%; padding: 10px; margin-top: 10px;
+            background: transparent; border: 1px solid var(--accent-color);
+            color: var(--accent-color); cursor: pointer;
+        }
+        .save-diary-btn:hover { background: var(--accent-color); color: #000; }
 
-        .contact-form {
-            background: var(--card-bg);
-            padding: 40px;
-            border: var(--border-width) solid #333;
+        /* --- Other Sections (About, Contact) --- */
+        .about-layout { display: flex; gap: 50px; }
+        .photo-container { width: 300px; height: 300px; border: 2px solid var(--accent-color); position: relative; }
+        .about-photo { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%) sepia(100%) hue-rotate(160deg) saturate(200%); opacity: 0.8; }
+        .scanner-line {
+            position: absolute; top: 0; left: 0; width: 100%; height: 10px;
+            background: var(--accent-color); opacity: 0.5; animation: scan 4s linear infinite alternate;
+        }
+        @keyframes scan { from { top: 0; } to { top: 100%; } }
+
+        .cert-card {
+            background: var(--card-bg); border: 1px solid var(--accent-color);
+            padding: 15px; margin-bottom: 10px; color: #fff;
         }
 
-        .form-row { margin-bottom: 20px; }
-        .form-row label { display: block; margin-bottom: 10px; color: var(--accent-color); font-family: var(--font-code); }
-        .form-control {
-            width: 100%;
-            padding: 15px;
-            background: #000;
-            border: 1px solid #333;
-            color: #fff;
-            font-family: var(--font-code);
-        }
-        .form-control:focus { border-color: var(--accent-color); outline: none; }
-        
-        .btn-submit {
-            width: 100%;
-            padding: 15px;
-            background: var(--accent-color);
-            color: #000;
-            border: none;
-            font-weight: bold;
-            text-transform: uppercase;
-            cursor: pointer;
-            font-family: var(--font-code);
-            letter-spacing: 2px;
-        }
-        .btn-submit:hover { background: #fff; }
+        .contact-form { max-width: 600px; margin: 0 auto; border: 2px solid var(--accent-color); padding: 40px; }
+        .form-input { width: 100%; padding: 10px; background: #000; border: 1px solid var(--accent-color); color: #fff; margin-bottom: 15px; }
 
-        footer {
-            text-align: center;
-            padding: 30px;
-            border-top: 1px solid #222;
-            color: #666;
-            font-size: 0.9rem;
-            margin-top: auto;
-        }
+        footer { text-align: center; padding: 30px; border-top: 2px solid var(--accent-color); margin-top: auto; opacity: 0.7; }
 
-        @media(max-width: 768px) {
-            .hero-name { font-size: 2.5rem; letter-spacing: 2px; }
-            .nav-container { flex-direction: column; height: auto; padding: 10px; }
-            .nav-links button { margin: 5px 10px; padding: 10px 0; }
-            .cert-row { flex-direction: column; align-items: flex-start; }
-            .cert-row span { margin-left: 0; margin-top: 5px; }
+        @media (max-width: 768px) {
+            .nav-container { flex-direction: column; gap: 10px; }
+            .home-layout, .about-layout, .workspace-grid { flex-direction: column; }
+            .typing-effect { font-size: 1.8rem; }
         }
     </style>
 </head>
-<body data-theme="kali">
+<body>
 
-    <div class="theme-switcher">
-        <button class="theme-btn" onclick="setTheme('kali')">KALI DARK</button>
-        <button class="theme-btn" onclick="setTheme('red-ops')">RED OPS</button>
-        <button class="theme-btn" onclick="setTheme('blue-intel')">BLUE INTEL</button>
-        <button class="theme-btn" onclick="setTheme('slate')">SLATE</button>
-        <button class="theme-btn" onclick="setTheme('monochrome')">MONO</button>
+<nav>
+    <div class="nav-container">
+        <div class="logo">[ SYSTEM: ABDALRHMAN ]</div>
+        <div class="nav-links">
+            <button class="nav-btn active" onclick="switchTab('home')">Home</button>
+            <button class="nav-btn" onclick="switchTab('workspace')">Workspace</button> <button class="nav-btn" onclick="switchTab('about')">Profile</button>
+            <button class="nav-btn" onclick="switchTab('contact')">Uplink</button>
+        </div>
     </div>
+</nav>
 
-    <nav>
-        <div class="nav-container">
-            <div class="logo">Abdalrhman</div>
-            <div class="nav-links">
-                <button onclick="showPage('home')" class="active">Home</button>
-                <button onclick="showPage('about')">Profile & Bio</button>
-                <button onclick="showPage('blog')">Blog</button>
-                <button onclick="showPage('contact')">Contact</button>
+<div class="container">
+
+    <section id="home" class="page-section active">
+        <div class="home-layout">
+            <div class="home-text">
+                <h1 class="typing-effect">ABDALRHMAN SALAH</h1>
+                <h2>> Penetration Testing Student | Bug Bounty | CTF_</h2>
+                <div style="margin-top: 40px;">
+                    <button class="btn-main" onclick="switchTab('workspace')">OPEN SECURE WORKSPACE</button>
+                    <a href="https://linkedin.com/in/abdalrhman-salah-ibrahim-51725a396" target="_blank" class="btn-main" style="margin-left: 20px; text-decoration:none;">LINKEDIN NODE</a>
+                </div>
             </div>
         </div>
-    </nav>
+    </section>
 
-    <div class="container">
+    <section id="workspace" class="page-section">
         
-        <section id="home" class="page-section active">
+        <div class="privacy-warning">
+            [SECURITY NOTICE]: ALL DATA IS STORED LOCALLY IN YOUR BROWSER'S ENCRYPTED CACHE. 
+            NO DATA IS SENT TO ANY SERVER. YOUR ENTRIES ARE VISIBLE ONLY TO YOU ON THIS DEVICE.
+        </div>
+
+        <div class="workspace-grid">
             
-            <div class="hero-banner">
-                <img src="photo.jpeg" alt="Abdalrhman" class="hero-img">
-                <div class="hero-overlay">
-                    <div class="hero-name">Abdalrhman Salah</div>
-                    <div class="hero-title">PENETRATION TESTING STUDENT | BUG BOUNTY | CTF</div>
+            <div class="tool-box">
+                <div class="tool-title">>> MISSION LOG (TO-DO)</div>
+                <div class="todo-input-group">
+                    <input type="text" id="todoInput" class="todo-input" placeholder="Enter new objective...">
+                    <button onclick="addTask()" class="todo-add-btn">ADD</button>
                 </div>
+                <ul id="todoList" class="todo-list">
+                    </ul>
             </div>
 
-            <div class="content-block">
-                <div class="section-header">Interact with System</div>
-                <div class="terminal-container">
-                    <div class="terminal-header">
-                        <span>Terminal - /bin/zsh</span>
-                        <span>[Connected]</span>
-                    </div>
-                    <div class="terminal-content" id="terminal-content">
-                        <div style="margin-bottom:15px; color:#aaa;">
-                            Kali GNU/Linux Rolling<br>
-                            Type 'help' to verify command list.
-                        </div>
-                        <div id="output"></div>
-                        <div class="input-line">
-                            <span class="prompt">hello@kali:~$</span>
-                            <input type="text" id="commandInput" autocomplete="off" autofocus spellcheck="false">
-                        </div>
-                    </div>
-                </div>
+            <div class="tool-box">
+                <div class="tool-title">>> CAPTAIN'S LOG (DIARY)</div>
+                <textarea id="diaryInput" class="diary-area" placeholder="Log your daily findings here..."></textarea>
+                <button onclick="saveDiary()" class="save-diary-btn">SAVE ENTRY TO LOCAL STORAGE</button>
+                <div id="saveStatus" style="color:#0f0; margin-top:5px; font-size:0.8rem; display:none;">>> ENTRY SAVED SUCCESSFULLY.</div>
             </div>
 
-            <div class="content-block">
-                <div class="section-header">Technical Focus Areas</div>
-                <div class="grid-3">
-                    <div class="info-card">
-                        <h3>Web Application Security</h3>
-                        <p>Deep dive into OWASP Top 10, hunting for logic flaws, XSS, SQLi, and securing modern web infrastructure.</p>
-                    </div>
-                    <div class="info-card">
-                        <h3>Network Penetration</h3>
-                        <p>Scanning, enumeration, and exploitation of network services. Understanding protocol weaknesses.</p>
-                    </div>
-                    <div class="info-card">
-                        <h3>CTF & Bug Bounty</h3>
-                        <p>Active participation in Capture The Flag competitions to sharpen skills and finding real-world bugs.</p>
-                    </div>
+        </div>
+    </section>
+
+    <section id="about" class="page-section">
+        <div class="about-layout">
+            <div class="about-left">
+                <div class="photo-container">
+                    <img src="photo.jpeg" alt="Abdalrhman" class="about-photo">
+                    <div class="scanner-line"></div>
                 </div>
             </div>
-
-            <div class="content-block">
-                <div class="section-header">Tools of Trade</div>
-                <div class="grid-3">
-                    <div class="info-card"><h3>Burp Suite Pro</h3></div>
-                    <div class="info-card"><h3>Metasploit</h3></div>
-                    <div class="info-card"><h3>Nmap & Wireshark</h3></div>
-                    <div class="info-card"><h3>Python Scripting</h3></div>
-                    <div class="info-card"><h3>Linux Bash</h3></div>
-                    <div class="info-card"><h3>Hydra & John</h3></div>
-                </div>
+            <div class="about-right">
+                <div class="cert-card"><strong>Penetration Testing Professional</strong><span>MaharaTech - ITI</span></div>
+                <div class="cert-card"><strong>Ethical Hacking</strong><span>MaharaTech - ITI</span></div>
+                <div class="cert-card"><strong>CHC v2</strong><span>Techcampus</span></div>
+                <div class="cert-card"><strong>Computer Network Fundamentals</strong><span>MaharaTech - ITI</span></div>
+                <div class="cert-card" style="border-color: #ffff00;"><strong style="color:#ffff00;">Cisco Cybersecurity</strong><span>In Progress...</span></div>
             </div>
+        </div>
+    </section>
 
-        </section>
+    <section id="contact" class="page-section">
+        <div class="contact-form">
+            <form action="https://getform.io/f/byvelwza" method="POST">
+                <div style="margin-bottom:20px;"><label>IDENTITY</label><input type="text" name="name" class="form-input" required></div>
+                <div style="margin-bottom:20px;"><label>FREQUENCY</label><input type="email" name="email" class="form-input" required></div>
+                <div style="margin-bottom:20px;"><label>PAYLOAD</label><input type="text" name="message" class="form-input" required></div>
+                <button type="submit" class="btn-main" style="width:100%;">TRANSMIT</button>
+            </form>
+        </div>
+    </section>
 
-        <section id="about" class="page-section">
-            <div class="hero-banner" style="height: 300px;">
-                <img src="photo.jpeg" alt="About" class="hero-img">
-                <div class="hero-overlay">
-                    <div class="hero-name" style="font-size: 3rem;">MY JOURNEY</div>
-                </div>
-            </div>
+</div>
 
-            <div class="content-block">
-                <div class="section-header">Professional Biography</div>
-                <div class="article-body">
-                    <p>
-                        My name is Abdalrhman Salah Ibrahim. My journey into the world of cybersecurity began with a simple curiosity about how systems work and, more importantly, how they can be broken to be made stronger. I am not just a student; I am a practitioner who believes in the hands-on approach to security.
-                    </p>
-                    <p>
-                        To build a solid foundation, I enrolled in the intensive specialized tracks at <strong>MaharaTech (ITI)</strong>. My primary focus was mastering the offensive side of security. I successfully completed the <span class="highlight-cert">Penetration Testing Professional</span> track, where I learned the methodologies of ethical hacking, from reconnaissance to exploitation and reporting.
-                    </p>
-                    <p>
-                        Understanding that security is built on top of networks, I ensured my groundwork was solid by earning the <span class="highlight-cert">Computer Network Fundamentals</span> certification, also from MaharaTech. This gave me the deep understanding of TCP/IP, OSI models, and routing necessary to analyze network traffic and spot anomalies.
-                    </p>
-                    <p>
-                        My passion didn't stop there. I expanded my knowledge into digital investigation by studying <span class="highlight-cert">Forensic Medicine in Crime Detection</span> at Misr University for Science and Technology, giving me a unique perspective on evidence handling and investigative procedures.
-                    </p>
-                    <p>
-                        Currently, I am expanding my expertise by pursuing the <span class="highlight-cert">Cisco Cybersecurity</span> certification to further validate my skills in securing enterprise environments.
-                    </p>
-                </div>
-            </div>
+<footer>
+    &copy; Abdalrhman Salah Ibrahim. System Online.
+</footer>
 
-            <div class="content-block">
-                <div class="section-header">Certification Log</div>
-                <div class="certs-visual">
-                    <div class="cert-row">
-                        <strong>Penetration Testing Professional</strong>
-                        <span>MaharaTech - ITI</span>
-                    </div>
-                    <div class="cert-row">
-                        <strong>Ethical Hacking</strong>
-                        <span>MaharaTech - ITI</span>
-                    </div>
-                    <div class="cert-row">
-                        <strong>CHC v2</strong>
-                        <span>Techcampus</span>
-                    </div>
-                    <div class="cert-row">
-                        <strong>Computer Network Fundamentals</strong>
-                        <span>MaharaTech - ITI</span>
-                    </div>
-                    <div class="cert-row">
-                        <strong>Forensic Medicine in Crime Detection</strong>
-                        <span>Misr University</span>
-                    </div>
-                    <div class="cert-row" style="border-left-color: yellow;">
-                        <strong style="color:yellow;">Cisco Cybersecurity</strong>
-                        <span>Status: In Progress...</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="blog" class="page-section">
-            <div class="content-block" style="text-align: center; padding: 100px 0;">
-                <div class="section-header" style="display:inline-block; border:none; border-bottom: 2px solid var(--accent-color);">
-                    SYSTEM LOGS / ARTICLES
-                </div>
-                <h1 style="margin-top:20px; color:#555;">NO ENTRIES FOUND.</h1>
-                <p style="color:#777; margin-top:10px;">Content database is currently empty. Check back later.</p>
-                
-                <div class="grid-3" style="margin-top: 50px; opacity: 0.3;">
-                    <div class="info-card"><h3>[Placeholder] How to Bypass WAF</h3></div>
-                    <div class="info-card"><h3>[Placeholder] XSS Deep Dive</h3></div>
-                    <div class="info-card"><h3>[Placeholder] CTF Walkthrough</h3></div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="page-section">
-            <div class="content-block">
-                <div class="section-header">Establish Connection</div>
-                <div class="contact-form">
-                    <form action="https://getform.io/f/byvelwza" method="POST">
-                        <div class="form-row">
-                            <label>USER IDENTITY (NAME)</label>
-                            <input type="text" name="name" class="form-control" required>
-                        </div>
-                        <div class="form-row">
-                            <label>RETURN ADDRESS (EMAIL)</label>
-                            <input type="email" name="email" class="form-control" required>
-                        </div>
-                        <div class="form-row">
-                            <label>DATA PAYLOAD (MESSAGE)</label>
-                            <input type="text" name="message" class="form-control" required>
-                        </div>
-                        <div class="form-row" style="display:flex; align-items:center;">
-                            <input type="checkbox" name="not_robot" id="chk" style="width:auto; margin-right:10px;" required>
-                            <label for="chk" style="margin:0; cursor:pointer;">CONFIRM HUMAN ORIGIN</label>
-                        </div>
-                        <button type="submit" class="btn-submit">TRANSMIT DATA</button>
-                    </form>
-                </div>
-            </div>
-        </section>
-
-    </div>
-
-    <footer>
-        &copy; Abdalrhman Salah Ibrahim
-    </footer>
-
-    <script>
-        function setTheme(themeName) {
-            document.body.setAttribute('data-theme', themeName);
-        }
-
-        function showPage(pageId) {
-            document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
-            
-            document.querySelectorAll('.nav-links button').forEach(b => b.classList.remove('active'));
-            event.target.classList.add('active');
-            window.scrollTo(0, 0);
-        }
-
-        const input = document.getElementById('commandInput');
-        const output = document.getElementById('output');
-        const terminalContent = document.getElementById('terminal-content');
-
-        const commands = {
-            'help': 'Available: whoami, skills, clear, date, contact',
-            'whoami': 'Abdalrhman Salah | Pen Tester | Red Teamer',
-            'skills': 'Pentesting, Network Security, Python, Bash, Burp Suite',
-            'contact': 'Use the Contact page or LinkedIn.',
-            'date': new Date().toString()
-        };
-
-        input.addEventListener('keydown', function(e) {
-            if(e.key === 'Enter') {
-                const cmd = this.value.trim().toLowerCase();
-                output.innerHTML += `<div><span class="prompt">hello@kali:~$</span> ${this.value}</div>`;
-                
-                if(cmd === 'clear') {
-                    output.innerHTML = '';
-                } else if(commands[cmd]) {
-                    output.innerHTML += `<div style="color:#ccc; margin-bottom:10px;">${commands[cmd]}</div>`;
-                } else if(cmd !== '') {
-                    output.innerHTML += `<div style="color:#f00; margin-bottom:10px;">Command not found: ${cmd}</div>`;
-                }
-                
-                this.value = '';
-                terminalContent.scrollTop = terminalContent.scrollHeight;
-            }
-        });
+<script>
+    // Navigation Logic
+    function switchTab(tabId) {
+        document.querySelectorAll('.page-section').forEach(section => section.classList.remove('active'));
+        document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
         
-        document.querySelector('.terminal-container').addEventListener('click', () => {
-            input.focus();
+        // Update Active Button State
+        const btns = document.querySelectorAll('.nav-btn');
+        if(tabId === 'home') btns[0].classList.add('active');
+        if(tabId === 'workspace') btns[1].classList.add('active');
+        if(tabId === 'about') btns[2].classList.add('active');
+        if(tabId === 'contact') btns[3].classList.add('active');
+    }
+
+    // --- WORKSPACE LOGIC (Local Storage) ---
+    
+    // 1. To-Do List Logic
+    const todoInput = document.getElementById('todoInput');
+    const todoList = document.getElementById('todoList');
+
+    function loadTasks() {
+        const tasks = JSON.parse(localStorage.getItem('abdalrhman_tasks')) || [];
+        todoList.innerHTML = '';
+        tasks.forEach((task, index) => {
+            const li = document.createElement('li');
+            li.className = 'todo-item';
+            li.innerHTML = `
+                <span>> ${task}</span>
+                <span class="todo-delete" onclick="deleteTask(${index})">[X]</span>
+            `;
+            todoList.appendChild(li);
         });
-    </script>
+    }
+
+    function addTask() {
+        const task = todoInput.value;
+        if (task) {
+            const tasks = JSON.parse(localStorage.getItem('abdalrhman_tasks')) || [];
+            tasks.push(task);
+            localStorage.setItem('abdalrhman_tasks', JSON.stringify(tasks));
+            todoInput.value = '';
+            loadTasks();
+        }
+    }
+
+    function deleteTask(index) {
+        const tasks = JSON.parse(localStorage.getItem('abdalrhman_tasks')) || [];
+        tasks.splice(index, 1);
+        localStorage.setItem('abdalrhman_tasks', JSON.stringify(tasks));
+        loadTasks();
+    }
+
+    // 2. Diary Logic
+    const diaryInput = document.getElementById('diaryInput');
+    const saveStatus = document.getElementById('saveStatus');
+
+    function loadDiary() {
+        const savedText = localStorage.getItem('abdalrhman_diary');
+        if (savedText) {
+            diaryInput.value = savedText;
+        }
+    }
+
+    function saveDiary() {
+        localStorage.setItem('abdalrhman_diary', diaryInput.value);
+        saveStatus.style.display = 'block';
+        setTimeout(() => { saveStatus.style.display = 'none'; }, 2000);
+    }
+
+    // Initialize on Load
+    window.onload = function() {
+        loadTasks();
+        loadDiary();
+    };
+
+</script>
+
 </body>
 </html>
