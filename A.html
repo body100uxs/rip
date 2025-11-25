@@ -66,83 +66,30 @@
             box-shadow: 0 20px 50px rgba(0,0,0,0.15); margin-bottom: 10px;
         }
         .terminal-header { background: #1a1a1a; padding: 10px 15px; border-bottom: 1px solid #333; display: flex; align-items: center; color: #aaa; font-size: 0.9rem; }
-        .terminal-body { flex: 1; padding: 20px; overflow-y: auto; color: var(--term-text); font-size: 1.1rem; }
-        .output-line { margin-bottom: 10px; white-space: pre-wrap; }
-        .cmd-line { display: flex; color: #fff; margin-top: 10px; }
-        .prompt { margin-right: 10px; color: var(--accent); font-weight: bold; }
-        #cmd-input { background: transparent; border: none; color: #fff; flex: 1; font-family: 'Consolas', 'Courier New', monospace; font-size: 1.1rem; outline: none; }
+        .terminal-body { flex: 1; padding: 20px; overflow-y: auto; color: var(--term-text); font-size: 1.1rem; cursor: text; }
+        .output-line { margin-bottom: 10px; white-space: pre-wrap; display: block; }
+        .cmd-line { display: flex; color: #fff; margin-top: 10px; align-items: center; }
+        .prompt { margin-right: 10px; color: var(--accent); font-weight: bold; white-space: nowrap; }
+        #cmd-input { background: transparent; border: none; color: #fff; flex: 1; font-family: 'Consolas', 'Courier New', monospace; font-size: 1.1rem; outline: none; margin: 0; padding: 0; }
         .disclaimer { font-size: 0.85rem; color: #adb5bd; margin-top: 15px; font-style: italic; }
 
         .about-container { display: flex; flex-direction: column; }
-        
-        .about-header-section {
-            display: flex; 
-            gap: 40px; 
-            align-items: center; 
-            margin-bottom: 80px;
-        }
-
-        .about-photo-wrapper { 
-            flex-shrink: 0; 
-            width: 200px; 
-        }
-        .about-photo { 
-            width: 100%; 
-            height: 200px; 
-            object-fit: cover;
-            border: 1px solid var(--border); 
-            display: block; 
-        }
-        
-        .about-info { 
-            flex-grow: 1; 
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            height: 200px; 
-        }
-
+        .about-header-section { display: flex; gap: 40px; align-items: center; margin-bottom: 80px; }
+        .about-photo-wrapper { flex-shrink: 0; width: 200px; }
+        .about-photo { width: 100%; height: 200px; object-fit: cover; border: 1px solid var(--border); display: block; }
+        .about-info { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; height: 200px; }
         .profile-name { font-size: 2.2rem; color: var(--accent); line-height: 1.1; margin-bottom: 10px; }
         .profile-title { font-size: 1.1rem; font-weight: 700; color: #000; margin-bottom: 10px; }
         .profile-link { font-size: 1.1rem; color: var(--orange); text-decoration: none; font-weight: 600; display: inline-block; }
         .profile-link:hover { text-decoration: underline; }
-
-        .about-bottom {
-            margin-top: 80px;
-        }
-
-        .certs-heading {
-            font-size: 1.4rem; margin-bottom: 25px; border-bottom: 3px solid #000; 
-            display: inline-block; text-transform: uppercase; color: #000;
-        }
-
+        .about-bottom { margin-top: 80px; }
+        .certs-heading { font-size: 1.4rem; margin-bottom: 25px; border-bottom: 3px solid #000; display: inline-block; text-transform: uppercase; color: #000; }
         .certs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-        
-        .cert-card { 
-            background: transparent;
-            padding: 0; 
-            border: none; 
-        }
-
+        .cert-card { background: transparent; padding: 0; border: none; }
         .cert-card ol { padding-left: 20px; margin: 0; }
-        
-        .cert-card li { 
-            margin-bottom: 25px; 
-            font-weight: 700; 
-            font-size: 1rem; 
-            border-bottom: 1px solid #eee;
-            padding-bottom: 10px;
-        }
+        .cert-card li { margin-bottom: 25px; font-weight: 700; font-size: 1rem; border-bottom: 1px solid #eee; padding-bottom: 10px; }
         .cert-card li:last-child { border-bottom: none; }
-
-        .cert-card li span { 
-            display: block; 
-            font-weight: 400; 
-            font-size: 0.9rem; 
-            color: var(--muted); 
-            margin-top: 5px; 
-        }
-        
+        .cert-card li span { display: block; font-weight: 400; font-size: 0.9rem; color: var(--muted); margin-top: 5px; }
         .cisco-status { color: #d39e00; font-weight: 700; }
 
         .tweet-feed { width: 100%; margin: 0; }
@@ -200,7 +147,8 @@
                 <div class="terminal-header">root@kali:~ (zsh)</div>
                 <div class="terminal-body" id="terminal-output">
                     <div class="output-line" style="color:#fff">System ready. Waiting for input...</div>
-                    <div class="cmd-line">
+                    
+                    <div class="cmd-line" id="current-cmd-line">
                         <span class="prompt">┌──(root💀kali)-[~]<br>└─#</span>
                         <input type="text" id="cmd-input" autocomplete="off" autofocus>
                     </div>
@@ -214,12 +162,10 @@
 
         <div id="about" class="section">
             <div class="about-container">
-                
                 <div class="about-header-section">
                     <div class="about-photo-wrapper">
                         <img src="photo.jpeg" alt="Profile" class="about-photo">
                     </div>
-
                     <div class="about-info">
                         <h1 class="profile-name">Abdalrhman Salah Ibrahim</h1>
                         <div class="profile-title">Penetration Testing Student | Bug Bounty Enthusiast | CTF Player</div>
@@ -229,44 +175,23 @@
 
                 <div class="about-bottom">
                     <h3 class="certs-heading">CERTIFICATIONS</h3>
-                    
                     <div class="certs-grid">
                         <div class="cert-card">
                             <ol start="1">
-                                <li>
-                                    Penetration Testing Professional
-                                    <span>MaharaTech - ITI</span>
-                                </li>
-                                <li>
-                                    Ethical Hacking
-                                    <span>MaharaTech - ITI</span>
-                                </li>
-                                <li>
-                                    CHC v2
-                                    <span>Techcampus</span>
-                                </li>
+                                <li>Penetration Testing Professional<span>MaharaTech - ITI</span></li>
+                                <li>Ethical Hacking<span>MaharaTech - ITI</span></li>
+                                <li>CHC v2<span>Techcampus</span></li>
                             </ol>
                         </div>
-                        
                         <div class="cert-card">
                             <ol start="4">
-                                <li>
-                                    Computer Network Fundamentals
-                                    <span>MaharaTech - ITI</span>
-                                </li>
-                                <li>
-                                    Forensic Medicine
-                                    <span>Misr University</span>
-                                </li>
-                                <li>
-                                    <span class="cisco-status">Cisco Cybersecurity</span>
-                                    <span>In Progress: <span id="cisco-loader">🟩⬜⬜⬜⬜</span></span>
-                                </li>
+                                <li>Computer Network Fundamentals<span>MaharaTech - ITI</span></li>
+                                <li>Forensic Medicine<span>Misr University</span></li>
+                                <li><span class="cisco-status">Cisco Cybersecurity</span><span>In Progress: <span id="cisco-loader">🟩⬜⬜⬜⬜</span></span></li>
                             </ol>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
 
@@ -323,28 +248,42 @@
 
         const input = document.getElementById('cmd-input');
         const output = document.getElementById('terminal-output');
+        const currentCmdLine = document.getElementById('current-cmd-line');
 
         input.addEventListener('keydown', function(e) {
             if(e.key === 'Enter') {
+                e.preventDefault(); // Important to stop cursor jump
+                
                 const val = this.value.trim();
                 const valLower = val.toLowerCase();
                 
-                const cmdBlock = document.createElement('div');
-                cmdBlock.innerHTML = `<div style="margin-top:10px; margin-bottom:5px;"><span style="color:#0d6efd; font-weight:bold;">┌──(root💀kali)-[~]<br>└─#</span> <span style="color:#fff">${this.value}</span></div>`;
-                output.insertBefore(cmdBlock, input.parentElement.parentElement);
+                // 1. Add the user's command to history
+                const historyBlock = document.createElement('div');
+                historyBlock.style.marginBottom = '10px';
+                historyBlock.innerHTML = `
+                    <span style="color:#0d6efd; font-weight:bold;">┌──(root💀kali)-[~]</span><br>
+                    <span style="color:#fff; font-weight:bold; margin-right:10px;">└─#</span>
+                    <span style="color:#fff">${val}</span>
+                `;
+                output.insertBefore(historyBlock, currentCmdLine);
 
+                // 2. Process the command
                 if(valLower === 'clear') {
-                    const lines = output.querySelectorAll('.output-line, div[style*="margin-top"]');
-                    lines.forEach(line => line.remove());
+                    // Remove all previous output-lines and history blocks
+                    // We keep the last cmd-line (currentCmdLine)
+                    while (output.firstChild && output.firstChild !== currentCmdLine) {
+                        output.removeChild(output.firstChild);
+                    }
+                    // Add back the initial system ready line if you want, or leave blank
                 } 
-                else if(valLower === 'sara mahmoud') {
+                else if(valLower.includes('sara') && valLower.includes('mahmoud')) {
                     const response = document.createElement('div');
                     response.className = 'output-line';
                     response.style.color = '#0d6efd'; 
                     response.style.fontWeight = 'bold';
                     response.style.fontSize = '1.2rem';
                     response.textContent = "Why all this?";
-                    output.insertBefore(response, input.parentElement.parentElement);
+                    output.insertBefore(response, currentCmdLine);
                 }
                 else if (val !== "") {
                     const response = document.createElement('div');
@@ -352,9 +291,10 @@
                     response.style.color = '#ff5f56';
                     response.style.fontWeight = 'bold';
                     response.textContent = "I don't want you.";
-                    output.insertBefore(response, input.parentElement.parentElement);
+                    output.insertBefore(response, currentCmdLine);
                 }
 
+                // 3. Clear Input and Scroll
                 this.value = '';
                 output.scrollTop = output.scrollHeight;
             }
