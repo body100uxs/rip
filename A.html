@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abdalrhman</title>
+    <title>Abdalrhman Salah</title>
     <link rel="icon" type="image/x-icon" href="icon.png">
     <style>
         :root {
@@ -59,21 +59,49 @@
         .section.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
+        /* --- TERMINAL SECTION --- */
         #home { padding: 60px 0; }
         
         .terminal-container {
-            width: 100%; height: 400px; background-color: var(--term-bg); border: 2px solid #333;
-            display: flex; flex-direction: column; font-family: 'Consolas', 'Courier New', monospace;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.15); margin-bottom: 10px;
+            width: 100%;
+            height: 500px;
+            background-color: var(--term-bg);
+            border: 2px solid #333;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Consolas', 'Courier New', monospace;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            margin-bottom: 10px;
         }
-        .terminal-header { background: #1a1a1a; padding: 10px 15px; border-bottom: 1px solid #333; display: flex; align-items: center; color: #aaa; font-size: 0.9rem; }
-        .terminal-body { flex: 1; padding: 20px; overflow-y: auto; color: var(--term-text); font-size: 1.1rem; }
-        .output-line { margin-bottom: 5px; white-space: pre-wrap; color: #fff; font-family: 'Consolas', 'Courier New', monospace; }
+
+        .terminal-header {
+            background: #1a1a1a;
+            padding: 10px 15px;
+            border-bottom: 1px solid #333;
+            display: flex;
+            align-items: center;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .terminal-body {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            color: var(--term-text);
+            font-size: 1.1rem;
+        }
+
+        .output-line { margin-bottom: 5px; white-space: pre-wrap; }
         .cmd-line { display: flex; color: #fff; margin-top: 10px; }
         .prompt { margin-right: 10px; color: var(--accent); font-weight: bold; }
-        #cmd-input { background: transparent; border: none; color: #fff; flex: 1; font-family: 'Consolas', 'Courier New', monospace; font-size: 1.1rem; outline: none; }
-        .disclaimer { font-size: 0.85rem; color: #adb5bd; margin-top: 15px; font-style: italic; }
+        
+        #cmd-input {
+            background: transparent; border: none; color: #fff; flex: 1;
+            font-family: 'Consolas', 'Courier New', monospace; font-size: 1.1rem; outline: none;
+        }
 
+        /* --- ABOUT --- */
         .about-container { display: flex; flex-direction: column; }
         .about-header-section { display: flex; gap: 40px; align-items: center; margin-bottom: 80px; }
         .about-photo-wrapper { flex-shrink: 0; width: 200px; }
@@ -93,6 +121,7 @@
         .cert-card li span { display: block; font-weight: 400; font-size: 0.9rem; color: var(--muted); margin-top: 5px; }
         .cisco-status { color: #d39e00; font-weight: 700; }
 
+        /* --- BLOG --- */
         .tweet-feed { width: 100%; margin: 0; }
         .tweet-card { background: #fff; border: 1px solid var(--border); padding: 30px; display: flex; gap: 25px; margin-bottom: 30px; text-align: left; width: 100%; }
         .tweet-avatar { width: 60px; height: 60px; object-fit: cover; border: 1px solid #000; flex-shrink: 0; }
@@ -103,6 +132,7 @@
         .tweet-time { color: var(--muted); font-weight: 400; }
         .tweet-body { font-size: 1.2rem; color: var(--text); line-height: 1.5; text-align: left; }
 
+        /* --- CONTACT --- */
         .contact-split { display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; align-items: start; }
         .contact-info h3 { font-size: 3rem; line-height: 1.1; margin-bottom: 20px; color: var(--text); }
         .contact-info p { font-size: 1.1rem; color: var(--muted); margin-bottom: 40px; }
@@ -141,18 +171,16 @@
 
     <div id="home" class="section active">
         <div class="container">
-            <h1 style="margin-bottom: 10px; font-size: 2.5rem;">ENTER YOUR FIRST AND SECOND NAME</h1>
-            <p style="color: #6c757d; margin-bottom: 20px;">If you are the target, a message will appear.</p>
-            
             <div class="terminal-container" onclick="document.getElementById('cmd-input').focus()">
                 <div class="terminal-header">root@kali:~ (zsh)</div>
                 <div class="terminal-body" id="terminal-output">
-                    <div class="output-line">┏━(Message from Kali developers)</div>
-                    <div class="output-line">┃ This is a minimal installation of Kali Linux, you likely</div>
-                    <div class="output-line">┃ want to install supplementary tools. Learn how:</div>
-                    <div class="output-line">┃ ⇒ https://www.kali.org/docs/troubleshooting/common-minimum-setup/</div>
-                    <div class="output-line">┗━(Run: “sudo apt install -y kali-linux-default”)</div>
-                    <div style="height: 20px;"></div>
+                    <div class="output-line" style="color:#fff">┏━(Message from Kali developers)</div>
+                    <div class="output-line" style="color:#fff">┃ This is a minimal installation of Kali Linux, you likely</div>
+                    <div class="output-line" style="color:#fff">┃ want to install supplementary tools. Learn how:</div>
+                    <div class="output-line" style="color:#fff">┃ ⇒ https://www.kali.org/docs/troubleshooting/common-minimum-setup/</div>
+                    <div class="output-line" style="color:#fff">┗━(Run: “sudo apt install -y kali-linux-default”)</div>
+                    <div style="height: 15px;"></div>
+                    <div class="output-line" style="color:#ffc107;">enter your first and second name, if you are the target, a message will appear.</div>
                     
                     <div class="cmd-line">
                         <span class="prompt">┌──(root㉿kali)-[~]<br>└─#</span>
@@ -160,7 +188,6 @@
                     </div>
                 </div>
             </div>
-            <div class="disclaimer">- I cannot read your reply here, but you can send it to me in Contact.</div>
         </div>
     </div>
 
@@ -234,7 +261,7 @@
                     <p>Have a project in mind? Send me a message and let's talk.</p>
                 </div>
                 <div class="contact-form-clean">
-                    <form action="https://formsubmit.co/body362222@gmail.com" method="POST">
+                    <form action="https://formsubmit.co/your-email@example.com" method="POST">
                         <div class="form-group"><label>Name</label><input type="text" name="name" class="form-control" required></div>
                         <div class="form-group"><label>Email</label><input type="email" name="email" class="form-control" required></div>
                         <div class="form-group"><label>Message</label><textarea name="message" rows="2" class="form-control" required></textarea></div>
@@ -279,8 +306,6 @@
 
         input.addEventListener('keydown', function(e) {
             if(e.key === 'Enter') {
-                e.preventDefault();
-                
                 const val = this.value.trim();
                 const valLower = val.toLowerCase();
                 
