@@ -59,7 +59,6 @@
         .section.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- HOME (TERMINAL) --- */
         #home { padding: 60px 0; }
         .terminal-container {
             width: 100%; height: 400px; background-color: var(--term-bg); border: 2px solid #333;
@@ -74,26 +73,22 @@
         #cmd-input { background: transparent; border: none; color: #fff; flex: 1; font-family: 'Consolas', 'Courier New', monospace; font-size: 1.1rem; outline: none; }
         .disclaimer { font-size: 0.85rem; color: #adb5bd; margin-top: 15px; font-style: italic; }
 
-        /* --- ABOUT (UPDATED LAYOUT) --- */
-        .about-container { 
-            display: flex; 
-            flex-direction: column;
-        }
+        .about-container { display: flex; flex-direction: column; }
         
-        /* الجزء العلوي: الصورة والبيانات */
         .about-header-section {
             display: flex; 
-            gap: 40px; /* مسافة بين الصورة والكلام */
-            align-items: center; /* محاذاة رأسية في المنتصف */
+            gap: 40px; 
+            align-items: center; 
+            margin-bottom: 80px;
         }
 
         .about-photo-wrapper { 
             flex-shrink: 0; 
-            width: 200px; /* عرض الصورة */
+            width: 200px; 
         }
         .about-photo { 
             width: 100%; 
-            height: 200px; /* تثبيت الطول عشان تكون مربعة */
+            height: 200px; 
             object-fit: cover;
             border: 1px solid var(--border); 
             display: block; 
@@ -103,87 +98,53 @@
             flex-grow: 1; 
             display: flex;
             flex-direction: column;
-            justify-content: center; /* توسيط النصوص رأسياً بطول الصورة */
-            height: 200px; /* نفس ارتفاع الصورة */
+            justify-content: center;
+            height: 200px; 
         }
 
-        .profile-name {
-            font-size: 2.2rem;
-            color: var(--accent);
-            line-height: 1.1;
-            margin-bottom: 10px;
-        }
-
-        .profile-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #000;
-            margin-bottom: 10px;
-        }
-
-        .profile-link {
-            font-size: 1.1rem;
-            color: var(--orange);
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-block;
-        }
+        .profile-name { font-size: 2.2rem; color: var(--accent); line-height: 1.1; margin-bottom: 10px; }
+        .profile-title { font-size: 1.1rem; font-weight: 700; color: #000; margin-bottom: 10px; }
+        .profile-link { font-size: 1.1rem; color: var(--orange); text-decoration: none; font-weight: 600; display: inline-block; }
         .profile-link:hover { text-decoration: underline; }
 
-        /* الجزء السفلي: الشهادات (بمسافة 4 أسطر) */
         .about-bottom {
-            margin-top: 80px; /* مسافة كبيرة */
+            margin-top: 80px;
         }
 
         .certs-heading {
-            font-size: 1.4rem; 
-            margin-bottom: 25px; 
-            border-bottom: 3px solid #000; 
-            display: inline-block; 
-            text-transform: uppercase;
-            color: #000;
+            font-size: 1.4rem; margin-bottom: 25px; border-bottom: 3px solid #000; 
+            display: inline-block; text-transform: uppercase; color: #000;
         }
 
-        .certs-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-        }
-
-        /* ستايل الشهادات النضيف (زي الصورة اللي فاتت) */
-        .cert-card {
-            background: transparent;
-            padding: 0;
-            border: none;
-        }
-
-        .cert-card ol {
-            padding-left: 20px;
-            margin: 0;
-        }
+        .certs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
         
-        .cert-card li {
-            margin-bottom: 25px;
-            font-weight: 700;
-            font-size: 1rem;
+        .cert-card { 
+            background: transparent;
+            padding: 0; 
+            border: none; 
+        }
+
+        .cert-card ol { padding-left: 20px; margin: 0; }
+        
+        .cert-card li { 
+            margin-bottom: 25px; 
+            font-weight: 700; 
+            font-size: 1rem; 
             border-bottom: 1px solid #eee;
             padding-bottom: 10px;
         }
-        .cert-card li:last-child {
-            border-bottom: none;
-        }
+        .cert-card li:last-child { border-bottom: none; }
 
-        .cert-card li span {
-            display: block;
-            font-weight: 400;
-            font-size: 0.9rem;
-            color: var(--muted);
-            margin-top: 5px;
+        .cert-card li span { 
+            display: block; 
+            font-weight: 400; 
+            font-size: 0.9rem; 
+            color: var(--muted); 
+            margin-top: 5px; 
         }
         
         .cisco-status { color: #d39e00; font-weight: 700; }
 
-        /* --- BLOG --- */
         .tweet-feed { width: 100%; margin: 0; }
         .tweet-card { background: #fff; border: 1px solid var(--border); padding: 30px; display: flex; gap: 25px; margin-bottom: 30px; text-align: left; width: 100%; }
         .tweet-avatar { width: 60px; height: 60px; object-fit: cover; border: 1px solid #000; flex-shrink: 0; }
@@ -194,7 +155,6 @@
         .tweet-time { color: var(--muted); font-weight: 400; }
         .tweet-body { font-size: 1.2rem; color: var(--text); line-height: 1.5; text-align: left; }
 
-        /* --- CONTACT --- */
         .contact-split { display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; align-items: start; }
         .contact-info h3 { font-size: 3rem; line-height: 1.1; margin-bottom: 20px; color: var(--text); }
         .contact-info p { font-size: 1.1rem; color: var(--muted); margin-bottom: 40px; }
@@ -263,7 +223,7 @@
                     <div class="about-info">
                         <h1 class="profile-name">Abdalrhman Salah Ibrahim</h1>
                         <div class="profile-title">Penetration Testing Student | Bug Bounty Enthusiast | CTF Player</div>
-                        <a href="https://linkedin.com" target="_blank" class="profile-link">Linkedin</a>
+                        <a href="https://www.linkedin.com/in/bodyurr/" target="_blank" class="profile-link">Linkedin</a>
                     </div>
                 </div>
 
@@ -402,7 +362,6 @@
         
         document.querySelector('.terminal-container').addEventListener('click', () => input.focus());
 
-        // Loading Animation
         const loader = document.getElementById('cisco-loader');
         if(loader) {
             let step = 1;
