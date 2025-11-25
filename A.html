@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abdalrhman </title>
+    <title>Abdalrhman</title>
     <link rel="icon" type="image/x-icon" href="icon.png">
     <style>
         :root {
@@ -15,79 +15,126 @@
             --terminal-text: #33ff00;
             --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             --font-code: 'Courier New', Courier, monospace;
-            --radius: 5px; 
+            --radius: 8px; 
         }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
             font-family: var(--font-main);
             line-height: 1.6;
             overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
+
         a { text-decoration: none; color: var(--accent-color); transition: 0.3s; }
         a:hover { color: #fff; text-decoration: underline; }
-        .container {
+
+        nav {
+            background-color: rgba(31, 40, 51, 0.95);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #333;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
-        }
-        header {
+            padding: 0 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 80px 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            cursor: pointer;
+            font-size: 1rem;
+            font-family: var(--font-main);
+            transition: 0.3s;
+            padding: 5px 10px;
+            border-radius: var(--radius);
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            color: var(--accent-color);
+            background-color: rgba(102, 252, 241, 0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            flex: 1;
+            width: 100%;
+        }
+
+        .page-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .home-layout {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             gap: 50px;
             flex-wrap: wrap;
+            margin-top: 20px;
         }
-        .header-left {
+
+        .home-text {
             flex: 1;
             min-width: 300px;
         }
-        .profile-img {
-            width: 240px;
-            height: 240px;
-            object-fit: cover;
-            border: none !important;
-            border-radius: var(--radius);
-            opacity: 0.9; 
-            transition: opacity 0.3s;
-            margin-bottom: 25px;
-            display: block;
-        }
-        .profile-img:hover { opacity: 1; }
+
         h1 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             color: #fff;
             margin-bottom: 10px;
-            text-transform: uppercase;
-            font-weight: 800;
-            letter-spacing: 1px;
+            line-height: 1.2;
         }
+
         h2 {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: var(--accent-color);
             font-family: var(--font-code);
             margin-bottom: 30px;
             font-weight: normal;
-            border-left: 4px solid var(--accent-color);
-            padding-left: 15px;
-            line-height: 1.8;
-            overflow: hidden; 
-            white-space: nowrap; 
-            border-right: 3px solid var(--accent-color);
-            width: 0;
-            animation: typing 3.5s steps(60, end) forwards, blink 0.75s step-end infinite;
         }
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
-        @keyframes blink {
-            from, to { border-color: transparent }
-            50% { border-color: var(--accent-color) }
-        }
-        .btn-linkedin {
+
+        .btn-main {
             display: inline-block;
             padding: 12px 30px;
             border: 2px solid var(--accent-color);
@@ -97,33 +144,32 @@
             text-transform: uppercase;
             font-size: 1rem;
             cursor: pointer;
-            letter-spacing: 1px;
             border-radius: var(--radius);
         }
-        .btn-linkedin:hover {
+
+        .btn-main:hover {
             background-color: var(--accent-color);
             color: #000;
             text-decoration: none;
-            box-shadow: 0 0 15px var(--accent-color);
         }
-        .header-right {
-            flex: 1.5;
-            min-width: 350px;
-        }
+
         .terminal-window {
+            flex: 1.2;
+            min-width: 350px;
             background-color: var(--terminal-bg);
             border: 1px solid #333;
-            box-shadow: 20px 20px 0px rgba(31, 40, 51, 0.5);
-            height: 450px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            height: 400px;
             display: flex;
             flex-direction: column;
             font-family: var(--font-code);
             border-radius: var(--radius);
         }
+
         .terminal-bar {
-            background-color: #333;
-            padding: 8px 15px;
-            color: #ccc;
+            background-color: #222;
+            padding: 10px 15px;
+            color: #888;
             font-size: 0.85rem;
             display: flex;
             gap: 8px;
@@ -131,20 +177,24 @@
             border-top-left-radius: var(--radius);
             border-top-right-radius: var(--radius);
         }
-        .win-btn { width: 12px; height: 12px; display: inline-block; background: #555; border-radius: 50%; } 
+
+        .win-btn { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+
         .terminal-body {
             flex: 1;
             padding: 20px;
             color: var(--terminal-text);
             overflow-y: auto;
             font-size: 0.95rem;
-            cursor: text;
         }
+
         .terminal-body::-webkit-scrollbar { width: 8px; }
         .terminal-body::-webkit-scrollbar-track { background: #000; }
         .terminal-body::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+
         .input-line { display: flex; margin-top: 5px; }
-        .prompt { margin-right: 8px; color: var(--accent-color); white-space: nowrap; }
+        .prompt { margin-right: 10px; color: var(--accent-color); white-space: nowrap; }
+        
         #cmd-input {
             background: transparent;
             border: none;
@@ -153,180 +203,276 @@
             font-family: var(--font-code);
             font-size: 0.95rem;
             outline: none;
-            caret-color: var(--accent-color);
         }
-        .command-output { margin-bottom: 15px; color: #ddd; white-space: pre-wrap; }
-        .section-title {
+
+        .about-layout {
+            display: flex;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .about-left {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-photo {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: var(--radius);
+            border: 1px solid #333;
+            opacity: 0.9;
+        }
+
+        .about-right {
+            flex: 2;
+            min-width: 300px;
+        }
+
+        .section-header {
+            font-size: 2rem;
             color: #fff;
-            border-left: 4px solid var(--accent-color);
+            margin-bottom: 30px;
+            border-left: 5px solid var(--accent-color);
             padding-left: 15px;
-            margin: 60px 0 30px;
-            font-size: 1.8rem;
-            text-transform: uppercase;
         }
+
         .certs-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
         }
+
         .cert-card {
             background-color: var(--secondary-bg);
             border: 1px solid #333;
-            padding: 25px;
-            transition: 0.2s;
+            padding: 20px;
             border-radius: var(--radius);
+            transition: 0.3s;
         }
+
         .cert-card:hover {
             border-color: var(--accent-color);
             transform: translateY(-5px);
         }
-        .cert-card strong { color: #fff; display: block; margin-bottom: 8px; font-size: 1.1rem; }
+
+        .cert-card strong { color: #fff; display: block; margin-bottom: 5px; font-size: 1.1rem; }
         .cert-card span { color: #888; font-size: 0.9rem; }
-        .blink-cursor {
-            animation: blink 1s step-end infinite;
-            font-weight: bold;
-            color: var(--accent-color);
+
+        .blog-container {
+            text-align: center;
+            padding: 100px 0;
+            color: #555;
         }
+
+        .blog-msg {
+            font-size: 2rem;
+            color: #fff;
+            font-family: var(--font-code);
+            margin-bottom: 10px;
+        }
+
         .contact-form {
-            max-width: 700px;
-            border: 1px solid #333;
-            padding: 40px;
+            max-width: 600px;
+            margin: 0 auto;
             background: var(--secondary-bg);
+            padding: 40px;
             border-radius: var(--radius);
+            border: 1px solid #333;
         }
-        .form-group { margin-bottom: 25px; }
-        .form-group label { display: block; color: #fff; margin-bottom: 10px; font-size: 0.95rem; }
+
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; color: #fff; margin-bottom: 8px; }
+        
         .form-input {
             width: 100%;
-            padding: 15px;
+            padding: 12px;
             background: #000;
             border: 1px solid #444;
             color: #fff;
-            font-family: var(--font-code);
-            outline: none;
-            font-size: 1rem;
             border-radius: var(--radius);
+            outline: none;
+            font-family: var(--font-code);
         }
+        
         .form-input:focus { border-color: var(--accent-color); }
+
         .submit-btn {
+            width: 100%;
+            padding: 12px;
             background: var(--accent-color);
             color: #000;
             border: none;
-            padding: 15px 40px;
             font-weight: bold;
+            border-radius: var(--radius);
             cursor: pointer;
             text-transform: uppercase;
-            font-size: 1rem;
-            border-radius: var(--radius);
         }
+
         .submit-btn:hover { background: #fff; }
+
         footer {
             text-align: center;
-            padding: 40px;
-            border-top: 1px solid #333;
-            margin-top: 60px;
+            padding: 20px;
+            background-color: #050608;
             color: #555;
             font-size: 0.9rem;
+            border-top: 1px solid #222;
         }
+
         @media (max-width: 768px) {
-            header { flex-direction: column; text-align: center; }
-            .header-left { margin-bottom: 30px; padding-right: 0; }
-            .profile-img { margin: 0 auto 25px; }
-            h2 { border-left: none; border-bottom: 3px solid var(--accent-color); padding-bottom: 10px; padding-left: 0; display: inline-block; white-space: normal; animation: none; border-right: none; width: auto; }
-            .terminal-window { height: 350px; }
+            .nav-container { flex-direction: column; gap: 15px; }
+            .home-layout, .about-layout { flex-direction: column; }
+            .about-photo { height: 300px; }
+            h1 { font-size: 2.2rem; }
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <header>
-        <div class="header-left">
-            <img src="photo.jpeg" alt="Abdalrhman" class="profile-img">
-            <h1>Abdalrhman Salah Ibrahim</h1>
-            <h2>Penetration Testing Student | Bug Bounty Enthusiast | CTF Player</h2>
-            <a href="https://linkedin.com/in/abdalrhman-salah-ibrahim-51725a396" target="_blank" class="btn-linkedin">
-                LINKEDIN
-            </a>
+
+<nav>
+    <div class="nav-container">
+        <div class="logo">Abdalrhman</div>
+        <div class="nav-links">
+            <button class="nav-btn active" onclick="switchTab('home')">Home</button>
+            <button class="nav-btn" onclick="switchTab('about')">About</button>
+            <button class="nav-btn" onclick="switchTab('blog')">Blog</button>
+            <button class="nav-btn" onclick="switchTab('contact')">Contact</button>
         </div>
-        <div class="header-right">
+    </div>
+</nav>
+
+<div class="container">
+
+    <section id="home" class="page-section active">
+        <div class="home-layout">
+            <div class="home-text">
+                <h1>ABDALRHMAN SALAH IBRAHIM</h1>
+                <h2>Penetration Testing Student | Bug Bounty Enthusiast | CTF Player</h2>
+                <button class="btn-main" onclick="switchTab('contact')">Get In Touch</button>
+                <a href="https://linkedin.com/in/abdalrhman-salah-ibrahim-51725a396" target="_blank" class="btn-main" style="margin-left: 10px;">LinkedIn</a>
+            </div>
+            
             <div class="terminal-window" onclick="document.getElementById('cmd-input').focus()">
                 <div class="terminal-bar">
-                    <span class="win-btn" style="background:#ff5f56"></span>
-                    <span class="win-btn" style="background:#ffbd2e"></span>
+                    <span class="win-btn" style="background:#ff5f56"></span>&nbsp;
+                    <span class="win-btn" style="background:#ffbd2e"></span>&nbsp;
                     <span class="win-btn" style="background:#27c93f"></span>
-                    <span style="margin-left:10px;">hello@kali: ~</span>
+                    <span style="margin-left:10px; color:#aaa;">guest@abdalrhman: ~</span>
                 </div>
                 <div class="terminal-body" id="terminal-body">
-                    <div style="margin-bottom: 10px; color: #777;">
-                        Kali GNU/Linux Rolling [Version 2024.1]<br>
+                    <div style="margin-bottom: 10px;">
+                        Welcome to my portfolio.<br>
                         Type 'help' to see available commands.
                     </div>
                     <div id="output-history"></div>
                     <div class="input-line">
-                        <span class="prompt">hello@kali:~$</span>
-                        <input type="text" id="cmd-input" autocomplete="off" autofocus spellcheck="false">
+                        <span class="prompt">guest@abdalrhman:~$</span>
+                        <input type="text" id="cmd-input" autocomplete="off" autofocus>
                     </div>
                 </div>
             </div>
         </div>
-    </header>
-    <h3 class="section-title">Certifications</h3>
-    <div class="certs-grid">
-        <div class="cert-card">
-            <strong>Penetration Testing Professional</strong>
-            <span>MaharaTech - ITI</span>
-        </div>
-        <div class="cert-card">
-            <strong>Ethical Hacking</strong>
-            <span>MaharaTech - ITI</span>
-        </div>
-        <div class="cert-card">
-            <strong>CHC v2</strong>
-            <span>Techcampus</span>
-        </div>
-        <div class="cert-card">
-            <strong>Computer Network Fundamentals</strong>
-            <span>MaharaTech - ITI</span>
-        </div>
-        <div class="cert-card">
-            <strong>Forensic Medicine in Crime Detection</strong>
-            <span>Misr University for Science and Technology</span>
-        </div>
-        <div class="cert-card" style="border-left: 3px solid yellow;">
-            <strong style="color:yellow;">Cisco Cybersecurity</strong>
-            <span>Status: In Progress <span class="blink-cursor">_</span></span>
-        </div>
-    </div>
-    <h3 class="section-title">Contact Me</h3>
-    <div class="contact-form">
-        <form action="https://getform.io/f/byvelwza" method="POST">
-            <div class="form-group">
-                <label>Your Name</label>
-                <input type="text" name="name" class="form-input" required>
+    </section>
+
+    <section id="about" class="page-section">
+        <div class="section-header">About Me & Certifications</div>
+        <div class="about-layout">
+            <div class="about-left">
+                <img src="photo.jpeg" alt="Abdalrhman" class="about-photo">
             </div>
-            <div class="form-group">
-                <label>Your Email</label>
-                <input type="email" name="email" class="form-input" required>
+            <div class="about-right">
+                <div class="certs-grid">
+                    <div class="cert-card">
+                        <strong>Penetration Testing Professional</strong>
+                        <span>MaharaTech - ITI</span>
+                    </div>
+                    <div class="cert-card">
+                        <strong>Ethical Hacking</strong>
+                        <span>MaharaTech - ITI</span>
+                    </div>
+                    <div class="cert-card">
+                        <strong>CHC v2</strong>
+                        <span>Techcampus</span>
+                    </div>
+                    <div class="cert-card">
+                        <strong>Computer Network Fundamentals</strong>
+                        <span>MaharaTech - ITI</span>
+                    </div>
+                    <div class="cert-card">
+                        <strong>Forensic Medicine in Crime Detection</strong>
+                        <span>Misr University for Science and Technology</span>
+                    </div>
+                    <div class="cert-card" style="border-left: 3px solid yellow;">
+                        <strong style="color:yellow;">Cisco Cybersecurity</strong>
+                        <span>Status: In Progress...</span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label>Message</label>
-                <input type="text" name="message" class="form-input" required>
-            </div>
-            <div class="form-group" style="display:flex; align-items:center; gap:10px;">
-                <input type="checkbox" name="not_robot" id="rb" style="width:auto;" required>
-                <label for="rb" style="margin:0; cursor:pointer;">I'm Not a Robot</label>
-            </div>
-            <button type="submit" class="submit-btn">Submit</button>
-        </form>
-    </div>
-    <footer>
-        &copy; Abdalrhman Salah Ibrahim
-    </footer>
+        </div>
+    </section>
+
+    <section id="blog" class="page-section">
+        <div class="blog-container">
+            <div class="blog-msg">404 - Not Available Yet</div>
+            <p>I am currently working on some awesome articles. Stay tuned!</p>
+        </div>
+    </section>
+
+    <section id="contact" class="page-section">
+        <div class="section-header">Contact Me</div>
+        <div class="contact-form">
+            <form action="https://getform.io/f/byvelwza" method="POST">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" name="name" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <input type="text" name="message" class="form-input" required>
+                </div>
+                <div class="form-group" style="display:flex; align-items:center; gap:10px;">
+                    <input type="checkbox" name="not_robot" id="rb" style="width:auto;" required>
+                    <label for="rb" style="margin:0; cursor:pointer;">I'm not a robot</label>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </section>
+
 </div>
+
+<footer>
+    &copy; 2024 Abdalrhman Salah Ibrahim. All rights reserved.
+</footer>
+
 <script>
+    function switchTab(tabId) {
+        document.querySelectorAll('.page-section').forEach(section => {
+            section.classList.remove('active');
+        });
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+
+        document.getElementById(tabId).classList.add('active');
+        
+        const buttons = document.querySelectorAll('.nav-btn');
+        if(tabId === 'home') buttons[0].classList.add('active');
+        if(tabId === 'about') buttons[1].classList.add('active');
+        if(tabId === 'blog') buttons[2].classList.add('active');
+        if(tabId === 'contact') buttons[3].classList.add('active');
+    }
+
     const inputField = document.getElementById('cmd-input');
     const outputHistory = document.getElementById('output-history');
     const terminalBody = document.getElementById('terminal-body');
+
     const commands = {
         'help':     'Available commands:\n  whoami    Display user info\n  ls        List files\n  cat       Read file content\n  clear     Clear terminal screen\n  date      Show current date',
         'whoami':   'Abdalrhman Salah Ibrahim\nRole: Penetration Testing Student\nInterests: Bug Bounty, CTF, Red Teaming',
@@ -337,29 +483,35 @@
         'cat contact_info.txt': 'Email me via the form below or connect on LinkedIn.',
         'date':     new Date().toString()
     };
+
     inputField.addEventListener('keydown', function(e) {
         if (e.key === 'Enter') {
             const inputVal = inputField.value.trim();
             const lowerVal = inputVal.toLowerCase();
-            outputHistory.innerHTML += `<div><span class="prompt">hello@kali:~$</span> ${inputVal}</div>`;
+
+            outputHistory.innerHTML += `<div><span class="prompt">guest@abdalrhman:~$</span> ${inputVal}</div>`;
+
             if (lowerVal === 'clear') {
                 outputHistory.innerHTML = '';
             } 
             else if (commands[lowerVal]) {
-                outputHistory.innerHTML += `<div class="command-output">${commands[lowerVal]}</div>`;
+                outputHistory.innerHTML += `<div style="margin-bottom:15px; color:#ccc; white-space:pre-wrap;">${commands[lowerVal]}</div>`;
             } 
             else if (lowerVal === '') {
             }
             else {
-                outputHistory.innerHTML += `<div class="command-output" style="color:#ff5f56;">Command not found: ${inputVal}</div>`;
+                outputHistory.innerHTML += `<div style="margin-bottom:15px; color:#ff5f56;">Command not found: ${inputVal}</div>`;
             }
+
             inputField.value = '';
             terminalBody.scrollTop = terminalBody.scrollHeight;
         }
     });
+
     terminalBody.addEventListener('click', () => {
         inputField.focus();
     });
 </script>
+
 </body>
 </html>
