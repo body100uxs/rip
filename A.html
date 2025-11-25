@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>blog </title>
+    <title>Abdalrhman | Portfolio</title>
     <link rel="icon" type="image/x-icon" href="icon.png">
     <style>
         :root {
@@ -124,37 +124,25 @@
         .theme-card { background: var(--card-bg); border: 1px solid var(--accent-color); padding: 20px; text-align: center; border-radius: var(--border-radius); cursor: pointer; transition: 0.3s; }
         .theme-card:hover { transform: translateY(-5px); background: var(--accent-color); color: var(--bg-color); }
 
-        .workspace-tabs { display: flex; gap: 10px; margin-bottom: 30px; border-bottom: 1px solid #444; }
-        .ws-tab { padding: 10px 20px; cursor: pointer; border: none; background: transparent; color: var(--text-color); font-size: 1.1rem; border-radius: var(--border-radius) var(--border-radius) 0 0; }
-        .ws-tab.active { background: var(--card-bg); color: var(--accent-color); border: 1px solid var(--accent-color); border-bottom: none; font-weight: bold; }
+        .blog-wrapper { max-width: 700px; margin: 0 auto; }
+        .tweet-box { background: var(--card-bg); border: 1px solid var(--accent-color); padding: 20px; border-radius: var(--border-radius); margin-bottom: 30px; box-shadow: var(--shadow); }
+        .tweet-input { width: 100%; background: var(--bg-color); border: 1px solid #444; color: var(--text-color); padding: 15px; border-radius: var(--border-radius); font-family: inherit; resize: none; min-height: 100px; margin-bottom: 15px; }
+        .tweet-input:focus { outline: none; border-color: var(--accent-color); }
+        .tweet-actions { display: flex; justify-content: flex-end; }
         
-        .ws-content { display: none; }
-        .ws-content.active { display: block; }
+        .tweet-feed { display: flex; flex-direction: column; gap: 20px; }
+        .tweet-card { background: var(--card-bg); border: 1px solid #333; padding: 20px; border-radius: var(--border-radius); display: flex; gap: 15px; animation: fadeUp 0.3s ease; position: relative; }
+        .tweet-avatar { width: 50px; height: 50px; border-radius: 50%; background: var(--accent-color); display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--bg-color); flex-shrink: 0; }
+        .tweet-content { flex: 1; }
+        .tweet-header { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; }
+        .tweet-name { font-weight: bold; color: var(--text-color); }
+        .tweet-handle { color: #666; font-size: 0.9rem; }
+        .tweet-time { color: var(--accent-color); font-size: 0.85rem; }
+        .tweet-body { color: var(--text-color); white-space: pre-wrap; line-height: 1.5; }
+        .tweet-delete { position: absolute; top: 15px; right: 15px; color: #ff5f56; cursor: pointer; font-size: 0.9rem; opacity: 0.6; }
+        .tweet-delete:hover { opacity: 1; }
+        .verified-badge { color: var(--accent-color); }
 
-        .task-input-container { display: flex; gap: 10px; margin-bottom: 20px; }
-        .task-list { list-style: none; }
-        .task-item { display: flex; align-items: center; background: var(--card-bg); padding: 15px; border-radius: var(--border-radius); margin-bottom: 10px; border-left: 4px solid transparent; transition: 0.2s; }
-        .task-item:hover { transform: translateX(5px); border-left-color: var(--accent-color); }
-        .task-item.completed { opacity: 0.5; text-decoration: line-through; }
-        .task-checkbox { width: 20px; height: 20px; margin-right: 15px; cursor: pointer; }
-        .task-text { flex: 1; font-size: 1.1rem; }
-        .task-meta { font-size: 0.8rem; color: #666; margin-right: 15px; }
-        .task-delete { color: #ff5f56; cursor: pointer; font-weight: bold; padding: 5px; }
-
-        .journal-controls { display: flex; justify-content: flex-end; margin-bottom: 20px; }
-        .journal-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
-        .journal-card { background: var(--card-bg); border: 1px solid #333; padding: 20px; border-radius: var(--border-radius); transition: 0.3s; cursor: pointer; position: relative; }
-        .journal-card:hover { border-color: var(--accent-color); transform: translateY(-5px); }
-        .journal-date { font-size: 0.8rem; color: var(--accent-color); margin-bottom: 5px; display: block; text-transform: uppercase; }
-        .journal-title { font-size: 1.2rem; margin-bottom: 10px; color: var(--text-color); font-weight: bold; }
-        .journal-preview { font-size: 0.9rem; color: #888; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-        .journal-delete { position: absolute; top: 15px; right: 15px; color: #ff5f56; cursor: pointer; z-index: 2; }
-
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; display: none; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
-        .modal { background: var(--bg-color); width: 600px; max-width: 90%; padding: 30px; border-radius: var(--border-radius); border: 1px solid var(--accent-color); box-shadow: 0 0 30px rgba(0,0,0,0.5); }
-        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid #333; padding-bottom: 10px; }
-        .modal-close { cursor: pointer; font-size: 1.5rem; color: #ff5f56; }
-        
         .contact-form { max-width: 600px; margin: 0 auto; background: var(--card-bg); padding: 40px; border-radius: var(--border-radius); box-shadow: var(--shadow); backdrop-filter: var(--glass-effect); }
         .form-group { margin-bottom: 20px; }
         .form-group label { display: block; margin-bottom: 8px; color: var(--accent-color); }
@@ -178,9 +166,8 @@
             <div class="nav-links">
                 <button onclick="showPage('home')" class="active">Home</button>
                 <button onclick="showPage('about')">About</button>
-                <button onclick="showPage('workspace')">Workspace</button>
+                <button onclick="showPage('blog')">Updates</button>
                 <button onclick="showPage('themes')">Themes</button>
-                <button onclick="showPage('blog')">Blog</button>
                 <button onclick="showPage('contact')">Contact</button>
             </div>
         </div>
@@ -233,26 +220,16 @@
             </div>
         </section>
 
-        <section id="workspace" class="page-section">
-            <div class="section-header">Personal Workspace (Local Encrypted)</div>
-            <div class="workspace-tabs">
-                <button class="ws-tab active" onclick="switchWs('tasks')">Tasks</button>
-                <button class="ws-tab" onclick="switchWs('journal')">Journal</button>
-            </div>
-
-            <div id="ws-tasks" class="ws-content active">
-                <div class="task-input-container">
-                    <input type="text" id="taskInput" placeholder="Add a task..." onkeypress="if(event.key==='Enter') addTask()">
-                    <button class="btn-action" onclick="addTask()">Add Task</button>
+        <section id="blog" class="page-section">
+            <div class="blog-wrapper">
+                <div class="tweet-box">
+                    <textarea id="tweetInput" class="tweet-input" placeholder="What's happening?"></textarea>
+                    <div class="tweet-actions">
+                        <button class="btn-action" onclick="postTweet()">Post Update</button>
+                    </div>
                 </div>
-                <ul id="taskList" class="task-list"></ul>
-            </div>
-
-            <div id="ws-journal" class="ws-content">
-                <div class="journal-controls">
-                    <button class="btn-action" onclick="openModal()">+ New Entry</button>
-                </div>
-                <div id="journalGrid" class="journal-grid"></div>
+                <div id="blogFeed" class="tweet-feed">
+                    </div>
             </div>
         </section>
 
@@ -270,13 +247,6 @@
             </div>
         </section>
 
-        <section id="blog" class="page-section">
-            <div class="centered-msg">
-                404 - Blog Not Available Yet <br>
-                <span style="font-size: 1rem; opacity: 0.7;">Check back later for writeups.</span>
-            </div>
-        </section>
-
         <section id="contact" class="page-section">
             <div class="contact-form">
                 <form action="https://getform.io/f/byvelwza" method="POST">
@@ -288,24 +258,6 @@
             </div>
         </section>
 
-    </div>
-
-    <div id="entryModal" class="modal-overlay">
-        <div class="modal">
-            <div class="modal-header">
-                <h3>New Journal Entry</h3>
-                <span class="modal-close" onclick="closeModal()">×</span>
-            </div>
-            <div class="form-group">
-                <label>Title</label>
-                <input type="text" id="entryTitle" placeholder="Entry Title...">
-            </div>
-            <div class="form-group">
-                <label>Content</label>
-                <textarea id="entryContent" rows="10" placeholder="Write your thoughts..."></textarea>
-            </div>
-            <button class="btn-action" style="width:100%" onclick="saveEntry()">Save Entry</button>
-        </div>
     </div>
 
     <footer>
@@ -328,103 +280,64 @@
             if(cursor) cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0';
         }, 500);
 
-        function switchWs(tab) {
-            document.querySelectorAll('.ws-content').forEach(c => c.classList.remove('active'));
-            document.querySelectorAll('.ws-tab').forEach(t => t.classList.remove('active'));
-            document.getElementById('ws-'+tab).classList.add('active');
-            event.target.classList.add('active');
-        }
+        let posts = JSON.parse(localStorage.getItem('abdalrhman_posts')) || [];
 
-        let tasks = JSON.parse(localStorage.getItem('abdalrhman_tasks_pro')) || [];
-        
-        function renderTasks() {
-            const list = document.getElementById('taskList');
-            list.innerHTML = '';
-            tasks.forEach((task, index) => {
-                const li = document.createElement('li');
-                li.className = `task-item ${task.completed ? 'completed' : ''}`;
-                li.innerHTML = `
-                    <input type="checkbox" class="task-checkbox" ${task.completed ? 'checked' : ''} onchange="toggleTask(${index})">
-                    <span class="task-text">${task.text}</span>
-                    <span class="task-meta">${task.date}</span>
-                    <span class="task-delete" onclick="deleteTask(${index})">×</span>
+        function renderBlog() {
+            const feed = document.getElementById('blogFeed');
+            feed.innerHTML = '';
+            
+            if(posts.length === 0) {
+                feed.innerHTML = '<div style="text-align:center; color:#777; padding:20px;">No updates yet.</div>';
+                return;
+            }
+
+            posts.forEach((post, index) => {
+                const tweet = document.createElement('div');
+                tweet.className = 'tweet-card';
+                tweet.innerHTML = `
+                    <div class="tweet-avatar">AS</div>
+                    <div class="tweet-content">
+                        <div class="tweet-header">
+                            <span class="tweet-name">Abdalrhman Salah</span>
+                            <span class="verified-badge">✔</span>
+                            <span class="tweet-handle">@abdalrhman</span>
+                            <span class="tweet-time">· ${post.date}</span>
+                        </div>
+                        <div class="tweet-body">${post.content}</div>
+                    </div>
+                    <div class="tweet-delete" onclick="deletePost(${index})">×</div>
                 `;
-                list.appendChild(li);
+                feed.appendChild(tweet);
             });
-            localStorage.setItem('abdalrhman_tasks_pro', JSON.stringify(tasks));
+            localStorage.setItem('abdalrhman_posts', JSON.stringify(posts));
         }
 
-        function addTask() {
-            const input = document.getElementById('taskInput');
-            if(input.value.trim() === '') return;
+        function postTweet() {
+            const input = document.getElementById('tweetInput');
+            const content = input.value.trim();
+            if(!content) return;
+
             const now = new Date();
-            tasks.unshift({
-                text: input.value,
-                completed: false,
-                date: now.toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })
+            const dateStr = now.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) + ' ' + 
+                          now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+
+            posts.unshift({
+                content: content,
+                date: dateStr
             });
+
             input.value = '';
-            renderTasks();
+            renderBlog();
         }
 
-        function toggleTask(index) {
-            tasks[index].completed = !tasks[index].completed;
-            renderTasks();
-        }
-
-        function deleteTask(index) {
-            tasks.splice(index, 1);
-            renderTasks();
-        }
-
-        let entries = JSON.parse(localStorage.getItem('abdalrhman_diary_pro')) || [];
-
-        function renderJournal() {
-            const grid = document.getElementById('journalGrid');
-            grid.innerHTML = '';
-            entries.forEach((entry, index) => {
-                const card = document.createElement('div');
-                card.className = 'journal-card';
-                card.innerHTML = `
-                    <span class="journal-delete" onclick="deleteEntry(${index})">×</span>
-                    <span class="journal-date">${entry.date}</span>
-                    <div class="journal-title">${entry.title}</div>
-                    <div class="journal-preview">${entry.content}</div>
-                `;
-                grid.appendChild(card);
-            });
-            localStorage.setItem('abdalrhman_diary_pro', JSON.stringify(entries));
-        }
-
-        function openModal() { document.getElementById('entryModal').style.display = 'flex'; }
-        function closeModal() { document.getElementById('entryModal').style.display = 'none'; }
-        
-        function saveEntry() {
-            const title = document.getElementById('entryTitle').value;
-            const content = document.getElementById('entryContent').value;
-            if(!title || !content) return;
-            
-            entries.unshift({
-                title,
-                content,
-                date: new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
-            });
-            
-            document.getElementById('entryTitle').value = '';
-            document.getElementById('entryContent').value = '';
-            closeModal();
-            renderJournal();
-        }
-
-        function deleteEntry(index) {
-            if(confirm('Delete this entry?')) {
-                entries.splice(index, 1);
-                renderJournal();
+        function deletePost(index) {
+            if(confirm('Delete this update?')) {
+                posts.splice(index, 1);
+                renderBlog();
             }
         }
 
-        renderTasks();
-        renderJournal();
+        renderBlog();
     </script>
 </body>
 </html>
