@@ -15,7 +15,15 @@
             --border: #dee2e6;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; border-radius: 0 !important; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        /* Added text-transform: capitalize here to apply to everything */
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            border-radius: 0 !important; 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+            text-transform: capitalize; /* This makes every word start with a Capital letter */
+        }
 
         body {
             background-color: var(--bg);
@@ -111,12 +119,18 @@
         }
 
         .about-photo-wrapper { 
-            flex: 0.8; 
-            max-width: 350px;
+            flex: 0.6; 
+            max-width: 280px;
         }
         .about-photo { width: 100%; height: auto; border: 1px solid var(--border); }
 
         .about-content { flex: 2; padding-top: 10px; }
+
+        .bio-text {
+            font-size: 1.2rem;
+            color: var(--muted);
+            margin-bottom: 40px;
+        }
 
         .checklist-wrapper { max-width: 100%; }
         
@@ -130,7 +144,6 @@
             margin-bottom: 30px; 
             border-bottom: 3px solid var(--text); 
             padding-bottom: 10px; 
-            text-transform: uppercase;
             display: inline-block;
         }
         .todo-item.clean { 
@@ -160,20 +173,23 @@
         .tweet-content { flex: 1; }
         .tweet-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 1rem; }
         .tweet-name { color: var(--text); }
-        .tweet-handle { color: var(--muted); font-weight: 400; }
+        .tweet-handle { color: var(--muted); font-weight: 400; text-transform: lowercase; /* Handles usually lowercase */ }
         .tweet-time { color: var(--muted); font-weight: 400; }
         .tweet-body { font-size: 1.1rem; color: var(--text); line-height: 1.5; }
 
         .contact-form { 
-            max-width: 800px; margin: 0 auto; padding: 50px; 
-            background: var(--sidebar); border: 1px solid var(--border); 
+            max-width: 100%; 
+            margin: 0 auto; 
+            padding: 60px; 
+            background: var(--sidebar); 
+            border: 1px solid var(--border); 
         }
-        .form-group { margin-bottom: 25px; }
-        .form-group label { display: block; margin-bottom: 10px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
-        .form-control { width: 100%; padding: 15px; border: 1px solid #ced4da; background: #fff; font-size: 1rem; outline: none; }
+        .form-group { margin-bottom: 30px; }
+        .form-group label { display: block; margin-bottom: 10px; font-size: 1rem; letter-spacing: 1px; }
+        .form-control { width: 100%; padding: 18px; border: 1px solid #ced4da; background: #fff; font-size: 1.1rem; outline: none; }
         .form-control:focus { border-color: var(--accent); }
 
-        footer { margin-top: auto; background: var(--text); color: #fff; text-align: center; padding: 30px; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; }
+        footer { margin-top: auto; background: var(--text); color: #fff; text-align: center; padding: 30px; font-size: 1rem; letter-spacing: 1px; }
 
         @media(max-width: 768px) {
             .about-container { flex-direction: column; }
@@ -219,21 +235,25 @@
                 </div>
                 
                 <div class="about-content">
+                    <div class="bio-text">
+                        There is nothing to write here.
+                    </div>
+
                     <div class="checklist-wrapper">
                         <div class="todo-container clean">
                             <div class="todo-header clean">Certifications</div>
                             <ul style="list-style: none;">
                                 <li class="todo-item clean completed">
                                     <div class="todo-checkbox clean">✓</div>
-                                    <div class="todo-text">Penetration Testing Professional (ITI)</div>
+                                    <div class="todo-text">Penetration testing professional (ITI)</div>
                                 </li>
                                 <li class="todo-item clean completed">
                                     <div class="todo-checkbox clean">✓</div>
-                                    <div class="todo-text">Ethical Hacking (ITI)</div>
+                                    <div class="todo-text">Ethical hacking (ITI)</div>
                                 </li>
                                 <li class="todo-item clean completed">
                                     <div class="todo-checkbox clean">✓</div>
-                                    <div class="todo-text">Computer Network Fundamentals</div>
+                                    <div class="todo-text">Computer network fundamentals</div>
                                 </li>
                                 <li class="todo-item clean completed">
                                     <div class="todo-checkbox clean">✓</div>
@@ -241,7 +261,7 @@
                                 </li>
                                 <li class="todo-item clean">
                                     <div class="todo-checkbox clean"></div>
-                                    <div class="todo-text">Cisco Cybersecurity (In Progress)</div>
+                                    <div class="todo-text">Cisco cybersecurity (in progress)</div>
                                 </li>
                             </ul>
                         </div>
@@ -257,7 +277,7 @@
 
         <div id="contact" class="section">
             <div class="contact-form">
-                <h3 style="margin-bottom: 30px; font-size: 2rem;">GET IN TOUCH</h3>
+                <h3 style="margin-bottom: 30px; font-size: 2rem;">Get in touch</h3>
                 <form action="https://formsubmit.co/your-email@example.com" method="POST">
                     <div class="form-group">
                         <label>Name</label>
@@ -271,7 +291,7 @@
                         <label>Message</label>
                         <textarea name="message" rows="4" class="form-control" required></textarea>
                     </div>
-                    <button type="submit" class="btn" style="width:100%;">Send Message</button>
+                    <button type="submit" class="btn" style="width:100%;">Send message</button>
                 </form>
             </div>
         </div>
@@ -279,7 +299,7 @@
     </div>
 
     <footer>
-        © Abdalrhman Salah Ibrahim
+        © Abdalrhman salah ibrahim
     </footer>
 
     <script type="module">
@@ -394,7 +414,7 @@
         const tweets = [
             {
                 date: "Nov 26",
-                content: "I love you more than I love Messi."
+                content: "I love you more than i love messi."
             }
         ];
 
@@ -406,7 +426,7 @@
                     <img src="photo.jpeg" alt="Profile" class="tweet-avatar">
                     <div class="tweet-content">
                         <div class="tweet-header">
-                            <span class="tweet-name">Abdalrhman Salah</span>
+                            <span class="tweet-name">Abdalrhman salah</span>
                             <span class="tweet-handle">@abdalrhman</span>
                             <span class="tweet-time">· ${tweet.date}</span>
                         </div>
