@@ -16,6 +16,9 @@
             --terminal-text: #33ff00;
             --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             --font-code: 'Courier New', Courier, monospace;
+            
+            /* ده الكود السحري للحواف اللي في الصورة */
+            --radius: 5px; 
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -41,9 +44,9 @@
         header {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
-            padding: 60px 0;
-            gap: 40px;
+            align-items: center;
+            padding: 80px 0;
+            gap: 50px;
             flex-wrap: wrap;
         }
 
@@ -53,50 +56,65 @@
         }
 
         .profile-img {
-            width: 180px;      /* حجم متوسط ومناسب */
-            height: 180px;     /* عشان تكون مربعة */
-            object-fit: cover; /* تظبط الصورة جوه المربع لو أبعادها مختلفة */
-            border: none;      /* مفيش أي حواف نهائياً */
+            width: 240px;
+            height: 240px;
+            object-fit: cover;
+            border: none !important;
+            
+            /* تطبيق نفس الحواف الناعمة على الصورة عشان متبقاش شاذة */
+            border-radius: var(--radius);
+            
+            opacity: 0.85; 
+            transition: opacity 0.3s;
             margin-bottom: 25px;
             display: block;
-            background-color: #333; /* لون خلفية مؤقت لو الصورة متحملتش */
         }
+        
+        .profile-img:hover { opacity: 1; }
 
         h1 {
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             color: #fff;
             margin-bottom: 10px;
             text-transform: uppercase;
+            font-weight: 800;
+            letter-spacing: 1px;
         }
 
         h2 {
             font-size: 1.1rem;
             color: var(--accent-color);
             font-family: var(--font-code);
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             font-weight: normal;
-            border-left: 3px solid var(--accent-color);
+            border-left: 4px solid var(--accent-color);
             padding-left: 15px;
+            line-height: 1.8;
         }
 
         .btn-linkedin {
             display: inline-block;
-            padding: 10px 25px;
-            border: 1px solid var(--accent-color);
+            padding: 12px 30px;
+            border: 2px solid var(--accent-color);
             background: transparent;
             color: var(--accent-color);
             font-weight: bold;
             text-transform: uppercase;
-            font-size: 0.9rem;
+            font-size: 1rem;
             cursor: pointer;
+            letter-spacing: 1px;
+            
+            /* الحواف الناعمة */
+            border-radius: var(--radius);
         }
         .btn-linkedin:hover {
             background-color: var(--accent-color);
             color: #000;
             text-decoration: none;
+            box-shadow: 0 0 15px var(--accent-color);
         }
 
-        /* --- Real Interactive Terminal --- */
+        /* --- Terminal --- */
         .header-right {
             flex: 1.5;
             min-width: 350px;
@@ -105,36 +123,43 @@
         .terminal-window {
             background-color: var(--terminal-bg);
             border: 1px solid #333;
-            box-shadow: 10px 10px 0px rgba(31, 40, 51, 0.5);
-            height: 400px;
+            box-shadow: 20px 20px 0px rgba(31, 40, 51, 0.5);
+            height: 450px;
             display: flex;
             flex-direction: column;
             font-family: var(--font-code);
+            
+            /* الحواف الناعمة */
+            border-radius: var(--radius);
         }
 
         .terminal-bar {
             background-color: #333;
-            padding: 5px 10px;
+            padding: 8px 15px;
             color: #ccc;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             display: flex;
-            gap: 5px;
+            gap: 8px;
             align-items: center;
+            
+            /* عشان الحواف اللي فوق تمشي مع الشباك */
+            border-top-left-radius: var(--radius);
+            border-top-right-radius: var(--radius);
         }
-        .win-btn { width: 10px; height: 10px; display: inline-block; background: #555; } 
+        .win-btn { width: 12px; height: 12px; display: inline-block; background: #555; border-radius: 50%; } 
 
         .terminal-body {
             flex: 1;
-            padding: 15px;
+            padding: 20px;
             color: var(--terminal-text);
             overflow-y: auto;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             cursor: text;
         }
 
         .terminal-body::-webkit-scrollbar { width: 8px; }
         .terminal-body::-webkit-scrollbar-track { background: #000; }
-        .terminal-body::-webkit-scrollbar-thumb { background: #333; }
+        .terminal-body::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
 
         .input-line { display: flex; margin-top: 5px; }
         .prompt { margin-right: 8px; color: var(--accent-color); white-space: nowrap; }
@@ -145,7 +170,7 @@
             color: #fff;
             flex: 1;
             font-family: var(--font-code);
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             outline: none;
             caret-color: var(--accent-color);
         }
@@ -157,29 +182,32 @@
             color: #fff;
             border-left: 4px solid var(--accent-color);
             padding-left: 15px;
-            margin: 50px 0 30px;
-            font-size: 1.5rem;
+            margin: 60px 0 30px;
+            font-size: 1.8rem;
             text-transform: uppercase;
         }
 
         .certs-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
         }
 
         .cert-card {
             background-color: var(--secondary-bg);
             border: 1px solid #333;
-            padding: 20px;
+            padding: 25px;
             transition: 0.2s;
+            
+       
+            border-radius: var(--radius);
         }
         .cert-card:hover {
             border-color: var(--accent-color);
-            transform: translateY(-2px);
+            transform: translateY(-5px);
         }
 
-        .cert-card strong { color: #fff; display: block; margin-bottom: 5px; font-size: 1.05rem; }
+        .cert-card strong { color: #fff; display: block; margin-bottom: 8px; font-size: 1.1rem; }
         .cert-card span { color: #888; font-size: 0.9rem; }
 
         .blink-cursor {
@@ -188,197 +216,3 @@
             color: var(--accent-color);
         }
         @keyframes blink { 50% { opacity: 0; } }
-
-        /* --- Form --- */
-        .contact-form {
-            max-width: 600px;
-            border: 1px solid #333;
-            padding: 30px;
-            background: var(--secondary-bg);
-        }
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; color: #fff; margin-bottom: 8px; font-size: 0.9rem; }
-        
-        .form-input {
-            width: 100%;
-            padding: 12px;
-            background: #000;
-            border: 1px solid #444;
-            color: #fff;
-            font-family: var(--font-code);
-            outline: none;
-        }
-        .form-input:focus { border-color: var(--accent-color); }
-
-        .submit-btn {
-            background: var(--accent-color);
-            color: #000;
-            border: none;
-            padding: 12px 30px;
-            font-weight: bold;
-            cursor: pointer;
-            text-transform: uppercase;
-        }
-        .submit-btn:hover { background: #fff; }
-
-        footer {
-            text-align: center;
-            padding: 30px;
-            border-top: 1px solid #333;
-            margin-top: 50px;
-            color: #555;
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 768px) {
-            header { flex-direction: column; }
-            .header-left { margin-bottom: 20px; padding-right: 0; }
-            .terminal-window { height: 300px; }
-        }
-    </style>
-</head>
-<body>
-
-<div class="container">
-
-    <header>
-        <div class="header-left">
-            <img src="photo.jpeg" alt="Abdalrhman" class="profile-img">
-            
-            <h1>Abdalrhman Salah Ibrahim</h1>
-            <h2>Penetration Testing Student | Bug Bounty Enthusiast | CTF Player</h2>
-            
-            <a href="https://linkedin.com/in/abdalrhman-salah-ibrahim-51725a396" target="_blank" class="btn-linkedin">
-                LinkedIn Profile
-            </a>
-        </div>
-
-        <div class="header-right">
-            <div class="terminal-window" onclick="document.getElementById('cmd-input').focus()">
-                <div class="terminal-bar">
-                    <span class="win-btn"></span>
-                    <span class="win-btn"></span>
-                    <span class="win-btn"></span>
-                    <span style="margin-left:10px;">guest@kali: ~</span>
-                </div>
-                <div class="terminal-body" id="terminal-body">
-                    <div style="margin-bottom: 10px; color: #777;">
-                        Kali GNU/Linux Rolling [Version 2024.1]<br>
-                        Type 'help' to see available commands.
-                    </div>
-                    
-                    <div id="output-history"></div>
-
-                    <div class="input-line">
-                        <span class="prompt">guest@kali:~$</span>
-                        <input type="text" id="cmd-input" autocomplete="off" autofocus spellcheck="false">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <h3 class="section-title">Certifications</h3>
-    <div class="certs-grid">
-        <div class="cert-card">
-            <strong>Penetration Testing Professional</strong>
-            <span>MaharaTech - ITI</span>
-        </div>
-        <div class="cert-card">
-            <strong>Ethical Hacking</strong>
-            <span>MaharaTech - ITI</span>
-        </div>
-        <div class="cert-card">
-            <strong>CHC v2</strong>
-            <span>Techcampus</span>
-        </div>
-        <div class="cert-card">
-            <strong>Computer Network Fundamentals</strong>
-            <span>MaharaTech - ITI</span>
-        </div>
-        <div class="cert-card">
-            <strong>Forensic Medicine in Crime Detection</strong>
-            <span>Misr University for Science and Technology</span>
-        </div>
-        <div class="cert-card" style="border-left: 3px solid yellow;">
-            <strong style="color:yellow;">Cisco Cybersecurity</strong>
-            <span>Status: In Progress <span class="blink-cursor">_</span></span>
-        </div>
-    </div>
-
-    <h3 class="section-title">Contact Me</h3>
-    <div class="contact-form">
-        <form action="https://getform.io/f/byvelwza" method="POST">
-            <div class="form-group">
-                <label>Your Name</label>
-                <input type="text" name="name" class="form-input" required>
-            </div>
-            <div class="form-group">
-                <label>Your Email</label>
-                <input type="email" name="email" class="form-input" required>
-            </div>
-            <div class="form-group">
-                <label>Message</label>
-                <input type="text" name="message" class="form-input" required>
-            </div>
-            <div class="form-group" style="display:flex; align-items:center; gap:10px;">
-                <input type="checkbox" name="not_robot" id="rb" style="width:auto;" required>
-                <label for="rb" style="margin:0; cursor:pointer;">I'm Not a Robot</label>
-            </div>
-            <button type="submit" class="submit-btn">Submit</button>
-        </form>
-    </div>
-
-    <footer>
-        &copy; Abdalrhman Salah Ibrahim
-    </footer>
-
-</div>
-
-<script>
-    const inputField = document.getElementById('cmd-input');
-    const outputHistory = document.getElementById('output-history');
-    const terminalBody = document.getElementById('terminal-body');
-
-    const commands = {
-        'help':     'Available commands:\n  whoami    Display user info\n  ls        List files\n  cat       Read file content\n  clear     Clear terminal screen\n  date      Show current date',
-        'whoami':   'Abdalrhman Salah Ibrahim\nRole: Penetration Testing Student\nInterests: Bug Bounty, CTF, Red Teaming',
-        'ls':       'about.txt   skills.txt   contact_info.txt',
-        'cat':      'Usage: cat [filename]. Example: cat about.txt',
-        'cat about.txt': 'I am a passionate cybersecurity student, learning to secure systems by breaking them.',
-        'cat skills.txt': '- Web Application Penetration Testing\n- Network Security Fundamentals\n- Python for Security\n- Linux Administration',
-        'cat contact_info.txt': 'Email me via the form below or connect on LinkedIn.',
-        'date':     new Date().toString()
-    };
-
-    inputField.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter') {
-            const inputVal = inputField.value.trim();
-            const lowerVal = inputVal.toLowerCase();
-
-            outputHistory.innerHTML += `<div><span class="prompt">guest@kali:~$</span> ${inputVal}</div>`;
-
-            if (lowerVal === 'clear') {
-                outputHistory.innerHTML = '';
-            } 
-            else if (commands[lowerVal]) {
-                outputHistory.innerHTML += `<div class="command-output">${commands[lowerVal]}</div>`;
-            } 
-            else if (lowerVal === '') {
-            }
-            else {
-                outputHistory.innerHTML += `<div class="command-output" style="color:#ff5f56;">Command not found: ${inputVal}</div>`;
-            }
-
-            inputField.value = '';
-            terminalBody.scrollTop = terminalBody.scrollHeight;
-        }
-    });
-
-    terminalBody.addEventListener('click', () => {
-        inputField.focus();
-    });
-</script>
-
-</body>
-</html>
