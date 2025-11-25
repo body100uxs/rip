@@ -13,8 +13,8 @@
             --muted: #6c757d;
             --accent: #0d6efd;
             --border: #dee2e6;
-            --term-bg: #0f0f0f;
-            --term-text: #33ff00;
+            --editor-bg: #1e1e1e;
+            --editor-text: #d4d4d4;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; border-radius: 0 !important; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
@@ -54,88 +54,99 @@
         }
         .nav-links button:hover, .nav-links button.active { color: var(--accent); }
 
-        .section { display: none; padding: 40px 0; animation: fadeIn 0.3s ease; }
+        .section { display: none; padding: 60px 0; animation: fadeIn 0.3s ease; }
         .section.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- TERMINAL SECTION --- */
         #home { padding: 40px 0; }
+        .compiler-wrapper { display: flex; flex-direction: column; gap: 0; height: 70vh; border: 2px solid var(--text); margin-top: 20px; }
+        .compiler-header { 
+            background: var(--sidebar); padding: 15px 20px; border-bottom: 1px solid var(--border); 
+            display: flex; justify-content: space-between; align-items: center; 
+        }
+        .lang-select { padding: 10px; font-size: 1rem; border: 1px solid var(--border); outline: none; font-weight: bold; cursor: pointer; background: #fff; }
+        .editor-container { flex: 2; display: flex; flex-direction: column; }
+        #code-editor {
+            flex: 1; background-color: var(--editor-bg); color: var(--editor-text); 
+            font-family: 'Consolas', 'Courier New', monospace; font-size: 1.1rem; 
+            padding: 20px; border: none; resize: none; outline: none; line-height: 1.5;
+        }
+        .output-container {
+            flex: 1; background-color: #000; color: #33ff00; 
+            padding: 20px; font-family: 'Consolas', monospace; overflow-y: auto;
+            border-top: 2px solid var(--text);
+        }
+        .run-btn {
+            background: #28a745; color: white; border: none; padding: 12px 40px; 
+            font-size: 1rem; cursor: pointer; text-transform: uppercase; font-weight: bold;
+        }
+        .run-btn:hover { background: #218838; }
+        .run-btn:disabled { background: #6c757d; cursor: wait; }
+
+        .about-container { 
+            display: flex; 
+            gap: 50px; 
+            align-items: flex-start; 
+        }
         
-        .terminal-container {
-            width: 100%;
-            height: 600px;
-            background-color: var(--term-bg);
-            border: 2px solid #333;
-            display: flex;
-            flex-direction: column;
-            font-family: 'Consolas', 'Courier New', monospace;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        .about-photo-wrapper { 
+            flex-shrink: 0; 
+            width: 220px; 
         }
-
-        .terminal-header {
-            background: #1a1a1a;
-            padding: 10px 15px;
-            border-bottom: 1px solid #333;
-            display: flex;
-            align-items: center;
-            color: #aaa;
-            font-size: 0.9rem;
-        }
-
-        .terminal-body {
-            flex: 1;
-            padding: 20px;
-            overflow-y: auto;
-            color: var(--term-text);
-            font-size: 1rem;
-        }
-
-        .output-line { margin-bottom: 5px; white-space: pre-wrap; }
-        .cmd-line { display: flex; color: #fff; margin-top: 10px; }
-        .prompt { margin-right: 10px; color: var(--accent); font-weight: bold; }
         
-        #cmd-input {
-            background: transparent; border: none; color: #fff; flex: 1;
-            font-family: 'Consolas', 'Courier New', monospace; font-size: 1rem; outline: none;
+        .about-photo { 
+            width: 100%; 
+            height: auto; 
+            border: 1px solid var(--border); 
+            display: block;
+        }
+        
+        .about-content { 
+            flex-grow: 1; 
+        }
+        
+        .bio-text {
+            font-size: 1.3rem; 
+            color: var(--muted); 
+            margin-bottom: 40px; 
+            font-style: italic;
+            border-left: 4px solid var(--accent);
+            padding-left: 15px;
+            line-height: 1.6;
         }
 
-        /* --- ABOUT (PROFILE) --- */
-        .about-container { display: flex; gap: 40px; align-items: flex-start; }
-        .about-photo-wrapper { flex: 0.3; max-width: 300px; } /* Increased size and changed flex */
-        .about-photo { width: 100%; height: auto; border: 1px solid var(--border); }
-        .about-content { flex: 2; padding-top: 10px; }
-        .bio-text { font-size: 1.2rem; color: var(--muted); margin-bottom: 40px; }
-
-        .certs-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
+        .certs-heading {
+            font-size: 1.5rem; 
+            margin-bottom: 25px; 
+            border-bottom: 3px solid var(--text); 
+            display: inline-block; 
+            text-transform: uppercase;
         }
+
+        .certs-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); 
+            gap: 20px; 
+        }
+        
         .cert-card {
             background: var(--sidebar);
-            padding: 25px;
+            padding: 20px;
             border: 1px solid var(--border);
-            border-left: 5px solid var(--accent);
+            border-left: 4px solid var(--accent);
             transition: 0.2s;
-            counter-increment: cert-counter; /* Increment counter */
             display: flex;
-            align-items: flex-start;
+            flex-direction: column;
         }
-        .cert-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
-        .cert-card::before {
-            content: counter(cert-counter) "."; /* Display counter */
-            font-weight: bold;
-            color: var(--text);
-            margin-right: 10px;
-            font-size: 1.1rem;
-        }
-        .cert-content { flex: 1; }
-        .cert-card h4 { margin-bottom: 5px; font-size: 1.1rem; color: var(--text); }
-        .cert-card span { font-size: 0.9rem; color: var(--muted); }
+        .cert-card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .cert-card h4 { margin-bottom: 5px; font-size: 1rem; color: var(--text); line-height: 1.4; }
+        .cert-card span { font-size: 0.85rem; color: var(--muted); margin-top: auto; }
 
-        /* --- BLOG (FULL WIDTH) --- */
         .tweet-feed { width: 100%; max-width: 100%; margin: 0; }
-        .tweet-card { background: #fff; border: 1px solid var(--border); padding: 30px; display: flex; gap: 25px; margin-bottom: 30px; text-align: left; width: 100%; }
+        .tweet-card { 
+            background: #fff; border: 1px solid var(--border); padding: 30px; 
+            display: flex; gap: 25px; margin-bottom: 30px; text-align: left; width: 100%; 
+        }
         .tweet-avatar { width: 60px; height: 60px; object-fit: cover; border: 1px solid #000; flex-shrink: 0; }
         .tweet-content { flex: 1; }
         .tweet-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 1.1rem; }
@@ -144,13 +155,14 @@
         .tweet-time { color: var(--muted); font-weight: 400; }
         .tweet-body { font-size: 1.2rem; color: var(--text); line-height: 1.5; }
 
-        /* --- CONTACT --- */
         .contact-split {
             display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; align-items: start;
         }
         .contact-info h3 { font-size: 3rem; line-height: 1.1; margin-bottom: 20px; color: var(--text); }
         .contact-info p { font-size: 1.1rem; color: var(--muted); margin-bottom: 40px; }
-        
+        .contact-detail-item { margin-bottom: 20px; }
+        .contact-label { display: block; font-size: 0.9rem; font-weight: 700; color: var(--accent); letter-spacing: 1px; margin-bottom: 5px; text-transform: uppercase; }
+        .contact-value { font-size: 1.2rem; color: var(--text); }
         .contact-form-clean .form-group { margin-bottom: 30px; }
         .contact-form-clean label { display: block; margin-bottom: 10px; font-size: 0.9rem; font-weight: 700; color: var(--text); text-transform: uppercase; letter-spacing: 1px; }
         .contact-form-clean .form-control { 
@@ -166,9 +178,10 @@
 
         @media(max-width: 768px) {
             .about-container, .contact-split { grid-template-columns: 1fr; gap: 40px; }
-            .about-photo-wrapper { max-width: 100%; flex: 1; } /* Full width on mobile */
+            .about-photo-wrapper { max-width: 100%; width: 100%; }
             .nav-links { display: none; }
             .contact-form { padding: 30px; }
+            .compiler-wrapper { height: 500px; }
             .contact-info h3 { font-size: 2.5rem; }
         }
     </style>
@@ -180,7 +193,8 @@
             <div class="logo">Abdalrhman.</div>
             <div class="nav-links">
                 <button onclick="show('home')" class="active">Terminal</button>
-                <button onclick="show('about')">About</button> <button onclick="show('blog')">Blog</button>
+                <button onclick="show('about')">About</button>
+                <button onclick="show('blog')">Blog</button>
                 <button onclick="show('contact')">Contact</button>
             </div>
         </div>
@@ -215,45 +229,36 @@
                 </div>
                 
                 <div class="about-content">
-                    <div class="bio-text">There is nothing to write here.</div>
+                    <div class="bio-text">
+                        "A quiet soul lost in a loud digital world. I search for vulnerabilities in systems because they are easier to fix than the ones inside."
+                    </div>
                     
-                    <h3 style="margin-bottom: 30px; font-size: 1.5rem; border-bottom: 2px solid var(--text); display: inline-block; text-transform: uppercase;">CERTIFICATIONS</h3>
+                    <h3 class="certs-heading">CERTIFICATIONS</h3>
                     
-                    <div class="certs-grid" style="counter-reset: cert-counter;"> <div class="cert-card">
-                            <div class="cert-content">
-                                <h4>Penetration Testing Professional</h4>
-                                <span>MaharaTech - ITI</span>
-                            </div>
+                    <div class="certs-grid">
+                        <div class="cert-card">
+                            <h4>Penetration Testing Professional</h4>
+                            <span>MaharaTech - ITI</span>
                         </div>
                         <div class="cert-card">
-                            <div class="cert-content">
-                                <h4>Ethical Hacking</h4>
-                                <span>MaharaTech - ITI</span>
-                            </div>
+                            <h4>Ethical Hacking</h4>
+                            <span>MaharaTech - ITI</span>
                         </div>
                         <div class="cert-card">
-                            <div class="cert-content">
-                                <h4>Computer Network Fundamentals</h4>
-                                <span>MaharaTech - ITI</span>
-                            </div>
+                            <h4>Computer Network Fundamentals</h4>
+                            <span>MaharaTech - ITI</span>
                         </div>
                         <div class="cert-card">
-                            <div class="cert-content">
-                                <h4>CHC v2</h4>
-                                <span>Techcampus</span>
-                            </div>
+                            <h4>CHC v2</h4>
+                            <span>Techcampus</span>
                         </div>
                         <div class="cert-card">
-                            <div class="cert-content">
-                                <h4>Forensic Medicine</h4>
-                                <span>Misr University</span>
-                            </div>
+                            <h4>Forensic Medicine</h4>
+                            <span>Misr University</span>
                         </div>
                         <div class="cert-card" style="border-left-color: #ffc107;">
-                            <div class="cert-content">
-                                <h4 style="color: #d39e00;">Cisco Cybersecurity</h4>
-                                <span>In Progress</span>
-                            </div>
+                            <h4 style="color: #d39e00;">Cisco Cybersecurity</h4>
+                            <span>In Progress</span>
                         </div>
                     </div>
                 </div>
@@ -330,7 +335,6 @@
                 output.insertBefore(cmdBlock, input.parentElement.parentElement);
 
                 if(val === 'clear') {
-                    // Clear text but keep input
                     const lines = output.querySelectorAll('.output-line, div[style*="margin-top"]');
                     lines.forEach(line => line.remove());
                 } 
