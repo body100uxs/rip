@@ -6,7 +6,6 @@
     <title>Abdalrhman | Security Portfolio</title>
     <link rel="icon" type="image/x-icon" href="icon.png">
     <style>
-        /* --- CSS Variables --- */
         :root {
             --bg-color: #0b0c10;
             --secondary-bg: #1f2833;
@@ -16,8 +15,6 @@
             --terminal-text: #33ff00;
             --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             --font-code: 'Courier New', Courier, monospace;
-            
-            /* ده الكود السحري للحواف اللي في الصورة */
             --radius: 5px; 
         }
 
@@ -40,7 +37,6 @@
             padding: 20px;
         }
 
-        /* --- Header Section --- */
         header {
             display: flex;
             justify-content: space-between;
@@ -60,10 +56,7 @@
             height: 240px;
             object-fit: cover;
             border: none !important;
-            
-            /* تطبيق نفس الحواف الناعمة على الصورة عشان متبقاش شاذة */
             border-radius: var(--radius);
-            
             opacity: 0.85; 
             transition: opacity 0.3s;
             margin-bottom: 25px;
@@ -103,8 +96,6 @@
             font-size: 1rem;
             cursor: pointer;
             letter-spacing: 1px;
-            
-            /* الحواف الناعمة */
             border-radius: var(--radius);
         }
         .btn-linkedin:hover {
@@ -114,7 +105,6 @@
             box-shadow: 0 0 15px var(--accent-color);
         }
 
-        /* --- Terminal --- */
         .header-right {
             flex: 1.5;
             min-width: 350px;
@@ -128,8 +118,6 @@
             display: flex;
             flex-direction: column;
             font-family: var(--font-code);
-            
-            /* الحواف الناعمة */
             border-radius: var(--radius);
         }
 
@@ -141,8 +129,6 @@
             display: flex;
             gap: 8px;
             align-items: center;
-            
-            /* عشان الحواف اللي فوق تمشي مع الشباك */
             border-top-left-radius: var(--radius);
             border-top-right-radius: var(--radius);
         }
@@ -177,7 +163,6 @@
 
         .command-output { margin-bottom: 15px; color: #ddd; white-space: pre-wrap; }
 
-        /* --- Sections --- */
         .section-title {
             color: #fff;
             border-left: 4px solid var(--accent-color);
@@ -198,8 +183,6 @@
             border: 1px solid #333;
             padding: 25px;
             transition: 0.2s;
-            
-       
             border-radius: var(--radius);
         }
         .cert-card:hover {
@@ -216,3 +199,203 @@
             color: var(--accent-color);
         }
         @keyframes blink { 50% { opacity: 0; } }
+
+        .contact-form {
+            max-width: 700px;
+            border: 1px solid #333;
+            padding: 40px;
+            background: var(--secondary-bg);
+            border-radius: var(--radius);
+        }
+        .form-group { margin-bottom: 25px; }
+        .form-group label { display: block; color: #fff; margin-bottom: 10px; font-size: 0.95rem; }
+        
+        .form-input {
+            width: 100%;
+            padding: 15px;
+            background: #000;
+            border: 1px solid #444;
+            color: #fff;
+            font-family: var(--font-code);
+            outline: none;
+            font-size: 1rem;
+            border-radius: var(--radius);
+        }
+        .form-input:focus { border-color: var(--accent-color); }
+
+        .submit-btn {
+            background: var(--accent-color);
+            color: #000;
+            border: none;
+            padding: 15px 40px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 1rem;
+            border-radius: var(--radius);
+        }
+        .submit-btn:hover { background: #fff; }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid #333;
+            margin-top: 60px;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            header { flex-direction: column; text-align: center; }
+            .header-left { margin-bottom: 30px; padding-right: 0; }
+            .profile-img { margin: 0 auto 25px; }
+            h2 { border-left: none; border-bottom: 3px solid var(--accent-color); padding-bottom: 10px; padding-left: 0; display: inline-block; }
+            .terminal-window { height: 350px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <header>
+        <div class="header-left">
+            <img src="photo.jpeg" alt="Abdalrhman" class="profile-img">
+            
+            <h1>Abdalrhman Salah Ibrahim</h1>
+            <h2>Penetration Testing Student | Bug Bounty Enthusiast | CTF Player</h2>
+            
+            <a href="https://linkedin.com/in/abdalrhman-salah-ibrahim-51725a396" target="_blank" class="btn-linkedin">
+                LINKEDIN
+            </a>
+        </div>
+
+        <div class="header-right">
+            <div class="terminal-window" onclick="document.getElementById('cmd-input').focus()">
+                <div class="terminal-bar">
+                    <span class="win-btn" style="background:#ff5f56"></span>
+                    <span class="win-btn" style="background:#ffbd2e"></span>
+                    <span class="win-btn" style="background:#27c93f"></span>
+                    <span style="margin-left:10px;">hello@kali: ~</span>
+                </div>
+                <div class="terminal-body" id="terminal-body">
+                    <div style="margin-bottom: 10px; color: #777;">
+                        Kali GNU/Linux Rolling [Version 2024.1]<br>
+                        Type 'help' to see available commands.
+                    </div>
+                    
+                    <div id="output-history"></div>
+
+                    <div class="input-line">
+                        <span class="prompt">hello@kali:~$</span>
+                        <input type="text" id="cmd-input" autocomplete="off" autofocus spellcheck="false">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <h3 class="section-title">Certifications</h3>
+    <div class="certs-grid">
+        <div class="cert-card">
+            <strong>Penetration Testing Professional</strong>
+            <span>MaharaTech - ITI</span>
+        </div>
+        <div class="cert-card">
+            <strong>Ethical Hacking</strong>
+            <span>MaharaTech - ITI</span>
+        </div>
+        <div class="cert-card">
+            <strong>CHC v2</strong>
+            <span>Techcampus</span>
+        </div>
+        <div class="cert-card">
+            <strong>Computer Network Fundamentals</strong>
+            <span>MaharaTech - ITI</span>
+        </div>
+        <div class="cert-card">
+            <strong>Forensic Medicine in Crime Detection</strong>
+            <span>Misr University for Science and Technology</span>
+        </div>
+        <div class="cert-card" style="border-left: 3px solid yellow;">
+            <strong style="color:yellow;">Cisco Cybersecurity</strong>
+            <span>Status: In Progress <span class="blink-cursor">_</span></span>
+        </div>
+    </div>
+
+    <h3 class="section-title">Contact Me</h3>
+    <div class="contact-form">
+        <form action="https://getform.io/f/byvelwza" method="POST">
+            <div class="form-group">
+                <label>Your Name</label>
+                <input type="text" name="name" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label>Your Email</label>
+                <input type="email" name="email" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label>Message</label>
+                <input type="text" name="message" class="form-input" required>
+            </div>
+            <div class="form-group" style="display:flex; align-items:center; gap:10px;">
+                <input type="checkbox" name="not_robot" id="rb" style="width:auto;" required>
+                <label for="rb" style="margin:0; cursor:pointer;">I'm Not a Robot</label>
+            </div>
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+    </div>
+
+    <footer>
+        &copy; Abdalrhman Salah Ibrahim
+    </footer>
+
+</div>
+
+<script>
+    const inputField = document.getElementById('cmd-input');
+    const outputHistory = document.getElementById('output-history');
+    const terminalBody = document.getElementById('terminal-body');
+
+    const commands = {
+        'help':     'Available commands:\n  whoami    Display user info\n  ls        List files\n  cat       Read file content\n  clear     Clear terminal screen\n  date      Show current date',
+        'whoami':   'Abdalrhman Salah Ibrahim\nRole: Penetration Testing Student\nInterests: Bug Bounty, CTF, Red Teaming',
+        'ls':       'about.txt   skills.txt   contact_info.txt',
+        'cat':      'Usage: cat [filename]. Example: cat about.txt',
+        'cat about.txt': 'I am a passionate cybersecurity student, learning to secure systems by breaking them.',
+        'cat skills.txt': '- Web Application Penetration Testing\n- Network Security Fundamentals\n- Python for Security\n- Linux Administration',
+        'cat contact_info.txt': 'Email me via the form below or connect on LinkedIn.',
+        'date':     new Date().toString()
+    };
+
+    inputField.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            const inputVal = inputField.value.trim();
+            const lowerVal = inputVal.toLowerCase();
+
+            outputHistory.innerHTML += `<div><span class="prompt">hello@kali:~$</span> ${inputVal}</div>`;
+
+            if (lowerVal === 'clear') {
+                outputHistory.innerHTML = '';
+            } 
+            else if (commands[lowerVal]) {
+                outputHistory.innerHTML += `<div class="command-output">${commands[lowerVal]}</div>`;
+            } 
+            else if (lowerVal === '') {
+            }
+            else {
+                outputHistory.innerHTML += `<div class="command-output" style="color:#ff5f56;">Command not found: ${inputVal}</div>`;
+            }
+
+            inputField.value = '';
+            terminalBody.scrollTop = terminalBody.scrollHeight;
+        }
+    });
+
+    terminalBody.addEventListener('click', () => {
+        inputField.focus();
+    });
+</script>
+
+</body>
+</html>
