@@ -13,7 +13,7 @@
             --text-color: #c5c6c7;
             --accent-color: #66fcf1;
             --terminal-bg: #000000;
-            --terminal-text: #33ff00; /* Classic Terminal Green */
+            --terminal-text: #33ff00;
             --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             --font-code: 'Courier New', Courier, monospace;
         }
@@ -53,13 +53,13 @@
         }
 
         .profile-img {
-            width: 180px;
-            height: 180px;
-            object-fit: cover;
-            border: 2px solid var(--accent-color); /* حواف حادة */
+            width: 180px;      /* حجم متوسط ومناسب */
+            height: 180px;     /* عشان تكون مربعة */
+            object-fit: cover; /* تظبط الصورة جوه المربع لو أبعادها مختلفة */
+            border: none;      /* مفيش أي حواف نهائياً */
             margin-bottom: 25px;
             display: block;
-            background-color: #333;
+            background-color: #333; /* لون خلفية مؤقت لو الصورة متحملتش */
         }
 
         h1 {
@@ -105,7 +105,7 @@
         .terminal-window {
             background-color: var(--terminal-bg);
             border: 1px solid #333;
-            box-shadow: 10px 10px 0px rgba(31, 40, 51, 0.5); /* ضل حاد */
+            box-shadow: 10px 10px 0px rgba(31, 40, 51, 0.5);
             height: 400px;
             display: flex;
             flex-direction: column;
@@ -121,7 +121,6 @@
             gap: 5px;
             align-items: center;
         }
-        /* أزرار النافذة الوهمية */
         .win-btn { width: 10px; height: 10px; display: inline-block; background: #555; } 
 
         .terminal-body {
@@ -133,7 +132,6 @@
             cursor: text;
         }
 
-        /* Custom Scrollbar */
         .terminal-body::-webkit-scrollbar { width: 8px; }
         .terminal-body::-webkit-scrollbar-track { background: #000; }
         .terminal-body::-webkit-scrollbar-thumb { background: #333; }
@@ -172,7 +170,7 @@
 
         .cert-card {
             background-color: var(--secondary-bg);
-            border: 1px solid #333; /* حواف حادة */
+            border: 1px solid #333;
             padding: 20px;
             transition: 0.2s;
         }
@@ -342,7 +340,6 @@
     const outputHistory = document.getElementById('output-history');
     const terminalBody = document.getElementById('terminal-body');
 
-    // Database of commands
     const commands = {
         'help':     'Available commands:\n  whoami    Display user info\n  ls        List files\n  cat       Read file content\n  clear     Clear terminal screen\n  date      Show current date',
         'whoami':   'Abdalrhman Salah Ibrahim\nRole: Penetration Testing Student\nInterests: Bug Bounty, CTF, Red Teaming',
@@ -359,10 +356,8 @@
             const inputVal = inputField.value.trim();
             const lowerVal = inputVal.toLowerCase();
 
-            // 1. Add the user's command to history
             outputHistory.innerHTML += `<div><span class="prompt">guest@kali:~$</span> ${inputVal}</div>`;
 
-            // 2. Process command
             if (lowerVal === 'clear') {
                 outputHistory.innerHTML = '';
             } 
@@ -370,19 +365,16 @@
                 outputHistory.innerHTML += `<div class="command-output">${commands[lowerVal]}</div>`;
             } 
             else if (lowerVal === '') {
-                // Do nothing for empty enter
             }
             else {
                 outputHistory.innerHTML += `<div class="command-output" style="color:#ff5f56;">Command not found: ${inputVal}</div>`;
             }
 
-            // 3. Reset input and scroll
             inputField.value = '';
             terminalBody.scrollTop = terminalBody.scrollHeight;
         }
     });
 
-    // Always keep focus on input when clicking terminal
     terminalBody.addEventListener('click', () => {
         inputField.focus();
     });
