@@ -1,143 +1,385 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Abdalrhman's Website</title>
-<link rel="icon" type="image/x-icon" href="icon.png">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-  body {
-    background-color: #f2f5f9; 
-    font-family: Arial, sans-serif;
-    color: #222;
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdalrhman | Cyber Security Portfolio</title>
+    <link rel="icon" type="image/x-icon" href="icon.png">
+    <style>
+        /* --- CSS Variables & Reset --- */
+        :root {
+            --bg-color: #0b0c10;
+            --secondary-bg: #1f2833;
+            --text-color: #c5c6c7;
+            --accent-color: #66fcf1; /* Cyber Cyan */
+            --dark-accent: #45a29e;
+            --terminal-font: 'Courier New', Courier, monospace;
+        }
 
-  h1 {
-    color: #0078ff; 
-  }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  h2 {
-    color: #333; 
-  }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--terminal-font);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-  h2 a {
-    color: #d35400; 
-    text-decoration: none;
-  }
+        a { text-decoration: none; transition: 0.3s; }
+        ul { list-style: none; }
 
-  h2 a:hover {
-    text-decoration: underline;
-  }
+        /* --- Container --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
 
-  h3 {
-    color: #0078ff;
-  }
+        /* --- Hero Section --- */
+        header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 80px 20px;
+            border-bottom: 2px solid var(--dark-accent);
+            position: relative;
+        }
 
-  label {
-    color: #555; 
-  }
+        /* Matrix-like background overlay */
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, rgba(102, 252, 241, 0.1) 0%, rgba(11, 12, 16, 0) 70%);
+            z-index: -1;
+        }
 
-  input[type="submit"] {
-    background-color: #0078ff;
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+        .profile-img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 4px solid var(--accent-color);
+            box-shadow: 0 0 20px rgba(102, 252, 241, 0.4);
+            object-fit: cover;
+            margin-bottom: 20px;
+            /* استبدل photo.jpeg بصورتك الحقيقية */
+            background-image: url('photo.jpeg'), url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80');
+            background-size: cover;
+            background-position: center;
+        }
 
-  input[type="submit"]:hover {
-    background-color: #005fcc;
-  }
-</style>
+        h1 {
+            font-size: 2.5rem;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Glitch Effect Setup */
+        h1::before, h1::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: var(--bg-color);
+        }
+
+        h1::before {
+            left: 2px;
+            text-shadow: -1px 0 red;
+            clip: rect(24px, 550px, 90px, 0);
+            animation: glitch-anim-2 3s infinite linear alternate-reverse;
+        }
+        
+        h1::after {
+            left: -2px;
+            text-shadow: -1px 0 blue;
+            clip: rect(85px, 550px, 140px, 0);
+            animation: glitch-anim 2.5s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim {
+            0% { clip: rect(10px, 9999px, 31px, 0); }
+            20% { clip: rect(65px, 9999px, 80px, 0); }
+            40% { clip: rect(10px, 9999px, 30px, 0); }
+            60% { clip: rect(80px, 9999px, 95px, 0); }
+            80% { clip: rect(35px, 9999px, 60px, 0); }
+            100% { clip: rect(55px, 9999px, 70px, 0); }
+        }
+        @keyframes glitch-anim-2 {
+            0% { clip: rect(65px, 9999px, 100px, 0); }
+            20% { clip: rect(15px, 9999px, 45px, 0); }
+            40% { clip: rect(90px, 9999px, 105px, 0); }
+            60% { clip: rect(20px, 9999px, 65px, 0); }
+            80% { clip: rect(5px, 9999px, 30px, 0); }
+            100% { clip: rect(70px, 9999px, 95px, 0); }
+        }
+
+        .role {
+            color: var(--accent-color);
+            margin-top: 10px;
+            font-size: 1.1rem;
+            border-right: 2px solid var(--accent-color);
+            white-space: nowrap;
+            overflow: hidden;
+            width: 0;
+            animation: typing 3.5s steps(40, end) forwards, blink-caret .75s step-end infinite;
+        }
+
+        .social-link {
+            margin-top: 20px;
+            padding: 10px 25px;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            font-weight: bold;
+            display: inline-block;
+        }
+        
+        .social-link:hover {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            box-shadow: 0 0 15px var(--accent-color);
+        }
+
+        /* --- Section Titles --- */
+        .section-title {
+            color: #fff;
+            border-left: 5px solid var(--accent-color);
+            padding-left: 15px;
+            margin: 40px 0 20px;
+            font-size: 1.8rem;
+        }
+
+        /* --- Certifications Grid --- */
+        .certs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .cert-card {
+            background-color: var(--secondary-bg);
+            padding: 20px;
+            border-radius: 5px;
+            border: 1px solid #333;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+        }
+
+        .cert-card h3 {
+            color: #fff;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .cert-card p {
+            color: var(--dark-accent);
+            font-size: 0.9rem;
+        }
+
+        .status-bar {
+            margin-top: 10px;
+            font-size: 0.8rem;
+            color: var(--text-color);
+        }
+        
+        /* Loading Animation */
+        .loading-dots::after {
+            content: ' .';
+            animation: dots 1.5s steps(5, end) infinite;
+        }
+        @keyframes dots {
+            0%, 20% { content: ' .'; }
+            40% { content: ' ..'; }
+            60% { content: ' ...'; }
+            80%, 100% { content: ' ....'; }
+        }
+
+        /* --- Contact Form --- */
+        .contact-section {
+            background-color: var(--secondary-bg);
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 50px;
+            border: 1px solid #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--accent-color);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--bg-color);
+            border: 1px solid #444;
+            color: #fff;
+            font-family: var(--terminal-font);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .btn-submit {
+            background-color: transparent;
+            color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+            padding: 10px 30px;
+            font-family: var(--terminal-font);
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.8rem;
+            color: #555;
+            border-top: 1px solid #333;
+        }
+
+        /* Typing Animation Keyframes */
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--accent-color); }
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            .role { font-size: 0.8rem; white-space: normal; border: none; animation: none; width: auto; }
+            .profile-img { width: 120px; height: 120px; }
+        }
+    </style>
 </head>
-
 <body>
-<img src="photo.jpeg" alt="My Photo" style="width:150px;height:150px; float:left; margin-right:15px;">
 
-<h1>Abdalrhman Salah Ibrahim</h1>
-<h2>Penetration Testing Student | Bug Bounty Enthusiast | CTF Player</h2>
-<h2><a href="https://linkedin.com/in/abdalrhman-salah-ibrahim-51725a396
-">Linkedin</a></h2>
-<hr>
-<h3>Certifications</h3>
-<ol>
- <li>
-    <strong>Penetration Testing Professional </strong><br>
-    MaharaTech - ITI
-  </li>
-    <li>
-    <strong>Ethical Hacking</strong><br>
-    MaharaTech - ITI
-  </li>
-    <li>
-    <strong>CHC v2</strong><br>
-    Techcampus
-  </li>
-  <li>
-    <strong>Computer Network Fundamentals</strong><br>
-   MaharaTech - ITI 
-  </li>
-  <li>
-    <strong>دور الطب الشرعى فى الكشف عن الجريمة</strong><br>
-  Misr University for Science and Technology 
-  </li>
-   <li>
-    <strong>Cisco Cybersecurity</strong><br>
-   In Progress: <span id="loading" style="font-size:0.9em;">⬜⬜⬜⬜⬜</span>
-  </li>
-</ol>
-<script>
-const loadingEl = document.getElementById('loading');
-const max = 5;
-let progress = 0;
-let forward = true;
+    <header>
+        <div class="profile-img"></div> 
+        <h1 data-text="Abdalrhman Salah Ibrahim">Abdalrhman Salah Ibrahim</h1>
+        <div class="role">> Penetration Testing Student | Bug Bounty | CTF Player_</div>
+        
+        <br>
+        <a href="https://linkedin.com/in/abdalrhman-salah-ibrahim-51725a396" target="_blank" class="social-link">
+            [ CONNECT ON LINKEDIN ]
+        </a>
+    </header>
 
-setInterval(() => {
-  let emojis = '';
-  for (let i = 0; i < max; i++) {
-    emojis += (i < progress) ? '🟩' : '⬜';
-  }
-  loadingEl.textContent = emojis;
+    <div class="container">
+        
+        <h2 class="section-title">./Certifications_Log</h2>
+        <div class="certs-grid">
+            
+            <div class="cert-card">
+                <h3>Penetration Testing Professional</h3>
+                <p>MaharaTech - ITI</p>
+                <div class="status-bar">[STATUS: COMPLETED]</div>
+            </div>
 
-  if (forward) progress++;
-  else progress--;
+            <div class="cert-card">
+                <h3>Ethical Hacking</h3>
+                <p>MaharaTech - ITI</p>
+                <div class="status-bar">[STATUS: COMPLETED]</div>
+            </div>
 
-  if (progress === max) forward = false;
-  if (progress === 0) forward = true;
-}, 300);
-</script>
-<hr>
-<h3>Contact Me:</h3>
-<form action="https://getform.io/f/byvelwza" method="POST">
-  <label>Your Name:</label>
-  <input type="text" name="name"> <br>
+            <div class="cert-card">
+                <h3>CHC v2</h3>
+                <p>Techcampus</p>
+                <div class="status-bar">[STATUS: COMPLETED]</div>
+            </div>
 
-  <label>Your Email:</label>
-  <input type="email" name="email" > <br>   
+            <div class="cert-card">
+                <h3>Computer Network Fundamentals</h3>
+                <p>MaharaTech - ITI</p>
+                <div class="status-bar">[STATUS: COMPLETED]</div>
+            </div>
 
-  <label>Tell Me What You Want:</label>
-  <input type="text" name="message"> <br>
+            <div class="cert-card">
+                <h3>Forensic Medicine in Crime Detection</h3>
+                <p>Misr University for Science and Technology</p>
+                <div class="status-bar">[STATUS: COMPLETED]</div>
+            </div>
 
-  <label>I'm Not a Robot:</label>
-  <input type="checkbox" name="not_robot"> <br><br>
+            <div class="cert-card" style="border-color: yellow;">
+                <h3 style="color: yellow;">Cisco Cybersecurity</h3>
+                <p>In Progress</p>
+                <div class="status-bar">
+                    <span style="color: #0f0;">██████</span><span style="color: #333;">████</span> 60%
+                    <span class="loading-dots">Processing</span>
+                </div>
+            </div>
 
-  <input type="submit">
+        </div>
 
-</form>
+        <h2 class="section-title">./Initialize_Contact</h2>
+        <div class="contact-section">
+            <form action="https://getform.io/f/byvelwza" method="POST">
+                
+                <div class="form-group">
+                    <label>>> Enter Identity (Name):</label>
+                    <input type="text" name="name" class="form-control" placeholder="User..." required>
+                </div>
+
+                <div class="form-group">
+                    <label>>> Enter Frequency (Email):</label>
+                    <input type="email" name="email" class="form-control" placeholder="email@example.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label>>> Enter Payload (Message):</label>
+                    <input type="text" name="message" class="form-control" placeholder="Type your message..." required>
+                </div>
+
+                <div class="form-group" style="display: flex; align-items: center; gap: 10px;">
+                    <input type="checkbox" name="not_robot" id="robot" required>
+                    <label for="robot" style="margin:0; cursor:pointer;">I am not a bot [reCAPTCHA bypass]</label>
+                </div>
+
+                <br>
+                <button type="submit" class="btn-submit">EXECUTE_SEND();</button>
+
+            </form>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>System.exit(0) | © 2024 Abdalrhman Salah Ibrahim</p>
+    </footer>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
