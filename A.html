@@ -99,12 +99,13 @@
             font-family: 'Consolas', 'Courier New', monospace; font-size: 1rem; outline: none;
         }
 
-        /* --- ABOUT --- */
-        .about-container { display: flex; gap: 60px; align-items: flex-start; }
-        .about-photo-wrapper { flex: 0.6; max-width: 250px; }
+        /* --- ABOUT (PROFILE) --- */
+        .about-container { display: flex; gap: 40px; align-items: flex-start; }
+        .about-photo-wrapper { flex: 0.3; max-width: 300px; } /* Increased size and changed flex */
         .about-photo { width: 100%; height: auto; border: 1px solid var(--border); }
         .about-content { flex: 2; padding-top: 10px; }
-        
+        .bio-text { font-size: 1.2rem; color: var(--muted); margin-bottom: 40px; }
+
         .certs-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -116,27 +117,25 @@
             border: 1px solid var(--border);
             border-left: 5px solid var(--accent);
             transition: 0.2s;
+            counter-increment: cert-counter; /* Increment counter */
+            display: flex;
+            align-items: flex-start;
         }
         .cert-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .cert-card::before {
+            content: counter(cert-counter) "."; /* Display counter */
+            font-weight: bold;
+            color: var(--text);
+            margin-right: 10px;
+            font-size: 1.1rem;
+        }
+        .cert-content { flex: 1; }
         .cert-card h4 { margin-bottom: 5px; font-size: 1.1rem; color: var(--text); }
         .cert-card span { font-size: 0.9rem; color: var(--muted); }
 
-        /* --- BLOG (EDITED: FULL WIDTH) --- */
-        .tweet-feed { 
-            width: 100%; /* عرض كامل */
-            max-width: 100%; /* إزالة الحد الأقصى */
-            margin: 0; 
-        }
-        .tweet-card { 
-            background: #fff; 
-            border: 1px solid var(--border); 
-            padding: 30px; 
-            display: flex; 
-            gap: 25px; 
-            margin-bottom: 30px; 
-            text-align: left; 
-            width: 100%; /* الكارت ياخد العرض كله */
-        }
+        /* --- BLOG (FULL WIDTH) --- */
+        .tweet-feed { width: 100%; max-width: 100%; margin: 0; }
+        .tweet-card { background: #fff; border: 1px solid var(--border); padding: 30px; display: flex; gap: 25px; margin-bottom: 30px; text-align: left; width: 100%; }
         .tweet-avatar { width: 60px; height: 60px; object-fit: cover; border: 1px solid #000; flex-shrink: 0; }
         .tweet-content { flex: 1; }
         .tweet-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 1.1rem; }
@@ -167,7 +166,7 @@
 
         @media(max-width: 768px) {
             .about-container, .contact-split { grid-template-columns: 1fr; gap: 40px; }
-            .about-photo-wrapper { max-width: 100%; }
+            .about-photo-wrapper { max-width: 100%; flex: 1; } /* Full width on mobile */
             .nav-links { display: none; }
             .contact-form { padding: 30px; }
             .contact-info h3 { font-size: 2.5rem; }
@@ -181,8 +180,7 @@
             <div class="logo">Abdalrhman.</div>
             <div class="nav-links">
                 <button onclick="show('home')" class="active">Terminal</button>
-                <button onclick="show('about')">Profile</button>
-                <button onclick="show('blog')">Blog</button>
+                <button onclick="show('about')">About</button> <button onclick="show('blog')">Blog</button>
                 <button onclick="show('contact')">Contact</button>
             </div>
         </div>
@@ -217,32 +215,45 @@
                 </div>
                 
                 <div class="about-content">
+                    <div class="bio-text">There is nothing to write here.</div>
+                    
                     <h3 style="margin-bottom: 30px; font-size: 1.5rem; border-bottom: 2px solid var(--text); display: inline-block; text-transform: uppercase;">CERTIFICATIONS</h3>
                     
-                    <div class="certs-grid">
-                        <div class="cert-card">
-                            <h4>Penetration Testing Professional</h4>
-                            <span>MaharaTech - ITI</span>
+                    <div class="certs-grid" style="counter-reset: cert-counter;"> <div class="cert-card">
+                            <div class="cert-content">
+                                <h4>Penetration Testing Professional</h4>
+                                <span>MaharaTech - ITI</span>
+                            </div>
                         </div>
                         <div class="cert-card">
-                            <h4>Ethical Hacking</h4>
-                            <span>MaharaTech - ITI</span>
+                            <div class="cert-content">
+                                <h4>Ethical Hacking</h4>
+                                <span>MaharaTech - ITI</span>
+                            </div>
                         </div>
                         <div class="cert-card">
-                            <h4>Computer Network Fundamentals</h4>
-                            <span>MaharaTech - ITI</span>
+                            <div class="cert-content">
+                                <h4>Computer Network Fundamentals</h4>
+                                <span>MaharaTech - ITI</span>
+                            </div>
                         </div>
                         <div class="cert-card">
-                            <h4>CHC v2</h4>
-                            <span>Techcampus</span>
+                            <div class="cert-content">
+                                <h4>CHC v2</h4>
+                                <span>Techcampus</span>
+                            </div>
                         </div>
                         <div class="cert-card">
-                            <h4>Forensic Medicine</h4>
-                            <span>Misr University</span>
+                            <div class="cert-content">
+                                <h4>Forensic Medicine</h4>
+                                <span>Misr University</span>
+                            </div>
                         </div>
                         <div class="cert-card" style="border-left-color: #ffc107;">
-                            <h4 style="color: #d39e00;">Cisco Cybersecurity</h4>
-                            <span>In Progress</span>
+                            <div class="cert-content">
+                                <h4 style="color: #d39e00;">Cisco Cybersecurity</h4>
+                                <span>In Progress</span>
+                            </div>
                         </div>
                     </div>
                 </div>
