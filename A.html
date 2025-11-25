@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abdalrhman</title>
+    <title>Abdalrhman </title>
     <link rel="icon" type="image/x-icon" href="icon.png">
     <style>
         :root {
@@ -59,6 +59,7 @@
         .section.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
+        /* --- HOME SECTION --- */
         #home { padding: 60px 0; }
         
         .terminal-container {
@@ -72,8 +73,8 @@
         .cmd-line { display: flex; color: #fff; margin-top: 10px; }
         .prompt { margin-right: 10px; color: var(--accent); font-weight: bold; }
         #cmd-input { background: transparent; border: none; color: #fff; flex: 1; font-family: 'Consolas', 'Courier New', monospace; font-size: 1.1rem; outline: none; }
-        .disclaimer { font-size: 0.85rem; color: #adb5bd; margin-top: 15px; font-style: italic; }
-
+        
+        /* --- ABOUT --- */
         .about-container { display: flex; flex-direction: column; }
         .about-header-section { display: flex; gap: 40px; align-items: center; margin-bottom: 80px; }
         .about-photo-wrapper { flex-shrink: 0; width: 200px; }
@@ -93,6 +94,7 @@
         .cert-card li span { display: block; font-weight: 400; font-size: 0.9rem; color: var(--muted); margin-top: 5px; }
         .cisco-status { color: #d39e00; font-weight: 700; }
 
+        /* --- BLOG --- */
         .tweet-feed { width: 100%; margin: 0; }
         .tweet-card { background: #fff; border: 1px solid var(--border); padding: 30px; display: flex; gap: 25px; margin-bottom: 30px; text-align: left; width: 100%; }
         .tweet-avatar { width: 60px; height: 60px; object-fit: cover; border: 1px solid #000; flex-shrink: 0; }
@@ -103,6 +105,7 @@
         .tweet-time { color: var(--muted); font-weight: 400; }
         .tweet-body { font-size: 1.2rem; color: var(--text); line-height: 1.5; text-align: left; }
 
+        /* --- CONTACT --- */
         .contact-split { display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; align-items: start; }
         .contact-info h3 { font-size: 3rem; line-height: 1.1; margin-bottom: 20px; color: var(--text); }
         .contact-info p { font-size: 1.1rem; color: var(--muted); margin-bottom: 40px; }
@@ -131,7 +134,7 @@
         <div class="container nav-content">
             <div class="logo">Abdalrhman.</div>
             <div class="nav-links">
-                <button onclick="show('home')" class="active">Terminal</button>
+                <button onclick="show('home')" class="active">Home</button>
                 <button onclick="show('about')">About</button>
                 <button onclick="show('blog')">Blog</button>
                 <button onclick="show('contact')">Contact</button>
@@ -141,15 +144,14 @@
 
     <div id="home" class="section active">
         <div class="container">
-            <h1 style="margin-bottom: 10px; font-size: 2.5rem;">ENTER YOUR FIRST AND SECOND NAME</h1>
-            <p style="color: #6c757d; margin-bottom: 20px;">If you are the target, a message will appear.</p>
             
             <div class="terminal-container" onclick="document.getElementById('cmd-input').focus()">
                 <div class="terminal-header">root@kali:~ (zsh)</div>
                 <div class="terminal-body" id="terminal-output">
                     <div class="output-line" style="color:#fff">Linux kali 6.6.9-amd64 #1 SMP PREEMPT_DYNAMIC Kali 2024.2</div>
                     <div class="output-line" style="color:#fff">The programs included with the Kali GNU/Linux system are free software.</div>
-                    <div class="output-line" style="color:#fff; margin-bottom: 15px;">System ready. Waiting for input...</div>
+                    <div class="output-line" style="color:#fff">System ready.</div>
+                    <div class="output-line" style="color:#ffc107; margin-bottom: 15px;">enter your first and second name, if you are the target, a message will appear.</div>
                     
                     <div class="cmd-line">
                         <span class="prompt">┌──(root💀kali)-[~]<br>└─#</span>
@@ -157,7 +159,6 @@
                     </div>
                 </div>
             </div>
-            <div class="disclaimer">- I cannot read your reply here, but you can send it to me in Contact.</div>
         </div>
     </div>
 
@@ -274,29 +275,18 @@
         const input = document.getElementById('cmd-input');
         const output = document.getElementById('terminal-output');
 
- 
         input.addEventListener('keydown', function(e) {
             if(e.key === 'Enter') {
-                e.preventDefault(); 
-                
                 const val = this.value.trim();
                 const valLower = val.toLowerCase();
                 
-          
                 const cmdBlock = document.createElement('div');
-                cmdBlock.innerHTML = `<div style="margin-top:10px; margin-bottom:5px;"><span style="color:#0d6efd; font-weight:bold;">┌──(root💀kali)-[~]<br>└─#</span> <span style="color:#fff">${val}</span></div>`;
+                cmdBlock.innerHTML = `<div style="margin-top:10px; margin-bottom:5px;"><span style="color:#0d6efd; font-weight:bold;">┌──(root💀kali)-[~]<br>└─#</span> <span style="color:#fff">${this.value}</span></div>`;
                 output.insertBefore(cmdBlock, input.parentElement.parentElement);
 
-            
                 if(valLower === 'clear') {
-                
                     const lines = output.querySelectorAll('.output-line, div[style*="margin-top"]');
-                    lines.forEach(line => {
-              
-                        if(!line.innerHTML.includes('Kali GNU') && !line.innerHTML.includes('System ready')) {
-                           line.remove();
-                        }
-                    });
+                    lines.forEach(line => line.remove());
                 } 
                 else if(valLower === 'sara mahmoud' || valLower === 'sara mahmoud sami' || valLower === 'sara sami') {
                     const response = document.createElement('div');
@@ -316,7 +306,6 @@
                     output.insertBefore(response, input.parentElement.parentElement);
                 }
 
-          
                 this.value = '';
                 output.scrollTop = output.scrollHeight;
             }
