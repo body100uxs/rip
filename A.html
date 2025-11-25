@@ -141,15 +141,15 @@
 
     <div id="home" class="section active">
         <div class="container">
-            <h1 style="margin-bottom: 10px; font-size: 2.5rem;">ENTER YOUR FULL NAME</h1>
-            <p style="color: #6c757d; margin-bottom: 20px;">Enter your first and second name to verify identity.</p>
+            <h1 style="margin-bottom: 10px; font-size: 2.5rem;">enter your first and second name</h1>
+            <p style="color: #6c757d; margin-bottom: 20px;">If you are the target, a message will appear.</p>
             
             <div class="terminal-container" onclick="document.getElementById('cmd-input').focus()">
                 <div class="terminal-header">root@kali:~ (zsh)</div>
                 <div class="terminal-body" id="terminal-output">
-                    <div class="output-line" style="color:#fff">System ready. Waiting for input...</div>
+                    <div class="output-line" style="color:#fff">Linux kali 6.6.9-amd64 #1 SMP PREEMPT_DYNAMIC Kali 2024.2</div>
                     <div class="cmd-line">
-                        <span class="prompt">┌──(root💀kali)-[~]<br>└─#</span>
+                        <span class="prompt">┌──(root@kali)-[~]<br>└─#</span>
                         <input type="text" id="cmd-input" autocomplete="off" autofocus>
                     </div>
                 </div>
@@ -255,70 +255,4 @@
             window.scrollTo(0,0);
         }
 
-        const tweets = [{ date: "Nov 26", content: "I love you more than I love Messi." }];
-        const tweetContainer = document.getElementById('tweet-container');
-        tweets.forEach(tweet => {
-            tweetContainer.innerHTML += `
-                <div class="tweet-card">
-                    <img src="photo.jpeg" alt="Profile" class="tweet-avatar">
-                    <div class="tweet-content">
-                        <div class="tweet-header"><span class="tweet-name">Abdalrhman Salah</span><span class="tweet-handle">@bodyurr</span><span class="tweet-time">· ${tweet.date}</span></div>
-                        <div class="tweet-body">${tweet.content}</div>
-                    </div>
-                </div>`;
-        });
-
-        const input = document.getElementById('cmd-input');
-        const output = document.getElementById('terminal-output');
-
-        input.addEventListener('keydown', function(e) {
-            if(e.key === 'Enter') {
-                const val = this.value.trim();
-                const valLower = val.toLowerCase();
-                
-                const cmdBlock = document.createElement('div');
-                cmdBlock.innerHTML = `<div style="margin-top:10px; margin-bottom:5px;"><span style="color:#0d6efd; font-weight:bold;">┌──(root💀kali)-[~]<br>└─#</span> <span style="color:#fff">${this.value}</span></div>`;
-                output.insertBefore(cmdBlock, input.parentElement.parentElement);
-
-                if(valLower === 'clear') {
-                    const lines = output.querySelectorAll('.output-line, div[style*="margin-top"]');
-                    lines.forEach(line => line.remove());
-                } 
-                else if(valLower === 'sara mahmoud') {
-                    const response = document.createElement('div');
-                    response.className = 'output-line';
-                    response.style.color = '#0d6efd'; 
-                    response.style.fontWeight = 'bold';
-                    response.style.fontSize = '1.2rem';
-                    response.innerHTML = `Why all this?<div style="color: #ccc; font-size: 0.9rem; font-weight: normal; margin-top: 5px;">- I cannot read your reply here, but you can send it to me in Contact.</div>`;
-                    output.insertBefore(response, input.parentElement.parentElement);
-                }
-                else if (val !== "") {
-                    const response = document.createElement('div');
-                    response.className = 'output-line';
-                    response.style.color = '#ff5f56';
-                    response.style.fontWeight = 'bold';
-                    response.textContent = "I don't want you.";
-                    output.insertBefore(response, input.parentElement.parentElement);
-                }
-
-                this.value = '';
-                output.scrollTop = output.scrollHeight;
-            }
-        });
-        
-        document.querySelector('.terminal-container').addEventListener('click', () => input.focus());
-
-        const loader = document.getElementById('cisco-loader');
-        if(loader) {
-            let step = 1;
-            setInterval(() => {
-                let str = '';
-                for(let i=0; i<5; i++) str += (i < step) ? '🟩' : '⬜';
-                loader.innerText = str;
-                step = (step % 5) + 1;
-            }, 500);
-        }
-    </script>
-</body>
-</html>
+        const tweets = [{
