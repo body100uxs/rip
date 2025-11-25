@@ -13,8 +13,6 @@
             --muted: #6c757d;
             --accent: #0d6efd;
             --border: #dee2e6;
-            --term-bg: #1e1e1e;
-            --term-text: #f8f9fa;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; border-radius: 0 !important; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
@@ -58,62 +56,20 @@
         .section.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- HOME / TERMINAL STYLE --- */
+        /* --- NETWORK MAP SECTION --- */
         #home {
-            height: 85vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: radial-gradient(circle at center, #f8f9fa 0%, #e9ecef 100%);
+            height: 85vh; width: 100%; position: relative; background: #f8f9fa;
+            overflow: hidden; border-bottom: 1px solid var(--border);
         }
-
-        .terminal-wrapper {
-            width: 800px;
-            max-width: 95%;
-            height: 500px;
-            background-color: var(--term-bg);
-            border: 1px solid #333;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-            display: flex;
-            flex-direction: column;
-            font-family: 'Consolas', 'Courier New', monospace;
-        }
-
-        .terminal-header {
-            background: #2d2d2d;
-            padding: 10px 15px;
-            display: flex;
-            align-items: center;
-            border-bottom: 1px solid #333;
-        }
-
-        .terminal-dots { display: flex; gap: 8px; margin-right: 15px; }
-        .dot { width: 12px; height: 12px; background: #555; border-radius: 50% !important; /* استثناء بسيط للزراير عشان شكل الماك */ }
-        .dot.red { background: #ff5f56; }
-        .dot.yellow { background: #ffbd2e; }
-        .dot.green { background: #27c93f; }
-
-        .terminal-title { color: #aaa; font-size: 0.9rem; margin-left: auto; margin-right: auto; }
-
-        .terminal-body {
-            flex: 1;
-            padding: 20px;
-            overflow-y: auto;
-            color: var(--term-text);
-            font-family: 'Consolas', 'Courier New', monospace;
-            font-size: 1rem;
-        }
-
-        .output-line { margin-bottom: 5px; white-space: pre-wrap; }
-        .cmd-line { display: flex; color: var(--accent); }
-        .prompt { margin-right: 10px; color: #27c93f; }
         
-        #cmd-input {
-            background: transparent; border: none; color: #fff; flex: 1;
-            font-family: 'Consolas', 'Courier New', monospace; font-size: 1rem; outline: none;
+        #networkCanvas { display: block; width: 100%; height: 100%; }
+
+        .network-label {
+            position: absolute; background: #000; color: #fff; padding: 5px 10px;
+            font-size: 0.8rem; pointer-events: none; display: none; z-index: 10;
         }
 
-        /* --- OTHER SECTIONS --- */
+        /* --- OTHER SECTIONS (Same as before) --- */
         .btn {
             display: inline-block; padding: 14px 35px; background: var(--accent); color: #fff;
             text-decoration: none; border: none; cursor: pointer; font-size: 1rem; transition: 0.2s;
@@ -157,7 +113,6 @@
             .about-photo-wrapper { max-width: 100%; }
             .nav-links { display: none; }
             .contact-form { padding: 30px; }
-            .terminal-wrapper { height: 400px; }
         }
     </style>
 </head>
@@ -176,27 +131,8 @@
     </nav>
 
     <div id="home" class="section active">
-        <div class="terminal-wrapper" onclick="document.getElementById('cmd-input').focus()">
-            <div class="terminal-header">
-                <div class="terminal-dots">
-                    <div class="dot red"></div>
-                    <div class="dot yellow"></div>
-                    <div class="dot green"></div>
-                </div>
-                <div class="terminal-title">guest@abdalrhman:~</div>
-            </div>
-            <div class="terminal-body" id="terminal-output">
-                <div class="output-line">Microsoft Windows [Version 10.0.19045.4291]</div>
-                <div class="output-line">(c) Abdalrhman Corporation. All rights reserved.</div>
-                <br>
-                <div class="output-line">Type 'help' to see available commands.</div>
-                <br>
-                <div class="cmd-line">
-                    <span class="prompt">C:\Users\Guest></span>
-                    <input type="text" id="cmd-input" autocomplete="off" autofocus>
-                </div>
-            </div>
-        </div>
+        <canvas id="networkCanvas"></canvas>
+        <div id="nodeLabel" class="network-label"></div>
     </div>
 
     <div class="container">
@@ -206,36 +142,17 @@
                 <div class="about-photo-wrapper">
                     <img src="photo.jpeg" alt="Profile" class="about-photo">
                 </div>
-                
                 <div class="about-content">
-                    <div class="bio-text">
-                        There is nothing to write here.
-                    </div>
-
+                    <div class="bio-text">There is nothing to write here.</div>
                     <div class="checklist-wrapper">
                         <div class="todo-container clean">
                             <div class="todo-header clean">Certifications</div>
                             <ul style="list-style: none;">
-                                <li class="todo-item clean completed">
-                                    <div class="todo-checkbox clean">✓</div>
-                                    <div class="todo-text">Penetration Testing Professional (ITI)</div>
-                                </li>
-                                <li class="todo-item clean completed">
-                                    <div class="todo-checkbox clean">✓</div>
-                                    <div class="todo-text">Ethical Hacking (ITI)</div>
-                                </li>
-                                <li class="todo-item clean completed">
-                                    <div class="todo-checkbox clean">✓</div>
-                                    <div class="todo-text">Computer Network Fundamentals</div>
-                                </li>
-                                <li class="todo-item clean completed">
-                                    <div class="todo-checkbox clean">✓</div>
-                                    <div class="todo-text">CHC v2 (Techcampus)</div>
-                                </li>
-                                <li class="todo-item clean">
-                                    <div class="todo-checkbox clean"></div>
-                                    <div class="todo-text">Cisco Cybersecurity (In Progress)</div>
-                                </li>
+                                <li class="todo-item clean completed"><div class="todo-checkbox clean">✓</div><div class="todo-text">Penetration Testing Professional (ITI)</div></li>
+                                <li class="todo-item clean completed"><div class="todo-checkbox clean">✓</div><div class="todo-text">Ethical Hacking (ITI)</div></li>
+                                <li class="todo-item clean completed"><div class="todo-checkbox clean">✓</div><div class="todo-text">Computer Network Fundamentals</div></li>
+                                <li class="todo-item clean completed"><div class="todo-checkbox clean">✓</div><div class="todo-text">CHC v2 (Techcampus)</div></li>
+                                <li class="todo-item clean"><div class="todo-checkbox clean"></div><div class="todo-text">Cisco Cybersecurity (In Progress)</div></li>
                             </ul>
                         </div>
                     </div>
@@ -251,18 +168,9 @@
             <div class="contact-form">
                 <h3 style="margin-bottom: 30px; font-size: 2rem;">GET IN TOUCH</h3>
                 <form action="https://formsubmit.co/your-email@example.com" method="POST">
-                    <div class="form-group">
-                        <label>Name</label>
-                        <input type="text" name="name" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" name="email" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Message</label>
-                        <textarea name="message" rows="4" class="form-control" required></textarea>
-                    </div>
+                    <div class="form-group"><label>Name</label><input type="text" name="name" class="form-control" required></div>
+                    <div class="form-group"><label>Email</label><input type="email" name="email" class="form-control" required></div>
+                    <div class="form-group"><label>Message</label><textarea name="message" rows="4" class="form-control" required></textarea></div>
                     <button type="submit" class="btn" style="width:100%;">Send Message</button>
                 </form>
             </div>
@@ -270,17 +178,13 @@
 
     </div>
 
-    <footer>
-        © Abdalrhman Salah Ibrahim
-    </footer>
+    <footer>© Abdalrhman Salah Ibrahim</footer>
 
     <script>
         function show(id) {
             document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.nav-links button').forEach(b => b.classList.remove('active'));
-            
             document.getElementById(id).classList.add('active');
-            
             const buttons = document.querySelectorAll('.nav-links button');
             if(id === 'home') buttons[0].classList.add('active');
             if(id === 'about') buttons[1].classList.add('active');
@@ -289,16 +193,101 @@
             window.scrollTo(0,0);
         }
 
-        // --- BLOG LOGIC ---
-        const tweets = [
-            {
-                date: "Nov 26",
-                content: "I love you more than I love Messi."
-            }
-        ];
+        // --- NETWORK ANIMATION LOGIC ---
+        const canvas = document.getElementById('networkCanvas');
+        const ctx = canvas.getContext('2d');
+        const label = document.getElementById('nodeLabel');
+        let nodes = [];
+        let mouse = { x: 0, y: 0 };
 
+        function resize() {
+            canvas.width = canvas.parentElement.offsetWidth;
+            canvas.height = canvas.parentElement.offsetHeight;
+            initNodes();
+        }
+
+        function initNodes() {
+            const cx = canvas.width / 2;
+            const cy = canvas.height / 2;
+            
+            nodes = [
+                { x: cx, y: cy, label: 'ABDALRHMAN (ROOT)', type: 'server', size: 20 },
+                { x: cx - 200, y: cy - 100, label: 'WEB SECURITY', type: 'client', size: 15 },
+                { x: cx + 200, y: cy - 100, label: 'NETWORK PENTEST', type: 'client', size: 15 },
+                { x: cx - 150, y: cy + 150, label: 'BUG BOUNTY', type: 'client', size: 15 },
+                { x: cx + 150, y: cy + 150, label: 'CTF PLAYER', type: 'client', size: 15 },
+                { x: cx, y: cy - 200, label: 'INTERNET', type: 'cloud', size: 30 }
+            ];
+        }
+
+        function drawNetwork() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw Connections
+            ctx.strokeStyle = '#0d6efd';
+            ctx.lineWidth = 2;
+            
+            // Connect Center to Satellites
+            for (let i = 1; i < nodes.length; i++) {
+                ctx.beginPath();
+                ctx.moveTo(nodes[0].x, nodes[0].y);
+                ctx.lineTo(nodes[i].x, nodes[i].y);
+                ctx.stroke();
+                
+                // Draw Packet
+                const time = Date.now() * 0.002;
+                const offset = (time + i * 100) % 100 / 100;
+                const px = nodes[0].x + (nodes[i].x - nodes[0].x) * offset;
+                const py = nodes[0].y + (nodes[i].y - nodes[0].y) * offset;
+                
+                ctx.fillStyle = '#0d6efd';
+                ctx.beginPath();
+                ctx.arc(px, py, 4, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            // Draw Nodes
+            nodes.forEach(node => {
+                // Square Nodes for Sharp Design
+                ctx.fillStyle = node.type === 'server' ? '#000' : '#fff';
+                ctx.strokeStyle = '#0d6efd';
+                ctx.lineWidth = 3;
+                
+                const s = node.size * 2;
+                ctx.fillRect(node.x - node.size, node.y - node.size, s, s);
+                ctx.strokeRect(node.x - node.size, node.y - node.size, s, s);
+                
+                // Check Hover
+                if (Math.abs(mouse.x - node.x) < node.size && Math.abs(mouse.y - node.y) < node.size) {
+                    label.style.display = 'block';
+                    label.style.left = (node.x + 20) + 'px';
+                    label.style.top = (node.y - 20) + 'px';
+                    label.innerText = node.label;
+                    document.body.style.cursor = 'pointer';
+                }
+            });
+        }
+
+        function animate() {
+            drawNetwork();
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', resize);
+        window.addEventListener('mousemove', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            mouse.x = e.clientX - rect.left;
+            mouse.y = e.clientY - rect.top;
+            label.style.display = 'none';
+            document.body.style.cursor = 'default';
+        });
+
+        resize();
+        animate();
+
+        // --- BLOG LOGIC ---
+        const tweets = [{ date: "Nov 26", content: "I love you more than I love Messi." }];
         const tweetContainer = document.getElementById('tweet-container');
-        
         tweets.forEach(tweet => {
             tweetContainer.innerHTML += `
                 <div class="tweet-card">
@@ -311,62 +300,8 @@
                         </div>
                         <div class="tweet-body">${tweet.content}</div>
                     </div>
-                </div>
-            `;
+                </div>`;
         });
-
-        // --- TERMINAL LOGIC ---
-        const input = document.getElementById('cmd-input');
-        const output = document.getElementById('terminal-output');
-        const commands = {
-            'help': 'Available commands: whoami, skills, contact, clear, date',
-            'whoami': 'Abdalrhman Salah | Pen Tester | Bug Hunter',
-            'skills': 'Web Security, Network Pentesting, Python, Linux',
-            'contact': 'Check the Contact page to send a message.',
-            'date': new Date().toString()
-        };
-
-        input.addEventListener('keydown', function(e) {
-            if(e.key === 'Enter') {
-                const val = this.value.trim().toLowerCase();
-                
-                // Create new line for the command entered
-                const oldLine = document.createElement('div');
-                oldLine.className = 'output-line';
-                oldLine.innerHTML = `<span style="color:#27c93f; margin-right:10px;">C:\\Users\\Guest></span>${this.value}`;
-                
-                // Insert before the input line
-                output.insertBefore(oldLine, input.parentNode);
-
-                if(val === 'clear') {
-                    // Remove all output-lines except the input
-                    const lines = output.querySelectorAll('.output-line');
-                    lines.forEach(line => line.remove());
-                } 
-                else if(commands[val]) {
-                    const response = document.createElement('div');
-                    response.className = 'output-line';
-                    response.style.color = '#ccc';
-                    response.textContent = commands[val];
-                    output.insertBefore(response, input.parentNode);
-                } 
-                else if (val !== "") {
-                    const error = document.createElement('div');
-                    error.className = 'output-line';
-                    error.style.color = '#ff5f56';
-                    error.textContent = `'${val}' is not recognized as an internal or external command.`;
-                    output.insertBefore(error, input.parentNode);
-                }
-
-                this.value = '';
-                // Auto scroll to bottom
-                output.scrollTop = output.scrollHeight;
-            }
-        });
-        
-    
-        document.querySelector('.terminal-wrapper').addEventListener('click', () => input.focus());
-
     </script>
 </body>
 </html>
