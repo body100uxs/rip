@@ -59,7 +59,6 @@
         .section.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- HOME (TERMINAL) --- */
         #home { padding: 60px 0; }
         
         .terminal-container {
@@ -100,7 +99,6 @@
 
         .disclaimer { font-size: 0.85rem; color: #adb5bd; margin-top: 15px; font-style: italic; }
 
-        /* --- ABOUT --- */
         .about-container { display: flex; flex-direction: column; }
         .about-header-section { display: flex; gap: 40px; align-items: center; margin-bottom: 80px; }
         .about-photo-wrapper { flex-shrink: 0; width: 200px; }
@@ -120,7 +118,6 @@
         .cert-card li span { display: block; font-weight: 400; font-size: 0.9rem; color: var(--muted); margin-top: 5px; }
         .cisco-status { color: #d39e00; font-weight: 700; }
 
-        /* --- BLOG --- */
         .tweet-feed { width: 100%; margin: 0; }
         .tweet-card { background: #fff; border: 1px solid var(--border); padding: 30px; display: flex; gap: 25px; margin-bottom: 30px; text-align: left; width: 100%; }
         .tweet-avatar { width: 60px; height: 60px; object-fit: cover; border: 1px solid #000; flex-shrink: 0; }
@@ -131,7 +128,6 @@
         .tweet-time { color: var(--muted); font-weight: 400; }
         .tweet-body { font-size: 1.2rem; color: var(--text); line-height: 1.5; text-align: left; }
 
-        /* --- CONTACT --- */
         .contact-split { display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; align-items: start; }
         .contact-info h3 { font-size: 3rem; line-height: 1.1; margin-bottom: 20px; color: var(--text); }
         .contact-info p { font-size: 1.1rem; color: var(--muted); margin-bottom: 40px; }
@@ -139,8 +135,35 @@
         .contact-form-clean label { display: block; margin-bottom: 10px; font-size: 0.9rem; font-weight: 700; color: var(--text); text-transform: uppercase; letter-spacing: 1px; }
         .contact-form-clean .form-control { width: 100%; padding: 15px 0; background: transparent; border: none; border-bottom: 2px solid var(--border); font-size: 1.2rem; outline: none; color: var(--text); transition: 0.3s; }
         .contact-form-clean .form-control:focus { border-color: var(--accent); }
+        .contact-form-clean .honeypot-field { 
+            position: absolute; 
+            left: -9999px; 
+            opacity: 0;
+            visibility: hidden;
+        }
         .btn { display: inline-block; padding: 15px 40px; background: var(--text); color: #fff; text-decoration: none; border: none; cursor: pointer; font-size: 1rem; transition: 0.2s; font-weight: 700; letter-spacing: 1px; }
         .btn:hover { background: var(--accent); }
+        .captcha-group { 
+            margin-top: 30px; 
+            padding: 15px; 
+            border: 1px solid var(--border);
+            background-color: #f7f7f7;
+            display: flex;
+            flex-direction: column;
+        }
+        .captcha-group label {
+            margin-bottom: 10px;
+            font-size: 1rem;
+            text-transform: none;
+            letter-spacing: normal;
+        }
+        .captcha-group input {
+            padding: 10px;
+            border: 1px solid var(--border);
+            font-size: 1.1rem;
+            width: 150px;
+        }
+
 
         footer { margin-top: auto; background: var(--text); color: #fff; text-align: center; padding: 30px; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; }
 
@@ -170,8 +193,8 @@
 
     <div id="home" class="section active">
         <div class="container">
-            <h1 style="margin-bottom: 10px; font-size: 2.5rem;">enter your first and second name ?</h1>
-            <p style="color: #6c757d; margin-bottom: 20px;">If you are the target, a message will appear.</p>
+            <h1 style="margin-bottom: 10px; font-size: 2.5rem;">Enter your first and second name ?</h1>
+            <p style="color: #6c757d; margin-bottom: 20px;">This is a message for you only.</p>
             
             <div class="terminal-container" onclick="document.getElementById('cmd-input').focus()">
                 <div class="terminal-header">root@kali:~ (zsh)</div>
@@ -261,10 +284,24 @@
                     <p>Have a project in mind? Send me a message and let's talk.</p>
                 </div>
                 <div class="contact-form-clean">
-                    <form action="https://formsubmit.co/your-email@example.com" method="POST">
+                    <form action="https://formsubmit.co/body362222@gmail.com" method="POST" id="contactForm">
+                        <input type="hidden" name="_next" value="https://your-domain.com/thanks.html">
+                        
+                        <div class="form-group honeypot-field">
+                            <label>Leave this field empty</label>
+                            <input type="text" name="_honey" class="form-control">
+                        </div>
+                        
                         <div class="form-group"><label>Name</label><input type="text" name="name" class="form-control" required></div>
                         <div class="form-group"><label>Email</label><input type="email" name="email" class="form-control" required></div>
                         <div class="form-group"><label>Message</label><textarea name="message" rows="2" class="form-control" required></textarea></div>
+                        
+                        <div class="form-group captcha-group">
+                            <label for="captcha">Anti-spam check: What is <span id="num1"></span> + <span id="num2"></span>?</label>
+                            <input type="number" id="captcha" name="captcha_answer" class="form-control" required>
+                            <input type="hidden" id="captcha_expected" name="captcha_expected">
+                        </div>
+
                         <button type="submit" class="btn">SEND MESSAGE</button>
                     </form>
                 </div>
@@ -337,7 +374,7 @@
                     response.style.marginBottom = "20px";
                     response.style.color = '#ff5f56';
                     response.style.fontWeight = 'bold';
-                    response.textContent = "Not u"; // Updated text
+                    response.textContent = "Not u"; 
                     historyDiv.appendChild(response);
                 }
 
@@ -358,6 +395,37 @@
                 step = (step % 5) + 1;
             }, 500);
         }
+
+        const form = document.getElementById('contactForm');
+        const num1Span = document.getElementById('num1');
+        const num2Span = document.getElementById('num2');
+        const captchaInput = document.getElementById('captcha');
+        const captchaExpectedInput = document.getElementById('captcha_expected');
+
+        function generateCaptcha() {
+            const num1 = Math.floor(Math.random() * 10) + 1; 
+            const num2 = Math.floor(Math.random() * 10) + 1; 
+            const sum = num1 + num2;
+
+            num1Span.textContent = num1;
+            num2Span.textContent = num2;
+            captchaExpectedInput.value = sum; 
+
+            captchaInput.value = '';
+        }
+
+        form.addEventListener('submit', function(e) {
+            const userAnswer = parseInt(captchaInput.value.trim());
+            const correctAnswer = parseInt(captchaExpectedInput.value);
+
+            if (userAnswer !== correctAnswer) {
+                e.preventDefault();
+                alert("Please complete the anti-spam check correctly!");
+                generateCaptcha(); 
+            }
+        });
+
+        generateCaptcha();
     </script>
 </body>
 </html>
