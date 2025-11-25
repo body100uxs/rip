@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdalrhman | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* إعدادات عامة */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #0f1016; /* لون الخلفية الداكن */
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* تنسيق الروابط */
+        a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        /* الناف بار - القائمة العلوية */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #e94560; /* لون مميز مثل الفيديو */
+        }
+
+        .nav-links ul {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links ul li {
+            margin: 0 20px;
+        }
+
+        .nav-links ul li a:hover {
+            color: #e94560;
+        }
+
+        .contact-btn {
+            background-color: transparent;
+            border: 2px solid #e94560;
+            padding: 10px 25px;
+            border-radius: 50px;
+            color: #fff;
+            transition: 0.3s;
+        }
+
+        .contact-btn:hover {
+            background-color: #e94560;
+        }
+
+        /* قسم الهيرو (الواجهة الرئيسية) */
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 50px 8%;
+            height: 90vh; /* ارتفاع الشاشة */
+        }
+
+        .hero-text {
+            flex-basis: 50%;
+        }
+
+        .hero-text h3 {
+            font-size: 20px;
+            color: #ccc;
+        }
+
+        .hero-text h1 {
+            font-size: 55px;
+            margin: 15px 0;
+            line-height: 1.2;
+        }
+
+        .hero-text h1 span {
+            color: #e94560;
+        }
+
+        .typing-text {
+            font-size: 24px;
+            font-weight: 600;
+            color: #e94560;
+        }
+
+        .hero-buttons {
+            margin-top: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: 600;
+            margin-right: 15px;
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            background-color: #e94560;
+            color: #fff;
+        }
+        
+        .btn-primary:hover {
+            background-color: #c0394d;
+        }
+
+        .btn-secondary {
+            border: 2px solid #fff;
+            color: #fff;
+        }
+
+        .btn-secondary:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .social-icons {
+            margin-top: 30px;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border: 1px solid #fff;
+            border-radius: 50%;
+            margin-right: 15px;
+            transition: 0.3s;
+        }
+
+        .social-icons a:hover {
+            background-color: #e94560;
+            border-color: #e94560;
+            transform: translateY(-5px);
+        }
+
+        /* تنسيق الصورة */
+        .hero-img {
+            flex-basis: 45%;
+            text-align: right;
+            position: relative;
+        }
+
+        .hero-img img {
+            width: 100%;
+            max-width: 500px;
+            /* تأثير بسيط للصورة */
+            filter: drop-shadow(0 0 20px rgba(233, 69, 96, 0.3));
+        }
+
+        /* تنسيق الأقسام الإضافية (الشهادات والفورم) لتناسب التصميم الجديد */
+        section {
+            padding: 50px 8%;
+            border-top: 1px solid #222;
+        }
+
+        h2.section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 35px;
+        }
+
+        .certs-list li {
+            background: #1a1a2e;
+            margin-bottom: 10px;
+            padding: 15px;
+            border-radius: 8px;
+            list-style: none;
+            border-left: 4px solid #e94560;
+        }
+
+        /* تنسيق الفورم */
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #16213e;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 5px;
+            color: #ccc;
+        }
+
+        form input[type="text"], 
+        form input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 5px;
+            background: #0f1016;
+            color: #fff;
+        }
+
+        form input[type="submit"] {
+            background-color: #e94560;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        /* للتجاوب مع الموبايل */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column-reverse;
+                height: auto;
+                text-align: center;
+                padding-top: 100px;
+            }
+            .hero-text, .hero-img {
+                flex-basis: 100%;
+            }
+            .hero-img img {
+                margin-bottom: 30px;
+                max-width: 300px;
+            }
+            nav {
+                flex-direction: column;
+            }
+            .nav-links ul {
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Abdalrhman.</div>
+        <div class="nav-links">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#certs">Certifications</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+        <a href="#contact" class="contact-btn">Contact Me</a>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-text">
+            <h3>Hello, My Name is</h3>
+            <h1>Abdalrhman <br> <span>Salah Ibrahim</span></h1>
+            <div class="typing-text">I'm a <span id="typewriter"></span><span class="cursor">|</span></div>
+            
+            <div class="hero-buttons">
+                <a href="#about" class="btn btn-primary">More About Me</a>
+                <a href="#" class="btn btn-secondary">View Resume</a>
+            </div>
+
+            <div class="social-icons">
+                <a href="https://linkedin.com/in/abdalrhman-salah-ibrahim-51725a396"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+
+        <div class="hero-img">
+            <img src="https://images.unsplash.com/photo-1535581652167-3d6b98c36cd9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Profile Image">
+        </div>
+    </header>
+
+    <section id="certs">
+        <h2 class="section-title">My Certifications</h2>
+        <ol class="certs-list">
+            <li>
+                <strong>Penetration Testing Professional </strong> - MaharaTech (ITI)
+            </li>
+            <li>
+                <strong>Ethical Hacking</strong> - MaharaTech (ITI)
+            </li>
+            <li>
+                <strong>CHC v2</strong> - Techcampus
+            </li>
+            <li>
+                <strong>Computer Network Fundamentals</strong> - MaharaTech (ITI)
+            </li>
+            <li>
+                <strong>Forensic Medicine Role in Crime Detection</strong> - Misr University
+            </li>
+            <li>
+                <strong>Cisco Cybersecurity</strong> - In Progress: <span id="loading"></span>
+            </li>
+        </ol>
+    </section>
+
+    <section id="contact">
+        <h2 class="section-title">Contact Me</h2>
+        <form action="https://getform.io/f/byvelwza" method="POST">
+            <label>Your Name:</label>
+            <input type="text" name="name" required>
+
+            <label>Your Email:</label>
+            <input type="email" name="email" required>    
+
+            <label>Message:</label>
+            <input type="text" name="message" required>
+
+            <label style="display: flex; align-items: center; gap: 10px;">
+                <input type="checkbox" name="not_robot" style="width: auto; margin: 0;"> I'm Not a Robot
+            </label>
+
+            <input type="submit" value="Send Message">
+        </form>
+    </section>
+
+    <script>
+        // سكربت الكتابة المتحركة (Typing Effect)
+        const textElement = document.getElementById('typewriter');
+        const texts = ["Penetration Testing Student", "Bug Bounty Enthusiast", "CTF Player"];
+        let count = 0;
+        let index = 0;
+        let currentText = "";
+        let letter = "";
+        
+        (function type() {
+            if (count === texts.length) {
+                count = 0;
+            }
+            currentText = texts[count];
+            letter = currentText.slice(0, ++index);
+            
+            textElement.textContent = letter;
+            
+            if (letter.length === currentText.length) {
+                count++;
+                index = 0;
+                setTimeout(type, 2000); // انتظر ثانيتين قبل الكلمة التالية
+            } else {
+                setTimeout(type, 100); // سرعة الكتابة
+            }
+        }());
+
+        // سكربت شريط التحميل الخاص بك
+        const loadingEl = document.getElementById('loading');
+        const max = 5;
+        let progress = 0;
+        let forward = true;
+
+        setInterval(() => {
+            let emojis = '';
+            for (let i = 0; i < max; i++) {
+                emojis += (i < progress) ? '🟩' : '⬜';
+            }
+            loadingEl.textContent = emojis;
+
+            if (forward) progress++;
+            else progress--;
+
+            if (progress === max) forward = false;
+            if (progress === 0) forward = true;
+        }, 300);
+    </script>
+</body>
+</html>
