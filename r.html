@@ -102,20 +102,25 @@
         .about-header-section { 
             display: flex; 
             gap: 40px; 
-            /* التعديل: المحاذاة إلى الأعلى لجعل النص متوازياً مع بداية الصورة */
             align-items: flex-start; 
             margin-bottom: 80px; 
         }
         .about-photo-wrapper { flex-shrink: 0; width: 200px; }
-        .about-photo { width: 100%; height: 200px; object-fit: cover; border: 1px solid var(--border); display: block; }
+        .about-photo { 
+            width: 100%; 
+            height: 200px; /* ارتفاع الصورة */
+            object-fit: cover; 
+            border: 1px solid var(--border); 
+            display: block; 
+        }
         
         .about-info { 
             flex-grow: 1; 
             display: flex; 
             flex-direction: column; 
-            /* التعديل: لبدء العناصر من الأعلى */
-            justify-content: flex-start; 
-            /* تم إزالة height: 200px; ليتمدد حسب المحتوى، أو يمكن إبقاؤه كما كان */
+            /* التعديل الرئيسي: توزيع العناصر بالتساوي على طول الارتفاع */
+            justify-content: space-between; 
+            /* التعديل الرئيسي: يجب أن يكون ارتفاع الحاوية النصية نفس ارتفاع الصورة */
             height: 200px; 
         }
         
@@ -123,27 +128,27 @@
             font-size: 2.2rem; 
             color: var(--accent); 
             line-height: 1.1; 
-            /* التعديل: تقليل الهامش السفلي لتقريب الاسم من الوصف */
-            margin-bottom: 10px; 
+            /* التعديل: إزالة الهامش ليتولى justify-content التوزيع */
+            margin-bottom: 0; 
         }
         
         .profile-title { 
             font-size: 1.1rem; 
             font-weight: 700; 
             color: #000; 
-            /* التعديل: تقليل الهامش السفلي لتقريب الوصف من لينكدان */
-            margin-bottom: 10px; 
+            /* التعديل: إزالة الهامش ليتولى justify-content التوزيع */
+            margin-bottom: 0; 
         }
         
         .profile-link { 
-            /* التعديلات: جعل الخط عادي وغامق وبلون النص الأساسي */
+            /* التعديلات: لون نص عادي، غامق، وإزالة الخط السفلي */
             font-size: 1rem; 
-            color: var(--text); /* تغيير اللون من البرتقالي إلى لون النص الأساسي */
-            text-decoration: none; /* إزالة الخط السفلي */
-            font-weight: 700; /* جعله Bold */
+            color: var(--text); 
+            text-decoration: none; 
+            font-weight: 700; 
             display: inline-block; 
         }
-        .profile-link:hover { text-decoration: none; } /* منع ظهور الخط السفلي عند المرور بالماوس */
+        .profile-link:hover { text-decoration: none; } 
         
         .about-bottom { margin-top: 80px; }
         .certs-heading { font-size: 1.4rem; margin-bottom: 25px; border-bottom: 3px solid #000; display: inline-block; text-transform: uppercase; color: #000; }
