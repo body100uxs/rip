@@ -70,7 +70,7 @@
             background-repeat: no-repeat;
             background-color: #000;
             
-            /* ملء الشاشة بالكامل */
+            /* ملء الشاشة بالكامل ومركزة */
             padding: 0;
             min-height: 100vh;
             display: flex;
@@ -93,7 +93,7 @@
             margin: 0; /* إلغاء الـ margin القديم */
         }
         
-        /* إزالة الشريط العلوي القديم للتيرمنال */
+        /* إخفاء شريط الهيدر القديم تمامًا */
         .terminal-header { display: none; }
 
         .terminal-body {
@@ -104,30 +104,30 @@
             font-size: 1.1rem;
         }
 
+        /* إزالة رسالة الترحيب السابقة أو إبقائها بيضاء */
         .static-msg { color: #f8f8f2; white-space: pre-wrap; line-height: 1.4; margin-bottom: 5px; }
         
         #history-content { margin-bottom: 5px; }
 
-        .cmd-line { display: flex; color: #f8f8f2; align-items: flex-start; } /* تصحيح محاذاة سطر الإدخال */
+        .cmd-line { display: flex; color: #f8f8f2; align-items: flex-start; } 
         
-        /* تعديل الـ Prompt الأصلي ليتناسب مع الـ CLI */
+        /* تعديل الـ Prompt ليطابق شكل CLI بسيط (kali@kali:~) */
         .prompt { 
             margin-right: 5px; 
             white-space: nowrap; 
-            color: #00ffff !important; /* سماوي */
+            color: #00ffff !important; 
             line-height: 1.4;
         }
-        .prompt span { display: block; line-height: 1; } /* إزالة الـ break lines القديمة */
-        .prompt span:first-child { color: #00ffff; font-weight: normal !important; }
-        .prompt span:last-child { color: #f8f8f2; font-weight: bold !important; }
+        .prompt span { display: inline; } /* تصحيح الـ prompt ليعمل على سطر واحد */
 
         #cmd-input {
             background: transparent; border: none; color: #f8f8f2; flex: 1;
             font-family: 'Consolas', 'Courier New', monospace; font-size: 1.1rem; outline: none;
-            padding: 0;
-            margin-top: 2px;
+            padding: 0;
+            margin-top: 2px;
         }
         /* --- نهاية تعديل CSS لـ Home --- */
+
 
         .disclaimer { font-size: 0.85rem; color: #adb5bd; margin-top: 15px; font-style: italic; }
 
@@ -273,14 +273,14 @@
     <div id="home" class="section active">
                 <div class="terminal-container" onclick="document.getElementById('cmd-input').focus()">
             <div class="terminal-body" id="terminal-body">
-                                <div class="static-msg">┃ This is a minimal installation of Kali Linux, you likely
+                <div class="static-msg">┃ This is a minimal installation of Kali Linux, you likely
 ┃ want to install supplementary tools. Learn how:
 ┃ ⇒ https://www.kali.org/docs/troubleshooting/common-minimum-setup/</div>
                 
                 <div id="history-content"></div>
 
                 <div class="cmd-line">
-                                        <span class="prompt"><span style="color:#00ffff; font-weight:bold;">kali@kali:~$</span></span>
+                                        <span class="prompt"><span style="color:#00ffff; font-weight:normal;">kali@kali:~$</span></span>
                     <input type="text" id="cmd-input" autocomplete="off" autofocus>
                 </div>
             </div>
@@ -288,7 +288,8 @@
     </div>
 
     <div class="container">
-                <div id="about" class="section">
+
+        <div id="about" class="section">
             <div class="about-container">
                 
                 <div class="about-header-section">
@@ -483,8 +484,8 @@
                 const cmdBlock = document.createElement('div');
                 cmdBlock.style.marginBottom = '5px';
                 cmdBlock.innerHTML = `
-                    <div><span style="color:#0d6efd; font-weight:bold;">┌──(root㉿kali)-[~]</span></div>
-                    <div><span style="color:#fff; font-weight:bold; margin-right:10px;">└─#</span><span style="color:#fff">${this.value}</span></div>
+                    <div><span style="color:#00ffff; font-weight:bold;">kali@kali:~$</span></div>
+                    <div><span style="color:#f8f8f2; font-weight:bold; margin-right:10px;">$</span><span style="color:#f8f8f2">${this.value}</span></div>
                 `;
                 historyDiv.appendChild(cmdBlock);
 
@@ -506,6 +507,7 @@
                     response.style.color = '#ff5f56';
                     response.style.fontWeight = 'bold';
                     response.textContent = "Not u"; 
+                    historyDiv.appendChild(response);
                 }
 
                 this.value = '';
