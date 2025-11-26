@@ -2,54 +2,65 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Abdalrhman - Dynamic Profile</title>
+    <title>Abdalrhman - 20 Themes</title>
     <link rel="icon" type="image/x-icon" href="icon.png">
     <style>
-        /* --- 1. DEFAULT THEME (احترافي نظيف) --- */
+        /* ----------------------------------------------------------------- */
+        /* --- 1. THEME VARIABLES (5 Color Themes) --- */
+        /* ----------------------------------------------------------------- */
         :root, .theme-default {
-            --bg: #ffffff;
+            --bg: #f8f9fa; /* Light Gray */
             --text: #212529;
             --muted: #6c757d;
-            --accent: #0d6efd; /* الأزرق */
-            --card-bg: #f8f9fa;
+            --accent: #0d6efd; /* Primary Blue */
+            --card-bg: #ffffff;
             --border: #dee2e6;
             --shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
 
-        /* --- 2. DARK HACKER (أسود/أخضر) --- */
         .theme-dark-hacker {
             --bg: #121212;
-            --text: #e0e0e0;
+            --text: #33ff00; /* Neon Green */
             --muted: #a0a0a0;
-            --accent: #33ff00; /* الأخضر النيون */
+            --accent: #33ff00;
             --card-bg: #1a1a1a;
             --border: #33ff00;
             --shadow: 0 0 10px rgba(51, 255, 0, 0.5);
         }
 
-        /* --- 3. NEON TECH (أسود/بنفسجي نيون) --- */
         .theme-neon-tech {
             --bg: #000000;
             --text: #ffffff;
             --muted: #b0b0b0;
-            --accent: #ff00ff; /* البنفسجي النيون */
+            --accent: #ff00ff; /* Neon Purple */
             --card-bg: #0a0a0a;
             --border: #ff00ff;
             --shadow: 0 0 15px rgba(255, 0, 255, 0.4);
         }
 
-        /* --- 4. CLEAN BLUE (أبيض/أزرق هادئ) --- */
-        .theme-clean-blue {
-            --bg: #f0f8ff;
+        .theme-minimal-dark {
+            --bg: #1a1a1a;
+            --text: #ffffff;
+            --muted: #b0b0b0;
+            --accent: #e0e0e0; /* Off-White Accent */
+            --card-bg: #2d2d2d;
+            --border: #444444;
+            --shadow: 0 5px 15px rgba(0,0,0,0.4);
+        }
+        
+        .theme-fire-red {
+            --bg: #ffffff;
             --text: #333333;
             --muted: #777777;
-            --accent: #4682b4; /* الأزرق الصلب */
-            --card-bg: #ffffff;
-            --border: #c0d9ec;
-            --shadow: 0 8px 15px rgba(0,0,0,0.1);
+            --accent: #dc3545; /* Red */
+            --card-bg: #fff0f0;
+            --border: #f5c6cb;
+            --shadow: 0 5px 15px rgba(220, 53, 69, 0.1);
         }
 
-        /* --- Global Base Styles --- */
+        /* ----------------------------------------------------------------- */
+        /* --- 2. GLOBAL BASE STYLES --- */
+        /* ----------------------------------------------------------------- */
         * { margin: 0; padding: 0; box-sizing: border-box; border-radius: 0 !important; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
 
         body {
@@ -61,151 +72,99 @@
             min-height: 100vh;
             overflow-x: hidden;
             font-weight: 400;
-            transition: background-color 0.5s, color 0.5s; /* Smooth theme transition */
+            transition: background-color 0.5s, color 0.5s;
         }
 
         h1, h2, h3, h4, strong, b, .btn, .nav-links button { font-weight: 700; }
 
-        /* --- Navigation --- */
-        nav {
-            border-bottom: 1px solid var(--border);
-            padding: 15px 0;
-            background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(5px);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
+        nav { border-bottom: 1px solid var(--border); padding: 15px 0; background: var(--card-bg); position: sticky; top: 0; z-index: 1000; }
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-        .nav-content { display: flex; justify-content: space-between; align-items: center; position: relative; } /* Added relative for theme selector */
+        .nav-content { display: flex; justify-content: space-between; align-items: center; position: relative; }
         .logo { font-size: 1.4rem; font-weight: 900; color: var(--text); letter-spacing: 1px; }
 
-        .nav-links button {
-            background: none; border: none; color: var(--muted); margin-left: 25px;
-            font-size: 1rem; cursor: pointer; padding: 5px 0; transition: 0.2s;
-        }
+        .nav-links button { background: none; border: none; color: var(--muted); margin-left: 25px; font-size: 1rem; cursor: pointer; padding: 5px 0; transition: 0.2s; }
         .nav-links button:hover, .nav-links button.active { color: var(--accent); }
-        
-        /* Theme Selector Buttons */
-        .theme-btn {
-            display: block;
-            width: 100%;
-            text-align: left;
-            padding: 8px 15px;
-            margin-bottom: 5px;
-            background-color: var(--bg);
-            color: var(--text);
-            border: 1px solid var(--border);
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-        .theme-btn:hover {
-            background-color: var(--card-bg);
-            color: var(--accent);
-        }
-
-        /* --- Section Transitions --- */
         .section { display: none; padding: 40px 0; animation: fadeIn 0.3s ease; }
         .section.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- About/Profile Section Styles (Using Variables) --- */
-        .about-header-section { 
-            display: flex; 
-            gap: 40px; 
-            align-items: center; 
-            margin-bottom: 60px; 
-            /* التعديل لجعله كبطاقة تتغير مع الثيم */
-            background-color: var(--card-bg); 
-            border: 1px solid var(--border);
-            padding: 30px;
-            box-shadow: var(--shadow);
-            border-radius: 5px !important;
-        }
-        .about-photo-wrapper { flex-shrink: 0; width: 200px; }
-        .about-photo { 
-            width: 100%; 
-            height: 200px; 
-            object-fit: cover; 
-            border: 1px solid var(--border); 
-            display: block; 
-        }
+        /* Dropdown Selectors */
+        .selector-dropdown { position: absolute; top: 100%; right: 20px; background: var(--card-bg); border: 1px solid var(--border); padding: 10px; z-index: 1001; display: none; box-shadow: var(--shadow); min-width: 150px; }
+        .selector-dropdown.layout-selector { right: 180px; }
+        .selector-btn { display: block; width: 100%; text-align: left; padding: 8px 15px; margin-bottom: 5px; background-color: var(--card-bg); color: var(--text); border: 1px solid var(--border); cursor: pointer; transition: background-color 0.2s; }
+        .selector-btn:hover { background-color: var(--border); color: var(--accent); }
+        .selector-btn.active-theme { border-left: 5px solid var(--accent); font-weight: 700; }
+
+
+        /* ----------------------------------------------------------------- */
+        /* --- 3. LAYOUT-SPECIFIC STYLES (L1-L4) --- */
+        /* ----------------------------------------------------------------- */
         
-        .about-info { 
-            flex-grow: 1; 
-            display: flex; 
-            flex-direction: column; 
-            height: auto;
-            justify-content: flex-start;
-            gap: 15px;
+        /* --- Layout Common Styles --- */
+        .profile-layout { display: none; }
+        .profile-layout.active-layout { display: block; }
+        .profile-name { font-size: 2.8rem; color: var(--accent); line-height: 1.1; margin-bottom: 5px; }
+        .profile-desc { font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 15px; }
+        .profile-link { display: inline-block; padding: 10px 20px; background-color: var(--accent); color: var(--bg) !important; font-weight: 700; text-decoration: none; transition: background-color 0.2s; border-radius: 5px !important; font-size: 1rem; }
+        .profile-link:hover { opacity: 0.9; }
+
+        /* L1: Clean Card (Default) */
+        .layout-l1 .profile-card {
+            display: flex; gap: 40px; align-items: center; background-color: var(--card-bg); 
+            border: 1px solid var(--border); padding: 30px; box-shadow: var(--shadow); border-radius: 5px !important;
         }
+        .layout-l1 .photo-wrapper { flex-shrink: 0; width: 200px; }
+        .layout-l1 .about-photo { width: 100%; height: 200px; object-fit: cover; border: 1px solid var(--border); display: block; }
+        .layout-l1 .skill-badges span { background-color: var(--card-bg); color: var(--text); padding: 8px 15px; font-weight: 600; border: 1px solid var(--border); border-radius: 20px !important; }
+
+        /* L2: Terminal Card (Dark, Centered) */
+        .layout-l2 .terminal-card { 
+            background-color: var(--term-bg, #0f0f0f); color: var(--term-text, #33ff00); padding: 40px; 
+            border: 2px solid var(--accent); box-shadow: var(--shadow); margin: 50px auto; max-width: 800px; text-align: center; 
+        }
+        .layout-l2 .terminal-card .profile-name { color: var(--accent); font-size: 3rem; letter-spacing: 2px; }
+        .layout-l2 .terminal-card .profile-desc { color: var(--text); font-weight: 400; margin-bottom: 30px; }
+        .layout-l2 .terminal-card .about-photo { width: 150px; height: 150px; border-radius: 50% !important; object-fit: cover; margin-bottom: 20px; border: 3px solid var(--accent); }
+        .layout-l2 .profile-link { background: var(--accent); color: var(--bg) !important; margin-top: 15px; }
+
+        /* L3: Split Grid (Two Columns) */
+        .layout-l3 .split-profile-section {
+            display: grid; grid-template-columns: 1fr 2fr; gap: 50px; padding: 40px; background-color: var(--card-bg); border: 1px solid var(--border); box-shadow: var(--shadow);
+        }
+        .layout-l3 .image-and-stats { display: flex; flex-direction: column; align-items: center; }
+        .layout-l3 .image-and-stats .about-photo { width: 100%; max-width: 250px; height: auto; object-fit: cover; margin-bottom: 20px; border: 1px solid var(--border); }
+        .layout-l3 .stats-list { list-style: none; width: 100%; padding: 0; text-align: left; }
+        .layout-l3 .stats-list li { font-size: 1rem; font-weight: 600; margin-bottom: 15px; padding-left: 20px; position: relative; color: var(--muted); }
+        .layout-l3 .stats-list li::before { content: "▶"; color: var(--accent); position: absolute; left: 0; font-size: 0.8rem; top: 2px; }
+
+        /* L4: Simple Stack (Mobile First) */
+        .layout-l4 .simple-stack-card { 
+            display: flex; flex-direction: column; align-items: center; text-align: center; padding: 30px;
+            background-color: var(--card-bg); border: 1px solid var(--border); box-shadow: var(--shadow);
+        }
+        .layout-l4 .simple-stack-card .about-photo { width: 180px; height: 180px; border-radius: 50% !important; object-fit: cover; margin-bottom: 20px; border: 4px solid var(--accent); }
+        .layout-l4 .simple-stack-card .profile-name { margin-bottom: 15px; }
+        .layout-l4 .simple-stack-card .profile-link { margin-top: 25px; }
         
-        .profile-name { 
-            font-size: 2.8rem; 
-            color: var(--accent); 
-            line-height: 1.1; 
-            margin-bottom: 5px; 
-        }
-        
-        .skill-badges {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 5px;
-            margin-bottom: 10px;
-        }
-        .skill-badges span {
-            background-color: var(--card-bg); /* يستخدم لون البطاقة */
-            color: var(--text);
-            padding: 8px 15px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            border: 1px solid var(--border);
-            border-radius: 20px !important; 
-        }
-        
-        .skill-link {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: var(--accent); 
-            color: var(--bg) !important; /* عكس لون الخلفية ليكون واضحاً */
-            font-weight: 700;
-            text-decoration: none;
-            transition: background-color 0.2s;
-            border-radius: 5px !important; 
-            font-size: 1rem;
-        }
-        .skill-link:hover {
-            opacity: 0.9;
-        }
-        
-        /* --- Certifications & Other Sections (Adjusted for Variables) --- */
+        /* General Layout Cleanup */
+        .about-bottom { margin-top: 80px; }
         .certs-heading { color: var(--text); border-bottom: 3px solid var(--text); }
+        .certs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .cert-card { background: transparent; padding: 0; border: none; }
         .cert-card li { border-bottom: 1px solid var(--border); }
-
-        .tweet-card { background: var(--card-bg); border: 1px solid var(--border); color: var(--text); }
-        .tweet-name { color: var(--text); }
-        .tweet-handle { color: var(--muted); }
+        .cisco-status { color: #d39e00; font-weight: 700; }
         
-        .contact-info h3 { color: var(--text); }
-        .contact-info p { color: var(--muted); }
-        .contact-form-clean .form-control { border-bottom: 2px solid var(--border); color: var(--text); }
-        .contact-form-clean .form-control:focus { border-color: var(--accent); }
-        .btn { background: var(--text); color: var(--bg); }
-        .btn:hover { background: var(--accent); }
-
         footer { background: var(--text); color: var(--bg); }
-
+        
         @media(max-width: 768px) {
-            .about-header-section { flex-direction: column; text-align: center; gap: 20px; height: auto; margin-bottom: 40px; }
-            .about-info { height: auto; align-items: center; } 
-            .contact-split, .certs-grid { grid-template-columns: 1fr; display: flex; flex-direction: column; gap: 30px; }
-            .nav-links { display: none; }
+            .layout-l1 .profile-card, .layout-l3 .split-profile-section { flex-direction: column; text-align: center; gap: 20px; }
+            .layout-l1 .about-info { align-items: center; }
+            .layout-l3 .split-profile-section { grid-template-columns: 1fr; }
+            .layout-l3 .image-and-stats { width: 100%; }
         }
     </style>
 </head>
-<body class="theme-default">
+<body class="theme-default layout-l1">
 
     <nav>
         <div class="container nav-content">
@@ -214,169 +173,169 @@
                 <button onclick="show('about')" class="active">Profile</button>
                 <button onclick="show('blog')">Blog</button>
                 <button onclick="show('contact')">Contact</button>
-                <button onclick="toggleThemeSelector()">🎨 Themes</button>
+                <button onclick="toggleSelector('layout')">📐 Layouts</button>
+                <button onclick="toggleSelector('theme')">🎨 Themes</button>
             </div>
             
-            <div id="theme-selector" style="position: absolute; top: 100%; right: 20px; background: var(--bg); border: 1px solid var(--border); padding: 10px; z-index: 1001; display: none; box-shadow: 0 5px 15px rgba(0,0,0,0.1); min-width: 150px;">
-                <button onclick="setTheme('default')" class="theme-btn">Default</button>
-                <button onclick="setTheme('dark-hacker')" class="theme-btn">Dark Hacker</button>
-                <button onclick="setTheme('neon-tech')" class="theme-btn">Neon Tech</button>
-                <button onclick="setTheme('clean-blue')" class="theme-btn">Clean Blue</button>
+            <div id="layout-selector" class="selector-dropdown layout-selector" style="display: none;">
+                <button onclick="setLayout('l1')" class="selector-btn active-theme">L1: Clean Card</button>
+                <button onclick="setLayout('l2')" class="selector-btn">L2: Terminal Card</button>
+                <button onclick="setLayout('l3')" class="selector-btn">L3: Split Grid</button>
+                <button onclick="setLayout('l4')" class="selector-btn">L4: Simple Stack</button>
+            </div>
+
+            <div id="theme-selector" class="selector-dropdown" style="display: none;">
+                <button onclick="setTheme('default')" class="selector-btn active-theme">Default</button>
+                <button onclick="setTheme('dark-hacker')" class="selector-btn">Dark Hacker</button>
+                <button onclick="setTheme('neon-tech')" class="selector-btn">Neon Tech</button>
+                <button onclick="setTheme('minimal-dark')" class="selector-btn">Minimal Dark</button>
+                <button onclick="setTheme('fire-red')" class="selector-btn">Fire Red</button>
             </div>
         </div>
     </nav>
-
-    <div id="home" class="section"></div>
 
     <div class="container">
 
         <div id="about" class="section active">
             <div class="about-container">
                 
-                <div class="about-header-section">
-                    <div class="about-photo-wrapper">
-                        <img src="photo.jpeg" alt="Profile" class="about-photo">
-                    </div>
-
-                    <div class="about-info">
-                        <h1 class="profile-name">Abdalrhman Salah Ibrahim</h1>
-                        
-                        <div class="skill-badges">
-                            <span>Penetration Testing Student</span>
-                            <span>Bug Bounty Enthusiast</span>
-                            <span>CTF Player</span>
-                            <span>Cybersecurity</span>
+                <div class="profile-layout layout-l1 active-layout">
+                    <div class="profile-card">
+                        <div class="photo-wrapper">
+                            <img src="photo.jpeg" alt="Profile" class="about-photo">
                         </div>
-                        
-                        <a href="https://www.linkedin.com/in/bodyurr/" target="_blank" class="skill-link">Visit LinkedIn Profile</a>
+                        <div class="about-info">
+                            <h1 class="profile-name">Abdalrhman Salah Ibrahim</h1>
+                            <div class="profile-desc">Penetration Testing Student | Bug Bounty Enthusiast | CTF Player</div>
+                            <div class="skill-badges">
+                                <span>Penetration Testing</span> <span>Bug Bounty</span> <span>CTF</span> <span>Cybersecurity</span>
+                            </div>
+                            <a href="https://www.linkedin.com/in/bodyurr/" target="_blank" class="profile-link">Visit LinkedIn Profile</a>
+                        </div>
                     </div>
                 </div>
 
+                <div class="profile-layout layout-l2">
+                    <div class="terminal-card">
+                        <img src="photo.jpeg" alt="Profile" class="about-photo">
+                        <h1 class="profile-name">Abdalrhman Salah Ibrahim</h1>
+                        <div class="profile-desc">Penetration Testing Student | Bug Bounty Enthusiast | CTF Player</div>
+                        <a href="https://www.linkedin.com/in/bodyurr/" target="_blank" class="profile-link">┌─ Connect on LinkedIn ─┐</a>
+                    </div>
+                </div>
+
+                <div class="profile-layout layout-l3">
+                    <div class="split-profile-section">
+                        <div class="image-and-stats">
+                            <img src="photo.jpeg" alt="Profile Photo" class="about-photo">
+                            <ul class="stats-list">
+                                <li>Status: Actively Hunting</li>
+                                <li>Expertise: Web App Pentesting</li>
+                                <li>Focus: CTF Challenges</li>
+                                <li>Email: <a href="mailto:body362222@gmail.com" class="profile-link" style="padding: 0; background: none; color: var(--accent) !important; font-weight: 600;">Contact Me</a></li>
+                            </ul>
+                        </div>
+                        <div class="main-profile-content">
+                            <h1 class="profile-name">Abdalrhman Salah Ibrahim</h1>
+                            <div class="profile-desc">Dedicated Student | Bug Bounty Enthusiast</div>
+                            <p style="color: var(--text); margin-bottom: 25px;">Hello! I'm Abdalrhman, a dedicated student immersed in the world of cybersecurity. My passion lies in understanding system vulnerabilities, driven by continuous learning through Bug Bounty programs and competitive CTF challenges.</p>
+                            <a href="https://www.linkedin.com/in/bodyurr/" target="_blank" class="profile-link">View Full Profile</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-layout layout-l4">
+                    <div class="simple-stack-card">
+                        <img src="photo.jpeg" alt="Profile" class="about-photo">
+                        <h1 class="profile-name">Abdalrhman Salah Ibrahim</h1>
+                        <div class="profile-desc">Penetration Testing Student | Bug Bounty Enthusiast | CTF Player</div>
+                        <a href="https://www.linkedin.com/in/bodyurr/" target="_blank" class="profile-link">Connect Now</a>
+                    </div>
+                </div>
+                
                 <div class="about-bottom">
                     <h3 class="certs-heading">CERTIFICATIONS</h3>
-                    
                     <div class="certs-grid">
                         <div class="cert-card">
                             <ol start="1">
-                                <li>
-                                    Penetration Testing Professional
-                                    <span>MaharaTech - ITI</span>
-                                </li>
-                                <li>
-                                    Ethical Hacking
-                                    <span>MaharaTech - ITI</span>
-                                </li>
-                                <li>
-                                    CHC v2
-                                    <span>Techcampus</span>
-                                </li>
+                                <li>Penetration Testing Professional <span>MaharaTech - ITI</span></li>
+                                <li>Ethical Hacking <span>MaharaTech - ITI</span></li>
+                                <li>CHC v2 <span>Techcampus</span></li>
                             </ol>
                         </div>
-                        
                         <div class="cert-card">
                             <ol start="4">
-                                <li>
-                                    Computer Network Fundamentals
-                                    <span>MaharaTech - ITI</span>
-                                </li>
-                                <li>
-                                    Forensic Medicine
-                                    <span>Misr University</span>
-                                </li>
-                                <li>
-                                    <span class="cisco-status">Cisco Cybersecurity</span>
-                                    <span>In Progress: <span id="cisco-loader">🟩⬜⬜⬜⬜</span></span>
-                                </li>
+                                <li>Computer Network Fundamentals <span>MaharaTech - ITI</span></li>
+                                <li>Forensic Medicine <span>Misr University</span></li>
+                                <li><span class="cisco-status">Cisco Cybersecurity</span> <span>In Progress: <span id="cisco-loader">🟩⬜⬜⬜⬜</span></span></li>
                             </ol>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
-
+        
         <div id="blog" class="section">
             <div class="tweet-feed" id="tweet-container"></div>
         </div>
-
         <div id="contact" class="section">
-            <div class="contact-split">
-                <div class="contact-info">
-                    <h3>LET'S TALK</h3>
-                    <p>Have a project in mind? Send me a message and let's talk.</p>
-                </div>
-                <div class="contact-form-clean">
-                    <form action="https://formsubmit.co/body362222@gmail.com" method="POST" id="contactForm">
-                        <input type="hidden" name="_next" value="https://your-domain.com/thanks.html">
-                        
-                        <div class="form-group honeypot-field">
-                            <label>Leave this field empty</label>
-                            <input type="text" name="_honey" class="form-control">
-                        </div>
-                        
-                        <div class="form-group"><label>Name</label><input type="text" name="name" class="form-control" required></div>
-                        <div class="form-group"><label>Email</label><input type="email" name="email" class="form-control" required></div>
-                        <div class="form-group"><label>Message</label><textarea name="message" rows="2" class="form-control" required></textarea></div>
-                        
-                        <div class="form-group captcha-group">
-                            <label for="captcha">What is <span id="num1"></span> + <span id="num2"></span>?</label>
-                            <input type="number" id="captcha" name="captcha_answer" class="form-control" required>
-                            <input type="hidden" id="captcha_expected" name="captcha_expected">
-                        </div>
-
-                        <button type="submit" class="btn">SEND MESSAGE</button>
-                    </form>
-                </div>
             </div>
-        </div>
-
     </div>
 
     <footer>© Abdalrhman Salah Ibrahim</footer>
 
     <script>
-        // --- Theme Switching Functions ---
+        // --- 1. Theme and Layout Switching Functions ---
+        
         function setTheme(themeName) {
-            document.body.className = 'theme-' + themeName;
-            localStorage.setItem('theme', themeName); 
-            toggleThemeSelector(); 
+            document.body.className = document.body.className.replace(/theme-\w+/g, '');
+            document.body.classList.add('theme-' + themeName);
+            localStorage.setItem('theme', themeName);
+            updateActiveButton('theme', themeName);
         }
 
-        function toggleThemeSelector() {
-            const selector = document.getElementById('theme-selector');
-            selector.style.display = selector.style.display === 'none' ? 'block' : 'none';
+        function setLayout(layoutName) {
+            document.querySelectorAll('.profile-layout').forEach(el => el.classList.remove('active-layout'));
+            document.querySelector('.layout-' + layoutName).classList.add('active-layout');
+            document.body.className = document.body.className.replace(/layout-l\d/g, '');
+            document.body.classList.add('layout-' + layoutName);
+            localStorage.setItem('layout', layoutName);
+            updateActiveButton('layout', layoutName);
+        }
+
+        function toggleSelector(type) {
+            const selector = document.getElementById(type + '-selector');
+            selector.style.display = selector.style.display === 'block' ? 'none' : 'block';
+            
+            // إخفاء القائمة الأخرى لضمان ظهور واحدة فقط
+            const otherType = type === 'theme' ? 'layout' : 'theme';
+            document.getElementById(otherType + '-selector').style.display = 'none';
+        }
+
+        function updateActiveButton(type, name) {
+            const selectorId = type + '-selector';
+            document.querySelectorAll('#' + selectorId + ' .selector-btn').forEach(btn => {
+                btn.classList.remove('active-theme');
+                if (btn.getAttribute('onclick').includes(name)) {
+                    btn.classList.add('active-theme');
+                }
+            });
         }
         
-        // --- Existing Functions ---
+        // --- 2. Existing Functions ---
         function show(id) {
             document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.nav-links button').forEach(b => b.classList.remove('active'));
             document.getElementById(id).classList.add('active');
             const buttons = document.querySelectorAll('.nav-links button');
-            // هنا نستخدم (buttons[0]) لـ Profile، (buttons[1]) لـ Blog، (buttons[2]) لـ Contact
             if(id === 'about') buttons[0].classList.add('active');
             if(id === 'blog') buttons[1].classList.add('active');
             if(id === 'contact') buttons[2].classList.add('active');
             window.scrollTo(0,0);
         }
 
-        const tweets = [{ date: "Nov 26", content: "I love you more than I love Messi." }];
-        const tweetContainer = document.getElementById('tweet-container');
-        if (tweetContainer) {
-            tweets.forEach(tweet => {
-                tweetContainer.innerHTML += `
-                    <div class="tweet-card">
-                        <img src="photo.jpeg" alt="Profile" class="tweet-avatar">
-                        <div class="tweet-content">
-                            <div class="tweet-header"><span class="tweet-name">Abdalrhman Salah</span><span class="tweet-handle">@bodyurr</span><span class="tweet-time">· ${tweet.date}</span></div>
-                            <div class="tweet-body">${tweet.content}</div>
-                        </div>
-                    </div>`;
-            });
-        }
-
-        // Terminal logic (kept for completeness)
-        // ... (terminal code unchanged) ...
-
+        // ... (باقي الدوال الخاصة بالـ Terminal Loader و Tweets و Captcha) ...
         const loader = document.getElementById('cisco-loader');
         if(loader) {
             let step = 1;
@@ -387,48 +346,26 @@
                 step = (step % 5) + 1;
             }, 500);
         }
+        // **********************************************
 
-        const form = document.getElementById('contactForm');
-        const num1Span = document.getElementById('num1');
-        const num2Span = document.getElementById('num2');
-        const captchaInput = document.getElementById('captcha');
-        const captchaExpectedInput = document.getElementById('captcha_expected');
-
-        function generateCaptcha() {
-            const num1 = Math.floor(Math.random() * 10) + 1; 
-            const num2 = Math.floor(Math.random() * 10) + 1; 
-            const sum = num1 + num2;
-
-            num1Span.textContent = num1;
-            num2Span.textContent = num2;
-            captchaExpectedInput.value = sum; 
-
-            captchaInput.value = '';
-        }
-
-        if(form) {
-            form.addEventListener('submit', function(e) {
-                const userAnswer = parseInt(captchaInput.value.trim());
-                const correctAnswer = parseInt(captchaExpectedInput.value);
-
-                if (userAnswer !== correctAnswer) {
-                    e.preventDefault();
-                    alert("Please complete the anti-spam check correctly!");
-                    generateCaptcha(); 
-                }
-            });
-            generateCaptcha();
-        }
-        
-        // --- Load saved theme on load ---
-        window.onload = function() {
+        // --- 3. Initialization ---
+        window.addEventListener('load', function() {
+            // تحميل الثيم والـ Layout المحفوظين
             const savedTheme = localStorage.getItem('theme') || 'default';
-            // نستخدم setTheme هنا بدون إخفاء، ثم نستدعي الدوال الأخرى
-            document.body.className = 'theme-' + savedTheme; 
+            const savedLayout = localStorage.getItem('layout') || 'l1';
             
-            // تهيئة باقي الدوال التي تعتمد على onload
-            // ... (باقي وظائف onload إن وجدت) ...
-        };
+            // تهيئة body class
+            document.body.className = `theme-${savedTheme} layout-${savedLayout}`;
+            
+            // تحديث الأزرار النشطة (يتم استدعاء updateActiveButton مرتين)
+            updateActiveButton('theme', savedTheme);
+            updateActiveButton('layout', savedLayout);
+            
+            // إظهار الـ Layout الصحيح
+            document.querySelectorAll('.profile-layout').forEach(el => el.classList.remove('active-layout'));
+            document.querySelector('.layout-' + savedLayout).classList.add('active-layout');
+        });
+        
     </script>
 </body>
 </html>
