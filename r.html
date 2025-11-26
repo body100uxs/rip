@@ -29,13 +29,13 @@
         body {
             background-color: var(--bg);
             color: var(--text);
-            line-height: 1.8; /* زيادة سطر للخط الأكبر */
+            line-height: 1.8;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
             overflow-x: hidden;
             font-weight: 400;
-            font-size: 1.1rem; /* تكبير خط الجسم الأساسي */
+            font-size: 1.1rem;
         }
 
         h1, h2, h3, h4, strong, b, .btn, .nav-links button { font-weight: 700; }
@@ -84,47 +84,70 @@
         .prompt { margin-right: 15px; white-space: nowrap; } 
         #cmd-input { background: transparent; border: none; color: #fff; flex: 1; font-family: 'Consolas', 'Courier New', monospace; font-size: 1.2rem; outline: none; }
 
-        /* تنسيقات قسم About - تم تكبير الخطوط هنا أيضاً */
+        /* تنسيقات قسم About */
         .about-container { display: flex; flex-direction: column; }
         .about-header-section { display: flex; gap: 50px; align-items: center; margin-bottom: 100px; } 
         .about-photo-wrapper { flex-shrink: 0; width: 250px; } 
         .about-photo { width: 100%; height: 250px; object-fit: cover; border: 2px solid var(--border); display: block; } 
-        .about-info { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; height: 250px; } 
+        .about-info { 
+            flex-grow: 1; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            height: 250px; 
+        } 
         
-        .profile-name { 
-            font-size: 3rem; /* تكبير حجم الاسم */
+        /* 2. CSS للحاوية ولعناصر الكتابة المتسلسلة */
+        #typing-container {
+            display: flex;
+            flex-direction: column;
+            height: 100%; 
+            justify-content: center;
+        }
+
+        .typed-line {
+            opacity: 0; /* إخفاء جميع السطور في البداية */
+            display: block;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .name-line {
+            font-size: 3rem; /* تكبير */
             color: var(--accent); 
             line-height: 1.1; 
-            margin-bottom: 60px; 
-            white-space: nowrap; 
-            overflow: hidden; 
+            margin-bottom: 30px; 
         }
-
-        /* 2. CSS لتأثير الكتابة */
-        .typing-effect {
+        .title-line {
+            font-size: 1.4rem; /* تكبير */
+            color: #000;
+            margin-bottom: 20px;
+        }
+        .link-line {
+            font-size: 1.6rem; /* تكبير */
+            color: var(--orange); 
+            text-decoration: none; 
+            font-weight: 600; 
             display: inline-block;
-            border-right: .15em solid var(--accent); /* مؤشر الكتابة */
-            width: 0;
+        }
+
+        /* 3. تأثير الكتابة الديناميكي */
+        .typing-line-active {
+            opacity: 1;
+            white-space: nowrap; 
             overflow: hidden;
-            white-space: nowrap;
-            animation: 
-                typing 3.5s steps(30, end) forwards,
-                blink-caret .75s step-end infinite;
+            /* مؤشر الكتابة */
+            border-right: .15em solid var(--accent); 
+            animation: type-cursor .75s step-end infinite;
         }
 
-        /* 3. الإطارات المفتاحية (Keyframes) لتأثير الكتابة */
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% } /* يبقي العرض 100% بعد الانتهاء (forwards) */
-        }
-
-        @keyframes blink-caret {
+        @keyframes type-cursor {
             from, to { border-color: transparent }
             50% { border-color: var(--accent); }
         }
 
-        .profile-title { font-size: 1.4rem; font-weight: 700; color: #000; margin-bottom: 30px; } 
-        .profile-link { font-size: 1.6rem; color: var(--orange); text-decoration: none; font-weight: 600; display: inline-block; } 
+        /* تنسيقات باقي القسم - تم تكبير الخطوط هنا أيضاً */
+        .profile-link:hover { text-decoration: underline; }
         .about-bottom { margin-top: 100px; } 
         .certs-heading { font-size: 1.6rem; margin-bottom: 30px; border-bottom: 4px solid #000; display: inline-block; text-transform: uppercase; color: #000; } 
         .cert-card ol { padding-left: 25px; margin: 0; }
@@ -143,9 +166,9 @@
         /* Media Queries - تم تكبير الخطوط هنا أيضاً */
         @media(max-width: 768px) {
             .about-header-section { flex-direction: column; text-align: center; gap: 30px; height: auto; margin-bottom: 60px; } 
-            .profile-name { font-size: 2.5rem; margin-bottom: 40px; } 
-            .profile-title { font-size: 1.2rem; } 
-            .profile-link { font-size: 1.5rem; } 
+            .name-line { font-size: 2.5rem; margin-bottom: 20px; } 
+            .title-line { font-size: 1.2rem; } 
+            .link-line { font-size: 1.5rem; } 
             .contact-info h3 { font-size: 3rem; } 
             body { font-size: 1rem; }
             .cert-card li { font-size: 1.1rem; }
@@ -200,11 +223,8 @@
                     </div>
 
                     <div class="about-info">
-                        <h1 class="profile-name">
-                            <span id="name-typing">Abdalrhman Salah Ibrahim</span>
-                        </h1>
-                        <div class="profile-title">Penetration Testing Student | Bug Bounty Enthusiast | CTF Player</div>
-                        <a href="https://www.linkedin.com/in/bodyurr/" target="_blank" class="profile-link">Linkedin</a>
+                        <div id="typing-container">
+                            </div>
                     </div>
                 </div>
 
@@ -290,7 +310,57 @@
     <footer>© Abdalrhman Salah Ibrahim</footer>
 
     <script>
-        // 5. دالة لعرض القسم المطلوب (المحدثة لتشغيل التأثير)
+        // 5. مصفوفة السطور المراد كتابتها بالتسلسل
+        const typingLines = [
+            { text: "Abdalrhman Salah Ibrahim", class: "name-line", tag: "h1" },
+            { text: "Penetration Testing Student | Bug Bounty Enthusiast | CTF Player", class: "title-line", tag: "div" },
+            { text: "Linkedin", class: "link-line", tag: "a", href: "https://www.linkedin.com/in/bodyurr/" }
+        ];
+
+        // 6. دالة تسلسل الكتابة الجديدة
+        function typeSequence(lines, containerId, lineIndex = 0) {
+            const container = document.getElementById(containerId);
+            if (!container || lineIndex >= lines.length) {
+                return; // إنهاء التسلسل
+            }
+
+            const currentLineData = lines[lineIndex];
+            
+            // إنشاء العنصر (h1, div, a)
+            const element = document.createElement(currentLineData.tag);
+            element.className = `typed-line ${currentLineData.class}`;
+            if (currentLineData.href) {
+                element.href = currentLineData.href;
+                element.target = "_blank";
+            }
+            container.appendChild(element);
+
+            const speed = 50; // سرعة الكتابة بالمللي ثانية
+            let charIndex = 0;
+            
+            // دالة محاكاة كتابة الحرف
+            function typeChar() {
+                if (charIndex < currentLineData.text.length) {
+                    element.textContent += currentLineData.text.charAt(charIndex);
+                    charIndex++;
+                    element.classList.add('typing-line-active');
+                    setTimeout(typeChar, speed);
+                } else {
+                    // إزالة مؤشر الكتابة بعد الانتهاء من السطر
+                    element.classList.remove('typing-line-active');
+                    
+                    // تأخير بسيط قبل البدء في السطر التالي
+                    setTimeout(() => {
+                        // الانتقال للسطر التالي
+                        typeSequence(lines, containerId, lineIndex + 1);
+                    }, 500); // 0.5 ثانية انتظار
+                }
+            }
+
+            typeChar();
+        }
+
+        // دالة show المحدثة للتحكم في الأقسام
         function show(id) {
             document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.nav-links button').forEach(b => b.classList.remove('active'));
@@ -298,33 +368,22 @@
             
             const buttons = document.querySelectorAll('.nav-links button');
             
-            // إعادة تعيين حالة التأثير دائماً قبل التبديل
-            const nameElement = document.getElementById('name-typing');
-            if (nameElement) {
-                nameElement.classList.remove('typing-effect');
-                // هذا السطر مهم لإعادة تشغيل الأنميشن من البداية عند العودة للصفحة
-                void nameElement.offsetWidth;
+            // 🌟 إعادة تعيين حالة الحاوية عند التبديل
+            const container = document.getElementById('typing-container');
+            if (container) {
+                container.innerHTML = ''; // تفريغ المحتوى
             }
             
             if(id === 'home') buttons[0].classList.add('active');
             if(id === 'about') {
                 buttons[1].classList.add('active');
-                // تشغيل تأثير الكتابة عند الانتقال لصفحة About
-                typeWriter();
+                // 🌟 تشغيل التسلسل الجديد
+                typeSequence(typingLines, 'typing-container');
             }
             if(id === 'blog') buttons[2].classList.add('active');
             if(id === 'contact') buttons[3].classList.add('active');
             
             window.scrollTo(0,0);
-        }
-
-        // 6. دالة تأثير الكتابة (Typing Effect Function)
-        function typeWriter() {
-            const element = document.getElementById('name-typing');
-            if (!element) return;
-            
-            // تطبيق الكلاس لتشغيل الأنميشن
-            element.classList.add('typing-effect');
         }
 
         const tweets = [{ date: "Nov 26", content: "I love you more than I love Messi." }];
@@ -433,7 +492,7 @@
         // تشغيل تأثير الكتابة عند تحميل الصفحة إذا كانت صفحة About هي النشطة
         document.addEventListener('DOMContentLoaded', () => {
             if (document.getElementById('about').classList.contains('active')) {
-                typeWriter();
+                typeSequence(typingLines, 'typing-container');
             }
         });
     </script>
