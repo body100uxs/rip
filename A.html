@@ -343,7 +343,7 @@
         const input = document.getElementById('cmd-input');
         const historyDiv = document.getElementById('history-content');
         const terminalBody = document.getElementById('terminal-body');
-        const files = "about.txt  blog.md  contact.sh  secrets.txt  s";
+        const files = "about.txt  blog.md  contact.sh  secrets.txt  s.txt";
         const nmapOutput = `Starting Nmap 7.94 ( https://nmap.org ) at 2025-11-26 12:00 EET
 Nmap scan report for localhost (127.0.0.1)
 Host is up (0.00034s latency).
@@ -406,7 +406,7 @@ These shell commands are defined internally.  Type 'help' to see this list.
                 } else if (cmd === 'contact' || cmd === './contact.sh') {
                     response = "Opening communication channel...";
                     setTimeout(() => show('contact'), 800);
-                } else if (cmd === 'cat secrets.txt' || cmd === 'cat s') {
+                } else if (cmd === 'cat secrets.txt' || cmd === 'cat s.txt') {
                     response = "<span style='color:#ff5f56'>Permission denied: You are not authorized to view this file.</span>";
                 } else if (cmd !== "") {
                     response = `<span style='color:#ff5f56'>bash: ${cmd}: command not found</span>`;
