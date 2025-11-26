@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Abdalrhman</title>
     <link rel="icon" type="image/x-icon" href="icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         :root {
             --bg: #ffffff;
@@ -16,7 +17,9 @@
             --term-bg: #0f0f0f;
             --term-text: #33ff00;
         }
+
         * { margin: 0; padding: 0; box-sizing: border-box; border-radius: 0 !important; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+
         body {
             background-color: var(--bg);
             color: var(--text);
@@ -27,7 +30,9 @@
             overflow-x: hidden;
             font-weight: 400;
         }
+
         h1, h2, h3, h4, strong, b, .btn, .nav-links button { font-weight: 700; }
+
         nav {
             border-bottom: 1px solid var(--border);
             padding: 15px 0;
@@ -37,129 +42,129 @@
             top: 0;
             z-index: 1000;
         }
+
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
         .nav-content { display: flex; justify-content: space-between; align-items: center; }
+
         .logo { font-size: 1.4rem; font-weight: 900; color: var(--text); letter-spacing: 1px; }
+
         .nav-links button {
             background: none; border: none; color: var(--muted); margin-left: 25px;
             font-size: 1rem; cursor: pointer; padding: 5px 0; transition: 0.2s;
         }
         .nav-links button:hover, .nav-links button.active { color: var(--accent); }
+
         .section { display: none; padding: 40px 0; animation: fadeIn 0.3s ease; }
         .section.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        
-        /* --- تعديلات صفحة Home الجديدة --- */
-        #home { 
-            padding: 0; /* إلغاء الحواف لتغطية الشاشة */
-            background: url('kali_logo_bg.png') no-repeat center center;
-            background-size: cover;
-            height: calc(100vh - 60px); /* ارتفاع الشاشة ناقص ارتفاع الناف بار */
+
+        /* HOME: background image + full area */
+        #home {
+            padding: 0;
+            min-height: calc(100vh - 82px);
             display: flex;
             align-items: center;
             justify-content: center;
+            background: url('kali_logo_bg.png') center/cover no-repeat fixed;
+            position: relative;
         }
-        
-        /* تصميم نافذة الكالي */
-        .kali-window {
-            width: 80%;
-            max-width: 900px;
-            height: 500px;
-            background-color: rgba(15, 15, 15, 0.95);
-            border: 1px solid #333;
-            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+
+        /* Terminal styling (inside home) */
+        .terminal-window {
+            width: 680px;
+            max-width: calc(100% - 40px);
+            height: 420px;
+            background: rgba(15,15,15,0.92);
+            border: 2px solid #222;
             display: flex;
             flex-direction: column;
-            border-radius: 6px !important;
-            overflow: hidden;
+            font-family: 'Consolas', 'Courier New', monospace;
+            color: var(--term-text);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            user-select: none;
+            z-index: 600;
         }
-        
-        .kali-header {
-            background: #2d2d2d;
-            padding: 10px 15px;
-            border-bottom: 1px solid #000;
+
+        .terminal-header {
+            background: rgba(26,26,26,0.95);
+            padding: 10px 12px;
+            border-bottom: 1px solid #222;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            color: #ccc;
+            color: #aaa;
             font-size: 0.9rem;
-            font-family: sans-serif;
-            font-weight: bold;
+            cursor: grab;
         }
-        
-        .window-controls {
-            display: flex;
-            gap: 8px;
-        }
-        .window-controls span {
-            width: 12px; height: 12px; 
-            border-radius: 50% !important; 
-            display: block;
-        }
-        
-        .kali-body {
+
+        .terminal-body {
             flex: 1;
-            padding: 20px;
+            padding: 18px;
             overflow-y: auto;
             color: #fff;
-            font-size: 1.1rem;
-            font-family: 'Consolas', 'Courier New', monospace;
-            cursor: text;
+            font-size: 1.05rem;
         }
-        /* ---------------------------------- */
 
-        .static-msg { color: #fff; white-space: pre-wrap; line-height: 1.4; margin-bottom: 15px; }
-        
-        #history-content { margin-bottom: 5px; }
-        .cmd-line { display: flex; color: #fff; align-items: center; }
+        .static-msg { color: #fff; white-space: pre-wrap; line-height: 1.4; margin-bottom: 12px; }
+
+        #history-content { margin-bottom: 8px; }
+
+        .cmd-line { display: flex; color: #fff; align-items: center; margin-top: 8px; }
         .prompt { margin-right: 10px; white-space: nowrap; }
-        
+
         #cmd-input {
             background: transparent; border: none; color: #fff; flex: 1;
-            font-family: 'Consolas', 'Courier New', monospace; font-size: 1.1rem; outline: none;
+            font-family: 'Consolas', 'Courier New', monospace; font-size: 1.05rem; outline: none;
         }
+
         .disclaimer { font-size: 0.85rem; color: #adb5bd; margin-top: 15px; font-style: italic; }
+
         .about-container { display: flex; flex-direction: column; }
         .about-header-section { display: flex; gap: 40px; align-items: center; margin-bottom: 80px; }
         .about-photo-wrapper { flex-shrink: 0; width: 200px; }
         .about-photo { width: 100%; height: 200px; object-fit: cover; border: 1px solid var(--border); display: block; }
         .about-info { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; height: 200px; }
-        
-        /* --- تعديلات الخطوط وتأثير الكتابة للعناصر المحددة فقط --- */
-        #typing-output {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
+
+        #typing-output { display: flex; flex-direction: column; align-items: flex-start; }
+
         .big-name {
-            font-size: 3rem; 
+            font-size: 3rem;
             color: var(--accent);
             line-height: 1.1;
             margin-bottom: 25px;
             font-weight: 700;
         }
+
         .big-title {
-            font-size: 1.5rem; 
+            font-size: 1.5rem;
             font-weight: 700;
             color: #000;
             margin-bottom: 20px;
         }
+
         .big-link {
-            font-size: 1.8rem; 
+            font-size: 1.8rem;
             color: var(--orange);
             text-decoration: none;
             font-weight: 600;
             display: inline-block;
         }
         .big-link:hover { text-decoration: underline; }
+
         .cursor-blink {
             border-right: 3px solid var(--accent);
             animation: blink .75s step-end infinite;
         }
+
         @keyframes blink {
             from, to { border-color: transparent }
             50% { border-color: var(--accent); }
         }
+
         .about-bottom { margin-top: 80px; }
         .certs-heading { font-size: 1.4rem; margin-bottom: 25px; border-bottom: 3px solid #000; display: inline-block; text-transform: uppercase; color: #000; }
         .certs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
@@ -169,6 +174,7 @@
         .cert-card li:last-child { border-bottom: none; }
         .cert-card li span { display: block; font-weight: 400; font-size: 0.9rem; color: var(--muted); margin-top: 5px; }
         .cisco-status { color: #d39e00; font-weight: 700; }
+
         .tweet-feed { width: 100%; margin: 0; }
         .tweet-card { background: #fff; border: 1px solid var(--border); padding: 30px; display: flex; gap: 25px; margin-bottom: 30px; text-align: left; width: 100%; }
         .tweet-avatar { width: 60px; height: 60px; object-fit: cover; border: 1px solid #000; flex-shrink: 0; }
@@ -178,6 +184,7 @@
         .tweet-handle { color: var(--muted); font-weight: 400; }
         .tweet-time { color: var(--muted); font-weight: 400; }
         .tweet-body { font-size: 1.2rem; color: var(--text); line-height: 1.5; text-align: left; }
+
         .contact-split { display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; align-items: start; }
         .contact-info h3 { font-size: 3rem; line-height: 1.1; margin-bottom: 20px; color: var(--text); }
         .contact-info p { font-size: 1.1rem; color: var(--muted); margin-bottom: 40px; }
@@ -185,17 +192,17 @@
         .contact-form-clean label { display: block; margin-bottom: 10px; font-size: 0.9rem; font-weight: 700; color: var(--text); text-transform: uppercase; letter-spacing: 1px; }
         .contact-form-clean .form-control { width: 100%; padding: 15px 0; background: transparent; border: none; border-bottom: 2px solid var(--border); font-size: 1.2rem; outline: none; color: var(--text); transition: 0.3s; }
         .contact-form-clean .form-control:focus { border-color: var(--accent); }
-        .contact-form-clean .honeypot-field { 
-            position: absolute; 
-            left: -9999px; 
+        .contact-form-clean .honeypot-field {
+            position: absolute;
+            left: -9999px;
             opacity: 0;
             visibility: hidden;
         }
         .btn { display: inline-block; padding: 15px 40px; background: var(--text); color: #fff; text-decoration: none; border: none; cursor: pointer; font-size: 1rem; transition: 0.2s; font-weight: 700; letter-spacing: 1px; }
         .btn:hover { background: var(--accent); }
-        .captcha-group { 
-            margin-top: 30px; 
-            padding: 15px; 
+        .captcha-group {
+            margin-top: 30px;
+            padding: 15px;
             border: 1px solid var(--border);
             background-color: #f7f7f7;
             display: flex;
@@ -213,7 +220,9 @@
             font-size: 1.1rem;
             width: 150px;
         }
+
         footer { margin-top: auto; background: var(--text); color: #fff; text-align: center; padding: 30px; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; }
+
         @media(max-width: 768px) {
             .about-header-section { flex-direction: column; text-align: center; gap: 20px; height: auto; margin-bottom: 40px; }
             .about-info { height: auto; }
@@ -224,11 +233,12 @@
             .big-name { font-size: 2.2rem; }
             .big-title { font-size: 1.2rem; }
             .big-link { font-size: 1.4rem; }
-            .kali-window { width: 95%; height: 400px; } /* تحسين للموبايل */
+            .terminal-window { width: calc(100% - 40px); left: 20px; transform: translateY(-50%); }
         }
     </style>
 </head>
 <body>
+
     <nav>
         <div class="container nav-content">
             <div class="logo">Abdalrhman.</div>
@@ -240,41 +250,43 @@
             </div>
         </div>
     </nav>
-    
+
     <div id="home" class="section active">
-        <div class="kali-window" onclick="document.getElementById('cmd-input').focus()">
-            <div class="kali-header">
-                <span>root@kali: ~</span>
-                <div class="window-controls">
-                    <span style="background:#ff5f56;"></span> <span style="background:#ffbd2e;"></span> <span style="background:#27c93f;"></span> </div>
-            </div>
-            <div class="kali-body" id="terminal-body">
-                <div class="static-msg">Kali GNU/Linux Rolling kali tty1</div>
-                
-                <div id="history-content"></div>
-                <div class="cmd-line">
-                    <span class="prompt"><span style="color:#0d6efd; font-weight:bold;">┌──(root㉿kali)-[~]</span><br><span style="color:#fff; font-weight:bold;">└─#</span></span>
-                    <input type="text" id="cmd-input" autocomplete="off" autofocus>
+        <div class="container">
+            <div class="terminal-window" id="terminal-window">
+                <div class="terminal-header" id="terminal-header">root@kali:~ (zsh)</div>
+                <div class="terminal-body" id="terminal-body">
+                    <div class="static-msg">┃ This is a minimal installation of Kali Linux, you likely
+┃ want to install supplementary tools. Learn how:
+┃ ⇒ https://www.kali.org/docs/troubleshooting/common-minimum-setup/</div>
+                    <div id="history-content"></div>
+                    <div class="cmd-line">
+                        <span class="prompt"><span style="color:#0d6efd; font-weight:bold;">┌──(root㉿kali)-[~]</span><br><span style="color:#fff; font-weight:bold;">└─#</span></span>
+                        <input type="text" id="cmd-input" autocomplete="off" />
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="container">
+
         <div id="about" class="section">
             <div class="about-container">
-                
+
                 <div class="about-header-section">
                     <div class="about-photo-wrapper">
                         <img src="photo.jpeg" alt="Profile" class="about-photo">
                     </div>
+
                     <div class="about-info">
                         <div id="typing-output"></div>
                     </div>
                 </div>
+
                 <div class="about-bottom">
                     <h3 class="certs-heading">CERTIFICATIONS</h3>
-                    
+
                     <div class="certs-grid">
                         <div class="cert-card">
                             <ol start="1">
@@ -292,7 +304,7 @@
                                 </li>
                             </ol>
                         </div>
-                        
+
                         <div class="cert-card">
                             <ol start="4">
                                 <li>
@@ -313,9 +325,11 @@
                 </div>
             </div>
         </div>
+
         <div id="blog" class="section">
             <div class="tweet-feed" id="tweet-container"></div>
         </div>
+
         <div id="contact" class="section">
             <div class="contact-split">
                 <div class="contact-info">
@@ -325,65 +339,72 @@
                 <div class="contact-form-clean">
                     <form action="https://formsubmit.co/body362222@gmail.com" method="POST" id="contactForm">
                         <input type="hidden" name="_next" value="https://your-domain.com/thanks.html">
-                        
+
                         <div class="form-group honeypot-field">
                             <label>Leave this field empty</label>
                             <input type="text" name="_honey" class="form-control">
                         </div>
-                        
+
                         <div class="form-group"><label>Name</label><input type="text" name="name" class="form-control" required></div>
                         <div class="form-group"><label>Email</label><input type="email" name="email" class="form-control" required></div>
                         <div class="form-group"><label>Message</label><textarea name="message" rows="2" class="form-control" required></textarea></div>
-                        
+
                         <div class="form-group captcha-group">
                             <label for="captcha">What is <span id="num1"></span> + <span id="num2"></span>?</label>
                             <input type="number" id="captcha" name="captcha_answer" class="form-control" required>
                             <input type="hidden" id="captcha_expected" name="captcha_expected">
                         </div>
+
                         <button type="submit" class="btn">SEND MESSAGE</button>
                     </form>
                 </div>
             </div>
         </div>
+
     </div>
+
     <footer>© Abdalrhman Salah Ibrahim</footer>
+
     <script>
-        // دالة عرض الأقسام وتشغيل تأثير الكتابة عند الحاجة
         function show(id) {
             document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.nav-links button').forEach(b => b.classList.remove('active'));
             document.getElementById(id).classList.add('active');
             const buttons = document.querySelectorAll('.nav-links button');
-            
+
             if(id === 'home') buttons[0].classList.add('active');
             if(id === 'about') {
                 buttons[1].classList.add('active');
-                startTypingSequence(); // بدء الكتابة عند فتح About
+                startTypingSequence();
             }
             if(id === 'blog') buttons[2].classList.add('active');
             if(id === 'contact') buttons[3].classList.add('active');
             window.scrollTo(0,0);
         }
-        // --- كود تأثير الكتابة المتسلسل ---
+
         const typingData = [
             { text: "Abdalrhman Salah Ibrahim", tag: "h1", class: "big-name" },
             { text: "Penetration Testing Student | Bug Bounty Enthusiast | CTF Player", tag: "div", class: "big-title" },
             { text: "Linkedin", tag: "a", class: "big-link", href: "https://www.linkedin.com/in/bodyurr/" }
         ];
-        let isTyping = false; // لمنع تداخل الكتابة
+
+        let isTyping = false;
+
         function startTypingSequence() {
             const container = document.getElementById('typing-output');
             if(!container) return;
-            
-            container.innerHTML = ''; // مسح المحتوى القديم للبدء من جديد
+
+            container.innerHTML = '';
             isTyping = true;
             typeNextLine(0, container);
         }
+
         function typeNextLine(lineIndex, container) {
             if(lineIndex >= typingData.length) {
                 isTyping = false;
                 return;
             }
+
             const data = typingData[lineIndex];
             const element = document.createElement(data.tag);
             element.className = data.class;
@@ -391,31 +412,29 @@
                 element.href = data.href;
                 element.target = "_blank";
             }
-            // إضافة كلاس المؤشر
             element.classList.add('cursor-blink');
             container.appendChild(element);
+
             let charIndex = 0;
             const text = data.text;
-            
+
             function typeChar() {
                 if(charIndex < text.length) {
                     element.textContent += text.charAt(charIndex);
                     charIndex++;
-                    setTimeout(typeChar, 40); // سرعة الكتابة
+                    setTimeout(typeChar, 40);
                 } else {
-                    // انتهى السطر الحالي
-                    element.classList.remove('cursor-blink'); // إزالة المؤشر
+                    element.classList.remove('cursor-blink');
                     setTimeout(() => {
-                        typeNextLine(lineIndex + 1, container); // الانتقال للسطر التالي
-                    }, 300); // تأخير بسيط
+                        typeNextLine(lineIndex + 1, container);
+                    }, 300);
                 }
             }
             typeChar();
         }
-        // ------------------------------------
+
         const tweets = [{ date: "Nov 26", content: "I love you more than I love Messi." }];
         const tweetContainer = document.getElementById('tweet-container');
-        
         tweets.forEach(tweet => {
             tweetContainer.innerHTML += `
                 <div class="tweet-card">
@@ -426,16 +445,18 @@
                     </div>
                 </div>`;
         });
+
         const input = document.getElementById('cmd-input');
         const historyDiv = document.getElementById('history-content');
         const terminalBody = document.getElementById('terminal-body');
+
         input.addEventListener('keydown', function(e) {
             if(e.key === 'Enter') {
                 e.preventDefault();
-                
+
                 const val = this.value.trim();
                 const valLower = val.toLowerCase();
-                
+
                 const cmdBlock = document.createElement('div');
                 cmdBlock.style.marginBottom = '5px';
                 cmdBlock.innerHTML = `
@@ -443,13 +464,14 @@
                     <div><span style="color:#fff; font-weight:bold; margin-right:10px;">└─#</span><span style="color:#fff">${this.value}</span></div>
                 `;
                 historyDiv.appendChild(cmdBlock);
+
                 if(valLower === 'clear') {
                     historyDiv.innerHTML = '';
-                } 
+                }
                 else if(valLower === 'sara mahmoud' || valLower === 'sara mahmoud sami' || valLower === 'sara sami') {
                     const response = document.createElement('div');
                     response.style.marginBottom = "20px";
-                    response.style.color = '#0d6efd'; 
+                    response.style.color = '#0d6efd';
                     response.style.fontWeight = 'bold';
                     response.style.fontSize = '1.2rem';
                     response.textContent = `Why all this?`;
@@ -460,17 +482,17 @@
                     response.style.marginBottom = "20px";
                     response.style.color = '#ff5f56';
                     response.style.fontWeight = 'bold';
-                    response.textContent = "Not u"; 
+                    response.textContent = "Not u";
                     historyDiv.appendChild(response);
                 }
+
                 this.value = '';
                 terminalBody.scrollTop = terminalBody.scrollHeight;
             }
         });
-        
-        // تعديل بسيط لضمان التركيز على التيرمنال عند النقر في أي مكان داخل النافذة
-        document.querySelector('.kali-window').addEventListener('click', () => input.focus());
-        
+
+        document.querySelector('.terminal-window').addEventListener('click', () => input.focus());
+
         const loader = document.getElementById('cisco-loader');
         if(loader) {
             let step = 1;
@@ -481,30 +503,88 @@
                 step = (step % 5) + 1;
             }, 500);
         }
+
         const form = document.getElementById('contactForm');
         const num1Span = document.getElementById('num1');
         const num2Span = document.getElementById('num2');
         const captchaInput = document.getElementById('captcha');
         const captchaExpectedInput = document.getElementById('captcha_expected');
+
         function generateCaptcha() {
-            const num1 = Math.floor(Math.random() * 10) + 1; 
-            const num2 = Math.floor(Math.random() * 10) + 1; 
+            const num1 = Math.floor(Math.random() * 10) + 1;
+            const num2 = Math.floor(Math.random() * 10) + 1;
             const sum = num1 + num2;
-            num1Span.textContent = num1;
-            num2Span.textContent = num2;
-            captchaExpectedInput.value = sum; 
-            captchaInput.value = '';
+
+            if(num1Span) num1Span.textContent = num1;
+            if(num2Span) num2Span.textContent = num2;
+            if(captchaExpectedInput) captchaExpectedInput.value = sum;
+            if(captchaInput) captchaInput.value = '';
         }
-        form.addEventListener('submit', function(e) {
-            const userAnswer = parseInt(captchaInput.value.trim());
-            const correctAnswer = parseInt(captchaExpectedInput.value);
-            if (userAnswer !== correctAnswer) {
-                e.preventDefault();
-                alert("Please complete the anti-spam check correctly!");
-                generateCaptcha(); 
-            }
-        });
-        generateCaptcha();
+
+        if(form) {
+            form.addEventListener('submit', function(e) {
+                const userAnswer = parseInt(captchaInput.value.trim());
+                const correctAnswer = parseInt(captchaExpectedInput.value);
+
+                if (userAnswer !== correctAnswer) {
+                    e.preventDefault();
+                    alert("Please complete the anti-spam check correctly!");
+                    generateCaptcha();
+                }
+            });
+            generateCaptcha();
+        }
+
+        // Drag terminal
+        (function(){
+            const term = document.getElementById('terminal-window');
+            const header = document.getElementById('terminal-header');
+            let isDown = false;
+            let offsetX = 0;
+            let offsetY = 0;
+
+            header.addEventListener('mousedown', function(e){
+                isDown = true;
+                term.style.transition = 'none';
+                offsetX = e.clientX - term.offsetLeft;
+                offsetY = e.clientY - term.offsetTop;
+                header.style.cursor = 'grabbing';
+            });
+
+            document.addEventListener('mouseup', function(){
+                isDown = false;
+                term.style.transition = '';
+                header.style.cursor = 'grab';
+            });
+
+            document.addEventListener('mousemove', function(e){
+                if(!isDown) return;
+                let left = e.clientX - offsetX;
+                let top = e.clientY - offsetY;
+
+                const margin = 10;
+                const winW = window.innerWidth;
+                const winH = window.innerHeight;
+                const rect = term.getBoundingClientRect();
+
+                if(left < margin) left = margin;
+                if(top < margin + 60) top = margin + 60;
+                if(left + rect.width > winW - margin) left = winW - rect.width - margin;
+                if(top + rect.height > winH - margin) top = winH - rect.height - margin;
+
+                term.style.left = left + 'px';
+                term.style.top = top + 'px';
+                term.style.transform = 'none';
+            });
+
+            window.addEventListener('resize', function(){
+                const rect = term.getBoundingClientRect();
+                const winW = window.innerWidth;
+                const winH = window.innerHeight;
+                if(rect.left + rect.width > winW - 20) term.style.left = Math.max(20, winW - rect.width - 20) + 'px';
+                if(rect.top + rect.height > winH - 20) term.style.top = Math.max(80, winH - rect.height - 20) + 'px';
+            });
+        })();
     </script>
 </body>
 </html>
