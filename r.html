@@ -17,25 +17,17 @@
             --term-text: #33ff00;
         }
 
-        /* 1. تكبير الخطوط الأساسية */
-        * { 
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box; 
-            border-radius: 0 !important; 
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; border-radius: 0 !important; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
 
         body {
             background-color: var(--bg);
             color: var(--text);
-            line-height: 1.8;
+            line-height: 1.6;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
             overflow-x: hidden;
             font-weight: 400;
-            font-size: 1.1rem;
         }
 
         h1, h2, h3, h4, strong, b, .btn, .nav-links button { font-weight: 700; }
@@ -54,12 +46,11 @@
 
         .nav-content { display: flex; justify-content: space-between; align-items: center; }
 
-        .logo { font-size: 1.6rem; font-weight: 900; color: var(--text); letter-spacing: 1px; } 
+        .logo { font-size: 1.4rem; font-weight: 900; color: var(--text); letter-spacing: 1px; }
 
         .nav-links button {
             background: none; border: none; color: var(--muted); margin-left: 25px;
-            font-size: 1.2rem; 
-            cursor: pointer; padding: 5px 0; transition: 0.2s;
+            font-size: 1rem; cursor: pointer; padding: 5px 0; transition: 0.2s;
         }
         .nav-links button:hover, .nav-links button.active { color: var(--accent); }
 
@@ -67,111 +58,168 @@
         .section.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        #home { padding: 80px 0; } 
-        #home h3 { font-size: 1.4rem; } 
+        #home { padding: 60px 0; }
         
-        /* تنسيقات Terminal - تم تكبير الخطوط هنا أيضاً */
         .terminal-container {
-            width: 100%; height: 450px; background-color: var(--term-bg); border: 2px solid #333;
+            width: 100%; height: 400px; background-color: var(--term-bg); border: 2px solid #333;
             display: flex; flex-direction: column; font-family: 'Consolas', 'Courier New', monospace;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.15); margin-bottom: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15); margin-bottom: 10px;
         }
-        .terminal-header { background: #1a1a1a; padding: 10px 15px; border-bottom: 1px solid #333; display: flex; align-items: center; color: #aaa; font-size: 1rem; }
-        .terminal-body { flex: 1; padding: 20px; overflow-y: auto; color: #fff; font-size: 1.2rem; }
-        .static-msg { color: #fff; white-space: pre-wrap; line-height: 1.5; margin-bottom: 20px; }
-        #history-content { margin-bottom: 10px; }
-        .cmd-line { display: flex; color: #fff; align-items: center; }
-        .prompt { margin-right: 15px; white-space: nowrap; } 
-        #cmd-input { background: transparent; border: none; color: #fff; flex: 1; font-family: 'Consolas', 'Courier New', monospace; font-size: 1.2rem; outline: none; }
 
-        /* تنسيقات قسم About */
-        .about-container { display: flex; flex-direction: column; }
-        .about-header-section { display: flex; gap: 50px; align-items: center; margin-bottom: 100px; } 
-        .about-photo-wrapper { flex-shrink: 0; width: 250px; } 
-        .about-photo { width: 100%; height: 250px; object-fit: cover; border: 2px solid var(--border); display: block; } 
-        .about-info { 
-            flex-grow: 1; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            height: 250px; 
-        } 
+        .terminal-header {
+            background: #1a1a1a;
+            padding: 10px 15px;
+            border-bottom: 1px solid #333;
+            display: flex;
+            align-items: center;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .terminal-body {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            color: #fff;
+            font-size: 1.1rem;
+        }
+
+        .static-msg { color: #fff; white-space: pre-wrap; line-height: 1.4; margin-bottom: 15px; }
         
-        /* 2. CSS للحاوية ولعناصر الكتابة المتسلسلة */
-        #typing-container {
+        #history-content { margin-bottom: 5px; }
+
+        .cmd-line { display: flex; color: #fff; align-items: center; }
+        .prompt { margin-right: 10px; white-space: nowrap; }
+        
+        #cmd-input {
+            background: transparent; border: none; color: #fff; flex: 1;
+            font-family: 'Consolas', 'Courier New', monospace; font-size: 1.1rem; outline: none;
+        }
+
+        .disclaimer { font-size: 0.85rem; color: #adb5bd; margin-top: 15px; font-style: italic; }
+
+        .about-container { display: flex; flex-direction: column; }
+        .about-header-section { display: flex; gap: 40px; align-items: center; margin-bottom: 80px; }
+        .about-photo-wrapper { flex-shrink: 0; width: 200px; }
+        .about-photo { width: 100%; height: 200px; object-fit: cover; border: 1px solid var(--border); display: block; }
+        .about-info { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; height: 200px; }
+        
+        /* --- تعديلات الخطوط وتأثير الكتابة للعناصر المحددة فقط --- */
+        
+        /* 1. الحاوية الجديدة للنصوص */
+        #typing-output {
             display: flex;
             flex-direction: column;
-            height: 100%; 
-            justify-content: center;
+            align-items: flex-start;
         }
 
-        .typed-line {
-            opacity: 0; /* إخفاء جميع السطور في البداية */
-            display: block;
-            margin-bottom: 20px;
+        /* 2. تكبير الخطوط المطلوبة */
+        .big-name {
+            font-size: 3rem; /* تكبير الاسم */
+            color: var(--accent);
+            line-height: 1.1;
+            margin-bottom: 25px;
             font-weight: 700;
         }
 
-        .name-line {
-            font-size: 3rem; /* تكبير */
-            color: var(--accent); 
-            line-height: 1.1; 
-            margin-bottom: 30px; 
-        }
-        .title-line {
-            font-size: 1.4rem; /* تكبير */
+        .big-title {
+            font-size: 1.5rem; /* تكبير الوصف */
+            font-weight: 700;
             color: #000;
             margin-bottom: 20px;
         }
-        .link-line {
-            font-size: 1.6rem; /* تكبير */
-            color: var(--orange); 
-            text-decoration: none; 
-            font-weight: 600; 
+
+        .big-link {
+            font-size: 1.8rem; /* تكبير اللينك */
+            color: var(--orange);
+            text-decoration: none;
+            font-weight: 600;
             display: inline-block;
         }
+        .big-link:hover { text-decoration: underline; }
 
-        /* 3. تأثير الكتابة الديناميكي */
-        .typing-line-active {
-            opacity: 1;
-            white-space: nowrap; 
-            overflow: hidden;
-            /* مؤشر الكتابة */
-            border-right: .15em solid var(--accent); 
-            animation: type-cursor .75s step-end infinite;
+        /* 3. المؤشر (Cursor) */
+        .cursor-blink {
+            border-right: 3px solid var(--accent);
+            animation: blink .75s step-end infinite;
         }
 
-        @keyframes type-cursor {
+        @keyframes blink {
             from, to { border-color: transparent }
             50% { border-color: var(--accent); }
         }
+        /* ------------------------------------------------ */
 
-        /* تنسيقات باقي القسم - تم تكبير الخطوط هنا أيضاً */
-        .profile-link:hover { text-decoration: underline; }
-        .about-bottom { margin-top: 100px; } 
-        .certs-heading { font-size: 1.6rem; margin-bottom: 30px; border-bottom: 4px solid #000; display: inline-block; text-transform: uppercase; color: #000; } 
-        .cert-card ol { padding-left: 25px; margin: 0; }
-        .cert-card li { margin-bottom: 30px; font-weight: 700; font-size: 1.2rem; border-bottom: 1px solid #eee; padding-bottom: 15px; } 
-        .cert-card li span { display: block; font-weight: 400; font-size: 1rem; color: var(--muted); margin-top: 8px; } 
+        .about-bottom { margin-top: 80px; }
+        .certs-heading { font-size: 1.4rem; margin-bottom: 25px; border-bottom: 3px solid #000; display: inline-block; text-transform: uppercase; color: #000; }
+        .certs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .cert-card { background: transparent; padding: 0; border: none; }
+        .cert-card ol { padding-left: 20px; margin: 0; }
+        .cert-card li { margin-bottom: 25px; font-weight: 700; font-size: 1rem; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        .cert-card li:last-child { border-bottom: none; }
+        .cert-card li span { display: block; font-weight: 400; font-size: 0.9rem; color: var(--muted); margin-top: 5px; }
         .cisco-status { color: #d39e00; font-weight: 700; }
 
-        /* تنسيقات قسم Contact - تم تكبير الخطوط هنا أيضاً */
-        .contact-split { display: grid; grid-template-columns: 1fr 1.5fr; gap: 100px; align-items: start; }
-        .contact-info h3 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 25px; color: var(--text); } 
-        .contact-info p { font-size: 1.2rem; color: var(--muted); margin-bottom: 50px; } 
-        .contact-form-clean .form-control { font-size: 1.4rem; } 
-        .btn { padding: 18px 45px; font-size: 1.1rem; } 
-        footer { padding: 35px; font-size: 1.1rem; } 
+        .tweet-feed { width: 100%; margin: 0; }
+        .tweet-card { background: #fff; border: 1px solid var(--border); padding: 30px; display: flex; gap: 25px; margin-bottom: 30px; text-align: left; width: 100%; }
+        .tweet-avatar { width: 60px; height: 60px; object-fit: cover; border: 1px solid #000; flex-shrink: 0; }
+        .tweet-content { flex: 1; }
+        .tweet-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 1.1rem; }
+        .tweet-name { color: var(--text); }
+        .tweet-handle { color: var(--muted); font-weight: 400; }
+        .tweet-time { color: var(--muted); font-weight: 400; }
+        .tweet-body { font-size: 1.2rem; color: var(--text); line-height: 1.5; text-align: left; }
 
-        /* Media Queries - تم تكبير الخطوط هنا أيضاً */
+        .contact-split { display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; align-items: start; }
+        .contact-info h3 { font-size: 3rem; line-height: 1.1; margin-bottom: 20px; color: var(--text); }
+        .contact-info p { font-size: 1.1rem; color: var(--muted); margin-bottom: 40px; }
+        .contact-form-clean .form-group { margin-bottom: 30px; }
+        .contact-form-clean label { display: block; margin-bottom: 10px; font-size: 0.9rem; font-weight: 700; color: var(--text); text-transform: uppercase; letter-spacing: 1px; }
+        .contact-form-clean .form-control { width: 100%; padding: 15px 0; background: transparent; border: none; border-bottom: 2px solid var(--border); font-size: 1.2rem; outline: none; color: var(--text); transition: 0.3s; }
+        .contact-form-clean .form-control:focus { border-color: var(--accent); }
+        .contact-form-clean .honeypot-field { 
+            position: absolute; 
+            left: -9999px; 
+            opacity: 0;
+            visibility: hidden;
+        }
+        .btn { display: inline-block; padding: 15px 40px; background: var(--text); color: #fff; text-decoration: none; border: none; cursor: pointer; font-size: 1rem; transition: 0.2s; font-weight: 700; letter-spacing: 1px; }
+        .btn:hover { background: var(--accent); }
+        .captcha-group { 
+            margin-top: 30px; 
+            padding: 15px; 
+            border: 1px solid var(--border);
+            background-color: #f7f7f7;
+            display: flex;
+            flex-direction: column;
+        }
+        .captcha-group label {
+            margin-bottom: 10px;
+            font-size: 1rem;
+            text-transform: none;
+            letter-spacing: normal;
+        }
+        .captcha-group input {
+            padding: 10px;
+            border: 1px solid var(--border);
+            font-size: 1.1rem;
+            width: 150px;
+        }
+
+
+        footer { margin-top: auto; background: var(--text); color: #fff; text-align: center; padding: 30px; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; }
+
         @media(max-width: 768px) {
-            .about-header-section { flex-direction: column; text-align: center; gap: 30px; height: auto; margin-bottom: 60px; } 
-            .name-line { font-size: 2.5rem; margin-bottom: 20px; } 
-            .title-line { font-size: 1.2rem; } 
-            .link-line { font-size: 1.5rem; } 
-            .contact-info h3 { font-size: 3rem; } 
-            body { font-size: 1rem; }
-            .cert-card li { font-size: 1.1rem; }
+            .about-header-section { flex-direction: column; text-align: center; gap: 20px; height: auto; margin-bottom: 40px; }
+            .about-info { height: auto; }
+            .contact-split, .certs-grid { grid-template-columns: 1fr; display: flex; flex-direction: column; gap: 30px; }
+            .nav-links { display: none; }
+            .contact-form { padding: 30px; }
+            .contact-info h3 { font-size: 2.5rem; }
+            /* تصغير الخطوط قليلاً للموبايل حتى لا تخرج عن الشاشة */
+            .big-name { font-size: 2.2rem; }
+            .big-title { font-size: 1.2rem; }
+            .big-link { font-size: 1.4rem; }
         }
     </style>
 </head>
@@ -223,8 +271,7 @@
                     </div>
 
                     <div class="about-info">
-                        <div id="typing-container">
-                            </div>
+                        <div id="typing-output"></div>
                     </div>
                 </div>
 
@@ -310,84 +357,81 @@
     <footer>© Abdalrhman Salah Ibrahim</footer>
 
     <script>
-        // 5. مصفوفة السطور المراد كتابتها بالتسلسل
-        const typingLines = [
-            { text: "Abdalrhman Salah Ibrahim", class: "name-line", tag: "h1" },
-            { text: "Penetration Testing Student | Bug Bounty Enthusiast | CTF Player", class: "title-line", tag: "div" },
-            { text: "Linkedin", class: "link-line", tag: "a", href: "https://www.linkedin.com/in/bodyurr/" }
-        ];
-
-        // 6. دالة تسلسل الكتابة الجديدة
-        function typeSequence(lines, containerId, lineIndex = 0) {
-            const container = document.getElementById(containerId);
-            if (!container || lineIndex >= lines.length) {
-                return; // إنهاء التسلسل
-            }
-
-            const currentLineData = lines[lineIndex];
-            
-            // إنشاء العنصر (h1, div, a)
-            const element = document.createElement(currentLineData.tag);
-            element.className = `typed-line ${currentLineData.class}`;
-            if (currentLineData.href) {
-                element.href = currentLineData.href;
-                element.target = "_blank";
-            }
-            container.appendChild(element);
-
-            const speed = 50; // سرعة الكتابة بالمللي ثانية
-            let charIndex = 0;
-            
-            // دالة محاكاة كتابة الحرف
-            function typeChar() {
-                if (charIndex < currentLineData.text.length) {
-                    element.textContent += currentLineData.text.charAt(charIndex);
-                    charIndex++;
-                    element.classList.add('typing-line-active');
-                    setTimeout(typeChar, speed);
-                } else {
-                    // إزالة مؤشر الكتابة بعد الانتهاء من السطر
-                    element.classList.remove('typing-line-active');
-                    
-                    // تأخير بسيط قبل البدء في السطر التالي
-                    setTimeout(() => {
-                        // الانتقال للسطر التالي
-                        typeSequence(lines, containerId, lineIndex + 1);
-                    }, 500); // 0.5 ثانية انتظار
-                }
-            }
-
-            typeChar();
-        }
-
-        // دالة show المحدثة للتحكم في الأقسام
+        // دالة عرض الأقسام وتشغيل تأثير الكتابة عند الحاجة
         function show(id) {
             document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.nav-links button').forEach(b => b.classList.remove('active'));
             document.getElementById(id).classList.add('active');
-            
             const buttons = document.querySelectorAll('.nav-links button');
-            
-            // 🌟 إعادة تعيين حالة الحاوية عند التبديل
-            const container = document.getElementById('typing-container');
-            if (container) {
-                container.innerHTML = ''; // تفريغ المحتوى
-            }
             
             if(id === 'home') buttons[0].classList.add('active');
             if(id === 'about') {
                 buttons[1].classList.add('active');
-                // 🌟 تشغيل التسلسل الجديد
-                typeSequence(typingLines, 'typing-container');
+                startTypingSequence(); // بدء الكتابة عند فتح About
             }
             if(id === 'blog') buttons[2].classList.add('active');
             if(id === 'contact') buttons[3].classList.add('active');
-            
             window.scrollTo(0,0);
         }
 
+        // --- كود تأثير الكتابة المتسلسل ---
+        const typingData = [
+            { text: "Abdalrhman Salah Ibrahim", tag: "h1", class: "big-name" },
+            { text: "Penetration Testing Student | Bug Bounty Enthusiast | CTF Player", tag: "div", class: "big-title" },
+            { text: "Linkedin", tag: "a", class: "big-link", href: "https://www.linkedin.com/in/bodyurr/" }
+        ];
+
+        let isTyping = false; // لمنع تداخل الكتابة
+
+        function startTypingSequence() {
+            const container = document.getElementById('typing-output');
+            if(!container) return;
+            
+            container.innerHTML = ''; // مسح المحتوى القديم للبدء من جديد
+            isTyping = true;
+            typeNextLine(0, container);
+        }
+
+        function typeNextLine(lineIndex, container) {
+            if(lineIndex >= typingData.length) {
+                isTyping = false;
+                return;
+            }
+
+            const data = typingData[lineIndex];
+            const element = document.createElement(data.tag);
+            element.className = data.class;
+            if(data.href) {
+                element.href = data.href;
+                element.target = "_blank";
+            }
+            // إضافة كلاس المؤشر
+            element.classList.add('cursor-blink');
+            container.appendChild(element);
+
+            let charIndex = 0;
+            const text = data.text;
+            
+            function typeChar() {
+                if(charIndex < text.length) {
+                    element.textContent += text.charAt(charIndex);
+                    charIndex++;
+                    setTimeout(typeChar, 40); // سرعة الكتابة
+                } else {
+                    // انتهى السطر الحالي
+                    element.classList.remove('cursor-blink'); // إزالة المؤشر
+                    setTimeout(() => {
+                        typeNextLine(lineIndex + 1, container); // الانتقال للسطر التالي
+                    }, 300); // تأخير بسيط
+                }
+            }
+            typeChar();
+        }
+        // ------------------------------------
+
         const tweets = [{ date: "Nov 26", content: "I love you more than I love Messi." }];
         const tweetContainer = document.getElementById('tweet-container');
+        // تم استخدام الكود الأصلي للبلوج بدون تغيير
         tweets.forEach(tweet => {
             tweetContainer.innerHTML += `
                 <div class="tweet-card">
@@ -426,7 +470,7 @@
                     response.style.marginBottom = "20px";
                     response.style.color = '#0d6efd'; 
                     response.style.fontWeight = 'bold';
-                    response.style.fontSize = '1.3rem';
+                    response.style.fontSize = '1.2rem';
                     response.textContent = `Why all this?`;
                     historyDiv.appendChild(response);
                 }
@@ -435,8 +479,7 @@
                     response.style.marginBottom = "20px";
                     response.style.color = '#ff5f56';
                     response.style.fontWeight = 'bold';
-                    response.style.fontSize = '1.3rem';
-                    response.textContent = "Not u"; 
+                    response.style.textContent = "Not u"; 
                     historyDiv.appendChild(response);
                 }
 
@@ -488,13 +531,6 @@
         });
 
         generateCaptcha();
-
-        // تشغيل تأثير الكتابة عند تحميل الصفحة إذا كانت صفحة About هي النشطة
-        document.addEventListener('DOMContentLoaded', () => {
-            if (document.getElementById('about').classList.contains('active')) {
-                typeSequence(typingLines, 'typing-container');
-            }
-        });
     </script>
 </body>
 </html>
