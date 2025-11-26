@@ -2,553 +2,471 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Abdalrhman - 15 Unique Designs</title>
+    <title>Abdalrhman</title>
     <link rel="icon" type="image/x-icon" href="icon.png">
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    
     <style>
-        /* ----------------------------------------------------------------- */
-        /* --- Global Reset and Base Styles --- */
-        /* ----------------------------------------------------------------- */
-        * { margin: 0; padding: 0; box-sizing: border-box; border-radius: 0 !important; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
-        body { background-color: #f8f9fa; color: #212529; line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; overflow-x: hidden; font-weight: 400; transition: background-color 0.5s, color 0.5s; }
+        :root {
+            --bg: #ffffff;
+            --sidebar: #f8f9fa;
+            --text: #212529;
+            --muted: #6c757d;
+            --accent: #0d6efd;
+            --orange: #fd7e14;
+            --border: #dee2e6;
+            --term-bg: #0f0f0f;
+            --term-text: #33ff00;
+        }
+
+        /* 1. تكبير الخطوط الأساسية */
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            border-radius: 0 !important; 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.8; /* زيادة سطر للخط الأكبر */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+            font-weight: 400;
+            font-size: 1.1rem; /* تكبير خط الجسم الأساسي */
+        }
+
         h1, h2, h3, h4, strong, b, .btn, .nav-links button { font-weight: 700; }
 
-        /* Navigation */
-        nav { border-bottom: 1px solid #dee2e6; padding: 15px 0; background: rgba(255,255,255,0.95); backdrop-filter: blur(5px); position: sticky; top: 0; z-index: 1000; }
+        nav {
+            border-bottom: 1px solid var(--border);
+            padding: 15px 0;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(5px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-        .nav-content { display: flex; justify-content: space-between; align-items: center; position: relative; }
-        .logo { font-size: 1.4rem; font-weight: 900; color: #212529; letter-spacing: 1px; }
 
-        .nav-links button { background: none; border: none; color: #6c757d; margin-left: 25px; font-size: 1rem; cursor: pointer; padding: 5px 0; transition: 0.2s; }
-        .nav-links button:hover, .nav-links button.active { color: #0d6efd; }
-        
-        /* Design Selector Dropdown */
-        #design-selector { 
-            position: absolute; top: 100%; right: 20px; background: #fff; border: 1px solid #dee2e6; padding: 10px; z-index: 1001; display: none; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1); max-height: 400px; overflow-y: auto; min-width: 250px;
-        }
-        .design-btn { 
-            display: block; width: 100%; text-align: left; padding: 8px 15px; margin-bottom: 5px; background-color: #f8f9fa; color: #212529; 
-            border: 1px solid #dee2e6; cursor: pointer; transition: background-color 0.2s; 
-        }
-        .design-btn:hover, .design-btn.active-design { background-color: #e9ecef; color: #0d6efd; border-left: 3px solid #0d6efd; font-weight: 600; }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; }
 
-        /* Section Transitions */
+        .logo { font-size: 1.6rem; font-weight: 900; color: var(--text); letter-spacing: 1px; } /* تكبير */
+
+        .nav-links button {
+            background: none; border: none; color: var(--muted); margin-left: 25px;
+            font-size: 1.2rem; /* تكبير */
+            cursor: pointer; padding: 5px 0; transition: 0.2s;
+        }
+        .nav-links button:hover, .nav-links button.active { color: var(--accent); }
+
         .section { display: none; padding: 40px 0; animation: fadeIn 0.3s ease; }
         .section.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Common Elements for Designs */
-        .design-wrapper { 
-            display: none; padding: 30px; margin: 20px 0; border-radius: 8px !important; 
-            min-height: 450px; /* لضمان ثبات ارتفاع التصاميم */
-        }
-        .design-wrapper.active-design { display: block; }
-        .profile-photo { width: 150px; height: 150px; object-fit: cover; border-radius: 50% !important; border: 3px solid; margin-bottom: 20px; animation: photo-fade-in 1s ease-out; }
-        @keyframes photo-fade-in { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
-        .profile-name { font-size: 2.5rem; margin-bottom: 10px; }
-        .profile-title { font-size: 1.2rem; font-weight: 600; margin-bottom: 20px; }
-        .skill-badge { display: inline-block; padding: 6px 12px; margin: 5px; border-radius: 15px !important; font-size: 0.9em; border: 1px solid; }
-        .linkedin-link { display: inline-block; padding: 10px 25px; margin-top: 25px; text-decoration: none; border-radius: 5px !important; font-weight: 600; transition: transform 0.3s ease; }
-        .linkedin-link:hover { transform: translateY(-3px); }
-
-
-        /* ----------------------------------------------------------------- */
-        /* --- 15 UNIQUE DESIGN STYLES (Focusing on different aesthetics) --- */
-        /* ----------------------------------------------------------------- */
+        #home { padding: 80px 0; } /* زيادة الهامش */
+        #home h3 { font-size: 1.4rem; } /* تكبير */
         
-        /* Design 1: Clean Blue Card */
-        .design-1 { background-color: #f0f8ff; color: #333; text-align: center; box-shadow: 0 8px 20px rgba(0,0,0,0.1); border: 2px solid #007bff; }
-        .design-1 .profile-photo { border-color: #007bff; }
-        .design-1 .profile-name { color: #0056b3; }
-        .design-1 .skill-badge { background-color: #d1ecf1; border-color: #bee5eb; color: #0c5460; }
-        .design-1 .linkedin-link { background-color: #007bff; color: white; }
-
-        /* Design 2: Dark Hacker Terminal (Animated Borders) */
-        .design-2 { background-color: #0f0f0f; color: #33ff00; border: 2px solid #33ff00; box-shadow: 0 0 15px rgba(51, 255, 0, 0.6); text-align: center; animation: terminal-blink 1.5s infinite; }
-        .design-2 .profile-photo { border-color: #33ff00; box-shadow: 0 0 10px rgba(51, 255, 0, 0.5); }
-        .design-2 .profile-name { color: #00ff00; text-shadow: 0 0 8px #00ff00; animation: neon-glow 2s ease-in-out infinite alternate; }
-        .design-2 .skill-badge { background-color: #0a0a0a; border-color: #00cc00; color: #00ff00; }
-        .design-2 .linkedin-link { background-color: #33ff00; color: #0f0f0f; box-shadow: 0 0 8px #33ff00; }
-        @keyframes terminal-blink { 0%, 100% { border-color: #33ff00; } 50% { border-color: rgba(51,255,0,0.3); } }
-        @keyframes neon-glow { from { text-shadow: 0 0 5px #00ff00; } to { text-shadow: 0 0 20px #00ff00, 0 0 30px #00ff00; } }
-
-        /* Design 3: Cyberpunk Grid (Animated Background) */
-        .design-3 { 
-            position: relative; overflow: hidden; background-color: #1a0f30; color: #00ffff; text-align: center;
-            border: 2px solid #ff00ff; box-shadow: 0 0 20px rgba(255,0,255,0.7);
-        }
-        .design-3::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(0deg, transparent 24%, rgba(33,150,243,0.2) 25%, rgba(33,150,243,0.2) 26%, transparent 27%, transparent 74%, rgba(33,150,243,0.2) 75%, rgba(33,150,243,0.2) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(33,150,243,0.2) 25%, rgba(33,150,243,0.2) 26%, transparent 27%, transparent 74%, rgba(33,150,243,0.2) 75%, rgba(33,150,243,0.2) 76%, transparent 77%, transparent);
-            background-size: 50px 50px; animation: grid-scroll 20s linear infinite; z-index: 0;
-        }
-        .design-3 > * { position: relative; z-index: 1; }
-        .design-3 .profile-photo { border-color: #00ffff; box-shadow: 0 0 10px #00ffff; }
-        .design-3 .profile-name { color: #ff00ff; text-shadow: 0 0 10px #ff00ff; }
-        .design-3 .skill-badge { background-color: #0a0515; border-color: #ff00ff; color: #00ffff; }
-        .design-3 .linkedin-link { background-color: #00ffff; color: #1a0f30; box-shadow: 0 0 10px #00ffff; }
-        @keyframes grid-scroll { from { background-position: 0 0; } to { background-position: 50px 50px; } }
-
-        /* Design 4: Particle Background (Dynamic, uses particles.js) */
-        .design-4 { 
-            position: relative; overflow: hidden; background-color: #212121; color: #f0f0f0; text-align: center;
-            border: 1px solid #61dafb; box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-        }
-        .design-4 #particles-js { position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 0; }
-        .design-4 > * { position: relative; z-index: 1; }
-        .design-4 .profile-photo { border-color: #61dafb; }
-        .design-4 .profile-name { color: #61dafb; }
-        .design-4 .skill-badge { background-color: #333; border-color: #555; color: #f0f0f0; }
-        .design-4 .linkedin-link { background-color: #61dafb; color: #212121; }
-
-        /* Design 5: Glitch Effect (Text/Image Distortion) */
-        .design-5 { background-color: #1a1a1a; color: #eee; text-align: center; position: relative; overflow: hidden; border: 2px solid #0f0; }
-        .design-5 .profile-photo, .design-5 .profile-name { animation: glitch-text 0.8s infinite; }
-        .design-5 .profile-photo { border-color: #f00; }
-        .design-5 .profile-name { color: #0f0; }
-        .design-5 .skill-badge { background-color: #333; border-color: #f00; color: #0f0; }
-        .design-5 .linkedin-link { background-color: #0f0; color: #1a1a1a; }
-        @keyframes glitch-text {
-            0% { transform: translate(0); } 20% { transform: translate(-2px, 2px); } 40% { transform: translate(-2px, -2px); }
-            60% { transform: translate(2px, 2px); } 80% { transform: translate(2px, -2px); } 100% { transform: translate(0); }
+        .terminal-container {
+            width: 100%; height: 450px; background-color: var(--term-bg); border: 2px solid #333;
+            display: flex; flex-direction: column; font-family: 'Consolas', 'Courier New', monospace;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15); margin-bottom: 20px;
         }
 
-        /* Design 6: Minimalist Reveal (Sequential Fade-in) */
-        .design-6 { background-color: #fcfcfc; color: #333; text-align: center; overflow: hidden; border: 1px solid #bdc3c7; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
-        .design-6 .profile-photo, .design-6 .profile-name, .design-6 .profile-title, .design-6 .skill-badge, .design-6 .linkedin-link { opacity: 0; transform: translateY(20px); animation: reveal 0.8s forwards; }
-        .design-6 .profile-photo { border-color: #a7bed3; animation-delay: 0.2s; }
-        .design-6 .profile-name { color: #2c3e50; animation-delay: 0.4s; }
-        .design-6 .profile-title { color: #7f8c8d; animation-delay: 0.6s; }
-        .design-6 .skill-badge { background-color: #ecf0f1; border-color: #bdc3c7; color: #34495e; animation-delay: 0.8s; }
-        .design-6 .linkedin-link { background-color: #3498db; color: white; animation-delay: 1s; }
-        @keyframes reveal { to { opacity: 1; transform: translateY(0); } }
-
-        /* Design 7: Neon Glow (Purple/Cyan) */
-        .design-7 { background-color: #080808; color: #fff; text-align: center; border: 2px solid #ff00ff; box-shadow: 0 0 25px rgba(255,0,255,0.8); }
-        .design-7 .profile-photo { border-color: #00ffff; box-shadow: 0 0 15px #00ffff; }
-        .design-7 .profile-name { color: #ff00ff; text-shadow: 0 0 15px #ff00ff; }
-        .design-7 .profile-title { color: #00ffff; text-shadow: 0 0 8px #00ffff; }
-        .design-7 .skill-badge { background-color: #1a0a1a; border-color: #ff00ff; color: #00ffff; box-shadow: 0 0 5px rgba(255,0,255,0.5); }
-        .design-7 .linkedin-link { background-color: #00ffff; color: #080808; box-shadow: 0 0 15px #00ffff; }
-
-        /* Design 8: Retro Arcade (Dashed Border) */
-        .design-8 { background-color: #000; color: #ff0; border: 5px dashed #0f0; text-align: center; text-shadow: 2px 2px 0 #f00; }
-        .design-8 .profile-photo { border-color: #0f0; box-shadow: 0 0 10px #0f0; }
-        .design-8 .profile-name { color: #ff0; text-shadow: 2px 2px 0 #f00; animation: bounce 1s infinite alternate; }
-        .design-8 .skill-badge { background-color: #222; border-color: #0f0; color: #ff0; }
-        .design-8 .linkedin-link { background-color: #0f0; color: #000; text-shadow: none; border: 2px solid #ff0; }
-        @keyframes bounce { 0% { transform: translateY(0); } 100% { transform: translateY(-5px); } }
-
-        /* Design 9: Data Flow (Animated Lines) */
-        .design-9 { 
-            position: relative; overflow: hidden; background-color: #2a2a2a; color: #00e676; text-align: center;
-            border: 1px solid #00e676; box-shadow: 0 0 15px rgba(0,230,118,0.5);
+        .terminal-header {
+            background: #1a1a1a;
+            padding: 10px 15px;
+            border-bottom: 1px solid #333;
+            display: flex;
+            align-items: center;
+            color: #aaa;
+            font-size: 1rem; /* تكبير */
         }
-        .design-9::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: repeating-linear-gradient(45deg, rgba(0,230,118,0.1) 0, rgba(0,230,118,0.1) 10px, transparent 10px, transparent 20px);
-            animation: data-flow 10s linear infinite; z-index: 0;
+
+        .terminal-body {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            color: #fff;
+            font-size: 1.2rem; /* تكبير */
         }
-        .design-9 > * { position: relative; z-index: 1; }
-        .design-9 .profile-photo { border-color: #00e676; }
-        .design-9 .profile-name { color: #00ff00; }
-        .design-9 .skill-badge { background-color: #1a1a1a; border-color: #00e676; color: #00e676; }
-        .design-9 .linkedin-link { background-color: #00e676; color: #2a2a2a; }
-        @keyframes data-flow { from { background-position: 0 0; } to { background-position: 100px 100px; } }
 
-        /* Design 10: Vaporwave Aesthetic (Gradient Shift) */
-        .design-10 { 
-            position: relative; overflow: hidden; background: linear-gradient(135deg, #6a0572, #8338ec, #ff00ff, #00ffff); background-size: 400% 400%;
-            animation: gradient-shift 15s ease infinite; text-align: center; color: #fff;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3); border: 1px solid #ff00ff;
-        }
-        .design-10 > * { position: relative; z-index: 1; }
-        .design-10 .profile-photo { border-color: #ffcc00; }
-        .design-10 .profile-name { color: #ffeb3b; text-shadow: 3px 3px #8e24aa; }
-        .design-10 .profile-title { color: #00e5ff; }
-        .design-10 .skill-badge { background-color: rgba(0,0,0,0.3); border-color: #ff00ff; color: #fff; }
-        .design-10 .linkedin-link { background-color: #ff00ff; color: white; }
-        @keyframes gradient-shift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-
-        /* Design 11: Minimalist Black & White (High Contrast) */
-        .design-11 { background-color: #000; color: #fff; text-align: center; border: 2px solid #fff; }
-        .design-11 .profile-photo { border-color: #fff; }
-        .design-11 .profile-name { color: #fff; }
-        .design-11 .profile-title { color: #ccc; }
-        .design-11 .skill-badge { background-color: #222; border-color: #fff; color: #fff; }
-        .design-11 .linkedin-link { background-color: #fff; color: #000; }
-
-        /* Design 12: Code Editor Look (Left-aligned) */
-        .design-12 { background-color: #1e1e1e; color: #d4d4d4; text-align: left; border-left: 5px solid #007acc; display: flex; align-items: flex-start; gap: 30px; }
-        .design-12 .profile-photo { flex-shrink: 0; border-color: #007acc; }
-        .design-12 .text-content { overflow: hidden; }
-        .design-12 .profile-name { color: #569cd6; font-size: 2.2rem; }
-        .design-12 .profile-title { color: #9cdcfe; margin-bottom: 30px; }
-        .design-12 .skill-badge { background-color: #333; border-color: #007acc; color: #ce9178; }
-        .design-12 .linkedin-link { background-color: #007acc; color: #1e1e1e; }
+        .static-msg { color: #fff; white-space: pre-wrap; line-height: 1.5; margin-bottom: 20px; }
         
-        /* Design 13: Abstract Shapes Background (Animated Shapes) */
-        .design-13 { 
-            position: relative; overflow: hidden; background: radial-gradient(circle at top left, #a1c4fd, #c2e9fb); text-align: center; color: #333;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15); border: 2px solid #89cff0;
-        }
-        .design-13::before, .design-13::after {
-            content: ''; position: absolute; border-radius: 50%; opacity: 0.6; animation: float-shapes 15s ease-in-out infinite alternate;
-        }
-        .design-13::before { width: 150px; height: 150px; background-color: #89cff0; top: 10%; left: 15%; animation-delay: 0s; }
-        .design-13::after { width: 200px; height: 200px; background-color: #7fffd4; bottom: 5%; right: 10%; animation-delay: 7s; }
-        .design-13 > * { position: relative; z-index: 1; }
-        .design-13 .profile-photo { border-color: #a1c4fd; }
-        .design-13 .profile-name { color: #007bff; }
-        .design-13 .skill-badge { background-color: #e0f2f7; border-color: #a1c4fd; color: #0c5460; }
-        .design-13 .linkedin-link { background-color: #007bff; color: white; }
-        @keyframes float-shapes { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(20px, 30px) scale(1.1); } }
+        #history-content { margin-bottom: 10px; }
 
-        /* Design 14: Dynamic Typing (Uses Typed.js) */
-        .design-14 { background-color: #2b2b2b; color: #f0f0f0; text-align: center; border: 1px solid #6a0572; }
-        .design-14 .profile-photo { border-color: #ff7f50; }
-        .design-14 .profile-name { color: #ff7f50; }
-        .design-14 .skill-badge { background-color: #3d3d3d; border-color: #888; color: #f0f0f0; }
-        .design-14 .linkedin-link { background-color: #6a0572; color: white; }
-        .design-14 #typed-strings { display: none; } /* Hidden by default */
-        .design-14 .dynamic-text { font-size: 1.8rem; font-weight: 700; color: #ff7f50; min-height: 40px; margin-bottom: 25px; }
-
-        /* Design 15: Split Vertical Reveal */
-        .design-15 { 
-            background: linear-gradient(to right, #2c3e50 50%, #ecf0f1 50%); 
-            padding: 0; color: #fff; display: flex; 
-        }
-        .design-15 .left-side { background-color: #2c3e50; padding: 30px; flex: 1; text-align: center; }
-        .design-15 .right-side { background-color: #ecf0f1; padding: 30px; flex: 1; color: #333; display: flex; flex-direction: column; justify-content: center; }
-        .design-15 .profile-photo { border-color: #3498db; margin-bottom: 30px; }
-        .design-15 .profile-name { color: #3498db; }
-        .design-15 .profile-title { color: #bdc3c7; }
-        .design-15 .skill-badge { background-color: #34495e; border-color: #3498db; color: #fff; }
-        .design-15 .linkedin-link { background-color: #3498db; color: white; }
-
+        .cmd-line { display: flex; color: #fff; align-items: center; }
+        .prompt { margin-right: 15px; white-space: nowrap; } /* زيادة الهامش */
         
-        /* Certifications Section (Remains Static) */
-        .about-bottom { margin-top: 80px; }
-        .certs-heading { color: #212529; border-bottom: 3px solid #212529; display: inline-block; }
-        .certs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        #cmd-input {
+            background: transparent; border: none; color: #fff; flex: 1;
+            font-family: 'Consolas', 'Courier New', monospace; font-size: 1.2rem; /* تكبير */
+            outline: none;
+        }
+
+        .disclaimer { font-size: 0.95rem; color: #adb5bd; margin-top: 20px; font-style: italic; } /* تكبير */
+
+        .about-container { display: flex; flex-direction: column; }
+        .about-header-section { display: flex; gap: 50px; align-items: center; margin-bottom: 100px; } /* زيادة الهامش والتباعد */
+        .about-photo-wrapper { flex-shrink: 0; width: 250px; } /* تكبير الصورة */
+        .about-photo { width: 100%; height: 250px; object-fit: cover; border: 2px solid var(--border); display: block; } /* تكبير الصورة */
+        .about-info { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; height: 250px; } /* ارتفاع أكبر */
+        
+        .profile-name { 
+            font-size: 3rem; /* تكبير الاسم */
+            color: var(--accent); 
+            line-height: 1.1; 
+            margin-bottom: 60px; /* زيادة الهامش */
+            white-space: nowrap; /* مهم لتأثير الكتابة */
+            overflow: hidden; /* مهم لتأثير الكتابة */
+            border-right: .15em solid orange; /* مؤشر الكتابة الأصلي */
+            width: 0; /* يبدأ بصفر */
+        }
+
+        /* 2. إضافة CSS لتأثير الكتابة */
+        .typing-effect {
+            display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: .15em solid var(--accent); /* مؤشر الكتابة */
+            animation: 
+                typing 3.5s steps(40, end),
+                blink-caret .75s step-end infinite;
+            width: 0;
+            color: var(--accent); /* اللون تم إبقائه في .profile-name لكن هذا للوضوح */
+        }
+
+        /* 3. الإطارات المفتاحية (Keyframes) لتأثير الكتابة */
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--accent); }
+        }
+
+        .profile-title { font-size: 1.4rem; font-weight: 700; color: #000; margin-bottom: 30px; } /* تكبير */
+        .profile-link { font-size: 1.6rem; color: var(--orange); text-decoration: none; font-weight: 600; display: inline-block; } /* تكبير */
+        .profile-link:hover { text-decoration: underline; }
+        .about-bottom { margin-top: 100px; } /* زيادة الهامش */
+        .certs-heading { font-size: 1.6rem; margin-bottom: 30px; border-bottom: 4px solid #000; display: inline-block; text-transform: uppercase; color: #000; } /* تكبير */
+        .certs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; } /* زيادة التباعد */
         .cert-card { background: transparent; padding: 0; border: none; }
-        .cert-card li { border-bottom: 1px solid #eee; }
+        .cert-card ol { padding-left: 25px; margin: 0; }
+        .cert-card li { margin-bottom: 30px; font-weight: 700; font-size: 1.2rem; border-bottom: 1px solid #eee; padding-bottom: 15px; } /* تكبير */
+        .cert-card li:last-child { border-bottom: none; }
+        .cert-card li span { display: block; font-weight: 400; font-size: 1rem; color: var(--muted); margin-top: 8px; } /* تكبير */
         .cisco-status { color: #d39e00; font-weight: 700; }
-        
-        footer { background: #212529; color: #fff; text-align: center; padding: 30px; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; }
-        
+
+        .tweet-feed { width: 100%; margin: 0; }
+        .tweet-card { background: #fff; border: 1px solid var(--border); padding: 30px; display: flex; gap: 30px; margin-bottom: 40px; text-align: left; width: 100%; } /* زيادة التباعد والهامش */
+        .tweet-avatar { width: 70px; height: 70px; object-fit: cover; border: 1px solid #000; flex-shrink: 0; } /* تكبير */
+        .tweet-content { flex: 1; }
+        .tweet-header { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; font-size: 1.2rem; } /* تكبير */
+        .tweet-name { color: var(--text); }
+        .tweet-handle { color: var(--muted); font-weight: 400; }
+        .tweet-time { color: var(--muted); font-weight: 400; }
+        .tweet-body { font-size: 1.4rem; color: var(--text); line-height: 1.6; text-align: left; } /* تكبير */
+
+        .contact-split { display: grid; grid-template-columns: 1fr 1.5fr; gap: 100px; align-items: start; } /* زيادة التباعد */
+        .contact-info h3 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 25px; color: var(--text); } /* تكبير */
+        .contact-info p { font-size: 1.2rem; color: var(--muted); margin-bottom: 50px; } /* تكبير */
+        .contact-form-clean .form-group { margin-bottom: 35px; } /* زيادة الهامش */
+        .contact-form-clean label { display: block; margin-bottom: 10px; font-size: 1rem; font-weight: 700; color: var(--text); text-transform: uppercase; letter-spacing: 1px; } 
+        .contact-form-clean .form-control { width: 100%; padding: 18px 0; background: transparent; border: none; border-bottom: 2px solid var(--border); font-size: 1.4rem; outline: none; color: var(--text); transition: 0.3s; } /* تكبير */
+        .contact-form-clean .form-control:focus { border-color: var(--accent); }
+        .contact-form-clean .honeypot-field { 
+            position: absolute; 
+            left: -9999px; 
+            opacity: 0;
+            visibility: hidden;
+        }
+        .btn { display: inline-block; padding: 18px 45px; background: var(--text); color: #fff; text-decoration: none; border: none; cursor: pointer; font-size: 1.1rem; transition: 0.2s; font-weight: 700; letter-spacing: 1px; } /* تكبير */
+        .btn:hover { background: var(--accent); }
+        .captcha-group { 
+            margin-top: 40px; 
+            padding: 20px; 
+            border: 1px solid var(--border);
+            background-color: #f7f7f7;
+            display: flex;
+            flex-direction: column;
+        }
+        .captcha-group label {
+            margin-bottom: 12px;
+            font-size: 1.2rem;
+            text-transform: none;
+            letter-spacing: normal;
+        }
+        .captcha-group input {
+            padding: 12px;
+            border: 1px solid var(--border);
+            font-size: 1.2rem;
+            width: 160px;
+        }
+
+
+        footer { margin-top: auto; background: var(--text); color: #fff; text-align: center; padding: 35px; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; } /* تكبير */
+
         @media(max-width: 768px) {
-            .design-wrapper { min-height: auto; }
-            .design-12, .design-15 { flex-direction: column; }
-            .design-15 .left-side, .design-15 .right-side { flex: none; width: 100%; }
+            .about-header-section { flex-direction: column; text-align: center; gap: 30px; height: auto; margin-bottom: 60px; } /* زيادة الهامش والتباعد */
+            .about-photo-wrapper { width: 200px; }
+            .about-photo { height: 200px; }
+            .profile-name { font-size: 2.5rem; margin-bottom: 40px; } /* تكبير للموبايل */
+            .profile-title { font-size: 1.2rem; } /* تكبير للموبايل */
+            .profile-link { font-size: 1.5rem; } /* تكبير للموبايل */
+            .about-info { height: auto; }
+            .contact-split, .certs-grid { grid-template-columns: 1fr; display: flex; flex-direction: column; gap: 40px; } /* زيادة التباعد */
+            .nav-links { display: none; }
+            .contact-form { padding: 40px; } /* زيادة الهامش */
+            .contact-info h3 { font-size: 3rem; } /* تكبير للموبايل */
+            body { font-size: 1rem; }
+            .cert-card li { font-size: 1.1rem; }
         }
     </style>
 </head>
-<body class="design-1">
+<body>
 
     <nav>
         <div class="container nav-content">
             <div class="logo">Abdalrhman.</div>
             <div class="nav-links">
-                <button onclick="show('about')" class="active">Profile</button>
+                <button onclick="show('home')" class="active">Home</button>
+                <button onclick="show('about')">About</button>
                 <button onclick="show('blog')">Blog</button>
                 <button onclick="show('contact')">Contact</button>
-                <button onclick="toggleSelector()">🎨 Designs</button>
-            </div>
-            
-            <div id="design-selector" class="selector-dropdown" style="display: none;">
-                <button onclick="setDesign('1', 'Clean Blue Card')" class="design-btn active-design">1. Clean Blue Card</button>
-                <button onclick="setDesign('2', 'Dark Hacker Terminal')" class="design-btn">2. Dark Hacker Terminal</button>
-                <button onclick="setDesign('3', 'Cyberpunk Grid')" class="design-btn">3. Cyberpunk Grid (Animated)</button>
-                <button onclick="setDesign('4', 'Particle Background')" class="design-btn">4. Particle Background (Dynamic)</button>
-                <button onclick="setDesign('5', 'Glitch Effect')" class="design-btn">5. Glitch Effect</button>
-                <button onclick="setDesign('6', 'Minimalist Reveal')" class="design-btn">6. Minimalist Reveal (Sequential)</button>
-                <button onclick="setDesign('7', 'Neon Glow')" class="design-btn">7. Neon Glow (Purple/Cyan)</button>
-                <button onclick="setDesign('8', 'Retro Arcade')" class="design-btn">8. Retro Arcade</button>
-                <button onclick="setDesign('9', 'Data Flow')" class="design-btn">9. Data Flow (Animated)</button>
-                <button onclick="setDesign('10', 'Vaporwave Aesthetic')" class="design-btn">10. Vaporwave Aesthetic (Gradient)</button>
-                <button onclick="setDesign('11', 'Minimalist B&W')" class="design-btn">11. Minimalist Black & White</button>
-                <button onclick="setDesign('12', 'Code Editor Look')" class="design-btn">12. Code Editor Look</button>
-                <button onclick="setDesign('13', 'Abstract Shapes')" class="design-btn">13. Abstract Shapes (Animated)</button>
-                <button onclick="setDesign('14', 'Dynamic Typing')" class="design-btn">14. Dynamic Typing (Scripted)</button>
-                <button onclick="setDesign('15', 'Split Vertical Reveal')" class="design-btn">15. Split Vertical Reveal</button>
             </div>
         </div>
     </nav>
 
-    <div class="container">
-        <div id="about" class="section active">
+    <div id="home" class="section active">
+        <div class="container">
+            <h3 >Your first and second name ?</h3>
+            <h3 >There is a message for you .</h3>
             
-            <div id="design-title-display" style="font-size: 1.5rem; font-weight: bold; margin-bottom: 20px; text-align: center;">1. Clean Blue Card</div>
+            <div class="terminal-container" onclick="document.getElementById('cmd-input').focus()">
+                <div class="terminal-header">root@kali:~ (zsh)</div>
+                <div class="terminal-body" id="terminal-body">
+                    <div class="static-msg">┃ This is a minimal installation of Kali Linux, you likely
+┃ want to install supplementary tools. Learn how:
+┃ ⇒ https://www.kali.org/docs/troubleshooting/common-minimum-setup/</div>
+                    
+                    <div id="history-content"></div>
 
+                    <div class="cmd-line">
+                        <span class="prompt"><span style="color:#0d6efd; font-weight:bold;">┌──(root㉿kali)-[~]</span><br><span style="color:#fff; font-weight:bold;">└─#</span></span>
+                        <input type="text" id="cmd-input" autocomplete="off" autofocus>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div id="about" class="section">
             <div class="about-container">
                 
-                <div id="design-1" class="design-wrapper active-design design-1">
-                    <img src="photo.jpeg" alt="Profile" class="profile-photo">
-                    <h1 class="profile-name">Abdalrhman Salah Ibrahim</h1>
-                    <div class="profile-title">Penetration Testing Student | Bug Bounty Enthusiast | CTF Player</div>
-                    <div>
-                        <span class="skill-badge">Penetration Testing</span> <span class="skill-badge">Bug Bounty</span> <span class="skill-badge">CTF</span>
+                <div class="about-header-section">
+                    <div class="about-photo-wrapper">
+                        <img src="photo.jpeg" alt="Profile" class="about-photo">
                     </div>
-                    <a href="https://www.linkedin.com/in/bodyurr/" target="_blank" class="linkedin-link">View LinkedIn Profile</a>
-                </div>
 
-                <div id="design-2" class="design-wrapper design-2">
-                    <img src="photo.jpeg" alt="Profile" class="profile-photo">
-                    <h1 class="profile-name">ROOT@KALI: Abdalrhman Salah Ibrahim</h1>
-                    <div class="profile-title">// Access Granted. Status: PENTESTING MODE ACTIVE</div>
-                    <div>
-                        <span class="skill-badge">SYSTEM HACKER</span> <span class="skill-badge">BUG HUNTER</span>
-                    </div>
-                    <a href="https://www.linkedin.com/in/bodyurr/" target="_blank" class="linkedin-link">Connect to Console [LINKEDIN]</a>
-                </div>
-
-                <div id="design-3" class="design-wrapper design-3">
-                    <img src="photo.jpeg" alt="Profile" class="profile-photo">
-                    <h1 class="profile-name">CYBER// ABDALRHMAN IBRAHIM</h1>
-                    <div class="profile-title">>> SECURITY ARCHITECT / EXPLOIT DEVELOPMENT</div>
-                    <div>
-                        <span class="skill-badge">CRYPTO</span> <span class="skill-badge">VULNERABILITY RESEARCH</span>
-                    </div>
-                    <a href="https://www.linkedin.com/in/bodyurr/" target="_blank" class="linkedin-link">ACCESS PROFILE [LINK]</a>
-                </div>
-
-                <div id="design-4" class="design-wrapper design-4">
-                    <div id="particles-js" class="particles-canvas"></div>
-                    <img src="photo.jpeg" alt="Profile" class="profile-photo">
-                    <h1 class="profile-name">Abdalrhman Ibrahim</h1>
-                    <div class="profile-title">System Analyst & Security Researcher</div>
-                    <div>
-                        <span class="skill-badge">React.js</span> <span class="skill-badge">Python</span> <span class="skill-badge">AWS</span>
-                    </div>
-                    <a href="https://www.linkedin.com/in/bodyurr/" target="_blank" class="linkedin-link">Let's Build</a>
-                </div>
-
-                <div id="design-5" class="design-wrapper design-5">
-                    <img src="photo.jpeg" alt="Profile" class="profile-photo">
-                    <h1 class="profile-name">A_b_d_a_l_r_h_m_a_n S_a_l_a_h</h1>
-                    <div class="profile-title">ERROR_404_SECURED_USER</div>
-                    <div>
-                        <span class="skill-badge">Injection</span> <span class="skill-badge">XSS</span> <span class="skill-badge">RCE</span>
-                    </div>
-                    <a href="https://www.linkedin.com/in/bodyurr/" target="_blank" class="linkedin-link">!_Connect</a>
-                </div>
-
-                <div id="design-6" class="design-wrapper design-6">
-                    <img src="photo.jpeg" alt="Profile" class="profile-photo">
-                    <h1 class="profile-name">Abdalrhman Salah Ibrahim</h1>
-                    <div class="profile-title">Security Focus. Clean Code.</div>
-                    <div>
-                        <span class="skill-badge">Audit</span> <span class="skill-badge">Strategy</span> <span class="skill-badge">Documentation</span>
-                    </div>
-                    <a href="https://www.linkedin.com/in/bodyurr/" target="_blank" class="linkedin-link">Contact</a>
-                </div>
-
-                <div id="design-7" class="design-wrapper design-7">
-                    <img src="photo.jpeg" alt="Profile" class="profile-photo">
-                    <h1 class="profile-name">Abdalrhman Salah Ibrahim</h1>
-                    <div class="profile-title">Cyber Defender // CTF Master</div>
-                    <div>
-                        <span class="skill-badge">REVERSE</span> <span class="skill-badge">PWN</span> <span class="skill-badge">WEB</span>
-                    </div>
-                    <a href="https://www.linkedin.com/in/bodyurr/" target="_blank" class="linkedin-link">CONNECT TO GRID</a>
-                </div>
-
-                <div id="design-8" class="design-wrapper design-8">
-                    <img src="photo.jpeg" alt="Profile" class="profile-photo">
-                    <h1 class="profile-name">ABDALRHMAN'S PORTFOLIO</h1>
-                    <div class="profile-title">LEVEL 1 COMPLETE: PENTESTER</div>
-                    <div>
-                        <span class="skill-badge">SCORE: 99999</span> <span class="skill-badge">EXTRA LIFE</span>
-                    </div>
-                    <a href="https://www.linkedin.com/in/bodyurr/" target="_blank" class="linkedin-link">START GAME</a>
-                </div>
-
-                <div id="design-9" class="design-wrapper design-9">
-                    <img src="photo.jpeg" alt="Profile" class="profile-photo">
-                    <h1 class="profile-name">Abdalrhman Ibrahim [Data Stream]</h1>
-                    <div class="profile-title">--NETWORK SEGMENTATION SPECIALIST--</div>
-                    <div>
-                        <span class="skill-badge">NETWORKING</span> <span class="skill-badge">OSINT</span> <span class="skill-badge">FORENSICS</span>
-                    </div>
-                    <a href="https://www.linkedin.com/in/bodyurr/" target="_blank" class="linkedin-link">ACTIVATE LINK</a>
-                </div>
-
-                <div id="design-10" class="design-wrapper design-10">
-                    <img src="photo.jpeg" alt="Profile" class="profile-photo">
-                    <h1 class="profile-name">Abdalrhman Salah Ibrahim</h1>
-                    <div class="profile-title">SECURITY IN THE CLOUDS</div>
-                    <div>
-                        <span class="skill-badge">SANS</span> <span class="skill-badge">CISSP</span> <span class="skill-badge">CCNA</span>
-                    </div>
-                    <a href="https://www.linkedin.com/in/bodyurr/" target="_blank" class="linkedin-link">V I S I T</a>
-                </div>
-
-                <div id="design-11" class="design-wrapper design-11">
-                    <img src="photo.jpeg" alt="Profile" class="profile-photo">
-                    <h1 class="profile-name">ABDALRHMAN SALAH IBRAHIM</h1>
-                    <div class="profile-title">HACKING | DEFENSE | RESEARCH</div>
-                    <div>
-                        <span class="skill-badge">C</span> <span class="skill-badge">S</span> <span class="skill-badge">S</span> <span class="skill-badge">S</span>
-                    </div>
-                    <a href="https://www.linkedin.com/in/bodyurr/" target="_blank" class="linkedin-link">ACCESS</a>
-                </div>
-
-                <div id="design-12" class="design-wrapper design-12">
-                    <img src="photo.jpeg" alt="Profile" class="profile-photo">
-                    <div class="text-content">
-                        <h1 class="profile-name">public class Abdalrhman extends Student {</h1>
-                        <div class="profile-title">  // Primary Role: Pentester</div>
-                        <div class="profile-title">  // Secondary Role: Bug Bounty Enthusiast</div>
-                        <div>
-                            <span class="skill-badge">System.out.println("Hack The Box");</span>
-                        </div>
-                        <a href="https://www.linkedin.com/in/bodyurr/" target="_blank" class="linkedin-link">Call Method: link.connect()</a>
-                        <h1 class="profile-name">}</h1>
-                    </div>
-                </div>
-
-                <div id="design-13" class="design-wrapper design-13">
-                    <img src="photo.jpeg" alt="Profile" class="profile-photo">
-                    <h1 class="profile-name">Abdalrhman Ibrahim</h1>
-                    <div class="profile-title">Fluid Security Expert</div>
-                    <div>
-                        <span class="skill-badge">Creative</span> <span class="skill-badge">Adaptable</span> <span class="skill-badge">Innovative</span>
-                    </div>
-                    <a href="https://www.linkedin.com/in/bodyurr/" target="_blank" class="linkedin-link">Connect</a>
-                </div>
-
-                <div id="design-14" class="design-wrapper design-14">
-                    <img src="photo.jpeg" alt="Profile" class="profile-photo">
-                    <h1 class="profile-name">Abdalrhman Salah Ibrahim</h1>
-                    <div id="typed-strings">
-                        <p>I am a Penetration Testing Student.</p>
-                        <p>I am a Bug Bounty Enthusiast.</p>
-                        <p>I am a CTF Player.</p>
-                    </div>
-                    <div class="dynamic-text"></div>
-                    <div>
-                        <span class="skill-badge">Speed</span> <span class="skill-badge">Precision</span>
-                    </div>
-                    <a href="https://www.linkedin.com/in/bodyurr/" target="_blank" class="linkedin-link">Follow My Keystrokes</a>
-                </div>
-
-                <div id="design-15" class="design-wrapper design-15">
-                    <div class="left-side">
-                        <img src="photo.jpeg" alt="Profile" class="profile-photo">
-                        <h1 class="profile-name">Abdalrhman Salah Ibrahim</h1>
-                        <div class="profile-title">Security Focus</div>
-                        <a href="https://www.linkedin.com/in/bodyurr/" target="_blank" class="linkedin-link">VIEW PROFILE</a>
-                    </div>
-                    <div class="right-side">
-                        <div class="profile-title" style="color:#333; font-size: 1.5rem; margin-bottom: 20px;">KEY SKILLS & TOOLS</div>
-                        <div>
-                            <span class="skill-badge">Web Exploitation</span> <span class="skill-badge">Burp Suite</span> <span class="skill-badge">Nmap</span>
-                            <span class="skill-badge">Python</span> <span class="skill-badge">Linux</span> <span class="skill-badge">Cloud</span>
-                        </div>
+                    <div class="about-info">
+                        <h1 class="profile-name">
+                            <span id="name-typing" class="typing-effect">Abdalrhman Salah Ibrahim</span>
+                        </h1>
+                        <div class="profile-title">Penetration Testing Student | Bug Bounty Enthusiast | CTF Player</div>
+                        <a href="https://www.linkedin.com/in/bodyurr/" target="_blank" class="profile-link">Linkedin</a>
                     </div>
                 </div>
 
                 <div class="about-bottom">
                     <h3 class="certs-heading">CERTIFICATIONS</h3>
+                    
                     <div class="certs-grid">
                         <div class="cert-card">
                             <ol start="1">
-                                <li>Penetration Testing Professional <span>MaharaTech - ITI</span></li>
-                                <li>Ethical Hacking <span>MaharaTech - ITI</span></li>
-                                <li>CHC v2 <span>Techcampus</span></li>
+                                <li>
+                                    Penetration Testing Professional
+                                    <span>MaharaTech - ITI</span>
+                                </li>
+                                <li>
+                                    Ethical Hacking
+                                    <span>MaharaTech - ITI</span>
+                                </li>
+                                <li>
+                                    CHC v2
+                                    <span>Techcampus</span>
+                                </li>
                             </ol>
                         </div>
+                        
                         <div class="cert-card">
                             <ol start="4">
-                                <li>Computer Network Fundamentals <span>MaharaTech - ITI</span></li>
-                                <li>Forensic Medicine <span>Misr University</span></li>
-                                <li><span class="cisco-status">Cisco Cybersecurity</span> <span>In Progress: <span id="cisco-loader">🟩⬜⬜⬜⬜</span></span></li>
+                                <li>
+                                    Computer Network Fundamentals
+                                    <span>MaharaTech - ITI</span>
+                                </li>
+                                <li>
+                                    Forensic Medicine
+                                    <span>Misr University</span>
+                                </li>
+                                <li>
+                                    <span class="cisco-status">Cisco Cybersecurity</span>
+                                    <span>In Progress: <span id="cisco-loader">🟩⬜⬜⬜⬜</span></span>
+                                </li>
                             </ol>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
-        
+
         <div id="blog" class="section">
             <div class="tweet-feed" id="tweet-container"></div>
         </div>
+
         <div id="contact" class="section">
+            <div class="contact-split">
+                <div class="contact-info">
+                    <h3>LET'S TALK</h3>
+                    <p>Have a project in mind? Send me a message and let's talk.</p>
+                </div>
+                <div class="contact-form-clean">
+                    <form action="https://formsubmit.co/body362222@gmail.com" method="POST" id="contactForm">
+                        <input type="hidden" name="_next" value="https://your-domain.com/thanks.html">
+                        
+                        <div class="form-group honeypot-field">
+                            <label>Leave this field empty</label>
+                            <input type="text" name="_honey" class="form-control">
+                        </div>
+                        
+                        <div class="form-group"><label>Name</label><input type="text" name="name" class="form-control" required></div>
+                        <div class="form-group"><label>Email</label><input type="email" name="email" class="form-control" required></div>
+                        <div class="form-group"><label>Message</label><textarea name="message" rows="2" class="form-control" required></textarea></div>
+                        
+                        <div class="form-group captcha-group">
+                            <label for="captcha">What is <span id="num1"></span> + <span id="num2"></span>?</label>
+                            <input type="number" id="captcha" name="captcha_answer" class="form-control" required>
+                            <input type="hidden" id="captcha_expected" name="captcha_expected">
+                        </div>
+
+                        <button type="submit" class="btn">SEND MESSAGE</button>
+                    </form>
+                </div>
             </div>
+        </div>
+
     </div>
 
     <footer>© Abdalrhman Salah Ibrahim</footer>
 
     <script>
-        let typedInstance = null;
-        
-        // --- 1. Design Switching Functions ---
-        function setDesign(designId, designName) {
-            // 1. إيقاف وتدمير أي تأثيرات سابقة
-            if (typedInstance) {
-                typedInstance.destroy();
-                typedInstance = null;
-            }
-            if (window.pJSDom && window.pJSDom.length > 0) {
-                window.pJSDom[0].pJS.fn.vendors.destroypJS();
-                window.pJSDom = [];
-            }
-            
-            // 2. إظهار التصميم الجديد وإخفاء البقية
-            document.querySelectorAll('.design-wrapper').forEach(el => el.classList.remove('active-design'));
-            const newDesignEl = document.getElementById('design-' + designId);
-            newDesignEl.classList.add('active-design');
-            
-            // 3. تحديث زر القائمة النشط
-            document.querySelectorAll('.design-btn').forEach(btn => btn.classList.remove('active-design'));
-            document.querySelector(`[onclick*="'${designId}'"]`).classList.add('active-design');
-            
-            // 4. تحديث العنوان وحفظ الاختيار
-            document.getElementById('design-title-display').textContent = designId + '. ' + designName;
-            localStorage.setItem('activeDesign', designId);
-            localStorage.setItem('activeDesignName', designName);
-
-            // 5. تفعيل تأثيرات الحركة (Initialization)
-            if (designId === '4') {
-                particlesJS('particles-js', {
-                    "particles": { "number": { "value": 80 }, "color": { "value": "#61dafb" }, "shape": { "type": "circle" }, "opacity": { "value": 0.5 }, "size": { "value": 3 }, "line_linked": { "enable": true, "distance": 150, "color": "#61dafb", "opacity": 0.4, "width": 1 }, "move": { "enable": true, "speed": 6 } },
-                    "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true } }
-                });
-            } else if (designId === '14') {
-                typedInstance = new Typed('.design-14 .dynamic-text', {
-                    stringsElement: '.design-14 #typed-strings',
-                    typeSpeed: 50,
-                    backSpeed: 20,
-                    loop: true
-                });
-            }
-            
-            toggleSelector(); // إخفاء القائمة بعد الاختيار
-        }
-
-        function toggleSelector() {
-            const selector = document.getElementById('design-selector');
-            selector.style.display = selector.style.display === 'block' ? 'none' : 'block';
-        }
-        
-        // --- 2. Existing Functions ---
+        // دالة لعرض القسم المطلوب
         function show(id) {
             document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.nav-links button').forEach(b => b.classList.remove('active'));
             document.getElementById(id).classList.add('active');
             const buttons = document.querySelectorAll('.nav-links button');
-            if(id === 'about') buttons[0].classList.add('active');
-            if(id === 'blog') buttons[1].classList.add('active');
-            if(id === 'contact') buttons[2].classList.add('active');
+            if(id === 'home') buttons[0].classList.add('active');
+            if(id === 'about') {
+                buttons[1].classList.add('active');
+                // تشغيل تأثير الكتابة عند الانتقال لصفحة About
+                typeWriter();
+            } else {
+                // إعادة تهيئة تأثير الكتابة عند الابتعاد عن صفحة About
+                const element = document.getElementById('name-typing');
+                element.style.width = '0%';
+                element.classList.remove('typing-effect');
+                void element.offsetWidth; // إعادة تشغيل الأنميشن
+            }
+            if(id === 'blog') buttons[2].classList.add('active');
+            if(id === 'contact') buttons[3].classList.add('active');
             window.scrollTo(0,0);
         }
+        
+        // 5. دالة تأثير الكتابة (Typing Effect Function)
+        function typeWriter() {
+            const element = document.getElementById('name-typing');
+            if (!element) return;
+            
+            // إضافة الكلاس لتشغيل الأنميشن
+            element.classList.add('typing-effect');
 
-        // --- Loader for Certifications (Unchanged) ---
+            // إزالة مؤشر الكتابة الوامض بعد انتهاء الأنميشن (اختياري)
+            const textLength = element.textContent.length;
+            const typingDuration = 3.5; // يجب أن يتطابق مع القيمة في CSS
+            setTimeout(() => {
+                element.style.borderRight = 'none';
+            }, typingDuration * 1000 + 100); 
+        }
+
+        const tweets = [{ date: "Nov 26", content: "I love you more than I love Messi." }];
+        const tweetContainer = document.getElementById('tweet-container');
+        tweets.forEach(tweet => {
+            tweetContainer.innerHTML += `
+                <div class="tweet-card">
+                    <img src="photo.jpeg" alt="Profile" class="tweet-avatar">
+                    <div class="tweet-content">
+                        <div class="tweet-header"><span class="tweet-name">Abdalrhman Salah</span><span class="tweet-handle">@bodyurr</span><span class="tweet-time">· ${tweet.date}</span></div>
+                        <div class="tweet-body">${tweet.content}</div>
+                    </div>
+                </div>`;
+        });
+
+        const input = document.getElementById('cmd-input');
+        const historyDiv = document.getElementById('history-content');
+        const terminalBody = document.getElementById('terminal-body');
+
+        input.addEventListener('keydown', function(e) {
+            if(e.key === 'Enter') {
+                e.preventDefault();
+                
+                const val = this.value.trim();
+                const valLower = val.toLowerCase();
+                
+                const cmdBlock = document.createElement('div');
+                cmdBlock.style.marginBottom = '5px';
+                cmdBlock.innerHTML = `
+                    <div><span style="color:#0d6efd; font-weight:bold;">┌──(root㉿kali)-[~]</span></div>
+                    <div><span style="color:#fff; font-weight:bold; margin-right:10px;">└─#</span><span style="color:#fff">${this.value}</span></div>
+                `;
+                historyDiv.appendChild(cmdBlock);
+
+                if(valLower === 'clear') {
+                    historyDiv.innerHTML = '';
+                } 
+                else if(valLower === 'sara mahmoud' || valLower === 'sara mahmoud sami' || valLower === 'sara sami') {
+                    const response = document.createElement('div');
+                    response.style.marginBottom = "20px";
+                    response.style.color = '#0d6efd'; 
+                    response.style.fontWeight = 'bold';
+                    response.style.fontSize = '1.3rem';
+                    response.textContent = `Why all this?`;
+                    historyDiv.appendChild(response);
+                }
+                else if (val !== "") {
+                    const response = document.createElement('div');
+                    response.style.marginBottom = "20px";
+                    response.style.color = '#ff5f56';
+                    response.style.fontWeight = 'bold';
+                    response.style.fontSize = '1.3rem';
+                    response.textContent = "Not u"; 
+                    historyDiv.appendChild(response);
+                }
+
+                this.value = '';
+                terminalBody.scrollTop = terminalBody.scrollHeight;
+            }
+        });
+        
+        document.querySelector('.terminal-container').addEventListener('click', () => input.focus());
+
         const loader = document.getElementById('cisco-loader');
         if(loader) {
             let step = 1;
@@ -560,20 +478,42 @@
             }, 500);
         }
 
-        // --- Initialization ---
-        window.addEventListener('load', function() {
-            const savedDesign = localStorage.getItem('activeDesign') || '1';
-            const savedDesignName = localStorage.getItem('activeDesignName') || 'Clean Blue Card';
-            
-            // تحميل التصميم المحفوظ وتفعيله
-            setDesign(savedDesign, savedDesignName); 
-            
-            // التأكد من أن الزر الصحيح في شريط التنقل هو النشط
-            document.querySelectorAll('.nav-links button').forEach(b => b.classList.remove('active'));
-            document.querySelector('.nav-links button:nth-child(1)').classList.add('active');
-            
-            // إزالة وظائف الترمينال القديمة لمنع الأخطاء إذا كانت موجودة
-            if(document.getElementById('home')) document.getElementById('home').style.display = 'none';
+        const form = document.getElementById('contactForm');
+        const num1Span = document.getElementById('num1');
+        const num2Span = document.getElementById('num2');
+        const captchaInput = document.getElementById('captcha');
+        const captchaExpectedInput = document.getElementById('captcha_expected');
+
+        function generateCaptcha() {
+            const num1 = Math.floor(Math.random() * 10) + 1; 
+            const num2 = Math.floor(Math.random() * 10) + 1; 
+            const sum = num1 + num2;
+
+            num1Span.textContent = num1;
+            num2Span.textContent = num2;
+            captchaExpectedInput.value = sum; 
+
+            captchaInput.value = '';
+        }
+
+        form.addEventListener('submit', function(e) {
+            const userAnswer = parseInt(captchaInput.value.trim());
+            const correctAnswer = parseInt(captchaExpectedInput.value);
+
+            if (userAnswer !== correctAnswer) {
+                e.preventDefault();
+                alert("Please complete the anti-spam check correctly!");
+                generateCaptcha(); 
+            }
+        });
+
+        generateCaptcha();
+
+        // تشغيل تأثير الكتابة عند تحميل الصفحة إذا كانت صفحة About هي النشطة
+        document.addEventListener('DOMContentLoaded', () => {
+            if (document.getElementById('about').classList.contains('active')) {
+                typeWriter();
+            }
         });
     </script>
 </body>
