@@ -59,75 +59,78 @@
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         /* -------------------------------------- */
-        /* --- تعديل CSS الخاص بصفحة Home --- */
+        /* --- تعديلات CSS لـ Home و Terminal --- */
         /* -------------------------------------- */
 
         #home { 
-            /* الخلفية: استخدام صورة كالي */
+            /* الخلفية: صورة كالي */
             background-image: url('kali_logo_bg.png'); 
             background-size: cover; 
             background-position: center; 
             background-repeat: no-repeat;
             background-color: #000;
             
-            /* ملء الشاشة بالكامل ومركزة */
+            /* ملء الشاشة ومركزة */
             padding: 0;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
         }
-
-        .terminal-container {
-            width: 80%; /* تصغير العرض لتبدو كـ نافذة عائمة */
-            height: 90vh; /* ارتفاع عالي */
-            max-width: 800px; /* تحديد أقصى عرض */
-            
-            /* جعل النافذة شفافة وعائمة */
-            background-color: rgba(0, 0, 0, 0.85); /* أسود شبه شفاف */
-            border: 2px solid #00ffff; /* إطار سماوي */
-            box-shadow: 0 0 30px rgba(0, 255, 0, 0.1); 
-            border-radius: 8px; /* زوايا مستديرة */
-
-            display: flex; flex-direction: column; font-family: 'Consolas', 'Courier New', monospace;
-            margin: 0; /* إلغاء الـ margin القديم */
-        }
         
-        /* إخفاء شريط الهيدر القديم تمامًا */
+        /* النافذة المنبثقة */
+        .terminal-container {
+            width: 80%;
+            height: 90vh; 
+            max-width: 800px;
+            
+            /* ألوان وشفافية النافذة العائمة */
+            background-color: rgba(0, 0, 0, 0.85); 
+            border: 2px solid #00ffff;
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.1); 
+            border-radius: 8px; 
+            margin: 0; 
+            
+            /* خصائص الخط */
+            display: flex; flex-direction: column; font-family: 'Consolas', 'Courier New', monospace;
+        }
+
+        /* إخفاء شريط الهيدر القديم (لأننا نستخدم شاشة منبثقة) */
         .terminal-header { display: none; }
 
         .terminal-body {
             flex: 1;
-            padding: 15px; /* تصحيح الـ padding الداخلي */
+            padding: 15px; 
             overflow-y: auto;
-            color: #f8f8f2; /* لون النص الأبيض */
+            color: #f8f8f2; /* لون النص الأبيض/الرمادي */
             font-size: 1.1rem;
         }
-
-        /* إزالة رسالة الترحيب السابقة أو إبقائها بيضاء */
+        
+        /* رسالة الترحيب الأصلية */
         .static-msg { color: #f8f8f2; white-space: pre-wrap; line-height: 1.4; margin-bottom: 5px; }
         
         #history-content { margin-bottom: 5px; }
 
-        .cmd-line { display: flex; color: #f8f8f2; align-items: flex-start; } 
+        .cmd-line { display: flex; color: #f8f8f2; align-items: center; } 
         
-        /* تعديل الـ Prompt ليطابق شكل CLI بسيط (kali@kali:~) */
+        /* تعديل الـ Prompt داخل سطر الإدخال ليتناسب مع الـ CLI */
         .prompt { 
             margin-right: 5px; 
             white-space: nowrap; 
-            color: #00ffff !important; 
-            line-height: 1.4;
+            color: #00ffff !important; /* سماوي */
         }
-        .prompt span { display: inline; } /* تصحيح الـ prompt ليعمل على سطر واحد */
+        /* إخفاء الـ break lines للـ prompt القديم ليظهر على سطر واحد */
+        .prompt span:first-child { color: #00ffff !important; font-weight: normal !important; display: inline; }
+        .prompt span:last-child { color: #f8f8f2 !important; font-weight: bold !important; display: inline; }
+        .prompt br { display: none; }
+
 
         #cmd-input {
             background: transparent; border: none; color: #f8f8f2; flex: 1;
             font-family: 'Consolas', 'Courier New', monospace; font-size: 1.1rem; outline: none;
-            padding: 0;
-            margin-top: 2px;
+            padding: 0;
         }
         /* --- نهاية تعديل CSS لـ Home --- */
-
 
         .disclaimer { font-size: 0.85rem; color: #adb5bd; margin-top: 15px; font-style: italic; }
 
@@ -346,6 +349,7 @@
 
         <div id="blog" class="section">
             <div class="tweet-feed" id="tweet-container"></div>
+            
         </div>
 
         <div id="contact" class="section">
@@ -483,12 +487,15 @@
                 
                 const cmdBlock = document.createElement('div');
                 cmdBlock.style.marginBottom = '5px';
+                
+                // بناء الـ Prompt الخاص بتاريخ الأوامر
                 cmdBlock.innerHTML = `
-                    <div><span style="color:#00ffff; font-weight:bold;">kali@kali:~$</span></div>
-                    <div><span style="color:#f8f8f2; font-weight:bold; margin-right:10px;">$</span><span style="color:#f8f8f2">${this.value}</span></div>
+                    <div><span style="color:#00ffff; font-weight:normal;">kali@kali:~$</span></div>
+                    <div><span style="color:#f8f8f2; font-weight:normal; margin-right:5px;">$</span><span style="color:#f8f8f2">${this.value}</span></div>
                 `;
                 historyDiv.appendChild(cmdBlock);
-
+                
+                // --- وظيفة الأوامر ---
                 if(valLower === 'clear') {
                     historyDiv.innerHTML = '';
                 } 
@@ -506,9 +513,10 @@
                     response.style.marginBottom = "20px";
                     response.style.color = '#ff5f56';
                     response.style.fontWeight = 'bold';
-                    response.textContent = "Not u"; 
+                    response.textContent = "Error: command not found: " + val; // إضافة رسالة خطأ محاكية
                     historyDiv.appendChild(response);
                 }
+                // ---------------------------
 
                 this.value = '';
                 terminalBody.scrollTop = terminalBody.scrollHeight;
