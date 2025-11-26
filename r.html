@@ -2,370 +2,229 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Abdalrhman - 20 Themes</title>
+    <title>Abdalrhman - 20 Unique Designs</title>
     <link rel="icon" type="image/x-icon" href="icon.png">
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <style>
-        /* ----------------------------------------------------------------- */
-        /* --- 1. THEME VARIABLES (5 Color Themes) --- */
-        /* ----------------------------------------------------------------- */
-        :root, .theme-default {
-            --bg: #f8f9fa; /* Light Gray */
-            --text: #212529;
-            --muted: #6c757d;
-            --accent: #0d6efd; /* Primary Blue */
-            --card-bg: #ffffff;
-            --border: #dee2e6;
-            --shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
-
-        .theme-dark-hacker {
-            --bg: #121212;
-            --text: #33ff00; /* Neon Green */
-            --muted: #a0a0a0;
-            --accent: #33ff00;
-            --card-bg: #1a1a1a;
-            --border: #33ff00;
-            --shadow: 0 0 10px rgba(51, 255, 0, 0.5);
-        }
-
-        .theme-neon-tech {
-            --bg: #000000;
-            --text: #ffffff;
-            --muted: #b0b0b0;
-            --accent: #ff00ff; /* Neon Purple */
-            --card-bg: #0a0a0a;
-            --border: #ff00ff;
-            --shadow: 0 0 15px rgba(255, 0, 255, 0.4);
-        }
-
-        .theme-minimal-dark {
-            --bg: #1a1a1a;
-            --text: #ffffff;
-            --muted: #b0b0b0;
-            --accent: #e0e0e0; /* Off-White Accent */
-            --card-bg: #2d2d2d;
-            --border: #444444;
-            --shadow: 0 5px 15px rgba(0,0,0,0.4);
-        }
-        
-        .theme-fire-red {
-            --bg: #ffffff;
-            --text: #333333;
-            --muted: #777777;
-            --accent: #dc3545; /* Red */
-            --card-bg: #fff0f0;
-            --border: #f5c6cb;
-            --shadow: 0 5px 15px rgba(220, 53, 69, 0.1);
-        }
-
-        /* ----------------------------------------------------------------- */
-        /* --- 2. GLOBAL BASE STYLES --- */
-        /* ----------------------------------------------------------------- */
+        /* Global Reset and Base Styles */
         * { margin: 0; padding: 0; box-sizing: border-box; border-radius: 0 !important; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
-
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            overflow-x: hidden;
-            font-weight: 400;
-            transition: background-color 0.5s, color 0.5s;
-        }
-
+        body { background-color: #f8f9fa; color: #212529; line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; overflow-x: hidden; font-weight: 400; transition: background-color 0.5s, color 0.5s; }
         h1, h2, h3, h4, strong, b, .btn, .nav-links button { font-weight: 700; }
 
-        nav { border-bottom: 1px solid var(--border); padding: 15px 0; background: var(--card-bg); position: sticky; top: 0; z-index: 1000; }
+        /* Navigation */
+        nav { border-bottom: 1px solid #dee2e6; padding: 15px 0; background: rgba(255,255,255,0.95); backdrop-filter: blur(5px); position: sticky; top: 0; z-index: 1000; }
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
         .nav-content { display: flex; justify-content: space-between; align-items: center; position: relative; }
-        .logo { font-size: 1.4rem; font-weight: 900; color: var(--text); letter-spacing: 1px; }
+        .logo { font-size: 1.4rem; font-weight: 900; color: #212529; letter-spacing: 1px; }
 
-        .nav-links button { background: none; border: none; color: var(--muted); margin-left: 25px; font-size: 1rem; cursor: pointer; padding: 5px 0; transition: 0.2s; }
-        .nav-links button:hover, .nav-links button.active { color: var(--accent); }
+        .nav-links button { background: none; border: none; color: #6c757d; margin-left: 25px; font-size: 1rem; cursor: pointer; padding: 5px 0; transition: 0.2s; }
+        .nav-links button:hover, .nav-links button.active { color: #0d6efd; }
+        
+        /* Design Selector Dropdown */
+        #design-selector { position: absolute; top: 100%; right: 20px; background: #fff; border: 1px solid #dee2e6; padding: 10px; z-index: 1001; display: none; box-shadow: 0 5px 15px rgba(0,0,0,0.1); max-height: 400px; overflow-y: auto; min-width: 200px; }
+        .design-btn { display: block; width: 100%; text-align: left; padding: 8px 15px; margin-bottom: 5px; background-color: #f8f9fa; color: #212529; border: 1px solid #dee2e6; cursor: pointer; transition: background-color 0.2s; }
+        .design-btn:hover, .design-btn.active-design { background-color: #e9ecef; color: #0d6efd; border-left: 3px solid #0d6efd; font-weight: 600; }
+
+        /* Section Transitions */
         .section { display: none; padding: 40px 0; animation: fadeIn 0.3s ease; }
         .section.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Dropdown Selectors */
-        .selector-dropdown { position: absolute; top: 100%; right: 20px; background: var(--card-bg); border: 1px solid var(--border); padding: 10px; z-index: 1001; display: none; box-shadow: var(--shadow); min-width: 150px; }
-        .selector-dropdown.layout-selector { right: 180px; }
-        .selector-btn { display: block; width: 100%; text-align: left; padding: 8px 15px; margin-bottom: 5px; background-color: var(--card-bg); color: var(--text); border: 1px solid var(--border); cursor: pointer; transition: background-color 0.2s; }
-        .selector-btn:hover { background-color: var(--border); color: var(--accent); }
-        .selector-btn.active-theme { border-left: 5px solid var(--accent); font-weight: 700; }
+        /* Common Elements for Designs */
+        .design-wrapper { display: none; }
+        .design-wrapper.active-design { display: block; }
+        .profile-photo { width: 150px; height: 150px; object-fit: cover; border-radius: 50% !important; border: 3px solid; margin-bottom: 20px; animation: photo-fade-in 1s ease-out; }
+        @keyframes photo-fade-in { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
+        .profile-name { font-size: 2.5rem; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
+        .profile-title { font-size: 1.2rem; font-weight: 600; margin-bottom: 20px; }
+        .skill-badge { display: inline-block; padding: 6px 12px; margin: 5px; border-radius: 15px !important; font-size: 0.9em; border: 1px solid; }
+        .linkedin-link { display: inline-block; padding: 10px 25px; margin-top: 25px; text-decoration: none; border-radius: 5px !important; font-weight: 600; transition: transform 0.3s ease; }
+        .linkedin-link:hover { transform: translateY(-3px); }
 
 
         /* ----------------------------------------------------------------- */
-        /* --- 3. LAYOUT-SPECIFIC STYLES (L1-L4) --- */
+        /* --- 20 UNIQUE DESIGN STYLES --- */
         /* ----------------------------------------------------------------- */
         
-        /* --- Layout Common Styles --- */
-        .profile-layout { display: none; }
-        .profile-layout.active-layout { display: block; }
-        .profile-name { font-size: 2.8rem; color: var(--accent); line-height: 1.1; margin-bottom: 5px; }
-        .profile-desc { font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 15px; }
-        .profile-link { display: inline-block; padding: 10px 20px; background-color: var(--accent); color: var(--bg) !important; font-weight: 700; text-decoration: none; transition: background-color 0.2s; border-radius: 5px !important; font-size: 1rem; }
-        .profile-link:hover { opacity: 0.9; }
+        /* Design 1: Clean Blue Card */
+        .design-1 { background-color: #e0f2f7; color: #333; padding: 50px; text-align: center; box-shadow: 0 8px 20px rgba(0,0,0,0.1); border-radius: 10px !important; }
+        .design-1 .profile-photo { border-color: #007bff; }
+        .design-1 .profile-name { color: #0056b3; }
+        .design-1 .profile-title { color: #555; }
+        .design-1 .skill-badge { background-color: #d1ecf1; border-color: #bee5eb; color: #0c5460; }
+        .design-1 .linkedin-link { background-color: #007bff; color: white; }
 
-        /* L1: Clean Card (Default) */
-        .layout-l1 .profile-card {
-            display: flex; gap: 40px; align-items: center; background-color: var(--card-bg); 
-            border: 1px solid var(--border); padding: 30px; box-shadow: var(--shadow); border-radius: 5px !important;
+        /* Design 2: Dark Hacker Terminal */
+        .design-2 { background-color: #0f0f0f; color: #33ff00; padding: 50px; border: 2px solid #33ff00; box-shadow: 0 0 15px rgba(51, 255, 0, 0.6); text-align: center; animation: terminal-blink 1.5s infinite; }
+        .design-2 .profile-photo { border-color: #33ff00; box-shadow: 0 0 10px rgba(51, 255, 0, 0.5); }
+        .design-2 .profile-name { color: #00ff00; text-shadow: 0 0 8px #00ff00; animation: neon-glow 2s ease-in-out infinite alternate; }
+        .design-2 .profile-title { color: #90ff90; }
+        .design-2 .skill-badge { background-color: #0a0a0a; border-color: #00cc00; color: #00ff00; }
+        .design-2 .linkedin-link { background-color: #33ff00; color: #0f0f0f; box-shadow: 0 0 8px #33ff00; }
+        @keyframes terminal-blink { 0%, 100% { border-color: #33ff00; } 50% { border-color: rgba(51,255,0,0.3); } }
+        @keyframes neon-glow { from { text-shadow: 0 0 5px #00ff00; } to { text-shadow: 0 0 20px #00ff00, 0 0 30px #00ff00; } }
+        .design-2 #typed-output { font-family: 'Consolas', 'Courier New', monospace; white-space: pre; display: inline-block; }
+
+        /* Design 3: Cyberpunk Grid */
+        .design-3 { 
+            position: relative; overflow: hidden; background-color: #1a0f30; color: #00ffff; padding: 50px; text-align: center;
+            border: 2px solid #ff00ff; box-shadow: 0 0 20px rgba(255,0,255,0.7);
         }
-        .layout-l1 .photo-wrapper { flex-shrink: 0; width: 200px; }
-        .layout-l1 .about-photo { width: 100%; height: 200px; object-fit: cover; border: 1px solid var(--border); display: block; }
-        .layout-l1 .skill-badges span { background-color: var(--card-bg); color: var(--text); padding: 8px 15px; font-weight: 600; border: 1px solid var(--border); border-radius: 20px !important; }
-
-        /* L2: Terminal Card (Dark, Centered) */
-        .layout-l2 .terminal-card { 
-            background-color: var(--term-bg, #0f0f0f); color: var(--term-text, #33ff00); padding: 40px; 
-            border: 2px solid var(--accent); box-shadow: var(--shadow); margin: 50px auto; max-width: 800px; text-align: center; 
+        .design-3::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(0deg, transparent 24%, rgba(33,150,243,0.2) 25%, rgba(33,150,243,0.2) 26%, transparent 27%, transparent 74%, rgba(33,150,243,0.2) 75%, rgba(33,150,243,0.2) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(33,150,243,0.2) 25%, rgba(33,150,243,0.2) 26%, transparent 27%, transparent 74%, rgba(33,150,243,0.2) 75%, rgba(33,150,243,0.2) 76%, transparent 77%, transparent);
+            background-size: 50px 50px; animation: grid-scroll 20s linear infinite; z-index: 0;
         }
-        .layout-l2 .terminal-card .profile-name { color: var(--accent); font-size: 3rem; letter-spacing: 2px; }
-        .layout-l2 .terminal-card .profile-desc { color: var(--text); font-weight: 400; margin-bottom: 30px; }
-        .layout-l2 .terminal-card .about-photo { width: 150px; height: 150px; border-radius: 50% !important; object-fit: cover; margin-bottom: 20px; border: 3px solid var(--accent); }
-        .layout-l2 .profile-link { background: var(--accent); color: var(--bg) !important; margin-top: 15px; }
+        .design-3 > * { position: relative; z-index: 1; }
+        .design-3 .profile-photo { border-color: #00ffff; box-shadow: 0 0 10px #00ffff; }
+        .design-3 .profile-name { color: #ff00ff; text-shadow: 0 0 10px #ff00ff; }
+        .design-3 .profile-title { color: #00ffff; }
+        .design-3 .skill-badge { background-color: #0a0515; border-color: #ff00ff; color: #00ffff; }
+        .design-3 .linkedin-link { background-color: #00ffff; color: #1a0f30; box-shadow: 0 0 10px #00ffff; }
+        @keyframes grid-scroll { from { background-position: 0 0; } to { background-position: 50px 50px; } }
 
-        /* L3: Split Grid (Two Columns) */
-        .layout-l3 .split-profile-section {
-            display: grid; grid-template-columns: 1fr 2fr; gap: 50px; padding: 40px; background-color: var(--card-bg); border: 1px solid var(--border); box-shadow: var(--shadow);
+        /* Design 4: Particle Background (uses particles.js) */
+        .design-4 { 
+            position: relative; overflow: hidden; background-color: #212121; color: #f0f0f0; padding: 50px; text-align: center;
+            border: 1px solid #444; box-shadow: 0 5px 15px rgba(0,0,0,0.5);
         }
-        .layout-l3 .image-and-stats { display: flex; flex-direction: column; align-items: center; }
-        .layout-l3 .image-and-stats .about-photo { width: 100%; max-width: 250px; height: auto; object-fit: cover; margin-bottom: 20px; border: 1px solid var(--border); }
-        .layout-l3 .stats-list { list-style: none; width: 100%; padding: 0; text-align: left; }
-        .layout-l3 .stats-list li { font-size: 1rem; font-weight: 600; margin-bottom: 15px; padding-left: 20px; position: relative; color: var(--muted); }
-        .layout-l3 .stats-list li::before { content: "▶"; color: var(--accent); position: absolute; left: 0; font-size: 0.8rem; top: 2px; }
+        .design-4 #particles-js { position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 0; }
+        .design-4 > * { position: relative; z-index: 1; }
+        .design-4 .profile-photo { border-color: #61dafb; }
+        .design-4 .profile-name { color: #61dafb; }
+        .design-4 .profile-title { color: #ccc; }
+        .design-4 .skill-badge { background-color: #333; border-color: #555; color: #f0f0f0; }
+        .design-4 .linkedin-link { background-color: #61dafb; color: #212121; }
 
-        /* L4: Simple Stack (Mobile First) */
-        .layout-l4 .simple-stack-card { 
-            display: flex; flex-direction: column; align-items: center; text-align: center; padding: 30px;
-            background-color: var(--card-bg); border: 1px solid var(--border); box-shadow: var(--shadow);
-        }
-        .layout-l4 .simple-stack-card .about-photo { width: 180px; height: 180px; border-radius: 50% !important; object-fit: cover; margin-bottom: 20px; border: 4px solid var(--accent); }
-        .layout-l4 .simple-stack-card .profile-name { margin-bottom: 15px; }
-        .layout-l4 .simple-stack-card .profile-link { margin-top: 25px; }
-        
-        /* General Layout Cleanup */
-        .about-bottom { margin-top: 80px; }
-        .certs-heading { color: var(--text); border-bottom: 3px solid var(--text); }
-        .certs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-        .cert-card { background: transparent; padding: 0; border: none; }
-        .cert-card li { border-bottom: 1px solid var(--border); }
-        .cisco-status { color: #d39e00; font-weight: 700; }
-        
-        footer { background: var(--text); color: var(--bg); }
-        
-        @media(max-width: 768px) {
-            .layout-l1 .profile-card, .layout-l3 .split-profile-section { flex-direction: column; text-align: center; gap: 20px; }
-            .layout-l1 .about-info { align-items: center; }
-            .layout-l3 .split-profile-section { grid-template-columns: 1fr; }
-            .layout-l3 .image-and-stats { width: 100%; }
-        }
-    </style>
-</head>
-<body class="theme-default layout-l1">
-
-    <nav>
-        <div class="container nav-content">
-            <div class="logo">Abdalrhman.</div>
-            <div class="nav-links">
-                <button onclick="show('about')" class="active">Profile</button>
-                <button onclick="show('blog')">Blog</button>
-                <button onclick="show('contact')">Contact</button>
-                <button onclick="toggleSelector('layout')">📐 Layouts</button>
-                <button onclick="toggleSelector('theme')">🎨 Themes</button>
-            </div>
-            
-            <div id="layout-selector" class="selector-dropdown layout-selector" style="display: none;">
-                <button onclick="setLayout('l1')" class="selector-btn active-theme">L1: Clean Card</button>
-                <button onclick="setLayout('l2')" class="selector-btn">L2: Terminal Card</button>
-                <button onclick="setLayout('l3')" class="selector-btn">L3: Split Grid</button>
-                <button onclick="setLayout('l4')" class="selector-btn">L4: Simple Stack</button>
-            </div>
-
-            <div id="theme-selector" class="selector-dropdown" style="display: none;">
-                <button onclick="setTheme('default')" class="selector-btn active-theme">Default</button>
-                <button onclick="setTheme('dark-hacker')" class="selector-btn">Dark Hacker</button>
-                <button onclick="setTheme('neon-tech')" class="selector-btn">Neon Tech</button>
-                <button onclick="setTheme('minimal-dark')" class="selector-btn">Minimal Dark</button>
-                <button onclick="setTheme('fire-red')" class="selector-btn">Fire Red</button>
-            </div>
-        </div>
-    </nav>
-
-    <div class="container">
-
-        <div id="about" class="section active">
-            <div class="about-container">
-                
-                <div class="profile-layout layout-l1 active-layout">
-                    <div class="profile-card">
-                        <div class="photo-wrapper">
-                            <img src="photo.jpeg" alt="Profile" class="about-photo">
-                        </div>
-                        <div class="about-info">
-                            <h1 class="profile-name">Abdalrhman Salah Ibrahim</h1>
-                            <div class="profile-desc">Penetration Testing Student | Bug Bounty Enthusiast | CTF Player</div>
-                            <div class="skill-badges">
-                                <span>Penetration Testing</span> <span>Bug Bounty</span> <span>CTF</span> <span>Cybersecurity</span>
-                            </div>
-                            <a href="https://www.linkedin.com/in/bodyurr/" target="_blank" class="profile-link">Visit LinkedIn Profile</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="profile-layout layout-l2">
-                    <div class="terminal-card">
-                        <img src="photo.jpeg" alt="Profile" class="about-photo">
-                        <h1 class="profile-name">Abdalrhman Salah Ibrahim</h1>
-                        <div class="profile-desc">Penetration Testing Student | Bug Bounty Enthusiast | CTF Player</div>
-                        <a href="https://www.linkedin.com/in/bodyurr/" target="_blank" class="profile-link">┌─ Connect on LinkedIn ─┐</a>
-                    </div>
-                </div>
-
-                <div class="profile-layout layout-l3">
-                    <div class="split-profile-section">
-                        <div class="image-and-stats">
-                            <img src="photo.jpeg" alt="Profile Photo" class="about-photo">
-                            <ul class="stats-list">
-                                <li>Status: Actively Hunting</li>
-                                <li>Expertise: Web App Pentesting</li>
-                                <li>Focus: CTF Challenges</li>
-                                <li>Email: <a href="mailto:body362222@gmail.com" class="profile-link" style="padding: 0; background: none; color: var(--accent) !important; font-weight: 600;">Contact Me</a></li>
-                            </ul>
-                        </div>
-                        <div class="main-profile-content">
-                            <h1 class="profile-name">Abdalrhman Salah Ibrahim</h1>
-                            <div class="profile-desc">Dedicated Student | Bug Bounty Enthusiast</div>
-                            <p style="color: var(--text); margin-bottom: 25px;">Hello! I'm Abdalrhman, a dedicated student immersed in the world of cybersecurity. My passion lies in understanding system vulnerabilities, driven by continuous learning through Bug Bounty programs and competitive CTF challenges.</p>
-                            <a href="https://www.linkedin.com/in/bodyurr/" target="_blank" class="profile-link">View Full Profile</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="profile-layout layout-l4">
-                    <div class="simple-stack-card">
-                        <img src="photo.jpeg" alt="Profile" class="about-photo">
-                        <h1 class="profile-name">Abdalrhman Salah Ibrahim</h1>
-                        <div class="profile-desc">Penetration Testing Student | Bug Bounty Enthusiast | CTF Player</div>
-                        <a href="https://www.linkedin.com/in/bodyurr/" target="_blank" class="profile-link">Connect Now</a>
-                    </div>
-                </div>
-                
-                <div class="about-bottom">
-                    <h3 class="certs-heading">CERTIFICATIONS</h3>
-                    <div class="certs-grid">
-                        <div class="cert-card">
-                            <ol start="1">
-                                <li>Penetration Testing Professional <span>MaharaTech - ITI</span></li>
-                                <li>Ethical Hacking <span>MaharaTech - ITI</span></li>
-                                <li>CHC v2 <span>Techcampus</span></li>
-                            </ol>
-                        </div>
-                        <div class="cert-card">
-                            <ol start="4">
-                                <li>Computer Network Fundamentals <span>MaharaTech - ITI</span></li>
-                                <li>Forensic Medicine <span>Misr University</span></li>
-                                <li><span class="cisco-status">Cisco Cybersecurity</span> <span>In Progress: <span id="cisco-loader">🟩⬜⬜⬜⬜</span></span></li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        
-        <div id="blog" class="section">
-            <div class="tweet-feed" id="tweet-container"></div>
-        </div>
-        <div id="contact" class="section">
-            </div>
-    </div>
-
-    <footer>© Abdalrhman Salah Ibrahim</footer>
-
-    <script>
-        // --- 1. Theme and Layout Switching Functions ---
-        
-        function setTheme(themeName) {
-            document.body.className = document.body.className.replace(/theme-\w+/g, '');
-            document.body.classList.add('theme-' + themeName);
-            localStorage.setItem('theme', themeName);
-            updateActiveButton('theme', themeName);
+        /* Design 5: Glitch Effect */
+        .design-5 { background-color: #1a1a1a; color: #eee; padding: 50px; text-align: center; position: relative; overflow: hidden; }
+        .design-5 .profile-photo, .design-5 .profile-name { animation: glitch-text 0.8s infinite; }
+        .design-5 .profile-photo { border-color: #f00; }
+        .design-5 .profile-name { color: #0f0; }
+        .design-5 .profile-title { color: #f00; }
+        .design-5 .skill-badge { background-color: #333; border-color: #f00; color: #0f0; }
+        .design-5 .linkedin-link { background-color: #0f0; color: #1a1a1a; }
+        @keyframes glitch-text {
+            0% { transform: translate(0); text-shadow: none; }
+            20% { transform: translate(-2px, 2px); text-shadow: 2px -2px 0 red, -2px 2px 0 blue; }
+            40% { transform: translate(-2px, -2px); text-shadow: -2px -2px 0 green, 2px 2px 0 yellow; }
+            60% { transform: translate(2px, 2px); text-shadow: 2px 2px 0 purple, -2px -2px 0 orange; }
+            80% { transform: translate(2px, -2px); text-shadow: -2px 2px 0 cyan, 2px -2px 0 magenta; }
+            100% { transform: translate(0); text-shadow: none; }
         }
 
-        function setLayout(layoutName) {
-            document.querySelectorAll('.profile-layout').forEach(el => el.classList.remove('active-layout'));
-            document.querySelector('.layout-' + layoutName).classList.add('active-layout');
-            document.body.className = document.body.className.replace(/layout-l\d/g, '');
-            document.body.classList.add('layout-' + layoutName);
-            localStorage.setItem('layout', layoutName);
-            updateActiveButton('layout', layoutName);
+        /* Design 6: Minimalist Reveal */
+        .design-6 { background-color: #fcfcfc; color: #333; padding: 50px; text-align: center; overflow: hidden; border-radius: 8px !important; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        .design-6 .profile-photo, .design-6 .profile-name, .design-6 .profile-title, .design-6 .skill-badge, .design-6 .linkedin-link { opacity: 0; transform: translateY(20px); animation: reveal 0.8s forwards; }
+        .design-6 .profile-photo { border-color: #a7bed3; animation-delay: 0.2s; }
+        .design-6 .profile-name { color: #2c3e50; animation-delay: 0.4s; }
+        .design-6 .profile-title { color: #7f8c8d; animation-delay: 0.6s; }
+        .design-6 .skill-badge { background-color: #ecf0f1; border-color: #bdc3c7; color: #34495e; animation-delay: 0.8s; }
+        .design-6 .linkedin-link { background-color: #3498db; color: white; animation-delay: 1s; }
+        @keyframes reveal { to { opacity: 1; transform: translateY(0); } }
+
+        /* Design 7: Neon Glow */
+        .design-7 { background-color: #080808; color: #fff; padding: 50px; text-align: center; border: 2px solid #ff00ff; box-shadow: 0 0 25px rgba(255,0,255,0.8); }
+        .design-7 .profile-photo { border-color: #00ffff; box-shadow: 0 0 15px #00ffff; }
+        .design-7 .profile-name { color: #ff00ff; text-shadow: 0 0 15px #ff00ff; }
+        .design-7 .profile-title { color: #00ffff; text-shadow: 0 0 8px #00ffff; }
+        .design-7 .skill-badge { background-color: #1a0a1a; border-color: #ff00ff; color: #00ffff; box-shadow: 0 0 5px rgba(255,0,255,0.5); }
+        .design-7 .linkedin-link { background-color: #00ffff; color: #080808; box-shadow: 0 0 15px #00ffff; }
+
+        /* Design 8: Retro Arcade */
+        .design-8 { background-color: #000; color: #ff0; padding: 50px; border: 5px dashed #0f0; text-align: center; font-family: 'Press Start 2P', cursive; text-shadow: 2px 2px 0 #f00; }
+        .design-8 .profile-photo { border-color: #0f0; box-shadow: 0 0 10px #0f0; }
+        .design-8 .profile-name { color: #ff0; text-shadow: 2px 2px 0 #f00; animation: bounce 1s infinite alternate; }
+        .design-8 .profile-title { color: #f00; text-shadow: 1px 1px 0 #ff0; }
+        .design-8 .skill-badge { background-color: #222; border-color: #0f0; color: #ff0; }
+        .design-8 .linkedin-link { background-color: #0f0; color: #000; text-shadow: none; border: 2px solid #ff0; }
+        @keyframes bounce { 0% { transform: translateY(0); } 100% { transform: translateY(-5px); } }
+
+        /* Design 9: Data Flow */
+        .design-9 { 
+            position: relative; overflow: hidden; background-color: #2a2a2a; color: #00e676; padding: 50px; text-align: center;
+            border: 1px solid #00e676; box-shadow: 0 0 15px rgba(0,230,118,0.5);
+        }
+        .design-9::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: repeating-linear-gradient(45deg, rgba(0,230,118,0.1) 0, rgba(0,230,118,0.1) 10px, transparent 10px, transparent 20px);
+            animation: data-flow 10s linear infinite; z-index: 0;
+        }
+        .design-9 > * { position: relative; z-index: 1; }
+        .design-9 .profile-photo { border-color: #00e676; }
+        .design-9 .profile-name { color: #00ff00; }
+        .design-9 .profile-title { color: #00e676; }
+        .design-9 .skill-badge { background-color: #1a1a1a; border-color: #00e676; color: #00e676; }
+        .design-9 .linkedin-link { background-color: #00e676; color: #2a2a2a; }
+        @keyframes data-flow { from { background-position: 0 0; } to { background-position: 100px 100px; } }
+
+        /* Design 10: Vaporwave Aesthetic */
+        .design-10 { 
+            position: relative; overflow: hidden; background: linear-gradient(135deg, #6a0572, #8338ec, #ff00ff, #00ffff); background-size: 400% 400%;
+            animation: gradient-shift 15s ease infinite; padding: 50px; text-align: center; color: #fff;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .design-10::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="100%" height="100%" fill="none" stroke="%23ffffff" stroke-width="1" stroke-dasharray="5 5"/></svg>');
+            opacity: 0.2; z-index: 0;
+        }
+        .design-10 > * { position: relative; z-index: 1; }
+        .design-10 .profile-photo { border-color: #ffcc00; }
+        .design-10 .profile-name { color: #ffeb3b; text-shadow: 3px 3px #8e24aa; }
+        .design-10 .profile-title { color: #00e5ff; }
+        .design-10 .skill-badge { background-color: rgba(0,0,0,0.3); border-color: #ff00ff; color: #fff; }
+        .design-10 .linkedin-link { background-color: #ff00ff; color: white; }
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; }
         }
 
-        function toggleSelector(type) {
-            const selector = document.getElementById(type + '-selector');
-            selector.style.display = selector.style.display === 'block' ? 'none' : 'block';
-            
-            // إخفاء القائمة الأخرى لضمان ظهور واحدة فقط
-            const otherType = type === 'theme' ? 'layout' : 'theme';
-            document.getElementById(otherType + '-selector').style.display = 'none';
-        }
+        /* Design 11: Minimalist Black & White */
+        .design-11 { background-color: #000; color: #fff; padding: 50px; text-align: center; border: 1px solid #fff; }
+        .design-11 .profile-photo { border-color: #fff; }
+        .design-11 .profile-name { color: #fff; }
+        .design-11 .profile-title { color: #ccc; }
+        .design-11 .skill-badge { background-color: #222; border-color: #fff; color: #fff; }
+        .design-11 .linkedin-link { background-color: #fff; color: #000; }
 
-        function updateActiveButton(type, name) {
-            const selectorId = type + '-selector';
-            document.querySelectorAll('#' + selectorId + ' .selector-btn').forEach(btn => {
-                btn.classList.remove('active-theme');
-                if (btn.getAttribute('onclick').includes(name)) {
-                    btn.classList.add('active-theme');
-                }
-            });
-        }
-        
-        // --- 2. Existing Functions ---
-        function show(id) {
-            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-            document.querySelectorAll('.nav-links button').forEach(b => b.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
-            const buttons = document.querySelectorAll('.nav-links button');
-            if(id === 'about') buttons[0].classList.add('active');
-            if(id === 'blog') buttons[1].classList.add('active');
-            if(id === 'contact') buttons[2].classList.add('active');
-            window.scrollTo(0,0);
-        }
+        /* Design 12: Code Editor Look */
+        .design-12 { background-color: #1e1e1e; color: #d4d4d4; padding: 50px; text-align: left; border-left: 5px solid #007acc; }
+        .design-12 .profile-photo { float: right; margin-left: 30px; border-color: #007acc; }
+        .design-12 .profile-name { color: #569cd6; font-family: 'Fira Code', monospace; }
+        .design-12 .profile-title { color: #9cdcfe; font-family: 'Fira Code', monospace; margin-bottom: 30px; }
+        .design-12 .skill-badge { background-color: #333; border-color: #007acc; color: #ce9178; font-family: 'Fira Code', monospace; }
+        .design-12 .linkedin-link { background-color: #007acc; color: #1e1e1e; }
+        .design-12 .line-numbers { float: left; margin-right: 20px; color: #888; font-family: 'Fira Code', monospace; font-size: 0.9em; line-height: 1.6; }
+        .design-12 .code-content { overflow: hidden; } /* To contain float */
 
-        // ... (باقي الدوال الخاصة بالـ Terminal Loader و Tweets و Captcha) ...
-        const loader = document.getElementById('cisco-loader');
-        if(loader) {
-            let step = 1;
-            setInterval(() => {
-                let str = '';
-                for(let i=0; i<5; i++) str += (i < step) ? '🟩' : '⬜';
-                loader.innerText = str;
-                step = (step % 5) + 1;
-            }, 500);
+        /* Design 13: Abstract Shapes Background */
+        .design-13 { 
+            position: relative; overflow: hidden; background: radial-gradient(circle at top left, #a1c4fd, #c2e9fb); padding: 50px; text-align: center; color: #333;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
         }
-        // **********************************************
+        .design-13::before, .design-13::after {
+            content: ''; position: absolute; border-radius: 50%; opacity: 0.6; animation: float-shapes 15s ease-in-out infinite alternate;
+        }
+        .design-13::before { width: 150px; height: 150px; background-color: #89cff0; top: 10%; left: 15%; animation-delay: 0s; }
+        .design-13::after { width: 200px; height: 200px; background-color: #7fffd4; bottom: 5%; right: 10%; animation-delay: 7s; }
+        .design-13 > * { position: relative; z-index: 1; }
+        .design-13 .profile-photo { border-color: #a1c4fd; }
+        .design-13 .profile-name { color: #007bff; }
+        .design-13 .profile-title { color: #555; }
+        .design-13 .skill-badge { background-color: #e0f2f7; border-color: #a1c4fd; color: #0c5460; }
+        .design-13 .linkedin-link { background-color: #007bff; color: white; }
+        @keyframes float-shapes { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(20px, 30px) scale(1.1); } }
 
-        // --- 3. Initialization ---
-        window.addEventListener('load', function() {
-            // تحميل الثيم والـ Layout المحفوظين
-            const savedTheme = localStorage.getItem('theme') || 'default';
-            const savedLayout = localStorage.getItem('layout') || 'l1';
-            
-            // تهيئة body class
-            document.body.className = `theme-${savedTheme} layout-${savedLayout}`;
-            
-            // تحديث الأزرار النشطة (يتم استدعاء updateActiveButton مرتين)
-            updateActiveButton('theme', savedTheme);
-            updateActiveButton('layout', savedLayout);
-            
-            // إظهار الـ Layout الصحيح
-            document.querySelectorAll('.profile-layout').forEach(el => el.classList.remove('active-layout'));
-            document.querySelector('.layout-' + savedLayout).classList.add('active-layout');
-        });
-        
-    </script>
-</body>
-</html>
+        /* Design 14: Dynamic Typing (uses Typed.js) */
+        .design-14 { background-color: #2b2b2b; color: #f0f0f0; padding: 50px; text-align: center; border: 1px solid #444; }
+        .design-14 .profile-photo { border-color: #6a0572; }
+        .design-14 .profile-name { color: #ff7f50; }
+        .design-14 .profile-title { color: #f0f0f0; }
+        .design-14 .skill-badge { background-color: #3d3d3d; border-color: #888; color: #f0f0f0; }
+        .design-14 .linkedin-link { background-color: #6a0572; color: white; }
+        .design-14 #typed-strings { display: none; } /* Hidden by default */
+        .design-14 .dynamic-text { font-size: 1.8rem; font-weight: 700; color: #ff7f50; min-height: 40px; }
+
+        /* Design 15: Gradient Shift Background */
+        .
