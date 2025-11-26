@@ -263,6 +263,10 @@
                 </div>
                 <div class="contact-form-clean">
                     <form action="https://formsubmit.co/body362222@gmail.com" method="POST" id="contactForm">
+                        
+                        <input type="hidden" name="_next" value="https://bodyurr.github.io/rip/A">
+                        <input type="hidden" name="_captcha" value="false">
+                        
                         <div class="form-group honeypot-field"><input type="text" name="_honey"></div>
                         <div class="form-group"><label>Name</label><input type="text" name="name" class="form-control" required></div>
                         <div class="form-group"><label>Email</label><input type="email" name="email" class="form-control" required></div>
@@ -291,22 +295,16 @@
             if(id === 'contact') buttons[3].classList.add('active');
             window.scrollTo(0,0);
         }
-        
-        // --- تعديل مصفوفة البيانات لإزالة التكرار ---
         const typingData = [
             { text: "Abdalrhman Salah Ibrahim", tag: "h1", class: "big-name" },
             { text: "Penetration Testing Student | Bug Bounty Enthusiast | CTF Player", tag: "div", class: "big-title" },
             { text: "Linkedin", tag: "a", class: "big-link", href: "https://www.linkedin.com/in/bodyurr/" }
         ];
-        
         let isTyping = false;
         function startTypingSequence() {
             const container = document.getElementById('typing-output');
             if(!container) return;
-            
-            // تنظيف الحاوية تماماً قبل البدء لمنع التكرار
             container.innerHTML = ''; 
-            
             isTyping = true;
             typeNextLine(0, container);
         }
@@ -344,7 +342,6 @@
                     </div>
                 </div>`;
         });
-        
         const input = document.getElementById('cmd-input');
         const historyDiv = document.getElementById('history-content');
         const terminalBody = document.getElementById('terminal-body');
