@@ -291,16 +291,22 @@
             if(id === 'contact') buttons[3].classList.add('active');
             window.scrollTo(0,0);
         }
+        
+        // --- تعديل مصفوفة البيانات لإزالة التكرار ---
         const typingData = [
             { text: "Abdalrhman Salah Ibrahim", tag: "h1", class: "big-name" },
             { text: "Penetration Testing Student | Bug Bounty Enthusiast | CTF Player", tag: "div", class: "big-title" },
             { text: "Linkedin", tag: "a", class: "big-link", href: "https://www.linkedin.com/in/bodyurr/" }
         ];
+        
         let isTyping = false;
         function startTypingSequence() {
             const container = document.getElementById('typing-output');
             if(!container) return;
-            container.innerHTML = '';
+            
+            // تنظيف الحاوية تماماً قبل البدء لمنع التكرار
+            container.innerHTML = ''; 
+            
             isTyping = true;
             typeNextLine(0, container);
         }
