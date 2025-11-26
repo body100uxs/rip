@@ -49,6 +49,7 @@
         .section.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         
+        /* --- تنسيق قسم الـ Home الخلفية --- */
         #home.section.active {
             display: flex !important;
             flex-direction: column;
@@ -57,19 +58,26 @@
             padding: 0;
             margin: 0;
             height: calc(100vh - 61px); 
-            background: #000;
+            /* وضعنا الصورة هنا لتظهر خلف التيرمنال الشفاف */
+            background: url('kali_logo_bg.png') no-repeat center center;
+            background-size: cover;
         }
+
+        /* --- تنسيق نافذة التيرمنال --- */
         .kali-window {
             width: 100%; 
             height: 100%; 
-            background-color: #0a0a0a; 
+            /* تعديل الشفافية هنا: الرقم 0.6 يعني شفافية متوسطة */
+            background-color: rgba(10, 10, 10, 0.6); 
+            /* إضافة بلور خفيف للخلفية لزيادة الوضوح والجمالية */
+            backdrop-filter: blur(5px);
             border: none;
             display: flex;
             flex-direction: column;
             overflow: hidden;
         }
         .kali-header {
-            background: #2d2d2d;
+            background: rgba(45, 45, 45, 0.9);
             padding: 8px 15px;
             border-bottom: 1px solid #111;
             display: flex;
@@ -83,6 +91,7 @@
         }
         .window-controls { display: flex; gap: 8px; }
         .window-controls span { width: 12px; height: 12px; border-radius: 50% !important; display: block; }
+        
         .kali-body {
             flex: 1;
             padding: 20px;
@@ -92,18 +101,28 @@
             font-family: 'Consolas', 'Courier New', monospace;
             cursor: text;
             text-align: left;
-            background: url('kali_logo_bg.png') no-repeat center center;
-            background-size: cover;
+            background: transparent; /* الخلفية شفافة لأننا وضعناها في الـ window */
         }
         .kali-body::-webkit-scrollbar { width: 10px; }
-        .kali-body::-webkit-scrollbar-track { background: #1a1a1a; }
+        .kali-body::-webkit-scrollbar-track { background: rgba(26, 26, 26, 0.5); }
         .kali-body::-webkit-scrollbar-thumb { background: #333; }
         .kali-body::-webkit-scrollbar-thumb:hover { background: #555; }
-        .static-msg { color: #fff; white-space: pre-wrap; line-height: 1.4; margin-bottom: 25px; opacity: 0.8; }
+        .static-msg { color: #fff; white-space: pre-wrap; line-height: 1.4; margin-bottom: 25px; opacity: 0.9; font-weight: bold; }
         #history-content { margin-bottom: 5px; }
         
-        .cmd-line { display: flex; color: #fff; align-items: center; }
-        .prompt { margin-right: 0; white-space: nowrap; text-align: left; }
+        /* --- إصلاح مكان المؤشر --- */
+        .cmd-line { 
+            display: flex; 
+            color: #fff; 
+            /* هذا السطر هو الحل: يجبر الانبوت على المحاذاة مع السطر السفلي */
+            align-items: flex-end; 
+        }
+        .prompt { 
+            margin-right: 0; 
+            white-space: nowrap; 
+            text-align: left; 
+            line-height: 1.5;
+        }
         
         #cmd-input {
             background: transparent; 
@@ -114,8 +133,9 @@
             font-size: 1.2rem; 
             outline: none;
             padding: 0;
-            margin: 0;
-            padding-left: 10px; 
+            /* مسافة صغيرة جداً لفصل المؤشر عن الهاشتاج */
+            margin: 0 0 0 8px; 
+            line-height: 1.5;
         }
         
         .output-cmd { color: #fff; margin-bottom: 5px; }
