@@ -1,536 +1,561 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Abdalrhman</title>
-    <link rel="icon" type="image/x-icon" href="icon.png">
-    <style>
-        :root {
-            --bg: #ffffff;
-            --sidebar: #f8f9fa;
-            --text: #212529;
-            --muted: #6c757d;
-            --accent: #0d6efd;
-            --orange: #fd7e14;
-            --border: #dee2e6;
-            --term-bg: #0f0f0f;
-            --term-text: #33ff00;
-        }
+    <meta charset="UTF-8">
+    <title>Abdalrhman</title>
+    <link rel="icon" type="image/x-icon" href="icon.png">
+    <style>
+        :root {
+            --bg: #ffffff;
+            --sidebar: #f8f9fa;
+            --text: #212529;
+            --muted: #6c757d;
+            --accent: #0d6efd;
+            --orange: #fd7e14;
+            --border: #dee2e6;
+            --term-bg: #0f0f0f;
+            --term-text: #33ff00;
+        }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; border-radius: 0 !important; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; border-radius: 0 !important; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
 
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            display: flex;
-            flex-direction: column;
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+            font-weight: 400;
+        }
+
+        h1, h2, h3, h4, strong, b, .btn, .nav-links button { font-weight: 700; }
+
+        nav {
+            border-bottom: 1px solid var(--border);
+            padding: 15px 0;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(5px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+        .nav-content { display: flex; justify-content: space-between; align-items: center; }
+
+        .logo { font-size: 1.4rem; font-weight: 900; color: var(--text); letter-spacing: 1px; }
+
+        .nav-links button {
+            background: none; border: none; color: var(--muted); margin-left: 25px;
+            font-size: 1rem; cursor: pointer; padding: 5px 0; transition: 0.2s;
+        }
+        .nav-links button:hover, .nav-links button.active { color: var(--accent); }
+
+        .section { display: none; padding: 40px 0; animation: fadeIn 0.3s ease; }
+        .section.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* -------------------------------------- */
+        /* --- تعديل CSS الخاص بصفحة Home --- */
+        /* -------------------------------------- */
+
+        #home { 
+            /* الخلفية: استخدام صورة كالي */
+            background-image: url('kali_logo_bg.png'); 
+            background-size: cover; 
+            background-position: center; 
+            background-repeat: no-repeat;
+            background-color: #000;
+            
+            /* ملء الشاشة بالكامل */
+            padding: 0;
             min-height: 100vh;
-            overflow-x: hidden;
-            font-weight: 400;
-        }
-
-        h1, h2, h3, h4, strong, b, .btn, .nav-links button { font-weight: 700; }
-
-        nav {
-            border-bottom: 1px solid var(--border);
-            padding: 15px 0;
-            background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(5px);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-
-        .nav-content { display: flex; justify-content: space-between; align-items: center; }
-
-        .logo { font-size: 1.4rem; font-weight: 900; color: var(--text); letter-spacing: 1px; }
-
-        .nav-links button {
-            background: none; border: none; color: var(--muted); margin-left: 25px;
-            font-size: 1rem; cursor: pointer; padding: 5px 0; transition: 0.2s;
-        }
-        .nav-links button:hover, .nav-links button.active { color: var(--accent); }
-
-        .section { display: none; padding: 40px 0; animation: fadeIn 0.3s ease; }
-        .section.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        #home { padding: 60px 0; }
-        
-        .terminal-container {
-            width: 100%; height: 400px; background-color: var(--term-bg); border: 2px solid #333;
-            display: flex; flex-direction: column; font-family: 'Consolas', 'Courier New', monospace;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.15); margin-bottom: 10px;
-        }
-
-        .terminal-header {
-            background: #1a1a1a;
-            padding: 10px 15px;
-            border-bottom: 1px solid #333;
             display: flex;
             align-items: center;
-            color: #aaa;
-            font-size: 0.9rem;
+            justify-content: center;
         }
 
-        .terminal-body {
-            flex: 1;
-            padding: 20px;
-            overflow-y: auto;
-            color: #fff;
-            font-size: 1.1rem;
-        }
+        .terminal-container {
+            width: 80%; /* تصغير العرض لتبدو كـ نافذة عائمة */
+            height: 90vh; /* ارتفاع عالي */
+            max-width: 800px; /* تحديد أقصى عرض */
+            
+            /* جعل النافذة شفافة وعائمة */
+            background-color: rgba(0, 0, 0, 0.85); /* أسود شبه شفاف */
+            border: 2px solid #00ffff; /* إطار سماوي */
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.1); 
+            border-radius: 8px; /* زوايا مستديرة */
 
-        .static-msg { color: #fff; white-space: pre-wrap; line-height: 1.4; margin-bottom: 15px; }
+            display: flex; flex-direction: column; font-family: 'Consolas', 'Courier New', monospace;
+            margin: 0; /* إلغاء الـ margin القديم */
+        }
         
-        #history-content { margin-bottom: 5px; }
+        /* إزالة الشريط العلوي القديم للتيرمنال */
+        .terminal-header { display: none; }
 
-        .cmd-line { display: flex; color: #fff; align-items: center; }
-        .prompt { margin-right: 10px; white-space: nowrap; }
+        .terminal-body {
+            flex: 1;
+            padding: 15px; /* تصحيح الـ padding الداخلي */
+            overflow-y: auto;
+            color: #f8f8f2; /* لون النص الأبيض */
+            font-size: 1.1rem;
+        }
+
+        .static-msg { color: #f8f8f2; white-space: pre-wrap; line-height: 1.4; margin-bottom: 5px; }
+        
+        #history-content { margin-bottom: 5px; }
+
+        .cmd-line { display: flex; color: #f8f8f2; align-items: flex-start; } /* تصحيح محاذاة سطر الإدخال */
         
-        #cmd-input {
-            background: transparent; border: none; color: #fff; flex: 1;
-            font-family: 'Consolas', 'Courier New', monospace; font-size: 1.1rem; outline: none;
+        /* تعديل الـ Prompt الأصلي ليتناسب مع الـ CLI */
+        .prompt { 
+            margin-right: 5px; 
+            white-space: nowrap; 
+            color: #00ffff !important; /* سماوي */
+            line-height: 1.4;
         }
+        .prompt span { display: block; line-height: 1; } /* إزالة الـ break lines القديمة */
+        .prompt span:first-child { color: #00ffff; font-weight: normal !important; }
+        .prompt span:last-child { color: #f8f8f2; font-weight: bold !important; }
 
-        .disclaimer { font-size: 0.85rem; color: #adb5bd; margin-top: 15px; font-style: italic; }
+        #cmd-input {
+            background: transparent; border: none; color: #f8f8f2; flex: 1;
+            font-family: 'Consolas', 'Courier New', monospace; font-size: 1.1rem; outline: none;
+            padding: 0;
+            margin-top: 2px;
+        }
+        /* --- نهاية تعديل CSS لـ Home --- */
 
-        .about-container { display: flex; flex-direction: column; }
-        .about-header-section { display: flex; gap: 40px; align-items: center; margin-bottom: 80px; }
-        .about-photo-wrapper { flex-shrink: 0; width: 200px; }
-        .about-photo { width: 100%; height: 200px; object-fit: cover; border: 1px solid var(--border); display: block; }
-        .about-info { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; height: 200px; }
-        
-        /* --- تعديلات الخطوط وتأثير الكتابة للعناصر المحددة فقط --- */
-        
-        /* 1. الحاوية الجديدة للنصوص */
-        #typing-output {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
+        .disclaimer { font-size: 0.85rem; color: #adb5bd; margin-top: 15px; font-style: italic; }
 
-        /* 2. تكبير الخطوط المطلوبة */
-        .big-name {
-            font-size: 3rem; /* تكبير الاسم */
-            color: var(--accent);
-            line-height: 1.1;
-            margin-bottom: 25px;
-            font-weight: 700;
-        }
+        .about-container { display: flex; flex-direction: column; }
+        .about-header-section { display: flex; gap: 40px; align-items: center; margin-bottom: 80px; }
+        .about-photo-wrapper { flex-shrink: 0; width: 200px; }
+        .about-photo { width: 100%; height: 200px; object-fit: cover; border: 1px solid var(--border); display: block; }
+        .about-info { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; height: 200px; }
+        
+        /* --- تعديلات الخطوط وتأثير الكتابة للعناصر المحددة فقط --- */
+        
+        /* 1. الحاوية الجديدة للنصوص */
+        #typing-output {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
 
-        .big-title {
-            font-size: 1.5rem; /* تكبير الوصف */
-            font-weight: 700;
-            color: #000;
-            margin-bottom: 20px;
-        }
+        /* 2. تكبير الخطوط المطلوبة */
+        .big-name {
+            font-size: 3rem; /* تكبير الاسم */
+            color: var(--accent);
+            line-height: 1.1;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
 
-        .big-link {
-            font-size: 1.8rem; /* تكبير اللينك */
-            color: var(--orange);
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-block;
-        }
-        .big-link:hover { text-decoration: underline; }
+        .big-title {
+            font-size: 1.5rem; /* تكبير الوصف */
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 20px;
+        }
 
-        /* 3. المؤشر (Cursor) */
-        .cursor-blink {
-            border-right: 3px solid var(--accent);
-            animation: blink .75s step-end infinite;
-        }
+        .big-link {
+            font-size: 1.8rem; /* تكبير اللينك */
+            color: var(--orange);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+        }
+        .big-link:hover { text-decoration: underline; }
 
-        @keyframes blink {
-            from, to { border-color: transparent }
-            50% { border-color: var(--accent); }
-        }
-        /* ------------------------------------------------ */
+        /* 3. المؤشر (Cursor) */
+        .cursor-blink {
+            border-right: 3px solid var(--accent);
+            animation: blink .75s step-end infinite;
+        }
 
-        .about-bottom { margin-top: 80px; }
-        .certs-heading { font-size: 1.4rem; margin-bottom: 25px; border-bottom: 3px solid #000; display: inline-block; text-transform: uppercase; color: #000; }
-        .certs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-        .cert-card { background: transparent; padding: 0; border: none; }
-        .cert-card ol { padding-left: 20px; margin: 0; }
-        .cert-card li { margin-bottom: 25px; font-weight: 700; font-size: 1rem; border-bottom: 1px solid #eee; padding-bottom: 10px; }
-        .cert-card li:last-child { border-bottom: none; }
-        .cert-card li span { display: block; font-weight: 400; font-size: 0.9rem; color: var(--muted); margin-top: 5px; }
-        .cisco-status { color: #d39e00; font-weight: 700; }
+        @keyframes blink {
+            from, to { border-color: transparent }
+            50% { border-color: var(--accent); }
+        }
+        /* ------------------------------------------------ */
 
-        .tweet-feed { width: 100%; margin: 0; }
-        .tweet-card { background: #fff; border: 1px solid var(--border); padding: 30px; display: flex; gap: 25px; margin-bottom: 30px; text-align: left; width: 100%; }
-        .tweet-avatar { width: 60px; height: 60px; object-fit: cover; border: 1px solid #000; flex-shrink: 0; }
-        .tweet-content { flex: 1; }
-        .tweet-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 1.1rem; }
-        .tweet-name { color: var(--text); }
-        .tweet-handle { color: var(--muted); font-weight: 400; }
-        .tweet-time { color: var(--muted); font-weight: 400; }
-        .tweet-body { font-size: 1.2rem; color: var(--text); line-height: 1.5; text-align: left; }
+        .about-bottom { margin-top: 80px; }
+        .certs-heading { font-size: 1.4rem; margin-bottom: 25px; border-bottom: 3px solid #000; display: inline-block; text-transform: uppercase; color: #000; }
+        .certs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .cert-card { background: transparent; padding: 0; border: none; }
+        .cert-card ol { padding-left: 20px; margin: 0; }
+        .cert-card li { margin-bottom: 25px; font-weight: 700; font-size: 1rem; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        .cert-card li:last-child { border-bottom: none; }
+        .cert-card li span { display: block; font-weight: 400; font-size: 0.9rem; color: var(--muted); margin-top: 5px; }
+        .cisco-status { color: #d39e00; font-weight: 700; }
 
-        .contact-split { display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; align-items: start; }
-        .contact-info h3 { font-size: 3rem; line-height: 1.1; margin-bottom: 20px; color: var(--text); }
-        .contact-info p { font-size: 1.1rem; color: var(--muted); margin-bottom: 40px; }
-        .contact-form-clean .form-group { margin-bottom: 30px; }
-        .contact-form-clean label { display: block; margin-bottom: 10px; font-size: 0.9rem; font-weight: 700; color: var(--text); text-transform: uppercase; letter-spacing: 1px; }
-        .contact-form-clean .form-control { width: 100%; padding: 15px 0; background: transparent; border: none; border-bottom: 2px solid var(--border); font-size: 1.2rem; outline: none; color: var(--text); transition: 0.3s; }
-        .contact-form-clean .form-control:focus { border-color: var(--accent); }
-        .contact-form-clean .honeypot-field { 
-            position: absolute; 
-            left: -9999px; 
-            opacity: 0;
-            visibility: hidden;
-        }
-        .btn { display: inline-block; padding: 15px 40px; background: var(--text); color: #fff; text-decoration: none; border: none; cursor: pointer; font-size: 1rem; transition: 0.2s; font-weight: 700; letter-spacing: 1px; }
-        .btn:hover { background: var(--accent); }
-        .captcha-group { 
-            margin-top: 30px; 
-            padding: 15px; 
-            border: 1px solid var(--border);
-            background-color: #f7f7f7;
-            display: flex;
-            flex-direction: column;
-        }
-        .captcha-group label {
-            margin-bottom: 10px;
-            font-size: 1rem;
-            text-transform: none;
-            letter-spacing: normal;
-        }
-        .captcha-group input {
-            padding: 10px;
-            border: 1px solid var(--border);
-            font-size: 1.1rem;
-            width: 150px;
-        }
+        .tweet-feed { width: 100%; margin: 0; }
+        .tweet-card { background: #fff; border: 1px solid var(--border); padding: 30px; display: flex; gap: 25px; margin-bottom: 30px; text-align: left; width: 100%; }
+        .tweet-avatar { width: 60px; height: 60px; object-fit: cover; border: 1px solid #000; flex-shrink: 0; }
+        .tweet-content { flex: 1; }
+        .tweet-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 1.1rem; }
+        .tweet-name { color: var(--text); }
+        .tweet-handle { color: var(--muted); font-weight: 400; }
+        .tweet-time { color: var(--muted); font-weight: 400; }
+        .tweet-body { font-size: 1.2rem; color: var(--text); line-height: 1.5; text-align: left; }
+
+        .contact-split { display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; align-items: start; }
+        .contact-info h3 { font-size: 3rem; line-height: 1.1; margin-bottom: 20px; color: var(--text); }
+        .contact-info p { font-size: 1.1rem; color: var(--muted); margin-bottom: 40px; }
+        .contact-form-clean .form-group { margin-bottom: 30px; }
+        .contact-form-clean label { display: block; margin-bottom: 10px; font-size: 0.9rem; font-weight: 700; color: var(--text); text-transform: uppercase; letter-spacing: 1px; }
+        .contact-form-clean .form-control { width: 100%; padding: 15px 0; background: transparent; border: none; border-bottom: 2px solid var(--border); font-size: 1.2rem; outline: none; color: var(--text); transition: 0.3s; }
+        .contact-form-clean .form-control:focus { border-color: var(--accent); }
+        .contact-form-clean .honeypot-field { 
+            position: absolute; 
+            left: -9999px; 
+            opacity: 0;
+            visibility: hidden;
+        }
+        .btn { display: inline-block; padding: 15px 40px; background: var(--text); color: #fff; text-decoration: none; border: none; cursor: pointer; font-size: 1rem; transition: 0.2s; font-weight: 700; letter-spacing: 1px; }
+        .btn:hover { background: var(--accent); }
+        .captcha-group { 
+            margin-top: 30px; 
+            padding: 15px; 
+            border: 1px solid var(--border);
+            background-color: #f7f7f7;
+            display: flex;
+            flex-direction: column;
+        }
+        .captcha-group label {
+            margin-bottom: 10px;
+            font-size: 1rem;
+            text-transform: none;
+            letter-spacing: normal;
+        }
+        .captcha-group input {
+            padding: 10px;
+            border: 1px solid var(--border);
+            font-size: 1.1rem;
+            width: 150px;
+        }
 
 
-        footer { margin-top: auto; background: var(--text); color: #fff; text-align: center; padding: 30px; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; }
+        footer { margin-top: auto; background: var(--text); color: #fff; text-align: center; padding: 30px; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; }
 
-        @media(max-width: 768px) {
-            .about-header-section { flex-direction: column; text-align: center; gap: 20px; height: auto; margin-bottom: 40px; }
-            .about-info { height: auto; }
-            .contact-split, .certs-grid { grid-template-columns: 1fr; display: flex; flex-direction: column; gap: 30px; }
-            .nav-links { display: none; }
-            .contact-form { padding: 30px; }
-            .contact-info h3 { font-size: 2.5rem; }
-            /* تصغير الخطوط قليلاً للموبايل حتى لا تخرج عن الشاشة */
-            .big-name { font-size: 2.2rem; }
-            .big-title { font-size: 1.2rem; }
-            .big-link { font-size: 1.4rem; }
-        }
-    </style>
+        @media(max-width: 768px) {
+            .about-header-section { flex-direction: column; text-align: center; gap: 20px; height: auto; margin-bottom: 40px; }
+            .about-info { height: auto; }
+            .contact-split, .certs-grid { grid-template-columns: 1fr; display: flex; flex-direction: column; gap: 30px; }
+            .nav-links { display: none; }
+            .contact-form { padding: 30px; }
+            .contact-info h3 { font-size: 2.5rem; }
+            /* تصغير الخطوط قليلاً للموبايل حتى لا تخرج عن الشاشة */
+            .big-name { font-size: 2.2rem; }
+            .big-title { font-size: 1.2rem; }
+            .big-link { font-size: 1.4rem; }
+        }
+    </style>
 </head>
 <body>
 
-    <nav>
-        <div class="container nav-content">
-            <div class="logo">Abdalrhman.</div>
-            <div class="nav-links">
-                <button onclick="show('home')" class="active">Home</button>
-                <button onclick="show('about')">About</button>
-                <button onclick="show('blog')">Blog</button>
-                <button onclick="show('contact')">Contact</button>
-            </div>
-        </div>
-    </nav>
+    <nav>
+        <div class="container nav-content">
+            <div class="logo">Abdalrhman.</div>
+            <div class="nav-links">
+                <button onclick="show('home')" class="active">Home</button>
+                <button onclick="show('about')">About</button>
+                <button onclick="show('blog')">Blog</button>
+                <button onclick="show('contact')">Contact</button>
+            </div>
+        </div>
+    </nav>
 
-    <div id="home" class="section active">
-        <div class="container">
-            <h3 >Your first and second name ?</h3>
-            <h3 >There is a message for you .</h3>
-            
-            <div class="terminal-container" onclick="document.getElementById('cmd-input').focus()">
-                <div class="terminal-header">root@kali:~ (zsh)</div>
-                <div class="terminal-body" id="terminal-body">
-                    <div class="static-msg">┃ This is a minimal installation of Kali Linux, you likely
+    <div id="home" class="section active">
+                <div class="terminal-container" onclick="document.getElementById('cmd-input').focus()">
+            <div class="terminal-body" id="terminal-body">
+                                <div class="static-msg">┃ This is a minimal installation of Kali Linux, you likely
 ┃ want to install supplementary tools. Learn how:
 ┃ ⇒ https://www.kali.org/docs/troubleshooting/common-minimum-setup/</div>
-                    
-                    <div id="history-content"></div>
+                
+                <div id="history-content"></div>
 
-                    <div class="cmd-line">
-                        <span class="prompt"><span style="color:#0d6efd; font-weight:bold;">┌──(root㉿kali)-[~]</span><br><span style="color:#fff; font-weight:bold;">└─#</span></span>
-                        <input type="text" id="cmd-input" autocomplete="off" autofocus>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                <div class="cmd-line">
+                                        <span class="prompt"><span style="color:#00ffff; font-weight:bold;">kali@kali:~$</span></span>
+                    <input type="text" id="cmd-input" autocomplete="off" autofocus>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <div class="container">
+    <div class="container">
+                <div id="about" class="section">
+            <div class="about-container">
+                
+                <div class="about-header-section">
+                    <div class="about-photo-wrapper">
+                        <img src="photo.jpeg" alt="Profile" class="about-photo">
+                    </div>
 
-        <div id="about" class="section">
-            <div class="about-container">
-                
-                <div class="about-header-section">
-                    <div class="about-photo-wrapper">
-                        <img src="photo.jpeg" alt="Profile" class="about-photo">
-                    </div>
+                    <div class="about-info">
+                        <div id="typing-output"></div>
+                    </div>
+                </div>
 
-                    <div class="about-info">
-                        <div id="typing-output"></div>
-                    </div>
-                </div>
+                <div class="about-bottom">
+                    <h3 class="certs-heading">CERTIFICATIONS</h3>
+                    
+                    <div class="certs-grid">
+                        <div class="cert-card">
+                            <ol start="1">
+                                <li>
+                                    Penetration Testing Professional
+                                    <span>MaharaTech - ITI</span>
+                                </li>
+                                <li>
+                                    Ethical Hacking
+                                    <span>MaharaTech - ITI</span>
+                                </li>
+                                <li>
+                                    CHC v2
+                                    <span>Techcampus</span>
+                                </li>
+                            </ol>
+                        </div>
+                        
+                        <div class="cert-card">
+                            <ol start="4">
+                                <li>
+                                    Computer Network Fundamentals
+                                    <span>MaharaTech - ITI</span>
+                                </li>
+                                <li>
+                                    Forensic Medicine
+                                    <span>Misr University</span>
+                                </li>
+                                <li>
+                                    <span class="cisco-status">Cisco Cybersecurity</span>
+                                    <span>In Progress: <span id="cisco-loader">🟩⬜⬜⬜⬜</span></span>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                <div class="about-bottom">
-                    <h3 class="certs-heading">CERTIFICATIONS</h3>
-                    
-                    <div class="certs-grid">
-                        <div class="cert-card">
-                            <ol start="1">
-                                <li>
-                                    Penetration Testing Professional
-                                    <span>MaharaTech - ITI</span>
-                                </li>
-                                <li>
-                                    Ethical Hacking
-                                    <span>MaharaTech - ITI</span>
-                                </li>
-                                <li>
-                                    CHC v2
-                                    <span>Techcampus</span>
-                                </li>
-                            </ol>
-                        </div>
-                        
-                        <div class="cert-card">
-                            <ol start="4">
-                                <li>
-                                    Computer Network Fundamentals
-                                    <span>MaharaTech - ITI</span>
-                                </li>
-                                <li>
-                                    Forensic Medicine
-                                    <span>Misr University</span>
-                                </li>
-                                <li>
-                                    <span class="cisco-status">Cisco Cybersecurity</span>
-                                    <span>In Progress: <span id="cisco-loader">🟩⬜⬜⬜⬜</span></span>
-                                </li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div id="blog" class="section">
+            <div class="tweet-feed" id="tweet-container"></div>
+        </div>
 
-        <div id="blog" class="section">
-            <div class="tweet-feed" id="tweet-container"></div>
-        </div>
+        <div id="contact" class="section">
+            <div class="contact-split">
+                <div class="contact-info">
+                    <h3>LET'S TALK</h3>
+                    <p>Have a project in mind? Send me a message and let's talk.</p>
+                </div>
+                <div class="contact-form-clean">
+                    <form action="https://formsubmit.co/body362222@gmail.com" method="POST" id="contactForm">
+                        <input type="hidden" name="_next" value="https://your-domain.com/thanks.html">
+                        
+                        <div class="form-group honeypot-field">
+                            <label>Leave this field empty</label>
+                            <input type="text" name="_honey" class="form-control">
+                        </div>
+                        
+                        <div class="form-group"><label>Name</label><input type="text" name="name" class="form-control" required></div>
+                        <div class="form-group"><label>Email</label><input type="email" name="email" class="form-control" required></div>
+                        <div class="form-group"><label>Message</label><textarea name="message" rows="2" class="form-control" required></textarea></div>
+                        
+                        <div class="form-group captcha-group">
+                            <label for="captcha">What is <span id="num1"></span> + <span id="num2"></span>?</label>
+                            <input type="number" id="captcha" name="captcha_answer" class="form-control" required>
+                            <input type="hidden" id="captcha_expected" name="captcha_expected">
+                        </div>
 
-        <div id="contact" class="section">
-            <div class="contact-split">
-                <div class="contact-info">
-                    <h3>LET'S TALK</h3>
-                    <p>Have a project in mind? Send me a message and let's talk.</p>
-                </div>
-                <div class="contact-form-clean">
-                    <form action="https://formsubmit.co/body362222@gmail.com" method="POST" id="contactForm">
-                        <input type="hidden" name="_next" value="https://your-domain.com/thanks.html">
-                        
-                        <div class="form-group honeypot-field">
-                            <label>Leave this field empty</label>
-                            <input type="text" name="_honey" class="form-control">
-                        </div>
-                        
-                        <div class="form-group"><label>Name</label><input type="text" name="name" class="form-control" required></div>
-                        <div class="form-group"><label>Email</label><input type="email" name="email" class="form-control" required></div>
-                        <div class="form-group"><label>Message</label><textarea name="message" rows="2" class="form-control" required></textarea></div>
-                        
-                        <div class="form-group captcha-group">
-                            <label for="captcha">What is <span id="num1"></span> + <span id="num2"></span>?</label>
-                            <input type="number" id="captcha" name="captcha_answer" class="form-control" required>
-                            <input type="hidden" id="captcha_expected" name="captcha_expected">
-                        </div>
+                        <button type="submit" class="btn">SEND MESSAGE</button>
+                    </form>
+                </div>
+            </div>
+        </div>
 
-                        <button type="submit" class="btn">SEND MESSAGE</button>
-                    </form>
-                </div>
-            </div>
-        </div>
+    </div>
 
-    </div>
+    <footer>© Abdalrhman Salah Ibrahim</footer>
 
-    <footer>© Abdalrhman Salah Ibrahim</footer>
+    <script>
+        // دالة عرض الأقسام وتشغيل تأثير الكتابة عند الحاجة
+        function show(id) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-links button').forEach(b => b.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            const buttons = document.querySelectorAll('.nav-links button');
+            
+            if(id === 'home') buttons[0].classList.add('active');
+            if(id === 'about') {
+                buttons[1].classList.add('active');
+                startTypingSequence(); // بدء الكتابة عند فتح About
+            }
+            if(id === 'blog') buttons[2].classList.add('active');
+            if(id === 'contact') buttons[3].classList.add('active');
+            window.scrollTo(0,0);
+        }
 
-    <script>
-        // دالة عرض الأقسام وتشغيل تأثير الكتابة عند الحاجة
-        function show(id) {
-            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-            document.querySelectorAll('.nav-links button').forEach(b => b.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
-            const buttons = document.querySelectorAll('.nav-links button');
-            
-            if(id === 'home') buttons[0].classList.add('active');
-            if(id === 'about') {
-                buttons[1].classList.add('active');
-                startTypingSequence(); // بدء الكتابة عند فتح About
-            }
-            if(id === 'blog') buttons[2].classList.add('active');
-            if(id === 'contact') buttons[3].classList.add('active');
-            window.scrollTo(0,0);
-        }
+        // --- كود تأثير الكتابة المتسلسل (لصفحة About) ---
+        const typingData = [
+            { text: "Abdalrhman Salah Ibrahim", tag: "h1", class: "big-name" },
+            { text: "Penetration Testing Student | Bug Bounty Enthusiast | CTF Player", tag: "div", class: "big-title" },
+            { text: "Linkedin", tag: "a", class: "big-link", href: "https://www.linkedin.com/in/bodyurr/" }
+        ];
 
-        // --- كود تأثير الكتابة المتسلسل ---
-        const typingData = [
-            { text: "Abdalrhman Salah Ibrahim", tag: "h1", class: "big-name" },
-            { text: "Penetration Testing Student | Bug Bounty Enthusiast | CTF Player", tag: "div", class: "big-title" },
-            { text: "Linkedin", tag: "a", class: "big-link", href: "https://www.linkedin.com/in/bodyurr/" }
-        ];
+        let isTyping = false; // لمنع تداخل الكتابة
 
-        let isTyping = false; // لمنع تداخل الكتابة
+        function startTypingSequence() {
+            const container = document.getElementById('typing-output');
+            if(!container) return;
+            
+            container.innerHTML = ''; // مسح المحتوى القديم للبدء من جديد
+            isTyping = true;
+            typeNextLine(0, container);
+        }
 
-        function startTypingSequence() {
-            const container = document.getElementById('typing-output');
-            if(!container) return;
-            
-            container.innerHTML = ''; // مسح المحتوى القديم للبدء من جديد
-            isTyping = true;
-            typeNextLine(0, container);
-        }
+        function typeNextLine(lineIndex, container) {
+            if(lineIndex >= typingData.length) {
+                isTyping = false;
+                return;
+            }
 
-        function typeNextLine(lineIndex, container) {
-            if(lineIndex >= typingData.length) {
-                isTyping = false;
-                return;
-            }
+            const data = typingData[lineIndex];
+            const element = document.createElement(data.tag);
+            element.className = data.class;
+            if(data.href) {
+                element.href = data.href;
+                element.target = "_blank";
+            }
+            // إضافة كلاس المؤشر
+            element.classList.add('cursor-blink');
+            container.appendChild(element);
 
-            const data = typingData[lineIndex];
-            const element = document.createElement(data.tag);
-            element.className = data.class;
-            if(data.href) {
-                element.href = data.href;
-                element.target = "_blank";
-            }
-            // إضافة كلاس المؤشر
-            element.classList.add('cursor-blink');
-            container.appendChild(element);
+            let charIndex = 0;
+            const text = data.text;
+            
+            function typeChar() {
+                if(charIndex < text.length) {
+                    element.textContent += text.charAt(charIndex);
+                    charIndex++;
+                    setTimeout(typeChar, 40); // سرعة الكتابة
+                } else {
+                    // انتهى السطر الحالي
+                    element.classList.remove('cursor-blink'); // إزالة المؤشر
+                    setTimeout(() => {
+                        typeNextLine(lineIndex + 1, container); // الانتقال للسطر التالي
+                    }, 300); // تأخير بسيط
+                }
+            }
+            typeChar();
+        }
+        // ------------------------------------
 
-            let charIndex = 0;
-            const text = data.text;
-            
-            function typeChar() {
-                if(charIndex < text.length) {
-                    element.textContent += text.charAt(charIndex);
-                    charIndex++;
-                    setTimeout(typeChar, 40); // سرعة الكتابة
-                } else {
-                    // انتهى السطر الحالي
-                    element.classList.remove('cursor-blink'); // إزالة المؤشر
-                    setTimeout(() => {
-                        typeNextLine(lineIndex + 1, container); // الانتقال للسطر التالي
-                    }, 300); // تأخير بسيط
-                }
-            }
-            typeChar();
-        }
-        // ------------------------------------
+        const tweets = [{ date: "Nov 26", content: "I love you more than I love Messi." }];
+        const tweetContainer = document.getElementById('tweet-container');
+        // تم استخدام الكود الأصلي للبلوج بدون تغيير
+        tweets.forEach(tweet => {
+            tweetContainer.innerHTML += `
+                <div class="tweet-card">
+                    <img src="photo.jpeg" alt="Profile" class="tweet-avatar">
+                    <div class="tweet-content">
+                        <div class="tweet-header"><span class="tweet-name">Abdalrhman Salah</span><span class="tweet-handle">@bodyurr</span><span class="tweet-time">· ${tweet.date}</span></div>
+                        <div class="tweet-body">${tweet.content}</div>
+                    </div>
+                </div>`;
+        });
 
-        const tweets = [{ date: "Nov 26", content: "I love you more than I love Messi." }];
-        const tweetContainer = document.getElementById('tweet-container');
-        // تم استخدام الكود الأصلي للبلوج بدون تغيير
-        tweets.forEach(tweet => {
-            tweetContainer.innerHTML += `
-                <div class="tweet-card">
-                    <img src="photo.jpeg" alt="Profile" class="tweet-avatar">
-                    <div class="tweet-content">
-                        <div class="tweet-header"><span class="tweet-name">Abdalrhman Salah</span><span class="tweet-handle">@bodyurr</span><span class="tweet-time">· ${tweet.date}</span></div>
-                        <div class="tweet-body">${tweet.content}</div>
-                    </div>
-                </div>`;
-        });
+        const input = document.getElementById('cmd-input');
+        const historyDiv = document.getElementById('history-content');
+        const terminalBody = document.getElementById('terminal-body');
 
-        const input = document.getElementById('cmd-input');
-        const historyDiv = document.getElementById('history-content');
-        const terminalBody = document.getElementById('terminal-body');
+        input.addEventListener('keydown', function(e) {
+            if(e.key === 'Enter') {
+                e.preventDefault();
+                
+                const val = this.value.trim();
+                const valLower = val.toLowerCase();
+                
+                const cmdBlock = document.createElement('div');
+                cmdBlock.style.marginBottom = '5px';
+                cmdBlock.innerHTML = `
+                    <div><span style="color:#0d6efd; font-weight:bold;">┌──(root㉿kali)-[~]</span></div>
+                    <div><span style="color:#fff; font-weight:bold; margin-right:10px;">└─#</span><span style="color:#fff">${this.value}</span></div>
+                `;
+                historyDiv.appendChild(cmdBlock);
 
-        input.addEventListener('keydown', function(e) {
-            if(e.key === 'Enter') {
-                e.preventDefault();
-                
-                const val = this.value.trim();
-                const valLower = val.toLowerCase();
-                
-                const cmdBlock = document.createElement('div');
-                cmdBlock.style.marginBottom = '5px';
-                cmdBlock.innerHTML = `
-                    <div><span style="color:#0d6efd; font-weight:bold;">┌──(root㉿kali)-[~]</span></div>
-                    <div><span style="color:#fff; font-weight:bold; margin-right:10px;">└─#</span><span style="color:#fff">${this.value}</span></div>
-                `;
-                historyDiv.appendChild(cmdBlock);
+                if(valLower === 'clear') {
+                    historyDiv.innerHTML = '';
+                } 
+                else if(valLower === 'sara mahmoud' || valLower === 'sara mahmoud sami' || valLower === 'sara sami') {
+                    const response = document.createElement('div');
+                    response.style.marginBottom = "20px";
+                    response.style.color = '#0d6efd'; 
+                    response.style.fontWeight = 'bold';
+                    response.style.fontSize = '1.2rem';
+                    response.textContent = `Why all this?`;
+                    historyDiv.appendChild(response);
+                }
+                else if (val !== "") {
+                    const response = document.createElement('div');
+                    response.style.marginBottom = "20px";
+                    response.style.color = '#ff5f56';
+                    response.style.fontWeight = 'bold';
+                    response.textContent = "Not u"; 
+                }
 
-                if(valLower === 'clear') {
-                    historyDiv.innerHTML = '';
-                } 
-                else if(valLower === 'sara mahmoud' || valLower === 'sara mahmoud sami' || valLower === 'sara sami') {
-                    const response = document.createElement('div');
-                    response.style.marginBottom = "20px";
-                    response.style.color = '#0d6efd'; 
-                    response.style.fontWeight = 'bold';
-                    response.style.fontSize = '1.2rem';
-                    response.textContent = `Why all this?`;
-                    historyDiv.appendChild(response);
-                }
-                else if (val !== "") {
-                    const response = document.createElement('div');
-                    response.style.marginBottom = "20px";
-                    response.style.color = '#ff5f56';
-                    response.style.fontWeight = 'bold';
-                    response.style.textContent = "Not u"; 
-                    historyDiv.appendChild(response);
-                }
+                this.value = '';
+                terminalBody.scrollTop = terminalBody.scrollHeight;
+            }
+        });
+        
+        document.querySelector('.terminal-container').addEventListener('click', () => input.focus());
 
-                this.value = '';
-                terminalBody.scrollTop = terminalBody.scrollHeight;
-            }
-        });
-        
-        document.querySelector('.terminal-container').addEventListener('click', () => input.focus());
+        const loader = document.getElementById('cisco-loader');
+        if(loader) {
+            let step = 1;
+            setInterval(() => {
+                let str = '';
+                for(let i=0; i<5; i++) str += (i < step) ? '🟩' : '⬜';
+                loader.innerText = str;
+                step = (step % 5) + 1;
+            }, 500);
+        }
 
-        const loader = document.getElementById('cisco-loader');
-        if(loader) {
-            let step = 1;
-            setInterval(() => {
-                let str = '';
-                for(let i=0; i<5; i++) str += (i < step) ? '🟩' : '⬜';
-                loader.innerText = str;
-                step = (step % 5) + 1;
-            }, 500);
-        }
+        const form = document.getElementById('contactForm');
+        const num1Span = document.getElementById('num1');
+        const num2Span = document.getElementById('num2');
+        const captchaInput = document.getElementById('captcha');
+        const captchaExpectedInput = document.getElementById('captcha_expected');
 
-        const form = document.getElementById('contactForm');
-        const num1Span = document.getElementById('num1');
-        const num2Span = document.getElementById('num2');
-        const captchaInput = document.getElementById('captcha');
-        const captchaExpectedInput = document.getElementById('captcha_expected');
+        function generateCaptcha() {
+            const num1 = Math.floor(Math.random() * 10) + 1; 
+            const num2 = Math.floor(Math.random() * 10) + 1; 
+            const sum = num1 + num2;
 
-        function generateCaptcha() {
-            const num1 = Math.floor(Math.random() * 10) + 1; 
-            const num2 = Math.floor(Math.random() * 10) + 1; 
-            const sum = num1 + num2;
+            num1Span.textContent = num1;
+            num2Span.textContent = num2;
+            captchaExpectedInput.value = sum; 
 
-            num1Span.textContent = num1;
-            num2Span.textContent = num2;
-            captchaExpectedInput.value = sum; 
+            captchaInput.value = '';
+        }
 
-            captchaInput.value = '';
-        }
+        form.addEventListener('submit', function(e) {
+            const userAnswer = parseInt(captchaInput.value.trim());
+            const correctAnswer = parseInt(captchaExpectedInput.value);
 
-        form.addEventListener('submit', function(e) {
-            const userAnswer = parseInt(captchaInput.value.trim());
-            const correctAnswer = parseInt(captchaExpectedInput.value);
+            if (userAnswer !== correctAnswer) {
+                e.preventDefault();
+                alert("Please complete the anti-spam check correctly!");
+                generateCaptcha(); 
+            }
+        });
 
-            if (userAnswer !== correctAnswer) {
-                e.preventDefault();
-                alert("Please complete the anti-spam check correctly!");
-                generateCaptcha(); 
-            }
-        });
-
-        generateCaptcha();
-    </script>
+        generateCaptcha();
+    </script>
 </body>
 </html>
