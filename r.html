@@ -2,12 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Abdalrhman - 20 Unique Designs</title>
+    <title>Abdalrhman - 15 Unique Designs</title>
     <link rel="icon" type="image/x-icon" href="icon.png">
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    
     <style>
-        /* Global Reset and Base Styles */
+        /* ----------------------------------------------------------------- */
+        /* --- Global Reset and Base Styles --- */
+        /* ----------------------------------------------------------------- */
         * { margin: 0; padding: 0; box-sizing: border-box; border-radius: 0 !important; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
         body { background-color: #f8f9fa; color: #212529; line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; overflow-x: hidden; font-weight: 400; transition: background-color 0.5s, color 0.5s; }
         h1, h2, h3, h4, strong, b, .btn, .nav-links button { font-weight: 700; }
@@ -22,8 +25,14 @@
         .nav-links button:hover, .nav-links button.active { color: #0d6efd; }
         
         /* Design Selector Dropdown */
-        #design-selector { position: absolute; top: 100%; right: 20px; background: #fff; border: 1px solid #dee2e6; padding: 10px; z-index: 1001; display: none; box-shadow: 0 5px 15px rgba(0,0,0,0.1); max-height: 400px; overflow-y: auto; min-width: 200px; }
-        .design-btn { display: block; width: 100%; text-align: left; padding: 8px 15px; margin-bottom: 5px; background-color: #f8f9fa; color: #212529; border: 1px solid #dee2e6; cursor: pointer; transition: background-color 0.2s; }
+        #design-selector { 
+            position: absolute; top: 100%; right: 20px; background: #fff; border: 1px solid #dee2e6; padding: 10px; z-index: 1001; display: none; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); max-height: 400px; overflow-y: auto; min-width: 250px;
+        }
+        .design-btn { 
+            display: block; width: 100%; text-align: left; padding: 8px 15px; margin-bottom: 5px; background-color: #f8f9fa; color: #212529; 
+            border: 1px solid #dee2e6; cursor: pointer; transition: background-color 0.2s; 
+        }
         .design-btn:hover, .design-btn.active-design { background-color: #e9ecef; color: #0d6efd; border-left: 3px solid #0d6efd; font-weight: 600; }
 
         /* Section Transitions */
@@ -32,11 +41,14 @@
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         /* Common Elements for Designs */
-        .design-wrapper { display: none; }
+        .design-wrapper { 
+            display: none; padding: 30px; margin: 20px 0; border-radius: 8px !important; 
+            min-height: 450px; /* لضمان ثبات ارتفاع التصاميم */
+        }
         .design-wrapper.active-design { display: block; }
         .profile-photo { width: 150px; height: 150px; object-fit: cover; border-radius: 50% !important; border: 3px solid; margin-bottom: 20px; animation: photo-fade-in 1s ease-out; }
         @keyframes photo-fade-in { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
-        .profile-name { font-size: 2.5rem; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
+        .profile-name { font-size: 2.5rem; margin-bottom: 10px; }
         .profile-title { font-size: 1.2rem; font-weight: 600; margin-bottom: 20px; }
         .skill-badge { display: inline-block; padding: 6px 12px; margin: 5px; border-radius: 15px !important; font-size: 0.9em; border: 1px solid; }
         .linkedin-link { display: inline-block; padding: 10px 25px; margin-top: 25px; text-decoration: none; border-radius: 5px !important; font-weight: 600; transition: transform 0.3s ease; }
@@ -44,31 +56,28 @@
 
 
         /* ----------------------------------------------------------------- */
-        /* --- 20 UNIQUE DESIGN STYLES --- */
+        /* --- 15 UNIQUE DESIGN STYLES (Focusing on different aesthetics) --- */
         /* ----------------------------------------------------------------- */
         
         /* Design 1: Clean Blue Card */
-        .design-1 { background-color: #e0f2f7; color: #333; padding: 50px; text-align: center; box-shadow: 0 8px 20px rgba(0,0,0,0.1); border-radius: 10px !important; }
+        .design-1 { background-color: #f0f8ff; color: #333; text-align: center; box-shadow: 0 8px 20px rgba(0,0,0,0.1); border: 2px solid #007bff; }
         .design-1 .profile-photo { border-color: #007bff; }
         .design-1 .profile-name { color: #0056b3; }
-        .design-1 .profile-title { color: #555; }
         .design-1 .skill-badge { background-color: #d1ecf1; border-color: #bee5eb; color: #0c5460; }
         .design-1 .linkedin-link { background-color: #007bff; color: white; }
 
-        /* Design 2: Dark Hacker Terminal */
-        .design-2 { background-color: #0f0f0f; color: #33ff00; padding: 50px; border: 2px solid #33ff00; box-shadow: 0 0 15px rgba(51, 255, 0, 0.6); text-align: center; animation: terminal-blink 1.5s infinite; }
+        /* Design 2: Dark Hacker Terminal (Animated Borders) */
+        .design-2 { background-color: #0f0f0f; color: #33ff00; border: 2px solid #33ff00; box-shadow: 0 0 15px rgba(51, 255, 0, 0.6); text-align: center; animation: terminal-blink 1.5s infinite; }
         .design-2 .profile-photo { border-color: #33ff00; box-shadow: 0 0 10px rgba(51, 255, 0, 0.5); }
         .design-2 .profile-name { color: #00ff00; text-shadow: 0 0 8px #00ff00; animation: neon-glow 2s ease-in-out infinite alternate; }
-        .design-2 .profile-title { color: #90ff90; }
         .design-2 .skill-badge { background-color: #0a0a0a; border-color: #00cc00; color: #00ff00; }
         .design-2 .linkedin-link { background-color: #33ff00; color: #0f0f0f; box-shadow: 0 0 8px #33ff00; }
         @keyframes terminal-blink { 0%, 100% { border-color: #33ff00; } 50% { border-color: rgba(51,255,0,0.3); } }
         @keyframes neon-glow { from { text-shadow: 0 0 5px #00ff00; } to { text-shadow: 0 0 20px #00ff00, 0 0 30px #00ff00; } }
-        .design-2 #typed-output { font-family: 'Consolas', 'Courier New', monospace; white-space: pre; display: inline-block; }
 
-        /* Design 3: Cyberpunk Grid */
+        /* Design 3: Cyberpunk Grid (Animated Background) */
         .design-3 { 
-            position: relative; overflow: hidden; background-color: #1a0f30; color: #00ffff; padding: 50px; text-align: center;
+            position: relative; overflow: hidden; background-color: #1a0f30; color: #00ffff; text-align: center;
             border: 2px solid #ff00ff; box-shadow: 0 0 20px rgba(255,0,255,0.7);
         }
         .design-3::before {
@@ -79,43 +88,36 @@
         .design-3 > * { position: relative; z-index: 1; }
         .design-3 .profile-photo { border-color: #00ffff; box-shadow: 0 0 10px #00ffff; }
         .design-3 .profile-name { color: #ff00ff; text-shadow: 0 0 10px #ff00ff; }
-        .design-3 .profile-title { color: #00ffff; }
         .design-3 .skill-badge { background-color: #0a0515; border-color: #ff00ff; color: #00ffff; }
         .design-3 .linkedin-link { background-color: #00ffff; color: #1a0f30; box-shadow: 0 0 10px #00ffff; }
         @keyframes grid-scroll { from { background-position: 0 0; } to { background-position: 50px 50px; } }
 
-        /* Design 4: Particle Background (uses particles.js) */
+        /* Design 4: Particle Background (Dynamic, uses particles.js) */
         .design-4 { 
-            position: relative; overflow: hidden; background-color: #212121; color: #f0f0f0; padding: 50px; text-align: center;
-            border: 1px solid #444; box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            position: relative; overflow: hidden; background-color: #212121; color: #f0f0f0; text-align: center;
+            border: 1px solid #61dafb; box-shadow: 0 5px 15px rgba(0,0,0,0.5);
         }
         .design-4 #particles-js { position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 0; }
         .design-4 > * { position: relative; z-index: 1; }
         .design-4 .profile-photo { border-color: #61dafb; }
         .design-4 .profile-name { color: #61dafb; }
-        .design-4 .profile-title { color: #ccc; }
         .design-4 .skill-badge { background-color: #333; border-color: #555; color: #f0f0f0; }
         .design-4 .linkedin-link { background-color: #61dafb; color: #212121; }
 
-        /* Design 5: Glitch Effect */
-        .design-5 { background-color: #1a1a1a; color: #eee; padding: 50px; text-align: center; position: relative; overflow: hidden; }
+        /* Design 5: Glitch Effect (Text/Image Distortion) */
+        .design-5 { background-color: #1a1a1a; color: #eee; text-align: center; position: relative; overflow: hidden; border: 2px solid #0f0; }
         .design-5 .profile-photo, .design-5 .profile-name { animation: glitch-text 0.8s infinite; }
         .design-5 .profile-photo { border-color: #f00; }
         .design-5 .profile-name { color: #0f0; }
-        .design-5 .profile-title { color: #f00; }
         .design-5 .skill-badge { background-color: #333; border-color: #f00; color: #0f0; }
         .design-5 .linkedin-link { background-color: #0f0; color: #1a1a1a; }
         @keyframes glitch-text {
-            0% { transform: translate(0); text-shadow: none; }
-            20% { transform: translate(-2px, 2px); text-shadow: 2px -2px 0 red, -2px 2px 0 blue; }
-            40% { transform: translate(-2px, -2px); text-shadow: -2px -2px 0 green, 2px 2px 0 yellow; }
-            60% { transform: translate(2px, 2px); text-shadow: 2px 2px 0 purple, -2px -2px 0 orange; }
-            80% { transform: translate(2px, -2px); text-shadow: -2px 2px 0 cyan, 2px -2px 0 magenta; }
-            100% { transform: translate(0); text-shadow: none; }
+            0% { transform: translate(0); } 20% { transform: translate(-2px, 2px); } 40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); } 80% { transform: translate(2px, -2px); } 100% { transform: translate(0); }
         }
 
-        /* Design 6: Minimalist Reveal */
-        .design-6 { background-color: #fcfcfc; color: #333; padding: 50px; text-align: center; overflow: hidden; border-radius: 8px !important; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        /* Design 6: Minimalist Reveal (Sequential Fade-in) */
+        .design-6 { background-color: #fcfcfc; color: #333; text-align: center; overflow: hidden; border: 1px solid #bdc3c7; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
         .design-6 .profile-photo, .design-6 .profile-name, .design-6 .profile-title, .design-6 .skill-badge, .design-6 .linkedin-link { opacity: 0; transform: translateY(20px); animation: reveal 0.8s forwards; }
         .design-6 .profile-photo { border-color: #a7bed3; animation-delay: 0.2s; }
         .design-6 .profile-name { color: #2c3e50; animation-delay: 0.4s; }
@@ -124,26 +126,25 @@
         .design-6 .linkedin-link { background-color: #3498db; color: white; animation-delay: 1s; }
         @keyframes reveal { to { opacity: 1; transform: translateY(0); } }
 
-        /* Design 7: Neon Glow */
-        .design-7 { background-color: #080808; color: #fff; padding: 50px; text-align: center; border: 2px solid #ff00ff; box-shadow: 0 0 25px rgba(255,0,255,0.8); }
+        /* Design 7: Neon Glow (Purple/Cyan) */
+        .design-7 { background-color: #080808; color: #fff; text-align: center; border: 2px solid #ff00ff; box-shadow: 0 0 25px rgba(255,0,255,0.8); }
         .design-7 .profile-photo { border-color: #00ffff; box-shadow: 0 0 15px #00ffff; }
         .design-7 .profile-name { color: #ff00ff; text-shadow: 0 0 15px #ff00ff; }
         .design-7 .profile-title { color: #00ffff; text-shadow: 0 0 8px #00ffff; }
         .design-7 .skill-badge { background-color: #1a0a1a; border-color: #ff00ff; color: #00ffff; box-shadow: 0 0 5px rgba(255,0,255,0.5); }
         .design-7 .linkedin-link { background-color: #00ffff; color: #080808; box-shadow: 0 0 15px #00ffff; }
 
-        /* Design 8: Retro Arcade */
-        .design-8 { background-color: #000; color: #ff0; padding: 50px; border: 5px dashed #0f0; text-align: center; font-family: 'Press Start 2P', cursive; text-shadow: 2px 2px 0 #f00; }
+        /* Design 8: Retro Arcade (Dashed Border) */
+        .design-8 { background-color: #000; color: #ff0; border: 5px dashed #0f0; text-align: center; text-shadow: 2px 2px 0 #f00; }
         .design-8 .profile-photo { border-color: #0f0; box-shadow: 0 0 10px #0f0; }
         .design-8 .profile-name { color: #ff0; text-shadow: 2px 2px 0 #f00; animation: bounce 1s infinite alternate; }
-        .design-8 .profile-title { color: #f00; text-shadow: 1px 1px 0 #ff0; }
         .design-8 .skill-badge { background-color: #222; border-color: #0f0; color: #ff0; }
         .design-8 .linkedin-link { background-color: #0f0; color: #000; text-shadow: none; border: 2px solid #ff0; }
         @keyframes bounce { 0% { transform: translateY(0); } 100% { transform: translateY(-5px); } }
 
-        /* Design 9: Data Flow */
+        /* Design 9: Data Flow (Animated Lines) */
         .design-9 { 
-            position: relative; overflow: hidden; background-color: #2a2a2a; color: #00e676; padding: 50px; text-align: center;
+            position: relative; overflow: hidden; background-color: #2a2a2a; color: #00e676; text-align: center;
             border: 1px solid #00e676; box-shadow: 0 0 15px rgba(0,230,118,0.5);
         }
         .design-9::before {
@@ -154,21 +155,15 @@
         .design-9 > * { position: relative; z-index: 1; }
         .design-9 .profile-photo { border-color: #00e676; }
         .design-9 .profile-name { color: #00ff00; }
-        .design-9 .profile-title { color: #00e676; }
         .design-9 .skill-badge { background-color: #1a1a1a; border-color: #00e676; color: #00e676; }
         .design-9 .linkedin-link { background-color: #00e676; color: #2a2a2a; }
         @keyframes data-flow { from { background-position: 0 0; } to { background-position: 100px 100px; } }
 
-        /* Design 10: Vaporwave Aesthetic */
+        /* Design 10: Vaporwave Aesthetic (Gradient Shift) */
         .design-10 { 
             position: relative; overflow: hidden; background: linear-gradient(135deg, #6a0572, #8338ec, #ff00ff, #00ffff); background-size: 400% 400%;
-            animation: gradient-shift 15s ease infinite; padding: 50px; text-align: center; color: #fff;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-        .design-10::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="100%" height="100%" fill="none" stroke="%23ffffff" stroke-width="1" stroke-dasharray="5 5"/></svg>');
-            opacity: 0.2; z-index: 0;
+            animation: gradient-shift 15s ease infinite; text-align: center; color: #fff;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3); border: 1px solid #ff00ff;
         }
         .design-10 > * { position: relative; z-index: 1; }
         .design-10 .profile-photo { border-color: #ffcc00; }
@@ -176,32 +171,29 @@
         .design-10 .profile-title { color: #00e5ff; }
         .design-10 .skill-badge { background-color: rgba(0,0,0,0.3); border-color: #ff00ff; color: #fff; }
         .design-10 .linkedin-link { background-color: #ff00ff; color: white; }
-        @keyframes gradient-shift {
-            0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; }
-        }
+        @keyframes gradient-shift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
-        /* Design 11: Minimalist Black & White */
-        .design-11 { background-color: #000; color: #fff; padding: 50px; text-align: center; border: 1px solid #fff; }
+        /* Design 11: Minimalist Black & White (High Contrast) */
+        .design-11 { background-color: #000; color: #fff; text-align: center; border: 2px solid #fff; }
         .design-11 .profile-photo { border-color: #fff; }
         .design-11 .profile-name { color: #fff; }
         .design-11 .profile-title { color: #ccc; }
         .design-11 .skill-badge { background-color: #222; border-color: #fff; color: #fff; }
         .design-11 .linkedin-link { background-color: #fff; color: #000; }
 
-        /* Design 12: Code Editor Look */
-        .design-12 { background-color: #1e1e1e; color: #d4d4d4; padding: 50px; text-align: left; border-left: 5px solid #007acc; }
-        .design-12 .profile-photo { float: right; margin-left: 30px; border-color: #007acc; }
-        .design-12 .profile-name { color: #569cd6; font-family: 'Fira Code', monospace; }
-        .design-12 .profile-title { color: #9cdcfe; font-family: 'Fira Code', monospace; margin-bottom: 30px; }
-        .design-12 .skill-badge { background-color: #333; border-color: #007acc; color: #ce9178; font-family: 'Fira Code', monospace; }
+        /* Design 12: Code Editor Look (Left-aligned) */
+        .design-12 { background-color: #1e1e1e; color: #d4d4d4; text-align: left; border-left: 5px solid #007acc; display: flex; align-items: flex-start; gap: 30px; }
+        .design-12 .profile-photo { flex-shrink: 0; border-color: #007acc; }
+        .design-12 .text-content { overflow: hidden; }
+        .design-12 .profile-name { color: #569cd6; font-size: 2.2rem; }
+        .design-12 .profile-title { color: #9cdcfe; margin-bottom: 30px; }
+        .design-12 .skill-badge { background-color: #333; border-color: #007acc; color: #ce9178; }
         .design-12 .linkedin-link { background-color: #007acc; color: #1e1e1e; }
-        .design-12 .line-numbers { float: left; margin-right: 20px; color: #888; font-family: 'Fira Code', monospace; font-size: 0.9em; line-height: 1.6; }
-        .design-12 .code-content { overflow: hidden; } /* To contain float */
-
-        /* Design 13: Abstract Shapes Background */
+        
+        /* Design 13: Abstract Shapes Background (Animated Shapes) */
         .design-13 { 
-            position: relative; overflow: hidden; background: radial-gradient(circle at top left, #a1c4fd, #c2e9fb); padding: 50px; text-align: center; color: #333;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            position: relative; overflow: hidden; background: radial-gradient(circle at top left, #a1c4fd, #c2e9fb); text-align: center; color: #333;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15); border: 2px solid #89cff0;
         }
         .design-13::before, .design-13::after {
             content: ''; position: absolute; border-radius: 50%; opacity: 0.6; animation: float-shapes 15s ease-in-out infinite alternate;
@@ -211,20 +203,378 @@
         .design-13 > * { position: relative; z-index: 1; }
         .design-13 .profile-photo { border-color: #a1c4fd; }
         .design-13 .profile-name { color: #007bff; }
-        .design-13 .profile-title { color: #555; }
         .design-13 .skill-badge { background-color: #e0f2f7; border-color: #a1c4fd; color: #0c5460; }
         .design-13 .linkedin-link { background-color: #007bff; color: white; }
         @keyframes float-shapes { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(20px, 30px) scale(1.1); } }
 
-        /* Design 14: Dynamic Typing (uses Typed.js) */
-        .design-14 { background-color: #2b2b2b; color: #f0f0f0; padding: 50px; text-align: center; border: 1px solid #444; }
-        .design-14 .profile-photo { border-color: #6a0572; }
+        /* Design 14: Dynamic Typing (Uses Typed.js) */
+        .design-14 { background-color: #2b2b2b; color: #f0f0f0; text-align: center; border: 1px solid #6a0572; }
+        .design-14 .profile-photo { border-color: #ff7f50; }
         .design-14 .profile-name { color: #ff7f50; }
-        .design-14 .profile-title { color: #f0f0f0; }
         .design-14 .skill-badge { background-color: #3d3d3d; border-color: #888; color: #f0f0f0; }
         .design-14 .linkedin-link { background-color: #6a0572; color: white; }
         .design-14 #typed-strings { display: none; } /* Hidden by default */
-        .design-14 .dynamic-text { font-size: 1.8rem; font-weight: 700; color: #ff7f50; min-height: 40px; }
+        .design-14 .dynamic-text { font-size: 1.8rem; font-weight: 700; color: #ff7f50; min-height: 40px; margin-bottom: 25px; }
 
-        /* Design 15: Gradient Shift Background */
-        .
+        /* Design 15: Split Vertical Reveal */
+        .design-15 { 
+            background: linear-gradient(to right, #2c3e50 50%, #ecf0f1 50%); 
+            padding: 0; color: #fff; display: flex; 
+        }
+        .design-15 .left-side { background-color: #2c3e50; padding: 30px; flex: 1; text-align: center; }
+        .design-15 .right-side { background-color: #ecf0f1; padding: 30px; flex: 1; color: #333; display: flex; flex-direction: column; justify-content: center; }
+        .design-15 .profile-photo { border-color: #3498db; margin-bottom: 30px; }
+        .design-15 .profile-name { color: #3498db; }
+        .design-15 .profile-title { color: #bdc3c7; }
+        .design-15 .skill-badge { background-color: #34495e; border-color: #3498db; color: #fff; }
+        .design-15 .linkedin-link { background-color: #3498db; color: white; }
+
+        
+        /* Certifications Section (Remains Static) */
+        .about-bottom { margin-top: 80px; }
+        .certs-heading { color: #212529; border-bottom: 3px solid #212529; display: inline-block; }
+        .certs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .cert-card { background: transparent; padding: 0; border: none; }
+        .cert-card li { border-bottom: 1px solid #eee; }
+        .cisco-status { color: #d39e00; font-weight: 700; }
+        
+        footer { background: #212529; color: #fff; text-align: center; padding: 30px; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; }
+        
+        @media(max-width: 768px) {
+            .design-wrapper { min-height: auto; }
+            .design-12, .design-15 { flex-direction: column; }
+            .design-15 .left-side, .design-15 .right-side { flex: none; width: 100%; }
+        }
+    </style>
+</head>
+<body class="design-1">
+
+    <nav>
+        <div class="container nav-content">
+            <div class="logo">Abdalrhman.</div>
+            <div class="nav-links">
+                <button onclick="show('about')" class="active">Profile</button>
+                <button onclick="show('blog')">Blog</button>
+                <button onclick="show('contact')">Contact</button>
+                <button onclick="toggleSelector()">🎨 Designs</button>
+            </div>
+            
+            <div id="design-selector" class="selector-dropdown" style="display: none;">
+                <button onclick="setDesign('1', 'Clean Blue Card')" class="design-btn active-design">1. Clean Blue Card</button>
+                <button onclick="setDesign('2', 'Dark Hacker Terminal')" class="design-btn">2. Dark Hacker Terminal</button>
+                <button onclick="setDesign('3', 'Cyberpunk Grid')" class="design-btn">3. Cyberpunk Grid (Animated)</button>
+                <button onclick="setDesign('4', 'Particle Background')" class="design-btn">4. Particle Background (Dynamic)</button>
+                <button onclick="setDesign('5', 'Glitch Effect')" class="design-btn">5. Glitch Effect</button>
+                <button onclick="setDesign('6', 'Minimalist Reveal')" class="design-btn">6. Minimalist Reveal (Sequential)</button>
+                <button onclick="setDesign('7', 'Neon Glow')" class="design-btn">7. Neon Glow (Purple/Cyan)</button>
+                <button onclick="setDesign('8', 'Retro Arcade')" class="design-btn">8. Retro Arcade</button>
+                <button onclick="setDesign('9', 'Data Flow')" class="design-btn">9. Data Flow (Animated)</button>
+                <button onclick="setDesign('10', 'Vaporwave Aesthetic')" class="design-btn">10. Vaporwave Aesthetic (Gradient)</button>
+                <button onclick="setDesign('11', 'Minimalist B&W')" class="design-btn">11. Minimalist Black & White</button>
+                <button onclick="setDesign('12', 'Code Editor Look')" class="design-btn">12. Code Editor Look</button>
+                <button onclick="setDesign('13', 'Abstract Shapes')" class="design-btn">13. Abstract Shapes (Animated)</button>
+                <button onclick="setDesign('14', 'Dynamic Typing')" class="design-btn">14. Dynamic Typing (Scripted)</button>
+                <button onclick="setDesign('15', 'Split Vertical Reveal')" class="design-btn">15. Split Vertical Reveal</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div id="about" class="section active">
+            
+            <div id="design-title-display" style="font-size: 1.5rem; font-weight: bold; margin-bottom: 20px; text-align: center;">1. Clean Blue Card</div>
+
+            <div class="about-container">
+                
+                <div id="design-1" class="design-wrapper active-design design-1">
+                    <img src="photo.jpeg" alt="Profile" class="profile-photo">
+                    <h1 class="profile-name">Abdalrhman Salah Ibrahim</h1>
+                    <div class="profile-title">Penetration Testing Student | Bug Bounty Enthusiast | CTF Player</div>
+                    <div>
+                        <span class="skill-badge">Penetration Testing</span> <span class="skill-badge">Bug Bounty</span> <span class="skill-badge">CTF</span>
+                    </div>
+                    <a href="https://www.linkedin.com/in/bodyurr/" target="_blank" class="linkedin-link">View LinkedIn Profile</a>
+                </div>
+
+                <div id="design-2" class="design-wrapper design-2">
+                    <img src="photo.jpeg" alt="Profile" class="profile-photo">
+                    <h1 class="profile-name">ROOT@KALI: Abdalrhman Salah Ibrahim</h1>
+                    <div class="profile-title">// Access Granted. Status: PENTESTING MODE ACTIVE</div>
+                    <div>
+                        <span class="skill-badge">SYSTEM HACKER</span> <span class="skill-badge">BUG HUNTER</span>
+                    </div>
+                    <a href="https://www.linkedin.com/in/bodyurr/" target="_blank" class="linkedin-link">Connect to Console [LINKEDIN]</a>
+                </div>
+
+                <div id="design-3" class="design-wrapper design-3">
+                    <img src="photo.jpeg" alt="Profile" class="profile-photo">
+                    <h1 class="profile-name">CYBER// ABDALRHMAN IBRAHIM</h1>
+                    <div class="profile-title">>> SECURITY ARCHITECT / EXPLOIT DEVELOPMENT</div>
+                    <div>
+                        <span class="skill-badge">CRYPTO</span> <span class="skill-badge">VULNERABILITY RESEARCH</span>
+                    </div>
+                    <a href="https://www.linkedin.com/in/bodyurr/" target="_blank" class="linkedin-link">ACCESS PROFILE [LINK]</a>
+                </div>
+
+                <div id="design-4" class="design-wrapper design-4">
+                    <div id="particles-js" class="particles-canvas"></div>
+                    <img src="photo.jpeg" alt="Profile" class="profile-photo">
+                    <h1 class="profile-name">Abdalrhman Ibrahim</h1>
+                    <div class="profile-title">System Analyst & Security Researcher</div>
+                    <div>
+                        <span class="skill-badge">React.js</span> <span class="skill-badge">Python</span> <span class="skill-badge">AWS</span>
+                    </div>
+                    <a href="https://www.linkedin.com/in/bodyurr/" target="_blank" class="linkedin-link">Let's Build</a>
+                </div>
+
+                <div id="design-5" class="design-wrapper design-5">
+                    <img src="photo.jpeg" alt="Profile" class="profile-photo">
+                    <h1 class="profile-name">A_b_d_a_l_r_h_m_a_n S_a_l_a_h</h1>
+                    <div class="profile-title">ERROR_404_SECURED_USER</div>
+                    <div>
+                        <span class="skill-badge">Injection</span> <span class="skill-badge">XSS</span> <span class="skill-badge">RCE</span>
+                    </div>
+                    <a href="https://www.linkedin.com/in/bodyurr/" target="_blank" class="linkedin-link">!_Connect</a>
+                </div>
+
+                <div id="design-6" class="design-wrapper design-6">
+                    <img src="photo.jpeg" alt="Profile" class="profile-photo">
+                    <h1 class="profile-name">Abdalrhman Salah Ibrahim</h1>
+                    <div class="profile-title">Security Focus. Clean Code.</div>
+                    <div>
+                        <span class="skill-badge">Audit</span> <span class="skill-badge">Strategy</span> <span class="skill-badge">Documentation</span>
+                    </div>
+                    <a href="https://www.linkedin.com/in/bodyurr/" target="_blank" class="linkedin-link">Contact</a>
+                </div>
+
+                <div id="design-7" class="design-wrapper design-7">
+                    <img src="photo.jpeg" alt="Profile" class="profile-photo">
+                    <h1 class="profile-name">Abdalrhman Salah Ibrahim</h1>
+                    <div class="profile-title">Cyber Defender // CTF Master</div>
+                    <div>
+                        <span class="skill-badge">REVERSE</span> <span class="skill-badge">PWN</span> <span class="skill-badge">WEB</span>
+                    </div>
+                    <a href="https://www.linkedin.com/in/bodyurr/" target="_blank" class="linkedin-link">CONNECT TO GRID</a>
+                </div>
+
+                <div id="design-8" class="design-wrapper design-8">
+                    <img src="photo.jpeg" alt="Profile" class="profile-photo">
+                    <h1 class="profile-name">ABDALRHMAN'S PORTFOLIO</h1>
+                    <div class="profile-title">LEVEL 1 COMPLETE: PENTESTER</div>
+                    <div>
+                        <span class="skill-badge">SCORE: 99999</span> <span class="skill-badge">EXTRA LIFE</span>
+                    </div>
+                    <a href="https://www.linkedin.com/in/bodyurr/" target="_blank" class="linkedin-link">START GAME</a>
+                </div>
+
+                <div id="design-9" class="design-wrapper design-9">
+                    <img src="photo.jpeg" alt="Profile" class="profile-photo">
+                    <h1 class="profile-name">Abdalrhman Ibrahim [Data Stream]</h1>
+                    <div class="profile-title">--NETWORK SEGMENTATION SPECIALIST--</div>
+                    <div>
+                        <span class="skill-badge">NETWORKING</span> <span class="skill-badge">OSINT</span> <span class="skill-badge">FORENSICS</span>
+                    </div>
+                    <a href="https://www.linkedin.com/in/bodyurr/" target="_blank" class="linkedin-link">ACTIVATE LINK</a>
+                </div>
+
+                <div id="design-10" class="design-wrapper design-10">
+                    <img src="photo.jpeg" alt="Profile" class="profile-photo">
+                    <h1 class="profile-name">Abdalrhman Salah Ibrahim</h1>
+                    <div class="profile-title">SECURITY IN THE CLOUDS</div>
+                    <div>
+                        <span class="skill-badge">SANS</span> <span class="skill-badge">CISSP</span> <span class="skill-badge">CCNA</span>
+                    </div>
+                    <a href="https://www.linkedin.com/in/bodyurr/" target="_blank" class="linkedin-link">V I S I T</a>
+                </div>
+
+                <div id="design-11" class="design-wrapper design-11">
+                    <img src="photo.jpeg" alt="Profile" class="profile-photo">
+                    <h1 class="profile-name">ABDALRHMAN SALAH IBRAHIM</h1>
+                    <div class="profile-title">HACKING | DEFENSE | RESEARCH</div>
+                    <div>
+                        <span class="skill-badge">C</span> <span class="skill-badge">S</span> <span class="skill-badge">S</span> <span class="skill-badge">S</span>
+                    </div>
+                    <a href="https://www.linkedin.com/in/bodyurr/" target="_blank" class="linkedin-link">ACCESS</a>
+                </div>
+
+                <div id="design-12" class="design-wrapper design-12">
+                    <img src="photo.jpeg" alt="Profile" class="profile-photo">
+                    <div class="text-content">
+                        <h1 class="profile-name">public class Abdalrhman extends Student {</h1>
+                        <div class="profile-title">  // Primary Role: Pentester</div>
+                        <div class="profile-title">  // Secondary Role: Bug Bounty Enthusiast</div>
+                        <div>
+                            <span class="skill-badge">System.out.println("Hack The Box");</span>
+                        </div>
+                        <a href="https://www.linkedin.com/in/bodyurr/" target="_blank" class="linkedin-link">Call Method: link.connect()</a>
+                        <h1 class="profile-name">}</h1>
+                    </div>
+                </div>
+
+                <div id="design-13" class="design-wrapper design-13">
+                    <img src="photo.jpeg" alt="Profile" class="profile-photo">
+                    <h1 class="profile-name">Abdalrhman Ibrahim</h1>
+                    <div class="profile-title">Fluid Security Expert</div>
+                    <div>
+                        <span class="skill-badge">Creative</span> <span class="skill-badge">Adaptable</span> <span class="skill-badge">Innovative</span>
+                    </div>
+                    <a href="https://www.linkedin.com/in/bodyurr/" target="_blank" class="linkedin-link">Connect</a>
+                </div>
+
+                <div id="design-14" class="design-wrapper design-14">
+                    <img src="photo.jpeg" alt="Profile" class="profile-photo">
+                    <h1 class="profile-name">Abdalrhman Salah Ibrahim</h1>
+                    <div id="typed-strings">
+                        <p>I am a Penetration Testing Student.</p>
+                        <p>I am a Bug Bounty Enthusiast.</p>
+                        <p>I am a CTF Player.</p>
+                    </div>
+                    <div class="dynamic-text"></div>
+                    <div>
+                        <span class="skill-badge">Speed</span> <span class="skill-badge">Precision</span>
+                    </div>
+                    <a href="https://www.linkedin.com/in/bodyurr/" target="_blank" class="linkedin-link">Follow My Keystrokes</a>
+                </div>
+
+                <div id="design-15" class="design-wrapper design-15">
+                    <div class="left-side">
+                        <img src="photo.jpeg" alt="Profile" class="profile-photo">
+                        <h1 class="profile-name">Abdalrhman Salah Ibrahim</h1>
+                        <div class="profile-title">Security Focus</div>
+                        <a href="https://www.linkedin.com/in/bodyurr/" target="_blank" class="linkedin-link">VIEW PROFILE</a>
+                    </div>
+                    <div class="right-side">
+                        <div class="profile-title" style="color:#333; font-size: 1.5rem; margin-bottom: 20px;">KEY SKILLS & TOOLS</div>
+                        <div>
+                            <span class="skill-badge">Web Exploitation</span> <span class="skill-badge">Burp Suite</span> <span class="skill-badge">Nmap</span>
+                            <span class="skill-badge">Python</span> <span class="skill-badge">Linux</span> <span class="skill-badge">Cloud</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-bottom">
+                    <h3 class="certs-heading">CERTIFICATIONS</h3>
+                    <div class="certs-grid">
+                        <div class="cert-card">
+                            <ol start="1">
+                                <li>Penetration Testing Professional <span>MaharaTech - ITI</span></li>
+                                <li>Ethical Hacking <span>MaharaTech - ITI</span></li>
+                                <li>CHC v2 <span>Techcampus</span></li>
+                            </ol>
+                        </div>
+                        <div class="cert-card">
+                            <ol start="4">
+                                <li>Computer Network Fundamentals <span>MaharaTech - ITI</span></li>
+                                <li>Forensic Medicine <span>Misr University</span></li>
+                                <li><span class="cisco-status">Cisco Cybersecurity</span> <span>In Progress: <span id="cisco-loader">🟩⬜⬜⬜⬜</span></span></li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <div id="blog" class="section">
+            <div class="tweet-feed" id="tweet-container"></div>
+        </div>
+        <div id="contact" class="section">
+            </div>
+    </div>
+
+    <footer>© Abdalrhman Salah Ibrahim</footer>
+
+    <script>
+        let typedInstance = null;
+        
+        // --- 1. Design Switching Functions ---
+        function setDesign(designId, designName) {
+            // 1. إيقاف وتدمير أي تأثيرات سابقة
+            if (typedInstance) {
+                typedInstance.destroy();
+                typedInstance = null;
+            }
+            if (window.pJSDom && window.pJSDom.length > 0) {
+                window.pJSDom[0].pJS.fn.vendors.destroypJS();
+                window.pJSDom = [];
+            }
+            
+            // 2. إظهار التصميم الجديد وإخفاء البقية
+            document.querySelectorAll('.design-wrapper').forEach(el => el.classList.remove('active-design'));
+            const newDesignEl = document.getElementById('design-' + designId);
+            newDesignEl.classList.add('active-design');
+            
+            // 3. تحديث زر القائمة النشط
+            document.querySelectorAll('.design-btn').forEach(btn => btn.classList.remove('active-design'));
+            document.querySelector(`[onclick*="'${designId}'"]`).classList.add('active-design');
+            
+            // 4. تحديث العنوان وحفظ الاختيار
+            document.getElementById('design-title-display').textContent = designId + '. ' + designName;
+            localStorage.setItem('activeDesign', designId);
+            localStorage.setItem('activeDesignName', designName);
+
+            // 5. تفعيل تأثيرات الحركة (Initialization)
+            if (designId === '4') {
+                particlesJS('particles-js', {
+                    "particles": { "number": { "value": 80 }, "color": { "value": "#61dafb" }, "shape": { "type": "circle" }, "opacity": { "value": 0.5 }, "size": { "value": 3 }, "line_linked": { "enable": true, "distance": 150, "color": "#61dafb", "opacity": 0.4, "width": 1 }, "move": { "enable": true, "speed": 6 } },
+                    "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true } }
+                });
+            } else if (designId === '14') {
+                typedInstance = new Typed('.design-14 .dynamic-text', {
+                    stringsElement: '.design-14 #typed-strings',
+                    typeSpeed: 50,
+                    backSpeed: 20,
+                    loop: true
+                });
+            }
+            
+            toggleSelector(); // إخفاء القائمة بعد الاختيار
+        }
+
+        function toggleSelector() {
+            const selector = document.getElementById('design-selector');
+            selector.style.display = selector.style.display === 'block' ? 'none' : 'block';
+        }
+        
+        // --- 2. Existing Functions ---
+        function show(id) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-links button').forEach(b => b.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            const buttons = document.querySelectorAll('.nav-links button');
+            if(id === 'about') buttons[0].classList.add('active');
+            if(id === 'blog') buttons[1].classList.add('active');
+            if(id === 'contact') buttons[2].classList.add('active');
+            window.scrollTo(0,0);
+        }
+
+        // --- Loader for Certifications (Unchanged) ---
+        const loader = document.getElementById('cisco-loader');
+        if(loader) {
+            let step = 1;
+            setInterval(() => {
+                let str = '';
+                for(let i=0; i<5; i++) str += (i < step) ? '🟩' : '⬜';
+                loader.innerText = str;
+                step = (step % 5) + 1;
+            }, 500);
+        }
+
+        // --- Initialization ---
+        window.addEventListener('load', function() {
+            const savedDesign = localStorage.getItem('activeDesign') || '1';
+            const savedDesignName = localStorage.getItem('activeDesignName') || 'Clean Blue Card';
+            
+            // تحميل التصميم المحفوظ وتفعيله
+            setDesign(savedDesign, savedDesignName); 
+            
+            // التأكد من أن الزر الصحيح في شريط التنقل هو النشط
+            document.querySelectorAll('.nav-links button').forEach(b => b.classList.remove('active'));
+            document.querySelector('.nav-links button:nth-child(1)').classList.add('active');
+            
+            // إزالة وظائف الترمينال القديمة لمنع الأخطاء إذا كانت موجودة
+            if(document.getElementById('home')) document.getElementById('home').style.display = 'none';
+        });
+    </script>
+</body>
+</html>
