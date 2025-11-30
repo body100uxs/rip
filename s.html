@@ -14,21 +14,21 @@
     pre{background:#f1f1f1;padding:16px;border-radius:8px;border:1px solid #ddd;white-space:pre-wrap;font-size:14px}
     .muted{color:#666;font-size:14px}
     
-    /* تعريف حركة النبض (تكبير وتصغير) */
+
     @keyframes pulse {
       0%, 100% { transform: scale(1); opacity: 0.7; }
       50% { transform: scale(1.3); opacity: 1; }
     }
 
-    /* تنسيق المربعات */
+
     .loading-square {
       display: inline-block;
-      font-size: 20px; /* حجم الإيموجي */
-      margin: 0 2px; /* مسافة بسيطة بينهم */
+      font-size: 20px; 
+      margin: 0 2px; 
       animation: pulse 1.5s infinite ease-in-out;
     }
 
-    /* تأخير الحركة لكل مربع لعمل تأثير الموجة */
+
     .loading-square:nth-child(1) { animation-delay: 0.0s; }
     .loading-square:nth-child(2) { animation-delay: 0.2s; }
     .loading-square:nth-child(3) { animation-delay: 0.4s; }
@@ -42,10 +42,10 @@
     <p class="muted">The browser will ask for location permission — just allow it bitch.</p>
     <div style="margin:20px 0">
       <input id="greet" type="text" value="bye bye s" placeholder="write anything..."/>
-      <button id="btn">enter that fucking tap</button>
+      <button id="btn">Click here</button>
     </div>
-    <pre id="out">Waiting for your ass...</pre>
-    <p class="muted">Press or leave — nobody loves u s</p>
+    <pre id="out">Waiting ...</pre>
+    <p class="muted"></p>
   </div>
 
   <script>
@@ -53,7 +53,6 @@
       const out = document.getElementById('out');
       const name = document.getElementById('greet').value || 'bye bye s';
       
-      // هنا وضعنا المربعات الخمسة داخل عناصر span لتطبيق الحركة عليها
       out.innerHTML = 'Processing... ' +
         '<span class="loading-square">🟩</span>' +
         '<span class="loading-square">🟩</span>' +
